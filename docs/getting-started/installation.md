@@ -1,6 +1,5 @@
 ---
 title: "Installation"
-order: 2
 description: "Install Graftcode Gateway and set up client packages to start connecting your services."
 ---
 

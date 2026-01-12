@@ -1,6 +1,5 @@
 ---
 title: "Graftcode Introduction"
-order: 1
 description: "Learn how Graftcode connects frontends, mobile apps, and backend services seamlessly, removing the overhead of APIs, SDK generation, and client maintenance."
 ---
 

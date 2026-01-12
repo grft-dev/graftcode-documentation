@@ -1,6 +1,5 @@
 ---
 title: "Testing Setup"
-order: 11
 description: "Set up your testing environment with Jest, pytest, and test configuration for Graftcode SDK testing."
 ---
 

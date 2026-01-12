@@ -1,6 +1,5 @@
 ---
 title: "Quick Reference"
-order: 26
 description: "Quick reference guide with common commands, configuration snippets, and troubleshooting tips for Graftcode SDK."
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "Configuration API"
-order: 22
 description: "Configure Graftcode using environment variables, configuration files, and runtime configuration APIs."
 ---
 

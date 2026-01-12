@@ -1,6 +1,5 @@
 ---
 title: "Error Handling"
-order: 23
 description: "Handle errors in Graftcode SDK with error types, error codes, and retry logic patterns."
 ---
 

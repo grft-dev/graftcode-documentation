@@ -1,6 +1,5 @@
 ---
 title: "Integration Scenarios"
-order: 5
 description: "Explore different integration scenarios including Frontend-Backend, AI-Backend, and Monolith-Microservice patterns."
 ---
 

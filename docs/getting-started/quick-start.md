@@ -1,6 +1,5 @@
 ---
 title: "Quick Start"
-order: 3
 description: "Get up and running with Graftcode in three simple steps - from gateway setup to calling your first method."
 ---
 

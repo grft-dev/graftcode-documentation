@@ -1,6 +1,5 @@
 ---
 title: "Best Practices"
-order: 9
 description: "Learn best practices for service design, performance, security, testing, configuration management, and deployment."
 ---
 

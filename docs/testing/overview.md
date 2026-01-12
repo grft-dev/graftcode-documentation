@@ -1,6 +1,5 @@
 ---
 title: "Testing Overview"
-order: 10
 description: "Introduction to testing strategies for Graftcode SDK implementations, including the testing pyramid and different testing types."
 ---
 

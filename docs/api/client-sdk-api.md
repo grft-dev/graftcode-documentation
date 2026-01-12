@@ -1,9 +1,6 @@
 ---
 title: "Client SDK API"
-order: 21
 description: "Reference for Graftcode client SDK methods, initialization, and method invocation patterns."
-category: ["api"]
----
 ---
 
 # Client SDK API

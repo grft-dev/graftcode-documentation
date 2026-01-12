@@ -1,53 +1,11 @@
 ---
-title: "Gateway API"
-order: 20
-description: "Complete reference for Graftcode Gateway command-line interface and HTTP API endpoints."
+title: "Gateway HTTP API"
+description: "Complete reference for Graftcode Gateway HTTP API endpoints."
 ---
 
-# Gateway API
+# Gateway HTTP API
 
-## Command Line Interface
-
-### `gcg.exe`
-
-Main gateway executable for hosting services.
-
-**Syntax:**
-```bash
-gcg.exe [options]
-```
-
-**Options:**
-
-| Option | Type | Required | Default | Description |
-|--------|------|----------|---------|-------------|
-| `--projectKey` | string | Yes | - | Your unique project key |
-| `--env` | string | No | DEV | Environment name (DEV, STAGING, PROD) |
-| `--port` | number | No | 8080 | Port number for gateway |
-| `--host` | string | No | 0.0.0.0 | Host address |
-| `--config` | string | No | - | Path to configuration file |
-| `--log-level` | string | No | INFO | Logging level (DEBUG, INFO, WARN, ERROR) |
-| `--log-file` | string | No | - | Path to log file |
-
-**Examples:**
-
-```bash
-# Basic usage
-gcg.exe --projectKey abc123 --env DEV
-
-# With custom port
-gcg.exe --projectKey abc123 --env DEV --port 9090
-
-# With configuration file
-gcg.exe --projectKey abc123 --env DEV --config ./gateway.config.json
-
-# Debug mode
-gcg.exe --projectKey abc123 --env DEV --log-level DEBUG
-```
-
-## Gateway HTTP API
-
-### Health Check
+## Health Check
 
 **Endpoint:** `GET /health`
 
@@ -66,7 +24,7 @@ gcg.exe --projectKey abc123 --env DEV --log-level DEBUG
 }
 ```
 
-### List Services
+## List Services
 
 **Endpoint:** `GET /services`
 
@@ -86,7 +44,7 @@ gcg.exe --projectKey abc123 --env DEV --log-level DEBUG
 }
 ```
 
-### Get Service Methods
+## Get Service Methods
 
 **Endpoint:** `GET /services/{serviceName}/methods`
 
@@ -115,7 +73,7 @@ gcg.exe --projectKey abc123 --env DEV --log-level DEBUG
 }
 ```
 
-### Service Invocation
+## Service Invocation
 
 **Endpoint:** `POST /services/{serviceName}/methods/{methodName}`
 
@@ -139,5 +97,27 @@ gcg.exe --projectKey abc123 --env DEV --log-level DEBUG
     "id": 123,
     "name": "John Doe"
   }
+}
+```
+
+## Authentication
+
+**Endpoint:** `POST /auth/token`
+
+**Description:** Authenticate and get access token.
+
+**Request Body:**
+```json
+{
+  "apiKey": "your-api-key",
+  "projectKey": "your-project-key"
+}
+```
+
+**Response:**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "expiresIn": 3600
 }
 ```

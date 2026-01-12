@@ -1,6 +1,5 @@
 ---
 title: "Configuration"
-order: 6
 description: "Configure Graftcode Gateway and client SDKs using command-line options, environment variables, and configuration files."
 ---
 

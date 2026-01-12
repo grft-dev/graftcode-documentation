@@ -1,6 +1,5 @@
 ---
 title: "CI/CD Integration"
-order: 18
 description: "Integrate Graftcode testing into your CI/CD pipeline with GitHub Actions and GitLab CI examples."
 ---
 

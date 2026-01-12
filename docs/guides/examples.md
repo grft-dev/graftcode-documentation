@@ -1,6 +1,5 @@
 ---
 title: "Examples"
-order: 7
 description: "Practical code examples demonstrating how to use Graftcode in various scenarios and programming languages."
 ---
 

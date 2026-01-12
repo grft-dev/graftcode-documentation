@@ -1,6 +1,5 @@
 ---
 title: "Core Concepts"
-order: 4
 description: "Understand the fundamental concepts of Graftcode including Gateway, Graft, Vision Portal, and method signatures."
 ---
 

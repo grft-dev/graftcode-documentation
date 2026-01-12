@@ -1,6 +1,5 @@
 ---
 title: "Test Utilities"
-order: 17
 description: "Useful test utilities including test data factories, helpers, and assertion utilities for Graftcode testing."
 ---
 

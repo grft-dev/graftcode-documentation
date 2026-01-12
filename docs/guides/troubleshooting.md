@@ -1,6 +1,5 @@
 ---
 title: "Troubleshooting"
-order: 8
 description: "Common issues and solutions for debugging Graftcode Gateway and client SDK problems."
 ---
 

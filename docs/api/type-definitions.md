@@ -1,6 +1,5 @@
 ---
 title: "Type Definitions"
-order: 24
 description: "TypeScript type definitions for Graftcode SDK including service clients, metadata, and request/response types."
 ---
 

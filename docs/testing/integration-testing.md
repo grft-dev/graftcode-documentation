@@ -1,6 +1,5 @@
 ---
 title: "Integration Testing"
-order: 13
 description: "Test gateway-client communication and cross-language integration scenarios with Graftcode."
 ---
 
