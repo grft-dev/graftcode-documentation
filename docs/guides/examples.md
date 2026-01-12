@@ -3,8 +3,6 @@ title: "Examples"
 description: "Practical code examples demonstrating how to use Graftcode in various scenarios and programming languages."
 ---
 
-# Examples
-
 ## Basic Example
 
 ```typescript

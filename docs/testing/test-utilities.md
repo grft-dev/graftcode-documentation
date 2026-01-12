@@ -3,8 +3,6 @@ title: "Test Utilities"
 description: "Useful test utilities including test data factories, helpers, and assertion utilities for Graftcode testing."
 ---
 
-# Test Utilities
-
 ## Test Data Factory
 
 ```typescript

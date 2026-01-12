@@ -3,8 +3,6 @@ title: "Integration Testing"
 description: "Test gateway-client communication and cross-language integration scenarios with Graftcode."
 ---
 
-# Integration Testing
-
 ## Gateway-Client Integration
 
 ```typescript

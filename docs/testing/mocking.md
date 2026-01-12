@@ -3,8 +3,6 @@ title: "Mocking and Stubbing"
 description: "Learn how to mock Graftcode services and stub network calls for effective unit testing."
 ---
 
-# Mocking and Stubbing
-
 ## Mocking Graftcode Services
 
 ```typescript

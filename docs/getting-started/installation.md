@@ -3,8 +3,6 @@ title: "Installation"
 description: "Install Graftcode Gateway and set up client packages to start connecting your services."
 ---
 
-# Installation
-
 ## Prerequisites
 
 - Node.js (for npm-based installations)

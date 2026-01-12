@@ -3,8 +3,6 @@ title: "Gateway HTTP API"
 description: "Complete reference for Graftcode Gateway HTTP API endpoints."
 ---
 
-# Gateway HTTP API
-
 ## Health Check
 
 **Endpoint:** `GET /health`

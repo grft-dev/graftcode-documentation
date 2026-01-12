@@ -3,8 +3,6 @@ title: "End-to-End Testing"
 description: "Create comprehensive end-to-end tests for complete workflows and multi-service interactions."
 ---
 
-# End-to-End Testing
-
 ## Complete Workflow Testing
 
 ```typescript

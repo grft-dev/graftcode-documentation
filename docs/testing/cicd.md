@@ -3,8 +3,6 @@ title: "CI/CD Integration"
 description: "Integrate Graftcode testing into your CI/CD pipeline with GitHub Actions and GitLab CI examples."
 ---
 
-# CI/CD Integration
-
 ## GitHub Actions
 
 `.github/workflows/test.yml`:

@@ -3,8 +3,6 @@ title: "Testing Setup"
 description: "Set up your testing environment with Jest, pytest, and test configuration for Graftcode SDK testing."
 ---
 
-# Testing Setup
-
 ## Prerequisites
 
 ```bash

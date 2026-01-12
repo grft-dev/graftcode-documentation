@@ -3,8 +3,6 @@ title: "Events and Hooks"
 description: "Use Graftcode event system and hooks for request interception, lifecycle management, and advanced features."
 ---
 
-# Events and Hooks
-
 ## Event System
 
 ### Available Events

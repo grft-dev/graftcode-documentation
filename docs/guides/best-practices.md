@@ -3,8 +3,6 @@ title: "Best Practices"
 description: "Learn best practices for service design, performance, security, testing, configuration management, and deployment."
 ---
 
-# Best Practices
-
 ## Service Design
 
 1. **Keep methods focused**: Each method should do one thing well

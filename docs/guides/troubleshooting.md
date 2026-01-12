@@ -3,8 +3,6 @@ title: "Troubleshooting"
 description: "Common issues and solutions for debugging Graftcode Gateway and client SDK problems."
 ---
 
-# Troubleshooting
-
 ## Common Issues
 
 ### Gateway Not Starting

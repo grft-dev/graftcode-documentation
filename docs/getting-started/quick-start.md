@@ -3,8 +3,6 @@ title: "Quick Start"
 description: "Get up and running with Graftcode in three simple steps - from gateway setup to calling your first method."
 ---
 
-# Quick Start
-
 ## Step 1: Run the Gateway with Your Backend
 
 Download and run a lightweight Graftcode Gateway to host your backend logic. It automatically exposes all your public classes and methods and provides Graftcode Vision portal.

@@ -3,8 +3,6 @@ title: "Graftcode Introduction"
 description: "Learn how Graftcode connects frontends, mobile apps, and backend services seamlessly, removing the overhead of APIs, SDK generation, and client maintenance."
 ---
 
-# Introduction
-
 ## What is Graftcode?
 
 Graftcode is a cross-runtime communication layer that enables you to call methods across languages without APIs, queues, or SDKs. It connects your modules as if they were all written in one shared codebase — no glue code, no plumbing, just logic.

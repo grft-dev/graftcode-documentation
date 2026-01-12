@@ -3,8 +3,6 @@ title: "Configuration API"
 description: "Configure Graftcode using environment variables, configuration files, and runtime configuration APIs."
 ---
 
-# Configuration API
-
 ## Environment Variables
 
 | Variable | Description | Example |

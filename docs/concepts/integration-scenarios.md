@@ -3,8 +3,6 @@ title: "Integration Scenarios"
 description: "Explore different integration scenarios including Frontend-Backend, AI-Backend, and Monolith-Microservice patterns."
 ---
 
-# Integration Scenarios
-
 ## Frontend ←→ Backend
 
 **Use Case**: Connect frontend applications to backend services without REST APIs.

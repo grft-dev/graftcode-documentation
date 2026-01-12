@@ -3,8 +3,6 @@ title: "Quick Reference"
 description: "Quick reference guide with common commands, configuration snippets, and troubleshooting tips for Graftcode SDK."
 ---
 
-# Quick Reference
-
 ## Installation
 
 ```bash

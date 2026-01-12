@@ -3,8 +3,6 @@ title: "Testing Overview"
 description: "Introduction to testing strategies for Graftcode SDK implementations, including the testing pyramid and different testing types."
 ---
 
-# Testing Overview
-
 This guide provides comprehensive testing strategies for Graftcode SDK implementations. Testing Graftcode services requires understanding both the gateway and client components, as well as their interactions.
 
 ## Testing Pyramid

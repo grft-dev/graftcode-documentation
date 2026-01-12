@@ -3,8 +3,6 @@ title: "Testing Best Practices"
 description: "Best practices for organizing, maintaining, and optimizing your Graftcode test suite."
 ---
 
-# Testing Best Practices
-
 ## 1. Test Organization
 
 - **Structure**: Organize tests mirroring source code structure

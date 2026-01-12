@@ -3,8 +3,6 @@ title: "Core Concepts"
 description: "Understand the fundamental concepts of Graftcode including Gateway, Graft, Vision Portal, and method signatures."
 ---
 
-# Core Concepts
-
 ## Gateway
 
 The Graftcode Gateway is a lightweight service that:

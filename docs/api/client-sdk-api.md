@@ -3,8 +3,6 @@ title: "Client SDK API"
 description: "Reference for Graftcode client SDK methods, initialization, and method invocation patterns."
 ---
 
-# Client SDK API
-
 ## Service Client
 
 ### Constructor

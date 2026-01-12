@@ -3,8 +3,6 @@ title: "Performance Testing"
 description: "Test Graftcode services under load with load testing, stress testing, and latency measurement strategies."
 ---
 
-# Performance Testing
-
 ## Load Testing
 
 ```typescript

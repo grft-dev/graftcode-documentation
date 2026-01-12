@@ -3,8 +3,6 @@ title: "Gateway CLI"
 description: "Complete reference for Graftcode Gateway command-line interface."
 ---
 
-# Gateway CLI
-
 ## Command Line Interface
 
 ### `gcg.exe`
