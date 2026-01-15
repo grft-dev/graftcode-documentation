@@ -4,8 +4,6 @@ description: "Learn how Graftcode respects network boundaries, isolates executio
 keywords: "network boundaries, isolation, graftcode security, blast radius, distributed systems"
 ---
 
-# Network boundaries and isolation
-
 Clear network boundaries are fundamental to secure system design.
 
 One of the common concerns when introducing a new integration technology is whether it:

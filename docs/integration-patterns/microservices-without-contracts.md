@@ -4,8 +4,6 @@ description: "Learn how Graftcode enables microservices to communicate without s
 keywords: "microservices without contracts, api contracts, strongly typed microservices, graftcode architecture"
 ---
 
-# Microservices without contracts
-
 Microservices are often described as “independently deployable units.”
 
 In practice, however, most microservice architectures are held together by a growing number of **contracts**:

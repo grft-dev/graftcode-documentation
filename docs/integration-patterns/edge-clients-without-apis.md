@@ -4,8 +4,6 @@ description: "Learn how edge clients can consume backend logic directly through 
 keywords: "edge clients, frontend integration, no api backend, graftcode edge integration, strongly typed clients"
 ---
 
-# Edge clients without APIs
-
 For years, edge clients—browsers, mobile apps, desktop apps—have been forced to talk to backends through APIs.
 
 Not because APIs were ideal, but because they were the only practical option.

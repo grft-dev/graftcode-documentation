@@ -4,7 +4,6 @@ description: "Hypertube™ is a runtime-level bridge that connects different run
 keywords: "hypertube runtime bridge, runtime integration, distributed systems execution, binary protocol, graftcode performance"
 ---
 
-
 **Hypertube™** is the runtime-level bridge that connects callers and receivers in Graftcode.
 
 It is responsible for executing strongly typed calls:

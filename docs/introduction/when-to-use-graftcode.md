@@ -4,7 +4,6 @@ description: "Graftcode works best when systems communicate through well-defined
 keywords: "when to use graftcode, service communication patterns, microservices integration, api alternatives, distributed systems design"
 ---
 
-
 Graftcode is not a universal answer to every communication problem.  
 It is designed for a specific set of scenarios—ones that appear frequently in modern systems and tend to grow in complexity over time.
 

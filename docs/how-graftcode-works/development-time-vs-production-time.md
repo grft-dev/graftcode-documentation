@@ -4,7 +4,6 @@ description: "Understand how Graftcode behaves differently during development an
 keywords: "graftcode development time, production time behavior, runtime execution, interface discovery, distributed systems lifecycle"
 ---
 
-
 One of the most common sources of confusion in distributed systems is **when** certain things happen.
 
 Client generation, interface discovery, routing, execution, monitoring—these concerns often blend together, making it unclear which parts are design-time, build-time, or runtime responsibilities.

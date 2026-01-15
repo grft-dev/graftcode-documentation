@@ -4,8 +4,6 @@ description: "Learn how Graftcode executes the same method calls in memory, loca
 keywords: "graftcode execution modes, in-memory execution, remote execution, distributed systems architecture"
 ---
 
-# Local, remote, and in-memory execution
-
 One of the core ideas behind Graftcode is that **execution location is not a programming concern**.
 
 Whether code runs:

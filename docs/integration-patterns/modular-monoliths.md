@@ -4,8 +4,6 @@ description: "Learn how Graftcode enables true modular monoliths that evolve int
 keywords: "modular monolith, polyglot monolith, graftcode architecture, modular systems"
 ---
 
-# Modular monoliths
-
 The idea of a *modular monolith* has existed for years.
 
 In theory, it promises the best of both worlds:

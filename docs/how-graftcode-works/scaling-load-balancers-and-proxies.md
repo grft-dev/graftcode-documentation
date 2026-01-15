@@ -4,8 +4,6 @@ description: "Learn how Graftcode scales using standard load balancers, proxies,
 keywords: "graftcode scaling, load balancers, reverse proxies, websocket scaling, distributed systems infrastructure"
 ---
 
-# Scaling, load balancers, and proxies
-
 Scaling is where many distributed systems become complicated—not because scaling is inherently hard, but because tooling often introduces special requirements.
 
 Graftcode is designed so that **scaling works the same way it already does in your infrastructure**.

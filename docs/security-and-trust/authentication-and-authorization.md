@@ -4,8 +4,6 @@ description: "Understand how authentication and authorization are applied in Gra
 keywords: "graftcode authentication, authorization plugins, identity propagation, runtime security, distributed systems"
 ---
 
-# Authentication and authorization
-
 Authentication and authorization in Graftcode are intentionally designed to sit **outside of business logic**, while still being deeply integrated with runtime execution.
 
 The goal is not to invent a new security model, but to make security:

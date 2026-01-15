@@ -4,8 +4,6 @@ description: "Learn how to integrate services using Graftcode in a strongly type
 keywords: "service to service integration, microservices communication, graftcode integration patterns, strongly typed services"
 ---
 
-# Service-to-service integration
-
 Service-to-service communication is one of the most common—and most complex—parts of modern systems.
 
 Traditionally, this communication is implemented using:

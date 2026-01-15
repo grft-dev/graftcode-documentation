@@ -55,6 +55,13 @@ Each category entry follows this format:
 5. [Network Boundaries and Isolation](security-and-trust/network-boundaries-and-isolation.md)
 6. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
 
+### Performance and Efficiency
+1. [Why Runtime-Level Integration is Faster](performance-and-efficiency/why-runtime-level-integration-is-faster.md)
+2. [REST vs gRPC vs Graftcode](performance-and-efficiency/rest-vs-grpc-vs-graftcode.md)
+3. [CPU, Memory, and Network Usage](performance-and-efficiency/cpu-memory-and-network-usage.md)
+4. [Cloud Cost Implications](performance-and-efficiency/cloud-cost-implications.md)
+5. [When Performance Gains Matter](performance-and-efficiency/when-performance-gains-matter.md)
+
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
 
@@ -182,8 +189,28 @@ categories:
         path: "security-and-trust/enterprise-self-hosted-engine.md"
         order: 6
 
-  - name: "Reference"
+  - name: "Performance and Efficiency"
     order: 6
+    path: "performance-and-efficiency"
+    items:
+      - title: "Why Runtime-Level Integration is Faster"
+        path: "performance-and-efficiency/why-runtime-level-integration-is-faster.md"
+        order: 1
+      - title: "REST vs gRPC vs Graftcode"
+        path: "performance-and-efficiency/rest-vs-grpc-vs-graftcode.md"
+        order: 2
+      - title: "CPU, Memory, and Network Usage"
+        path: "performance-and-efficiency/cpu-memory-and-network-usage.md"
+        order: 3
+      - title: "Cloud Cost Implications"
+        path: "performance-and-efficiency/cloud-cost-implications.md"
+        order: 4
+      - title: "When Performance Gains Matter"
+        path: "performance-and-efficiency/when-performance-gains-matter.md"
+        order: 5
+
+  - name: "Reference"
+    order: 7
     path: "reference"
     items:
       - title: "Quick Reference"

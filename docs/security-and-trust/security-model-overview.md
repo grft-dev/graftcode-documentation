@@ -4,8 +4,6 @@ description: "Understand the security model of Graftcode, how execution is isola
 keywords: "graftcode security, security model, trust boundaries, runtime isolation, distributed systems security"
 ---
 
-# Security model overview
-
 Security concerns are one of the first questions teams ask when evaluating a new integration technology.
 
 Graftcode is designed with a simple principle in mind:
