@@ -4,8 +4,6 @@ description: "Learn how Graftcode propagates trace and span context across runti
 keywords: "graftcode observability, distributed tracing, trace propagation, logging, monitoring integration"
 ---
 
-# Observability, tracing, and context propagation
-
 In distributed systems, visibility is not optional.
 
 Teams need to understand:

@@ -4,8 +4,6 @@ description: "Learn how transport-level security works in Graftcode using standa
 keywords: "graftcode tls, wss, transport security, encrypted communication, websocket security"
 ---
 
-# Transport security: TLS and WSS
-
 Transport security in Graftcode is intentionally simple and conventional.
 
 Instead of introducing custom encryption schemes or proprietary protocols, Graftcode relies on **standard, well-understood transport security mechanisms** provided by the underlying network stack.

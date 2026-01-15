@@ -4,8 +4,6 @@ description: "Understand how Graftcode handles interface changes, how older and 
 keywords: "graftcode interface changes, api evolution, backward compatibility, strongly typed services"
 ---
 
-# What happens when interfaces change
-
 Interfaces change.  
 They always do.
 

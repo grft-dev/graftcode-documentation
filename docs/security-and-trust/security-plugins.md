@@ -4,8 +4,6 @@ description: "Learn how Graftcode security plugins integrate with invocation int
 keywords: "graftcode plugins, security plugins, authentication plugins, transport plugins, iip interception"
 ---
 
-# Security plugins
-
 Security plugins are the mechanism through which authentication, authorization, and secure routing are applied in Graftcode.
 
 They are deliberately designed as **runtime extensions**, not framework features.  

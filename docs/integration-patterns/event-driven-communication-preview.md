@@ -4,8 +4,6 @@ description: "Explore how Graftcode approaches event-driven communication using 
 keywords: "event-driven architecture, async communication, event bus, graftcode plugins, distributed events"
 ---
 
-# Event-driven communication (preview)
-
 Event-driven communication is a natural requirement in many systems.
 
 Teams use it to:

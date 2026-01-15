@@ -4,7 +4,6 @@ description: "Graftcode fits between business logic and infrastructure, removing
 keywords: "graftcode architecture, software integration layer, microservices communication, runtime integration, backend architecture"
 ---
 
-
 Graftcode does not ask you to redesign your system.  
 It fits into architectures you already have.
 

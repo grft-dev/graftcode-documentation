@@ -4,7 +4,6 @@ description: "Graftcode is a runtime-level integration platform that lets softwa
 keywords: "graftcode, runtime integration, api alternative, grpc alternative, service communication, strongly typed calls"
 ---
 
-
 Graftcode is a **runtime-level integration platform** that allows software systems to communicate using **strongly typed method calls**, even when those systems run in different processes, on different machines, or in different programming languages.
 
 Instead of designing endpoints, defining schemas, and generating clients, you expose a **programming interface**—classes, methods, and types—and Graftcode makes that interface callable from other applications as if it were local code.

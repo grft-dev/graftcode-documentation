@@ -4,8 +4,6 @@ description: "Learn how to design and consume internal business APIs using Graft
 keywords: "internal apis, business apis, internal services, graftcode integration patterns"
 ---
 
-# Internal business APIs
-
 Most systems have APIs that are not meant for the outside world.
 
 They exist to:

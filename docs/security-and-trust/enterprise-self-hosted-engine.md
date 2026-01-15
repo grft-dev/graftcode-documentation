@@ -4,8 +4,6 @@ description: "Learn how enterprises can self-host the Graftcode grafting engine 
 keywords: "enterprise graftcode, self-hosted engine, compliance, regulated environments, on-prem graftcode"
 ---
 
-# Enterprise self-hosted engine
-
 For many organizations, especially in regulated or security-sensitive environments, introducing a cloud dependency requires careful evaluation.
 
 Graftcode is designed to support these environments by offering an **enterprise self-hosted grafting engine**, allowing organizations to retain full control over metadata, tooling, and integration workflows—without changing how systems execute at runtime.

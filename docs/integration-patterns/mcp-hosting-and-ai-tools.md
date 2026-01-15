@@ -4,8 +4,6 @@ description: "Learn how services hosted on Graftcode Gateway can be exposed as M
 keywords: "mcp hosting, ai tools, llm integration, model context protocol, graftcode ai integration"
 ---
 
-# MCP hosting and AI tools
-
 As AI systems become part of everyday software, a new question appears:
 
 > How can AI safely call real business logic?
