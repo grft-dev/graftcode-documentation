@@ -47,6 +47,14 @@ Each category entry follows this format:
 6. [Microservices Without Contracts](integration-patterns/microservices-without-contracts.md)
 7. [Event-Driven Communication (Preview)](integration-patterns/event-driven-communication-preview.md)
 
+### Security and Trust
+1. [Security Model Overview](security-and-trust/security-model-overview.md)
+2. [Authentication and Authorization](security-and-trust/authentication-and-authorization.md)
+3. [Security Plugins](security-and-trust/security-plugins.md)
+4. [Transport Security TLS/WSS](security-and-trust/transport-security-tls-wss.md)
+5. [Network Boundaries and Isolation](security-and-trust/network-boundaries-and-isolation.md)
+6. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
+
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
 
@@ -151,8 +159,31 @@ categories:
         path: "integration-patterns/event-driven-communication-preview.md"
         order: 7
 
-  - name: "Reference"
+  - name: "Security and Trust"
     order: 5
+    path: "security-and-trust"
+    items:
+      - title: "Security Model Overview"
+        path: "security-and-trust/security-model-overview.md"
+        order: 1
+      - title: "Authentication and Authorization"
+        path: "security-and-trust/authentication-and-authorization.md"
+        order: 2
+      - title: "Security Plugins"
+        path: "security-and-trust/security-plugins.md"
+        order: 3
+      - title: "Transport Security TLS/WSS"
+        path: "security-and-trust/transport-security-tls-wss.md"
+        order: 4
+      - title: "Network Boundaries and Isolation"
+        path: "security-and-trust/network-boundaries-and-isolation.md"
+        order: 5
+      - title: "Enterprise Self-Hosted Engine"
+        path: "security-and-trust/enterprise-self-hosted-engine.md"
+        order: 6
+
+  - name: "Reference"
+    order: 6
     path: "reference"
     items:
       - title: "Quick Reference"
