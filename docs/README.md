@@ -32,6 +32,11 @@ Each category entry follows this format:
 1. [Development-time vs production-time behavior](how-graftcode-works/development-time-vs-production-time.md)
 2. [What goes to Graftcode Cloud](how-graftcode-works/what-goes-to-graftcode-cloud.md)
 3. [How Grafts are generated](how-graftcode-works/how-grafts-are-generated.md)
+4. [Runtime call execution](how-graftcode-works/runtime-call-execution.md)
+5. [Local, remote, and in-memory execution](how-graftcode-works/local-remote-and-in-memory-execution.md)
+6. [Observability, tracing, and context propagation](how-graftcode-works/observability-tracing-and-context-propagation.md)
+7. [Scaling, load balancers, and proxies](how-graftcode-works/scaling-load-balancers-and-proxies.md)
+8. [What happens when interfaces change](how-graftcode-works/what-happens-when-interfaces-change.md)
 
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
@@ -95,6 +100,21 @@ categories:
       - title: "How Grafts are generated"
         path: "how-graftcode-works/how-grafts-are-generated.md"
         order: 3
+      - title: "Runtime call execution"
+        path: "how-graftcode-works/runtime-call-execution.md"
+        order: 4
+      - title: "Local, remote, and in-memory execution"
+        path: "how-graftcode-works/local-remote-and-in-memory-execution.md"
+        order: 5
+      - title: "Observability, tracing, and context propagation"
+        path: "how-graftcode-works/observability-tracing-and-context-propagation.md"
+        order: 6
+      - title: "Scaling, load balancers, and proxies"
+        path: "how-graftcode-works/scaling-load-balancers-and-proxies.md"
+        order: 7
+      - title: "What happens when interfaces change"
+        path: "how-graftcode-works/what-happens-when-interfaces-change.md"
+        order: 8
 
   - name: "Reference"
     order: 4
