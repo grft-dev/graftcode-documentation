@@ -4,7 +4,6 @@ description: "A Graft is a strongly typed client generated on demand from a publ
 keywords: "graftcode graft, strongly typed client, package manager integration, runtime communication, distributed systems"
 ---
 
-# What is a Graft?
 
 A **Graft** is a strongly typed client generated from a public programming interface and delivered through standard package managers such as NuGet, NPM, Maven, CPAN, RubyGems, Packagist or PyPI.
 

@@ -4,7 +4,6 @@ description: "Learn how Graftcode generates strongly typed Grafts on demand when
 keywords: "graft generation, on-demand clients, package manager integration, unified graft model, strongly typed services"
 ---
 
-# How Grafts are generated
 
 A common assumption when first encountering Graftcode is that Grafts are prebuilt packages published to registries.
 

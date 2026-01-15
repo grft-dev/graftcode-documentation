@@ -4,7 +4,6 @@ description: "Learn how Graftcode models communication using callers and receive
 keywords: "caller receiver model, distributed systems communication, graftcode concepts, service interaction model"
 ---
 
-# Caller and Receiver
 
 In traditional distributed systems, communication is usually described in terms of **clients** and **servers**.
 

@@ -4,7 +4,7 @@ description: "Learn how Graftcode separates public interfaces from business logi
 keywords: "public interface, business logic, stateless services, stateful services, distributed systems design, graftcode"
 ---
 
-# Public interface vs business logic
+
 
 In every codebase—whether local or distributed—there is an implicit boundary between **what is exposed** and **what is internal**.
 

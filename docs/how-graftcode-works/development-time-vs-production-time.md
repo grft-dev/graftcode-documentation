@@ -4,7 +4,6 @@ description: "Understand how Graftcode behaves differently during development an
 keywords: "graftcode development time, production time behavior, runtime execution, interface discovery, distributed systems lifecycle"
 ---
 
-# Development-time vs production-time behavior
 
 One of the most common sources of confusion in distributed systems is **when** certain things happen.
 

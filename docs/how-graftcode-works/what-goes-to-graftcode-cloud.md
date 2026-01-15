@@ -4,7 +4,6 @@ description: "Understand exactly what information is sent to the Graftcode cloud
 keywords: "graftcode cloud, security model, interface metadata, distributed systems security, runtime boundaries"
 ---
 
-# What goes to the Graftcode cloud?
 
 One of the most important questions teams ask when evaluating Graftcode is simple and reasonable:
 

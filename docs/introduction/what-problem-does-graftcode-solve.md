@@ -4,7 +4,6 @@ description: "Modern software systems spend a growing amount of effort on making
 keywords: "software integration problem, distributed systems, microservices communication, api complexity, service integration"
 ---
 
-# What problem does Graftcode solve?
 
 Modern software systems are not hard to build because of business logic.  
 They are hard to build because of **communication**.

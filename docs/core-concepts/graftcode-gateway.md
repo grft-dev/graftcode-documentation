@@ -4,7 +4,6 @@ description: "Graftcode Gateway is a lightweight native runtime host that loads 
 keywords: "graftcode gateway, runtime host, hypertube, distributed systems runtime, integration architecture"
 ---
 
-# Graftcode Gateway
 
 The **Graftcode Gateway** is a lightweight, native runtime host that loads application runtimes, exposes public interfaces, and executes strongly typed calls.
 

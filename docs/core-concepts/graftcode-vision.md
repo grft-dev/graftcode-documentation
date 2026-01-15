@@ -4,7 +4,6 @@ description: "Graftcode Vision is a runtime-based interface explorer that helps 
 keywords: "graftcode vision, service discovery, live api documentation, package manager integration, runtime interfaces"
 ---
 
-# Graftcode Vision
 
 **Graftcode Vision** is a developer tool designed to make it easy to understand **what a service exposes, how to connect to it, and how to consume it**.
 
