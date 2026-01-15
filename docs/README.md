@@ -31,6 +31,7 @@ Each category entry follows this format:
 ### How Graftcode Works
 1. [Development-time vs production-time behavior](how-graftcode-works/development-time-vs-production-time.md)
 2. [What goes to Graftcode Cloud](how-graftcode-works/what-goes-to-graftcode-cloud.md)
+3. [How Grafts are generated](how-graftcode-works/how-grafts-are-generated.md)
 
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
@@ -91,6 +92,9 @@ categories:
       - title: "What goes to Graftcode Cloud"
         path: "how-graftcode-works/what-goes-to-graftcode-cloud.md"
         order: 2
+      - title: "How Grafts are generated"
+        path: "how-graftcode-works/how-grafts-are-generated.md"
+        order: 3
 
   - name: "Reference"
     order: 4
