@@ -13,44 +13,24 @@ Each category entry follows this format:
 
 ### Documentation Tree
 
-### 1. Getting Started
-1. [Graftcode Introduction](getting-started/introduction.md)
-2. [Installation](getting-started/installation.md)
-3. [Quick Start](getting-started/quick-start.md)
+### Introduction
+1. [What is Graftcode](introduction/what-is-graftcode.md)
+2. [What problem does Graftcode solve](introduction/what-problem-does-graftcode-solve.md)
+3. [Where Graftcode fits](introduction/where-graftcode-fits.md)
+4. [When to use Graftcode](introduction/when-to-use-graftcode.md)
 
-### 2. Concepts
-1. [Core Concepts](concepts/core-concepts.md)
-2. [Integration Scenarios](concepts/integration-scenarios.md)
+### Core-Concepts
 
-### 3. Guides
-1. [Configuration](guides/configuration.md)
-2. [Examples](guides/examples.md)
-3. [Troubleshooting](guides/troubleshooting.md)
-4. [Best Practices](guides/best-practices.md)
+1. [What is a Graft](core-concepts/what-is-a-graft.md)
+2. [Public Interface bs Business Logic](core-concepts/public-interface-vs-business-logic.md)
+3. [Caller and Receiver](core-concepts/caller-and-receiver.md)
+4. [Graftcode Gateway](core-concepts/graftcode-gateway.md)
+5. [Hypertube Runtime Bridge](core-concepts/hypertube-runtime-bridge.md)
+6. [Graftcode Vision](core-concepts/graftcode-vision.md)
 
-### 4. Testing
-1. [Testing Overview](testing/overview.md)
-2. [Testing Setup](testing/setup.md)
-3. [Unit Testing](testing/unit-testing.md)
-4. [Integration Testing](testing/integration-testing.md)
-5. [End-to-End Testing](testing/e2e-testing.md)
-6. [Performance Testing](testing/performance-testing.md)
-7. [Mocking and Stubbing](testing/mocking.md)
-8. [Test Utilities](testing/test-utilities.md)
-9. [CI/CD Integration](testing/cicd.md)
-10. [Testing Best Practices](testing/best-practices.md)
-
-### 5. API Reference
-#### 5.1. Gateway
-1. [Gateway CLI](api/gateway/cli.md)
-2. [Gateway HTTP API](api/gateway/http.md)
-
-#### 5.2. Client SDK
-1. [Client SDK API](api/client-sdk-api.md)
-2. [Configuration API](api/configuration-api.md)
-3. [Error Handling](api/error-handling.md)
-4. [Type Definitions](api/type-definitions.md)
-5. [Events and Hooks](api/events-hooks.md)
+### How Graftcode Works
+1. [Development-time vs production-time behavior](how-graftcode-works/development-time-vs-production-time.md)
+2. [What goes to Graftcode Cloud](how-graftcode-works/what-goes-to-graftcode-cloud.md)
 
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
@@ -61,119 +41,59 @@ Each category entry follows this format:
 
 ```yaml
 categories:
-  - name: "Getting Started"
+  - name: "Introduction"
     order: 1
-    path: "getting-started"
+    path: "introduction"
     items:
-      - title: "Graftcode Introduction"
-        path: "getting-started/introduction.md"
+      - title: "What is Graftcode"
+        path: "introduction/what-is-graftcode.md"
         order: 1
-      - title: "Installation"
-        path: "getting-started/installation.md"
+      - title: "What problem does Graftcode solve"
+        path: "introduction/what-problem-does-graftcode-solve.md"
         order: 2
-      - title: "Quick Start"
-        path: "getting-started/quick-start.md"
+      - title: "Where Graftcode fits"
+        path: "introduction/where-graftcode-fits.md"
         order: 3
-  
-  - name: "Concepts"
+      - title: "When to use Graftcode"
+        path: "introduction/when-to-use-graftcode.md"
+        order: 4
+
+  - name: "Core Concepts"
     order: 2
-    path: "concepts"
+    path: "core-concepts"
     items:
-      - title: "Core Concepts"
-        path: "concepts/core-concepts.md"
+      - title: "What is a Graft"
+        path: "core-concepts/what-is-a-graft.md"
         order: 1
-      - title: "Integration Scenarios"
-        path: "concepts/integration-scenarios.md"
+      - title: "Public Interface vs Business Logic"
+        path: "core-concepts/public-interface-vs-business-logic.md"
         order: 2
-  
-  - name: "Guides"
-    order: 3
-    path: "guides"
-    items:
-      - title: "Configuration"
-        path: "guides/configuration.md"
-        order: 1
-      - title: "Examples"
-        path: "guides/examples.md"
-        order: 2
-      - title: "Troubleshooting"
-        path: "guides/troubleshooting.md"
+      - title: "Caller and Receiver"
+        path: "core-concepts/caller-and-receiver.md"
         order: 3
-      - title: "Best Practices"
-        path: "guides/best-practices.md"
+      - title: "Graftcode Gateway"
+        path: "core-concepts/graftcode-gateway.md"
         order: 4
-  
-  - name: "Testing"
-    order: 4
-    path: "testing"
-    items:
-      - title: "Testing Overview"
-        path: "testing/overview.md"
-        order: 1
-      - title: "Testing Setup"
-        path: "testing/setup.md"
-        order: 2
-      - title: "Unit Testing"
-        path: "testing/unit-testing.md"
-        order: 3
-      - title: "Integration Testing"
-        path: "testing/integration-testing.md"
-        order: 4
-      - title: "End-to-End Testing"
-        path: "testing/e2e-testing.md"
+      - title: "Hypertube Runtime Bridge"
+        path: "core-concepts/hypertube-runtime-bridge.md"
         order: 5
-      - title: "Performance Testing"
-        path: "testing/performance-testing.md"
+      - title: "Graftcode Vision"
+        path: "core-concepts/graftcode-vision.md"
         order: 6
-      - title: "Mocking and Stubbing"
-        path: "testing/mocking.md"
-        order: 7
-      - title: "Test Utilities"
-        path: "testing/test-utilities.md"
-        order: 8
-      - title: "CI/CD Integration"
-        path: "testing/cicd.md"
-        order: 9
-      - title: "Testing Best Practices"
-        path: "testing/best-practices.md"
-        order: 10
-  
-  - name: "API Reference"
-    order: 5
-    path: "api"
-    subcategories:
-      - name: "Gateway"
+
+  - name: "How Graftcode Works"
+    order: 3
+    path: "how-graftcode-works"
+    items:
+      - title: "Development-time vs production-time behavior"
+        path: "how-graftcode-works/development-time-vs-production-time.md"
         order: 1
-        path: "api/gateway"
-        items:
-          - title: "Gateway CLI"
-            path: "api/gateway/cli.md"
-            order: 1
-          - title: "Gateway HTTP API"
-            path: "api/gateway/http.md"
-            order: 2
-      - name: "Client SDK"
+      - title: "What goes to Graftcode Cloud"
+        path: "how-graftcode-works/what-goes-to-graftcode-cloud.md"
         order: 2
-        path: "api"
-        items:
-          - title: "Client SDK API"
-            path: "api/client-sdk-api.md"
-            order: 1
-          - title: "Configuration API"
-            path: "api/configuration-api.md"
-            order: 2
-          - title: "Error Handling"
-            path: "api/error-handling.md"
-            order: 3
-          - title: "Type Definitions"
-            path: "api/type-definitions.md"
-            order: 4
-          - title: "Events and Hooks"
-            path: "api/events-hooks.md"
-            order: 5
-  
+
   - name: "Reference"
-    order: 6
+    order: 4
     path: "reference"
     items:
       - title: "Quick Reference"
