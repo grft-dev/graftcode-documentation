@@ -38,6 +38,15 @@ Each category entry follows this format:
 7. [Scaling, load balancers, and proxies](how-graftcode-works/scaling-load-balancers-and-proxies.md)
 8. [What happens when interfaces change](how-graftcode-works/what-happens-when-interfaces-change.md)
 
+### Integration Patterns
+1. [Service-to-Service Integration](integration-patterns/service-to-service-integration.md)
+2. [Edge Clients Without APIs](integration-patterns/edge-clients-without-apis.md)
+3. [Internal Business APIs](integration-patterns/internal-business-apis.md)
+4. [MCP Hosting and AI Tools](integration-patterns/mcp-hosting-and-ai-tools.md)
+5. [Modular Monoliths](integration-patterns/modular-monoliths.md)
+6. [Microservices Without Contracts](integration-patterns/microservices-without-contracts.md)
+7. [Event-Driven Communication (Preview)](integration-patterns/event-driven-communication-preview.md)
+
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
 
@@ -116,8 +125,34 @@ categories:
         path: "how-graftcode-works/what-happens-when-interfaces-change.md"
         order: 8
 
-  - name: "Reference"
+  - name: "Integration Patterns"
     order: 4
+    path: "integration-patterns"
+    items:
+      - title: "Service-to-Service Integration"
+        path: "integration-patterns/service-to-service-integration.md"
+        order: 1
+      - title: "Edge Clients Without APIs"
+        path: "integration-patterns/edge-clients-without-apis.md"
+        order: 2
+      - title: "Internal Business APIs"
+        path: "integration-patterns/internal-business-apis.md"
+        order: 3
+      - title: "MCP Hosting and AI Tools"
+        path: "integration-patterns/mcp-hosting-and-ai-tools.md"
+        order: 4
+      - title: "Modular Monoliths"
+        path: "integration-patterns/modular-monoliths.md"
+        order: 5
+      - title: "Microservices Without Contracts"
+        path: "integration-patterns/microservices-without-contracts.md"
+        order: 6
+      - title: "Event-Driven Communication (Preview)"
+        path: "integration-patterns/event-driven-communication-preview.md"
+        order: 7
+
+  - name: "Reference"
+    order: 5
     path: "reference"
     items:
       - title: "Quick Reference"
