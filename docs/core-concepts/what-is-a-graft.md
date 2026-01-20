@@ -10,7 +10,7 @@ A Graft is a first-class package distributed through standard package managers s
 
 What makes this possible is Graftcode's runtime-level communication layer, which connects programming language runtimes directly rather than communicating through application-level protocols such as HTTP or JSON. Method calls performed on a Graft are translated into a binary, runtime-aware representation of the developer's intent and executed on the target runtime using the most efficient transport available. This can happen in-process, between processes on the same machine, or remotely over the network, without changing a single line of calling code. As a result, the same Graft can represent a module that is embedded locally during development and later moved to a remote microservice in production.
 
-Strong typing is preserved end-to-end. Primitive values such as strings, numbers, booleans, and dates are passed using the native types of the calling language. Complex objects are handled as remote references. When a method accepts a complex type, the argument is represented as a Graft of that type. When a method returns a complex object, Graftcode automatically provides a strongly-typed Graft instance that references the remote object. These returned objects are live: subsequent method calls on them are executed remotely, just as if the object existed locally.
+Strong typing is preserved end-to-end. Primitive values such as strings, numbers, booleans, and dates are passed using the native types of the calling language. Complex objects are handled as remote references. When a method accepts a complex type, the argument is represented as a Graft of that type. When a method returns a complex object, Graftcode automatically provides a strongly-typed Graft instance that references the remote object. These returned objects are fully functional: subsequent method calls on them are executed remotely, just as if the object existed locally.
 
 Because Grafts are generated directly from the actual interfaces of modules and packages, they eliminate an entire class of integration problems. There is no duplicated contract, no hand-written serialization logic, and no version drift between producer and consumer. If a module's public interface changes, the corresponding Graft changes as well, and incompatibilities surface immediately at compile time or import time rather than as runtime errors. This makes distributed, cross-technology systems behave much closer to a single, strongly-typed codebase.
 
@@ -32,15 +32,15 @@ For your own remote services and modules, the typical path is Vision (because it
 
 ## Installing and Using a Graft
 
-Grafts are installed using standard package managers. The only additional step compared to installing a regular dependency is pointing the package manager to a Graftcode registry. Depending on whether you are using a free setup or a project registered in Graftcode portals, this registry can be either a free anonymous registry or a project-specific registry associated with a running Graftcode Gateway.
+Grafts are installed using standard package managers. The only additional step compared to installing a regular dependency is pointing the package manager to a Graftcode registry. The registry you use depends on your setup. Free setups use an anonymous registry. Project setups use a project-specific registry associated with a running Graftcode Gateway.
 
-A free registry has the form:
+A free registry URL has the form:
 
 ```
 http://grft.dev/<random-guid>__free
 ```
 
-A project registry has the form:
+A project registry URL has the form:
 
 ```
 http://grft.dev/<project-id>__graftcode
@@ -52,7 +52,9 @@ A Graft package name follows a simple convention that encodes both the target pa
 graft.<technology_package>.<ModuleName>
 ```
 
-For example, a .NET module distributed as `EnergyPrice.dll` will be exposed as a Graft package named `graft.nuget.EnergyPrice`, while the same module consumed from Node.js would be installed as `graft.npm.EnergyPrice`.
+where `<technology_package>` identifies the target package ecosystem (for example, npm, nuget, or pypi).
+
+For example, a .NET module EnergyPrice.dll, which uses NuGet as its package manager, is exposed as a Graft package named `graft.nuget.EnergyPrice`. The same module, when consumed from Node.js, which uses npm, is installed as `graft.npm.EnergyPrice`.
 
 After adding the appropriate registry, installing a Graft is no different from installing any other dependency.
 
@@ -132,7 +134,7 @@ This mechanism allows teams to treat services and modules as immutable, versione
 
 ## Configuring a Graft
 
-Each Graft exposes a configuration class named `GraftConfig` in its root namespace. At minimum, this configuration defines where the Graft should send method calls.
+Each Graft exposes a configuration class named `GraftConfig` in its root namespace. At a minimum, this configuration specifies the target runtime where Graft method calls are executed.
 
 ```ts
 import { GraftConfig } from "@graft/npm.EnergyPrice";
@@ -140,7 +142,7 @@ import { GraftConfig } from "@graft/npm.EnergyPrice";
 GraftConfig.host = "tcp://energy-service:9000";
 ```
 
-Alternatively, a full Graft Connection String can be provided:
+Instead of specifying only a host address, a full Graft Connection String can be used to define the transport, authentication, plugins, and other execution details.
 
 ```ts
 GraftConfig.setConfig("graft://user:token@energy-gw:9000?tls=true");
@@ -154,4 +156,4 @@ Grafts can also be configured without code changes by supplying connection strin
 
 ## Summary
 
-A Graft turns remote, in-memory, or cross-language business logic into a local, strongly-typed dependency. You install it like a normal package, configure where and how it executes, and call methods as if the code were local. Everything else — runtime bridging, transport, versioning, and synchronization — is handled by Graftcode.
+A Graft represents remote, cross-language business logic as a local, strongly-typed dependency. You install it like a normal package, configure its execution location, and call methods as if the code were local. Graftcode handles transport, serialization, runtime bridging, and synchronization.
