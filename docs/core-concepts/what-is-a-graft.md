@@ -145,7 +145,7 @@ GraftConfig.host = "tcp://energy-service:9000";
 Instead of specifying only a host address, a full Graft Connection String can be used to define the transport, authentication, plugins, and other execution details.
 
 ```ts
-GraftConfig.setConfig("graft://user:token@energy-gw:9000?tls=true");
+GraftConfig.setConfig("name=graft.nuget.EnergyPrice;runtime=netcore;host=ws://localhost:8004/ws")
 ```
 
 *Note: Full connection string configuration is not yet supported in the current release.*
