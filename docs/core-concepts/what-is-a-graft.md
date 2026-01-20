@@ -1,194 +1,159 @@
----
-title: "What is a Graft?"
-description: "A Graft is a strongly typed client generated on demand from a public programming interface and delivered through standard package managers, allowing remote services to be consumed like local modules."
-keywords: "graftcode graft, strongly typed client, package manager integration, runtime communication, distributed systems"
----
+# What is a Graft
 
-A **Graft** is a strongly typed client generated from a public programming interface and delivered through standard package managers such as NuGet, NPM, Maven, CPAN, RubyGems, Packagist or PyPI.
+A Graft is a strongly-typed client library that represents a remote module or package as if it were a local dependency in your application. From the developer’s perspective, using a graft does not feel like calling an API, a microservice, or a remote system. It feels exactly like calling ordinary code: creating objects, invoking methods, passing arguments, and receiving return values using the native types of the programming language you are working in.
 
-It allows a remote service to be consumed **as if it were a local module**: installed as a dependency, imported into code, and called using normal method invocations.
+The core idea behind grafts is to remove the traditional integration layer from software development. Instead of defining REST endpoints, gRPC contracts, DTOs, OpenAPI specifications, or client SDKs, a developer simply exposes public methods in a module or consumes an existing package. Graftcode automatically discovers public interfaces and generates a graft — a native, strongly-typed client package — for any supported target technology. This graft mirrors the exposed interface precisely, including method signatures, types, return values, and errors, and stays continuously in sync with the original module or package.
 
-The key difference is that a Graft is not written, published, or maintained manually.  
-It is **generated on demand**, directly on response for package manager request.
+A Graft is not limited to representing remote services. A Graft can represent **any package** — from the same technology or a completely different one — whether it comes from a public artifact repository or a private feed. This means that libraries written in foreign technologies can be consumed directly and safely in-memory, without spinning up separate services or rewriting code. A JavaScript application can call into a .NET or Java package, a .NET service can invoke Python or Node.js libraries, and all of this can happen within a single process if desired. In such scenarios, Grafts act as a universal bridge between technologies, enabling true in-memory cross-technology execution.
 
----
+A Graft is a first-class package distributed through standard package managers such as npm, NuGet, or PyPI. From the point of view of the consuming application, the Graft is just another dependency. The fact that its implementation executes in a different runtime, process, or even on a different machine is completely transparent and controlled purely through configuration.
 
-## A familiar mental model
+What makes this possible is Graftcode's runtime-level communication layer, which connects programming language runtimes directly rather than communicating through application-level protocols such as HTTP or JSON. Method calls performed on a Graft are translated into a binary, runtime-aware representation of the developer's intent and executed on the target runtime using the most efficient transport available. This can happen in-process, between processes on the same machine, or remotely over the network, without changing a single line of calling code. As a result, the same Graft can represent a module that is embedded locally during development and later moved to a remote microservice in production.
 
-Developers already trust the shared module model.
+Strong typing is preserved end-to-end. Primitive values such as strings, numbers, booleans, and dates are passed using the native types of the calling language. Complex objects are handled as remote references. When a method accepts a complex type, the argument is represented as a Graft of that type. When a method returns a complex object, Graftcode automatically provides a strongly-typed Graft instance that references the remote object. These returned objects are fully functional: subsequent method calls on them are executed remotely, just as if the object existed locally.
 
-When using a shared library, you:
-- add it as a dependency
-- import it into your code
-- rely on types, signatures, and tooling
-- let the compiler and IDE guide you
+Because Grafts are generated directly from the actual interfaces of modules and packages, they eliminate an entire class of integration problems. There is no duplicated contract, no hand-written serialization logic, and no version drift between producer and consumer. If a module's public interface changes, the corresponding Graft changes as well, and incompatibilities surface immediately at compile time or import time rather than as runtime errors. This makes distributed, cross-technology systems behave much closer to a single, strongly-typed codebase.
 
-A Graft follows exactly the same workflow.
+In practice, a Graft is simply the most natural way to consume remote or foreign business logic. It allows developers to think in terms of code, not infrastructure. Architecture decisions such as whether a module runs locally in-memory or remotely on another node become configuration concerns rather than design constraints. This is the foundation on which Graftcode enables modular monoliths, microservices, cross-language integration, and dynamic architectures without the usual integration overhead.
 
-The only difference is that the implementation does not live in the same process—or even in the same technology. From the caller’s perspective, that difference disappears.
+Once this model is understood, using a Graft becomes straightforward.
 
 ---
 
-## Generated on demand, not published ahead of time
+## Where Does the Graft Come From?
 
-A common assumption is that Grafts are pre-built packages published to registries.
+For services and modules that you own, Grafts are discovered and distributed through **Graftcode Vision**. Vision is the central discovery and documentation portal that lists all modules exposed through Graftcode Gateways. When you run a Graftcode Gateway hosting your module, Vision automatically publishes its interface and provides an **Installation** section with ready-to-use package manager commands, as well as a **Configuration** section showing how to connect a Graft to a specific running instance. (See [Graftcode Gateway](../core-concepts/graftcode-gateway.md) for more details.)
 
-That is **not** how Graftcode works.
+For third-party or reusable libraries, Grafts can be discovered using **Graftcode Modules**, a search engine that indexes public and private artifact feeds across all supported technologies. It allows you to find modules using natural language queries powered by LLMs, locate the correct package regardless of its original ecosystem, and install its Graft directly. Once a package is grafted, it can be consumed like any other dependency and used across technologies.
 
-When a package manager requests a Graft:
-1. The request goes through the Graftcode registry endpoint.
-2. The Graftcode engine analyzes the public interface exposed by the **Graftcode Gateway**.
-3. A client package is generated **on the fly** for the requested technology.
-4. The generated package is returned to the package manager.
-5. The result is cached, so subsequent requests for the same version are served efficiently.
-
-Nothing is generated until something actually asks for it.
-
-Grafts are not created for every service automatically.  
-They exist only for the languages and versions that consumers request.
+For your own remote services and modules, the typical path is Vision (because it is driven by your Gateway and your runtime instances). For public or private packages living in artifact repositories, the typical path is Modules (because it is driven by indexed artifact feeds). In both cases, the outcome is the same: you end up with an install command for a Graft package and configuration guidance to connect to the right execution target.
 
 ---
 
-## Grafts behave like normal dependencies
+## Installing and Using a Graft
 
-Because a Graft is delivered through a package manager, it naturally fits into existing workflows.
+Grafts are installed using standard package managers. The only additional step compared to installing a regular dependency is pointing the package manager to a Graftcode registry. The registry you use depends on your setup. Free setups use an anonymous registry. Project setups use a project-specific registry associated with a running Graftcode Gateway.
 
-When a public interface changes and a new version is exposed:
-- consumers update their dependencies
-- IDEs immediately reflect the new shape of the interface
-- autocomplete shows what changed
-- compilation fails if a mandatory parameter was introduced or a member was removed
+A free registry URL has the form:
 
-There is no need for someone to announce changes manually or distribute updated clients.
+```
+http://grft.dev/<random-guid>__free
+```
 
-The programming model already enforces correctness.
+A project registry URL has the form:
 
-This becomes a major advantage in larger teams and distributed systems, where coordination overhead is often higher than the actual change itself.
+```
+http://grft.dev/<project-id>__graftcode
+```
 
----
+A Graft package name follows a simple convention that encodes both the target package ecosystem and the original module name:
 
-## Strong typing across service boundaries
+```
+graft.<technology_package>.<ModuleName>
+```
 
-A Graft preserves strong typing even when calls cross process, machine, or technology boundaries.
+where `<technology_package>` identifies the target package ecosystem (for example, npm, nuget, or pypi).
 
-Public methods may:
-- accept primitive types
-- return primitive types
-- accept or return structured objects
-- accept or return arrays, including multidimensional arrays
+For example, a .NET module EnergyPrice.dll, which uses NuGet as its package manager, is exposed as a Graft package named `graft.nuget.EnergyPrice`. The same module, when consumed from Node.js, which uses npm, is installed as `graft.npm.EnergyPrice`.
 
-From the caller’s point of view, these are just normal types.
+After adding the appropriate registry, installing a Graft is no different from installing any other dependency.
 
-The runtime takes care of translating them into equivalent representations in the target technology.
+### NuGet
 
----
+```bash
+dotnet add package graft.nuget.EnergyPrice \
+  --source http://grft.dev/<project-id>__graftcode
+```
 
-## Arrays, collections, and safety
+### npm
 
-Graftcode fully supports **one-dimensional and multidimensional arrays** for both arguments and return values.
+```bash
+npm install graft.npm.EnergyPrice \
+  --registry=http://grft.dev/<project-id>__graftcode
+```
 
-Arrays are treated as data:
-- they are transferred eagerly
-- they do not hold remote references
-- iteration happens locally in the caller’s runtime
-
-This is intentional.
-
-System-level collections or framework-specific types are **not allowed** in public interfaces. The reason is safety and predictability.
-
-Without this restriction, it would be possible to:
-- return a remote collection
-- iterate over it locally
-- unknowingly trigger remote calls on every iteration
-
-While this can be useful in advanced scenarios, it introduces hidden complexity and performance risks.
-
-For now, Graftcode enforces a clear rule:
-> **Public interfaces must describe data, not behavior disguised as data.**
-
-In-memory execution is an exception, where richer semantics are supported. Remote execution remains explicit and safe by default. To fully support seamless transition between inmemory and remote execution current version of Graftcode does not allow to use system / framework types and collections in any scenario. This will be enabled for In-Memory only grafts in future. 
+Once installed, the Graft can be imported and used immediately.
 
 ---
 
-## Structured objects and DTO detection
+## Calling Remote and In-Memory Code as Local Code
 
-When a public method accepts or returns a structured object, Graftcode analyzes how that object behaves.
+Assume the following .NET module is hosted through a Graftcode Gateway or loaded in-memory:
 
-If the object:
-- has no side effects
-- contains only data
-- exposes no meaningful behavior
+```csharp
+public class EnergyService
+{
+    public decimal GetCurrentPrice(string countryCode)
+    {
+        return 0.32m;
+    }
 
-it is treated as a **data transfer object**.
+    public Invoice CalculateInvoice(Customer customer, int kWh)
+    {
+        return new Invoice
+        {
+            Customer = customer,
+            TotalPrice = kWh * 0.32m
+        };
+    }
+}
+```
 
-In this case:
-- the entire object graph is transferred at once
-- no additional calls are made for individual fields
-- there is no back-and-forth communication
+No controllers, APIs, or transport-specific code are required. Public methods are enough.
 
-This avoids inefficient call patterns and keeps data transfer predictable.
+From JavaScript, the same module can be used as follows:
 
-Automatic DTO detection can be disabled if needed, and is disabled by default for in-memory execution.
+```ts
+import { EnergyService } from "@graft/npm.EnergyPrice";
 
----
+const energy = new EnergyService();
 
-## Wrapper types and value semantics
+const price = await energy.getCurrentPrice("DE");
 
-Some types represent values, but add semantic meaning or helper behavior—for example:
-- dates and times
-- identifiers
-- coordinates
-- colors
+const invoice = await energy.calculateInvoice(
+  { id: "cust-1", name: "ACME Corp" },
+  1200
+);
 
-Graftcode treats such types as **value wrappers**.
+console.log(invoice.totalPrice);
+```
 
-When possible, these values are:
-- extracted into their underlying representation
-- transferred across the boundary
-- reconstructed using native equivalents in the target technology
-
-For example:
-- a JavaScript `Date`
-- becomes a timestamp
-- and is reconstructed as a `.NET DateTime` representing the same point in time
-
-The goal is to preserve meaning, not implementation details.
-
----
-
-## What a Graft represents
-
-A Graft does not encode:
-- transport protocols
-- serialization formats
-- network topology
-
-It encodes **what can be called**.
-
-How the call is executed—locally, remotely, in memory, over TCP/IP or WebSocket—is a runtime concern handled by Graftcode Hypertube(TM) protocol.
-
-This separation allows interfaces to remain stable while architecture evolves.
+Primitive values are passed using native JavaScript types. Complex objects such as `Customer` and `Invoice` are represented as Grafts referencing remote or in-memory objects.
 
 ---
 
-## Why this matters
+## Graftcode Gateway, Versioning, and Virtual Feeds
 
-Because Grafts behave like real dependencies:
-- distributed systems become easier to reason about
-- refactoring becomes safer
-- tooling becomes more helpful
-- AI-assisted development works on real types, not inferred schemas saving a lot of tokens
+When a Graftcode Gateway is started in project-bound mode, every module it exposes is registered in a single virtual feed per package manager for that project. It does not matter which gateway instance reports the module: the same module, in the same version, can be started on any number of nodes or environments, and the same Graft will continue to work without changes.
 
-Developers spend more time writing business logic and less time translating between representations of that logic.
+Graftcode enforces package-like semantics for Grafts. If a module with the same name and version is reported again but exposes a different public interface, the registration will fail. This prevents accidental interface drift and ensures consistency across the project. To change the public contract, the module version must be incremented, exactly as if a new package version were being published to an artifact repository.
+
+This mechanism allows teams to treat services and modules as immutable, versioned artifacts while still deploying them dynamically across environments. From the consumer's point of view, Grafts behave exactly like normal packages, even though their implementation may be running on multiple nodes or instances.
 
 ---
 
-## In short
+## Configuring a Graft
 
-A Graft turns a remote service into a dependency, generated on demand, delivered through familiar tools, and enforced by strong typing.
+Each Graft exposes a configuration class named `GraftConfig` in its root namespace. At a minimum, this configuration specifies the target runtime where Graft method calls are executed.
 
-It brings the discipline of shared modules into distributed systems—without asking developers to think in terms of endpoints, payloads, or protocols.
+```ts
+import { GraftConfig } from "@graft/npm.EnergyPrice";
+
+GraftConfig.host = "tcp://energy-service:9000";
+```
+
+Instead of specifying only a host address, a full Graft Connection String can be used to define the transport, authentication, plugins, and other execution details.
+
+```ts
+GraftConfig.setConfig("graft://user:token@energy-gw:9000?tls=true");
+```
+
+*Note: Full connection string configuration is not yet supported in the current release.*
+
+Grafts can also be configured without code changes by supplying connection strings through environment variables or configuration files. These can be defined per Graft or globally for all Grafts used by the application.
 
 ---
 
-Next, we’ll look at **public interfaces and business logic**, and why respecting that boundary becomes critical when code is consumed remotely.
+## Summary
+
+A Graft represents remote, cross-language business logic as a local, strongly-typed dependency. You install it like a normal package, configure its execution location, and call methods as if the code were local. Graftcode handles transport, serialization, runtime bridging, and synchronization.
