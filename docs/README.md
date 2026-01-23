@@ -56,11 +56,12 @@ Each category entry follows this format:
 6. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
 
 ### Performance and Efficiency
-1. [Why Runtime-Level Integration is Faster](performance-and-efficiency/why-runtime-level-integration-is-faster.md)
-2. [REST vs gRPC vs Graftcode](performance-and-efficiency/rest-vs-grpc-vs-graftcode.md)
-3. [CPU, Memory, and Network Usage](performance-and-efficiency/cpu-memory-and-network-usage.md)
-4. [Cloud Cost Implications](performance-and-efficiency/cloud-cost-implications.md)
-5. [When Performance Gains Matter](performance-and-efficiency/when-performance-gains-matter.md)
+1. [Compare Performance](performance-and-efficiency/compare-performance.md)
+2. [Why Runtime-Level Integration is Faster](performance-and-efficiency/why-runtime-level-integration-is-faster.md)
+3. [REST vs gRPC vs Graftcode](performance-and-efficiency/rest-vs-grpc-vs-graftcode.md)
+4. [CPU, Memory, and Network Usage](performance-and-efficiency/cpu-memory-and-network-usage.md)
+5. [Cloud Cost Implications](performance-and-efficiency/cloud-cost-implications.md)
+6. [When Performance Gains Matter](performance-and-efficiency/when-performance-gains-matter.md)
 
 ### 6. Reference
 1. [Quick Reference](reference/quick-reference.md)
@@ -193,21 +194,24 @@ categories:
     order: 6
     path: "performance-and-efficiency"
     items:
+      - title: "Compare Performance"
+        path: "performance-and-efficiency/compare-performance.md"
+        order: 1
       - title: "Why Runtime-Level Integration is Faster"
         path: "performance-and-efficiency/why-runtime-level-integration-is-faster.md"
-        order: 1
+        order: 2
       - title: "REST vs gRPC vs Graftcode"
         path: "performance-and-efficiency/rest-vs-grpc-vs-graftcode.md"
-        order: 2
+        order: 3
       - title: "CPU, Memory, and Network Usage"
         path: "performance-and-efficiency/cpu-memory-and-network-usage.md"
-        order: 3
+        order: 4
       - title: "Cloud Cost Implications"
         path: "performance-and-efficiency/cloud-cost-implications.md"
-        order: 4
+        order: 5
       - title: "When Performance Gains Matter"
         path: "performance-and-efficiency/when-performance-gains-matter.md"
-        order: 5
+        order: 6
 
   - name: "Reference"
     order: 7
