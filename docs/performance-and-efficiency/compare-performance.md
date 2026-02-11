@@ -59,7 +59,7 @@ Experience the performance difference yourself with our interactive benchmarking
 
 🔗 [Graftcode Performance Lab](http://gc-t-rg-polc-perfapp-01.bzhcesgchufrcsce.polandcentral.azurecontainer.io/)
 
-![](assets/compare-performance-1.png)
+![](../../assets/compare-performance-1.png)
 
 The tool allows you to:
 - **Run 1000 calls** using Graftcode, REST, and gRPC protocols
@@ -71,13 +71,13 @@ The tool allows you to:
 When running a continuous stream of requests against the same operation hosted by Graftcode vs GRPC or REST, we see that Graftcode's range of Y axis is multi-fold lower than REST and GRPC:
 
 **REST Performance**
-![REST Performance Metrics](assets/compare-performance-2.png)
+![REST Performance Metrics](../../assets/compare-performance-2.png)
 
 **GRPC Performance**
-![GRPC Performance Metrics](assets/compare-performance-3.png)
+![GRPC Performance Metrics](../../assets/compare-performance-3.png)
 
 **GRAFTCODE Performance**
-![Graftcode Performance Metrics](assets/compare-performance-4.png)
+![Graftcode Performance Metrics](../../assets/compare-performance-4.png)
 
 ## Step 2. Run the performance tests
 
@@ -101,7 +101,7 @@ When running a continuous stream of requests against the same operation hosted b
 
 Use the Cloud Cost Savings calculator in the Performance Lab to estimate your potential cost reductions:
 
-![](assets/compare-performance-5.png)
+![](../../assets/compare-performance-5.png)
 
 **How to Use the Calculator**
 - Select your current call volume from the RPS dropdown (requests per second)
