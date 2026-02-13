@@ -57,7 +57,7 @@ Instead of using REST or HTTP-based gRPC, Graftcode uses our proprietary **Hyper
 
 Experience the performance difference yourself with our interactive benchmarking tool:
 
-🔗 [Graftcode Performance Lab](http://gc-t-rg-polc-perfapp-01.bzhcesgchufrcsce.polandcentral.azurecontainer.io/)
+🔗 [Graftcode Performance Lab](https://gc-d-ca-polc-demo-perf-lab-01.blackgrass-d2c29aae.polandcentral.azurecontainerapps.io/)
 
 ![](../../assets/compare-performance-1.png)
 
