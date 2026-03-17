@@ -37,6 +37,7 @@ Each category entry follows this format:
 6. [Observability, tracing, and context propagation](how-graftcode-works/observability-tracing-and-context-propagation.md)
 7. [Scaling, load balancers, and proxies](how-graftcode-works/scaling-load-balancers-and-proxies.md)
 8. [What happens when interfaces change](how-graftcode-works/what-happens-when-interfaces-change.md)
+9. [Alpha limitations and known constraints](how-graftcode-works/alpha-limitations-and-known-constraints.md)
 
 ### Integration Patterns
 1. [Service-to-Service Integration](integration-patterns/service-to-service-integration.md)
@@ -140,6 +141,9 @@ categories:
       - title: "What happens when interfaces change"
         path: "how-graftcode-works/what-happens-when-interfaces-change.md"
         order: 8
+      - title: "Alpha limitations and known constraints"
+        path: "how-graftcode-works/alpha-limitations-and-known-constraints.md"
+        order: 9
 
   - name: "Integration Patterns"
     order: 4
