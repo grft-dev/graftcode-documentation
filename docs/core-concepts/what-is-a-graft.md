@@ -63,7 +63,7 @@ graft.<technology_package>.<ModuleName>
 
 where `<technology_package>` identifies the target package ecosystem (for example, npm, nuget, or pypi).
 
-For example, a .NET module EnergyPrice.dll, which uses NuGet as its package manager, is exposed as a Graft package named `graft.nuget.EnergyPrice`. The same module, when consumed from Node.js, which uses npm, is installed as `graft.npm.EnergyPrice`.
+For example, a .NET module EnergyPrice.dll, which uses NuGet as its package manager, is exposed as a Graft package named `graft.nuget.EnergyPrice`. The same module, when consumed from Node.js, which uses npm, is installed as `@graft/nuget-EnergyPrice`.
 
 After adding the appropriate registry, installing a Graft is no different from installing any other dependency.
 
@@ -77,7 +77,7 @@ dotnet add package graft.nuget.EnergyPrice \
 ### npm
 
 ```bash
-npm install @graft/npm-EnergyPrice \
+npm install @graft/nuget-EnergyPrice \
   --registry=http://grft.dev/<project-id>__graftcode
 ```
 
@@ -113,7 +113,7 @@ No controllers, APIs, or transport-specific code are required. Public methods ar
 From JavaScript, the same module can be used as follows:
 
 ```ts
-import { EnergyService } from "@graft/npm-EnergyPrice";
+import { EnergyService } from "@graft/nuget-EnergyPrice";
 
 const energy = new EnergyService();
 
@@ -147,7 +147,7 @@ When a Graftcode Gateway starts in project-bound mode, every module it exposes i
 Each Graft exposes a configuration class named `GraftConfig` in its root namespace. At a minimum, this configuration specifies the target runtime where Graft method calls are executed.
 
 ```ts
-import { GraftConfig } from "@graft/npm-EnergyPrice";
+import { GraftConfig } from "@graft/nuget-EnergyPrice";
 
 GraftConfig.host = "tcp://energy-service:9000";
 ```
