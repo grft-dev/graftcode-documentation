@@ -108,7 +108,7 @@ This opens the door to detecting **breaking changes automatically** by comparing
 By comparing two UGM versions of the same module, it becomes possible to detect changes such as:
 - removed public methods
 - renamed methods or parameters
-- removed or renamed return values
+- removed or renamed return types
 - changes to required parameters
 - incompatible type changes
 
@@ -273,6 +273,4 @@ Interface evolution becomes a managed process, not a source of risk.
 
 ---
 
-With this, the **How Graftcode works** section is complete.
-
-Next, we’ll move into **Get started**, where we’ll show how to go from zero to a working Graft in minutes.
+See also: [Alpha limitations and known constraints](alpha-limitations-and-known-constraints.md)

@@ -22,7 +22,7 @@ Each category entry follows this format:
 ### Core-Concepts
 
 1. [What is a Graft](core-concepts/what-is-a-graft.md)
-2. [Public Interface bs Business Logic](core-concepts/public-interface-vs-business-logic.md)
+2. [Public Interface vs Business Logic](core-concepts/public-interface-vs-business-logic.md)
 3. [Caller and Receiver](core-concepts/caller-and-receiver.md)
 4. [Graftcode Gateway](core-concepts/graftcode-gateway.md)
 5. [Hypertube Runtime Bridge](core-concepts/hypertube-runtime-bridge.md)

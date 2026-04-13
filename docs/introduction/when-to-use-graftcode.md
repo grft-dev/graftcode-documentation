@@ -132,4 +132,4 @@ Used deliberately, it becomes a tool that simplifies systems rather than adding 
 
 ---
 
-Next, we’ll move from *when* to *how*, starting with the core building block behind everything: **the Graft**.
+See also: [What is a Graft](../core-concepts/what-is-a-graft.md)

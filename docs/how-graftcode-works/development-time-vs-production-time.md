@@ -68,7 +68,7 @@ Instead, they:
 - install the dependency
 - import the generated client
 
-At that moment, the Graftcode engine:
+At that moment, the Graftcode Engine:
 - generates a strongly typed client **on demand**
 - tailored to the requested technology
 - based on the current Unified Graft Model
@@ -245,4 +245,4 @@ This separation makes distributed systems easier to reason about, easier to secu
 
 ---
 
-Next, we’ll take a closer look at **what information is sent to the Graftcode cloud—and what never leaves your environment**.
+See also: [What goes to Graftcode Cloud](what-goes-to-graftcode-cloud.md)

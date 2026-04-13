@@ -4,13 +4,7 @@ description: "Learn how Graftcode enables true modular monoliths that evolve int
 keywords: "modular monolith, polyglot monolith, graftcode architecture, modular systems"
 ---
 
-The idea of a *modular monolith* is not new.
-
-For years, it has been presented as a pragmatic alternative to both tightly coupled monoliths and prematurely distributed microservice architectures. In theory, it promises the best of both worlds: the simplicity, performance, and debuggability of a monolith combined with the structure, boundaries, and long-term flexibility of microservices.
-
-In practice, however, most systems that call themselves modular monoliths fail to deliver on that promise.
-
-Not because the idea is wrong—but because the tools used to implement it were never designed to support it fully.
+The *modular monolith* promises the simplicity of a monolith combined with the structure and long-term flexibility of microservices. In practice, most systems that call themselves modular monoliths fail to deliver — the tools used to implement them were never designed to support the concept fully.
 
 ---
 
@@ -52,33 +46,21 @@ The problem appears the moment a module needs to be extracted.
 
 ## The extraction cliff
 
-When a module is moved out of process, the system typically falls off an architectural cliff.
+When a module is moved out of process, the system falls off an architectural cliff: direct calls become remote calls, interfaces become DTOs, serialization appears, error handling changes, and observability must be rebuilt. What was a refactor becomes a redesign.
 
-Direct method calls must be replaced with some form of remote communication. Interfaces need to be reshaped into DTOs. Serialization must be introduced. Error handling semantics change. Latency becomes visible. Observability has to be rebuilt.
-
-What was once a refactor becomes a redesign.
-
-This is why so many teams either:
+This is why teams either:
 - stay stuck in an increasingly tangled monolith, or
 - jump too early into microservices and accept the cost of premature distribution
 
-The underlying issue is not organizational or cultural. It is technical.
-
-The integration model changes when the topology changes.
+The underlying issue is technical: the integration model changes when the topology changes.
 
 ---
 
 ## Why traditional integration technologies cannot help
 
-Technologies like REST, gRPC, and messaging systems were never designed to support modular monoliths.
+REST, gRPC, and messaging systems assume distribution from day one. They introduce transport concerns into application design, require explicit serialization, and permanently change how code is written. They make it possible to build distributed systems but impossible to *start* as a true monolith and evolve gradually.
 
-They assume distribution from day one. They introduce transport concerns directly into application design. They require payload-based communication, explicit serialization, and protocol-aware interfaces.
-
-Once introduced, they permanently change how code is written and reasoned about.
-
-These technologies make it possible to build distributed systems—but they make it impossible to *start* as a true monolith and evolve gradually.
-
-They force teams to choose early between:
+Teams are forced to choose early between:
 - local simplicity with long-term rigidity, or
 - distributed flexibility with immediate complexity
 

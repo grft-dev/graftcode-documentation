@@ -87,7 +87,7 @@ From a runtime perspective, production systems do not depend on the cloud.
 ## Package manager requests and client generation
 
 When a package manager requests a Graft:
-- the request reaches the Graftcode engine
+- the request reaches the Graftcode Engine
 - the Unified Graft Model is used to generate a client
 - the generated package is returned to the requester
 - the result is cached for efficiency
@@ -181,4 +181,4 @@ This clear boundary is foundational to the Graftcode security model.
 
 ---
 
-Next, we’ll look at **how Grafts are generated on demand**, and what happens when a package manager requests a client.
+See also: [How Grafts are generated](how-grafts-are-generated.md)

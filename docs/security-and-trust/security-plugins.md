@@ -88,13 +88,9 @@ If authorization logic rejects the invocation, the plugin throws an exception an
 
 ## JWT plugin as a concrete example (alpha version - to be evolved and change significantly)
 
-The sample repository includes a working JWT plugin implemented in C#.
+The sample repository includes a working JWT plugin in C#. The `Javonet.*` namespaces in the code are a historical name for what is now **Hypertube™** and the plugin system around invocation intent.
 
-You will notice the `Javonet.*` namespaces in the code. That is a historical name used in the current plugin tooling and runtime packages. In Graftcode terminology, this is the same layer that today we refer to as **Hypertube™** and the plugin system around invocation intent.
-
-What makes this example useful is that it shows the plugin model exactly where it matters: at the boundary where invocation intent is about to be sent, and right before it is executed on the receiving side.
-
-On the caller side, the plugin runs just before Hypertube sends an invocation message. In the sample implementation, `JwtSendingPlugin` resolves a user-provided JWT implementation (`IJwtAuthorize`), loads plugin configuration, reads an ambient request context (stored with `AsyncLocal`), generates a token, and returns it as plugin payload:
+On the caller side, `JwtSendingPlugin` runs just before Hypertube sends an invocation message. It resolves a JWT implementation, reads an ambient request context (`AsyncLocal`), generates a token, and returns it as plugin payload:
 
 ```csharp
 public IPluginPayload Execute()
@@ -103,7 +99,7 @@ public IPluginPayload Execute()
         .ResolvePluginTransientImplementation<IJwtAuthorize>();
 
     var config = PluginImplementationRegistry
-        .GetPluginConfiguration<JwtGraftocodePluginSettings>();
+        .GetPluginConfiguration<JwtGraftcodePluginSettings>();
 
     if (jwtAuthorize is null) throw new JwtPluginResolvingException($"Plugin not found: {nameof(IJwtAuthorize)}");
 
@@ -124,13 +120,9 @@ public IPluginPayload Execute()
 }
 ```
 
-Two details in this snippet are worth calling out.
+The plugin has no HTTP or web-framework dependency — it operates purely at the intent level. Identity flows via `AsyncLocal`, keeping business code clean.
 
-First, the plugin is not coupled to any HTTP construct. There are no headers and no web framework assumptions. The plugin participates at the intent level and simply returns a payload that will travel with the invocation.
-
-Second, the user identity is taken from an ambient request context (JwtPluginRequestContext.Current), which is implemented using AsyncLocal. This mirrors how identity often flows through modern runtimes: the business code remains clean, while the context is carried along the execution path.
-
-On the receiving side, JwtReceivingPlugin runs before the invocation is translated into a method call. It deserializes the plugin payload, extracts the token, validates it through IJwtAuthorize.Validate(...), and then performs authorization checks before execution is allowed to proceed:
+On the receiving side, `JwtReceivingPlugin` deserializes the payload, validates the token, and checks authorization before execution proceeds:
 
 ```csharp
 var pluginPayloadDict = JsonSerializer.Deserialize<Dictionary<string, object>>((string)commandPayload);
@@ -156,9 +148,9 @@ if (!string.IsNullOrWhiteSpace(reason))
 return new AuthContext(username, role);
 ```
 
-This is the enforcement point that matters for security reviews: if the plugin throws, the call is rejected before any business logic runs. There is no partial execution and no “best effort” behavior.
+If the plugin throws, the call is rejected before any business logic runs. There is no partial execution and no “best effort” behavior.
 
-The example also demonstrates one practical authorization strategy: attribute-based access rules on methods. The receiving plugin reflects the target method and checks a JwtAuthorizeAttribute before allowing execution. The relevant part of CheckAttributes(...) looks like this:
+The example also uses attribute-based authorization. `CheckAttributes(...)` reflects the target method and inspects `JwtAuthorizeAttribute`:
 
 ```csharp
 var authAttr = method.GetCustomAttribute<JwtAuthorizeAttribute>();
@@ -175,9 +167,7 @@ if (string.Equals(authAttr.Role, role, StringComparison.OrdinalIgnoreCase)
 
 reason = $"{authAttr.Reason} Required role: '{authAttr.Role}', but received: '{role ?? "none"}'.";
 ```
-This is intentionally transparent. Graftcode does not define what “authorized” means. It gives the plugin the method identity and the claims context, and your code decides.
-
-That transparency is what enables a side-car security model: teams can add authentication and authorization later, purely through configuration, by attaching a sending plugin that injects credentials and a receiving plugin that validates and authorizes them—without changing business logic or the public interface.
+Graftcode does not define what “authorized” means. The plugin receives method identity and claims context, and your code decides. This enables a side-car security model where authentication and authorization are added later through configuration, without changing business logic.
 
 ---
 

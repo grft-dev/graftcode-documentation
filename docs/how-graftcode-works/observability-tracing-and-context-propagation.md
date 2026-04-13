@@ -81,7 +81,7 @@ No changes to application code are required.
 
 ## Gateway-level metrics (optional)
 
-When a Graftcode Gateway is connected to a project in the Graftcode portal, it can optionally emit:
+When a Graftcode Gateway is connected to a project in the Graftcode Portal, it can optionally emit:
 - aggregated call counts
 - latency distributions
 - version usage metrics
@@ -165,4 +165,4 @@ Observability remains a first-class concern—without becoming a constraint.
 
 ---
 
-Next, we’ll look at **scaling, load balancers, and proxies**, and how Graftcode fits naturally into existing infrastructure.
+See also: [Scaling, load balancers, and proxies](scaling-load-balancers-and-proxies.md)

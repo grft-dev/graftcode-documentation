@@ -198,4 +198,4 @@ It is the component that makes strongly typed, protocol-free communication possi
 
 ---
 
-Next, we’ll look at **Graftcode Vision**, and how live interfaces, documentation, and interactive exploration are built on top of the same runtime model.
+See also: [Graftcode Vision](graftcode-vision.md)

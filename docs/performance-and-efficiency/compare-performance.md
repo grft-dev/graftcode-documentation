@@ -1,6 +1,6 @@
 ---
 title: "Compare Performance"
-description: "nderstand how Graftcode's Hypertube technology delivers superior performance compared to traditional REST APIs and gRPC, reducing cloud costs, CO2 emissions, and improving user experience."
+description: "Understand how Graftcode's Hypertube technology delivers superior performance compared to traditional REST APIs and gRPC, reducing cloud costs, CO2 emissions, and improving user experience."
 ---
 
 ## Goal
@@ -26,7 +26,7 @@ Instead of using REST or HTTP-based gRPC, Graftcode uses our proprietary **Hyper
 - Add HTTP headers and metadata
 - Process through multiple framework layers
 - Parse and deserialize on the receiving end
-- Invokes asociated route method
+- Invokes associated route method
 - Process the call in business logic and returns result
 
 **Graftcode Hypertube Approach:**
@@ -68,13 +68,13 @@ The tool allows you to:
 - **Measure network latency** to isolate pure protocol performance
 - **See real-time results** with total execution time for each method
 
-When running a continuous stream of requests against the same operation hosted by Graftcode vs GRPC or REST, we see that Graftcode's range of Y axis is multi-fold lower than REST and GRPC:
+When running a continuous stream of requests against the same operation hosted by Graftcode vs gRPC or REST, we see that Graftcode's range of Y axis is multi-fold lower than REST and gRPC:
 
 **REST Performance**
 ![REST Performance Metrics](../../assets/compare-performance-2.png)
 
-**GRPC Performance**
-![GRPC Performance Metrics](../../assets/compare-performance-3.png)
+**gRPC Performance**
+![gRPC Performance Metrics](../../assets/compare-performance-3.png)
 
 **GRAFTCODE Performance**
 ![Graftcode Performance Metrics](../../assets/compare-performance-4.png)
@@ -85,7 +85,7 @@ When running a continuous stream of requests against the same operation hosted b
 - Click "Run 1000 calls" for each protocol (Graftcode, REST, gRPC)
 - Compare the results in the "Performance Comparison" section
 - Note the time differences and calculate the performance improvement
-- Check the Developers tools to see the difference in the way how communication is handled
+- Check the Developer tools to see the difference in the way communication is handled
 
 <collapsible title="📊 Understanding the Results - What to Look For">
 

@@ -106,8 +106,6 @@ This makes it possible to:
  
 Each Graft can be routed independently.
  
-The purpose of this section is to describe how Graftcode and Hypertube cooperate to pass, store, and resolve runtime configurations.
- 
 The configuration system is designed to:
  
 - support multiple runtimes,
@@ -116,49 +114,25 @@ The configuration system is designed to:
 - avoid central, monolithic configuration files.
  
 ### Definitions
- 
-#### Name
- 
-**Name** is a unique key within the user's application that corresponds to a single Graft.
- 
-- The value of Name is defined by the Graft itself (for example: `graft.nuget.sdncalculatorsimple`).
-- It is later used by Hypertube to select the appropriate configuration when a runtime context is created.
- 
-#### Config
- 
-**Config** represents a complete definition required to start a runtime context inside Hypertube.
- 
-It is a class defined in Hypertube and contains the following logical fields:
- 
-- Runtime
-- ConnectionData
-- Modules (optional)
-- Plugins (optional)
- 
-#### ConfigPriority
- 
-**ConfigPriority** defines the precedence order of configurations.
- 
-When multiple configurations with the same Name exist, the one with the highest priority is selected.
- 
-Priority order from highest to lowest:
- 
-1. RuntimeSpecificEnv
-2. GlobalEnv
-3. RuntimeSpecificFile
-4. GlobalFile
-5. User
-6. DefaultLibrary
- 
-#### ConfigurationsCollection
- 
-**ConfigurationsCollection** is an internal structure inside Hypertube that stores all configurations added by all Grafts in the application.
- 
-Characteristics:
- 
-- configurations are grouped by Name
-- then grouped by ConfigPriority
-- existing configurations are never overridden
+
+| Term | Description |
+|------|-------------|
+| **Name** | Identifies a specific Graft configuration entry (maps to the `name` key in a Graft Connection String). Defined by the Graft itself (e.g. `graft.nuget.sdncalculatorsimple`). |
+| **Config** | A key-value representation of a Graft Connection String (Runtime, ConnectionData, Modules, Plugins). |
+| **ConfigPriority** | The precedence level at which a configuration was set. When multiple configurations share the same Name, the highest priority wins. |
+| **ConfigurationsCollection** | The internal store that holds all registered Graft configurations, grouped by Name then by ConfigPriority. Existing entries are never overridden. |
+
+### ConfigPriority levels
+
+| Priority (highest first) | Level | Source |
+|--------------------------|-------|--------|
+| 1 | RuntimeSpecificEnv | Runtime-specific environment variable |
+| 2 | GlobalEnv | Global environment variable |
+| 3 | RuntimeSpecificFile | Runtime-specific config file |
+| 4 | GlobalFile | Global config file |
+| 5 | UserCode | Application code (`GraftConfig.setConfig(...)`) |
+| 6 | GraftSpecificDefault | Default from the Graft package |
+| 7 | DefaultLibrary | Hypertube default (in-memory) |
  
 ### Global Graft Connection String
  
@@ -282,11 +256,11 @@ When a runtime context is initialized:
 - the highest-priority configuration is selected
 - a RuntimeContext is created and returned
  
-### Open Questions / To Be Implemented
- 
-- standard locations for configuration files
-- logging and diagnostics
-- user-visible exceptions for invalid configuration
+> **Note (Alpha):** The following items are under development and may change.
+>
+> - standard locations for configuration files
+> - logging and diagnostics
+> - user-visible exceptions for invalid configuration
  
 ---
  
@@ -642,5 +616,5 @@ At runtime, Graftcode:
 From the developer's perspective, code behaves the same—regardless of where it runs.
  
 ---
- 
-Next, we'll look at **where execution happens**, and how the same execution model applies to **local, remote, and in-memory** scenarios.
+
+See also: [Local, remote, and in-memory execution](local-remote-and-in-memory-execution.md)
