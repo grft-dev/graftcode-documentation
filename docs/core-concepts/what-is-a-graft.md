@@ -45,19 +45,19 @@ Grafts are installed using standard package managers. The only additional step c
 
 A free registry URL has the form:
 
-```
+```bash
 http://grft.dev/<random-guid>__free
 ```
 
 A project registry URL has the form:
 
-```
+```bash
 http://grft.dev/<project-id>__graftcode
 ```
 
 A Graft package name follows a simple convention that encodes both the target package ecosystem and the original module name:
 
-```
+```bash
 graft.<technology_package>.<ModuleName>
 ```
 

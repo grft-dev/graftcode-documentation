@@ -10,13 +10,13 @@ description: "Quick reference guide with common commands, configuration snippets
 gg.exe --runtime <your_runtime> --modules <your_backend_library>
 
 # Install a Graft (command from Graftcode Vision)
-npm install graft.npm.EnergyPrice --registry=http://grft.dev/<project-id>__graftcode
+npm install @graft/nuget-EnergyPrice --registry=http://grft.dev/<project-id>__graftcode
 ```
 
 ## Basic Usage
 
 ```typescript
-import { EnergyService } from "@graft/npm.EnergyPrice";
+import { EnergyService } from "@graft/nuget-EnergyPrice";
 
 const energy = new EnergyService();
 
@@ -28,7 +28,7 @@ const price = await energy.getCurrentPrice("DE");
 ### GraftConfig (code)
 
 ```typescript
-import { GraftConfig } from "@graft/npm.EnergyPrice";
+import { GraftConfig } from "@graft/nuget-EnergyPrice";
 
 GraftConfig.host = "tcp://energy-service:9000";
 ```
@@ -36,7 +36,7 @@ GraftConfig.host = "tcp://energy-service:9000";
 ### Graft Connection String
 
 ```typescript
-GraftConfig.setConfig("name=graft.nuget.EnergyPrice;runtime=netcore;host=ws://localhost:8004/ws");
+GraftConfig.setConfig("name=@graft/nuget-EnergyPrice;runtime=netcore;host=ws://localhost:8004/ws");
 ```
 
 ### Environment Variables
@@ -48,7 +48,7 @@ Configuration can also be supplied via environment variables or config files, ap
 ### Frontend <-> Backend
 
 ```typescript
-import { BackendService } from "@graft/npm.Backend";
+import { BackendService } from "@graft/nuget-Backend";
 
 const backend = new BackendService();
 const data = await backend.getData();
@@ -86,7 +86,7 @@ expect(price).toBeDefined();
 ### Mock Service
 
 ```typescript
-jest.mock("@graft/npm.EnergyPrice", () => ({
+jest.mock("@graft/nuget-EnergyPrice", () => ({
   EnergyService: jest.fn().mockImplementation(() => ({
     getCurrentPrice: jest.fn().mockResolvedValue(0.32),
   })),
