@@ -28,7 +28,7 @@ You can run it:
 
 The Gateway can be obtained in several ways:
 - downloaded directly from GitHub releases (https://github.com/grft-dev/graftcode-gateway/releases/)
-- generated through the Graftcode portal wizard for a selected platform
+- generated through the Graftcode Portal wizard for a selected platform
 - installed via system package managers (such as Chocolatey or APT)
 - pulled as a ready-to-run Docker image
 
@@ -79,7 +79,7 @@ No business logic, no implementation code, and no runtime data ever leave your e
 The Unified Graft Model is used when a package manager requests a Graft.
 
 At that moment:
-1. The request reaches the Graftcode engine.
+1. The request reaches the Graftcode Engine.
 2. The Unified Graft Model is used to generate a strongly typed client for the requested technology.
 3. The generated package is returned to the package manager.
 4. The result is cached for subsequent requests.
@@ -213,27 +213,16 @@ Over time, more tools can integrate directly at this level.
 
 ## Source-available and security transparency
 
-The Graftcode Gateway is designed to be a security-critical boundary component, and it is treated as such.
-
-For this reason, the Gateway is expected to be made **source-available** on GitHub.
-
-This means:
-- the full source code of the Gateway can be inspected
+The Gateway is expected to be made **source-available** on GitHub:
+- the full source code can be inspected
 - security teams can perform static analysis
 - organizations can run independent penetration tests
 - behavior can be audited rather than assumed
 
-While the Gateway itself is a native binary distributed for convenience, its implementation is intended to be transparent and reviewable.
-
-This approach allows teams to:
+This allows teams to:
 - verify exactly what the Gateway does
 - understand how interfaces are analyzed
 - confirm what data is (and is not) sent outside their environment
-
-Security should not rely on trust alone.  
-It should be verifiable.
-
-Making the Graftcode Gateway source-available ensures that organizations can evaluate it using the same standards they apply to other critical infrastructure components.
 
 ---
 
@@ -255,4 +244,4 @@ It exists to run code, connect runtimes, and make distributed execution feel loc
 
 ---
 
-Next, we’ll look at **Hypertube™**, the runtime bridge that makes this execution model possible.
+See also: [Hypertube Runtime Bridge](hypertube-runtime-bridge.md)

@@ -126,4 +126,4 @@ It narrows the gap between local and remote code, allowing distributed systems t
 
 ---
 
-Next, we’ll look at **when Graftcode is the right choice**, and when other approaches may still make sense.
+See also: [When to use Graftcode](when-to-use-graftcode.md)

@@ -163,4 +163,4 @@ This shift in perspective prepares the ground for runtime-level integration—wh
 
 ---
 
-Next, we’ll look at **the Graftcode Gateway**, and how it connects callers and receivers at runtime.
+See also: [Graftcode Gateway](graftcode-gateway.md)

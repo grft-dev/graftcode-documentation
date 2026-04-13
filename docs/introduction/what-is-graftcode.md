@@ -54,7 +54,7 @@ Graftcode introduces a small set of core building blocks that work together:
 - **Grafts** – strongly typed clients generated from public method signatures
 - **Graftcode Gateway** – a runtime host that exposes those signatures and executes calls
 - **Hypertube™** – a runtime-level bridge that connects different runtimes efficiently
-- **Vision** – live, always-up-to-date documentation derived from real code
+- **Graftcode Vision** – live, always-up-to-date documentation derived from real code
 
 Together, they form a system where interfaces are discovered, clients are generated, and calls are executed automatically—without asking developers to design or maintain a separate communication layer.
 
@@ -120,4 +120,4 @@ By moving communication closer to the runtime, Graftcode lets developers focus o
 
 ---
 
-Next, we’ll look at the fundamental building block behind this model: **the Graft**.
+See also: [What is a Graft](../core-concepts/what-is-a-graft.md)

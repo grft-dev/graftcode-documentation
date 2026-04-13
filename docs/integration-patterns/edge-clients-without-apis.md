@@ -170,4 +170,4 @@ APIs become optional—not mandatory.
 
 ---
 
-Next, we’ll look at **asynchronous and event-driven integration patterns**, and how Graftcode handles workflows that don’t fit request–response models.
+See also: [Event-Driven Communication](event-driven-communication-preview.md)

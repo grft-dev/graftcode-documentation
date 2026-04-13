@@ -136,62 +136,46 @@ This separation allows teams to scale independently of development.
 
 ## Transport plugins and advanced routing
 
-In some scenarios, direct point-to-point execution is not enough.
-
-Teams may need:
-- request queuing and delayed execution
-- multiple subscribers handling the same invocation
-- topic-based routing strategies
-- transactional execution coordinated by an event bus
-- integration with existing messaging or PaaS infrastructure
+In some scenarios, direct point-to-point execution is not enough. Teams may need request queuing, multi-subscriber handling, topic-based routing, transactional event buses, or integration with existing messaging infrastructure.
 
 Graftcode supports these scenarios through **transport plugins**.
 
-A transport plugin allows Hypertube to route invocation intent through an external system in exactly the same way developers would do manually using that system’s SDK—except without changing application code.
+### Transport plugins
 
-Instead of calling an SDK, constructing messages, or serializing payloads, the invocation intent is passed to the plugin, which forwards it to the chosen transport channel.
+A transport plugin routes invocation intent through an external system, the same way developers would use that system’s SDK—except without changing application code.
+
+The intent is passed to the plugin, which forwards it to the chosen transport channel.
 
 From the application’s perspective, the call is still just a method invocation.
 
-The important distinction is that **Graftcode does not replace these systems**.
+**Graftcode does not replace these systems.**
 
-If a team wants to use:
-- a message queue
-- a service bus
-- a topic-based event system
-- or any other transport with specific delivery guarantees
+Teams enable the appropriate plugin for their transport of choice:
+- message queues
+- service buses
+- topic-based event systems
+- any transport with specific delivery guarantees
 
-they can do so by enabling the appropriate plugin.
+Hypertube forwards the intent as if the team had created a message and sent it using the native SDK. No changes are required in business code, interfaces, or callers.
 
-Hypertube forwards the invocation intent through the plugin exactly as if the team had:
-- created a message
-- sent it using the native SDK
-- and implemented the same behavior manually
+### Fan-out and topic routing
 
-The difference is that no changes are required in business code, interfaces, or callers.
+Gateways configured with the same transport plugin can subscribe to selected channels or topics:
+- Specific Gateways receive invocations from those channels
+- Execution happens inside their hosted runtimes
+- Results are returned using the configured response channel
 
-Gateways that are configured with the same transport plugin can subscribe to selected channels or topics.
+This enables:
+- Fan-out to multiple receivers
+- Asynchronous invocation processing
+- Execution coordinated through external systems
+- Strong typing and execution semantics preserved throughout
 
-Based on configuration:
-- specific Gateways receive invocations from those channels
-- execution happens inside their hosted runtimes
-- results are returned using the configured response channel
+### Queue integration
 
-This makes it possible to:
-- fan out calls to multiple receivers
-- process invocations asynchronously
-- coordinate execution through external systems
-- and still preserve strong typing and execution semantics
+Transport plugins affect **routing and delivery**, not programming semantics. Method signatures, error handling, and execution intent remain unchanged — only the path the invocation takes is different.
 
-Transport plugins affect **routing and delivery**, not programming semantics.
-
-Method signatures remain the same.
-Error handling remains the same.
-Execution intent remains the same.
-
-Only the path the invocation takes is different.
-
-This allows teams to adopt advanced routing, queuing, or transactional delivery strategies incrementally—without rewriting interfaces or changing how code is written.
+Teams can adopt advanced routing, queuing, or transactional delivery strategies incrementally—without rewriting interfaces or changing how code is written.
 
 
 ---
@@ -233,4 +217,4 @@ No proprietary infrastructure is required.
 
 ---
 
-Next, we’ll look at **what happens when interfaces change**, and how Graftcode keeps systems stable as they evolve.
+See also: [What happens when interfaces change](what-happens-when-interfaces-change.md)

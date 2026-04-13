@@ -65,7 +65,7 @@ Crucially, this happens using standard package manager workflows—no custom too
 ## Generating the Graft on demand
 
 When the request arrives:
-1. The Graftcode engine identifies the requested service, version, and target technology.
+1. The Graftcode Engine identifies the requested service, version, and target technology.
 2. The corresponding Unified Graft Model is loaded.
 3. A strongly typed client is generated **specifically for that technology**.
 4. The generated client is packaged in the native format expected by the package manager.
@@ -170,18 +170,6 @@ What works in CI works in production.
 
 ---
 
-## Why this matters
-
-This model enables:
-- faster feedback loops
-- earlier detection of breaking changes
-- safer interface evolution
-- less cross-team coordination
-
-Distributed systems start behaving more like well-managed codebases, where change is verified by builds—not negotiated by meetings.
-
----
-
 ## What a generated Graft contains
 
 A Graft is not a stub and not a proxy.
@@ -237,12 +225,12 @@ The package manager becomes the synchronization mechanism.
 ## Why this matters
 
 This model:
-- eliminates client drift
-- keeps interfaces and clients aligned
-- reduces coordination overhead
+- eliminates client drift and keeps interfaces aligned
+- enables faster feedback loops and earlier detection of breaking changes
+- reduces cross-team coordination overhead
 - improves developer productivity
 
-It also makes distributed systems easier to reason about, because consuming a remote service feels the same as consuming a local dependency.
+Distributed systems start behaving more like well-managed codebases, where change is verified by builds—not negotiated by meetings.
 
 ---
 
@@ -259,4 +247,4 @@ They bring the shared-module workflow to distributed systems—without the manua
 
 ---
 
-Next, we’ll look at **how versioning and evolutionary changes work in practice**, and how Graftcode helps teams evolve interfaces safely.
+See also: [What happens when interfaces change](what-happens-when-interfaces-change.md)

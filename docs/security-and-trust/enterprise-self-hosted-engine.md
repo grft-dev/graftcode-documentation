@@ -1,12 +1,12 @@
 ---
 title: "Enterprise self-hosted engine"
-description: "Learn how enterprises can self-host the Graftcode grafting engine to meet security, compliance, and regulatory requirements without changing the execution model."
+description: "Learn how enterprises can self-host the Graftcode Engine to meet security, compliance, and regulatory requirements without changing the execution model."
 keywords: "enterprise graftcode, self-hosted engine, compliance, regulated environments, on-prem graftcode"
 ---
 
 For many organizations, especially in regulated or security-sensitive environments, introducing a cloud dependency requires careful evaluation.
 
-Graftcode is designed to support these environments by offering an **enterprise self-hosted grafting engine**, allowing organizations to retain full control over metadata, tooling, and integration workflows—without changing how systems execute at runtime.
+Graftcode is designed to support these environments by offering an **enterprise self-hosted Graftcode Engine**, allowing organizations to retain full control over metadata, tooling, and integration workflows—without changing how systems execute at runtime.
 
 This section explains what is self-hosted, what is not, and why this model exists.
 
@@ -14,7 +14,7 @@ This section explains what is self-hosted, what is not, and why this model exist
 
 ## What the self-hosted engine is
 
-The self-hosted engine is a deployable version of the **grafting engine and metadata services** that normally run in the Graftcode cloud.
+The self-hosted engine is a deployable version of the **Graftcode Engine and metadata services** that normally run in the Graftcode cloud.
 
 When self-hosted, the organization operates:
 - its own graft registry
@@ -62,7 +62,7 @@ The self-hosted engine exists to meet these requirements without altering the ar
 
 A key design goal is that **nothing changes for developers**.
 
-Whether the grafting engine is:
+Whether the Graftcode Engine is:
 - hosted by Graftcode
 - self-hosted in a private cloud
 - deployed on-prem

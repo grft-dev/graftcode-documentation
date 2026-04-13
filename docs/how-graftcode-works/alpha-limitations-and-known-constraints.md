@@ -55,7 +55,7 @@ You must pass them by value using their underlying representation:
 
 Parse and reconstruct them on the receiving side.
 
-In beta release Grafts will accept calling side counterparts and perform the pass by value implicitly. Monitor Roadmap item below to be notified when its ready.
+In beta release Grafts will accept calling side counterparts and perform the pass by value implicitly. Monitor Roadmap item below to be notified when it's ready.
 
 > [Roadmap: Support for using calling technology classes wrapping value types (i.e. Date)](https://graftcode.featurebase.app/p/support-for-using-calling-technology-classes-wrapping-value-types-ie)
 
@@ -99,7 +99,7 @@ npm install javonet-nodejs-sdk
 
 This dependency is not pulled automatically during Graft installation in the current Alpha.
 
-> [Roadmap: Automated resolution of Hypertube Dependency from Graftcode Registry for other than Nuget technologies](https://graftcode.featurebase.app/p/automated-resolution-of-hypertube-dependency-from-graftcode-registry-for-other)
+> [Roadmap: Automated resolution of Hypertube Dependency from Graftcode Registry for other than NuGet technologies](https://graftcode.featurebase.app/p/automated-resolution-of-hypertube-dependency-from-graftcode-registry-for-other)
 
 ---
 
@@ -107,7 +107,7 @@ This dependency is not pulled automatically during Graft installation in the cur
 
 JWT tokens, API keys, or any other authentication and authorization credentials must be **explicitly passed as a method parameter**.
 
-Graftcode does not support plugins tht could pass JWT automatically in the Alpha version. Before executing any business logic, validate the token or key inside your implementation.
+Graftcode does not support plugins that could pass JWT automatically in the Alpha version. Before executing any business logic, validate the token or key inside your implementation.
 
 ```csharp
 public OrderResult PlaceOrder(string jwtToken, int productId, int quantity)
@@ -137,7 +137,7 @@ Only methods from the specified types (provided as fully qualified names separat
 
 ## Modules: AI-powered search across all package repositories
 
-The [**Modules**](https://modules.graftcode.com) section in Graftcode Portals lets you search for modules across all major package repositories—PyPi, npm, NuGet, Packagist, RubyGems, Maven, and more—using natural language powered by AI.
+The [**Modules**](https://modules.graftcode.com) section in the Graftcode Portal lets you search for modules across all major package repositories—PyPI, npm, NuGet, Packagist, RubyGems, Maven, and more—using natural language powered by AI.
 
 You describe what you need, and Graftcode finds the best matching module regardless of which language it was written in. It suggests the module, shows its public interface, and provides a ready-to-use installation command for your project—no matter what technology you are using on the caller side.
 
@@ -153,7 +153,7 @@ As Alpha constraints are lifted in upcoming releases, the share of publicly avai
 
 ## Portals limitations
 
-The Graftcode Portals are in early Alpha with limited functionality.
+The Graftcode Portal is in early Alpha with limited functionality.
 
 ### What works
 
@@ -168,7 +168,7 @@ The Graftcode Portals are in early Alpha with limited functionality.
 - Most **KPIs, dashboards, and controls** are not functional
 - You **cannot invite colleagues** to a project or workspace — collaboration features are not yet available
 
-Some of upcoming items to Portals:
+Some upcoming items for the Portal:
 > [Roadmap: Inviting team members to project or workspace](https://graftcode.featurebase.app/p/inviting-team-members-to-project-or-workspace)
 > [Roadmap: Settings section for Account, Workspace and Project](https://graftcode.featurebase.app/p/settings-section-for-account-workspace-and-project)
 
@@ -195,4 +195,4 @@ These constraints reflect the current Alpha stage. Most are actively being addre
 
 ---
 
-Next, we'll move into **Integration patterns**, where we explore common architectures that Graftcode enables.
+See also: [Service-to-Service Integration](../integration-patterns/service-to-service-integration.md)

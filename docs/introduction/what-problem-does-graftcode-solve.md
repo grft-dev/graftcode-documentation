@@ -118,4 +118,4 @@ That is the direction Graftcode takes.
 
 ---
 
-Next, we’ll look at **where Graftcode fits in modern architectures**, and how it relates to existing approaches rather than replacing everything at once.
+See also: [Where Graftcode fits](where-graftcode-fits.md)

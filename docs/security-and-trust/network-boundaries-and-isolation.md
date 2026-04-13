@@ -41,12 +41,12 @@ It is:
 - the only place where external connections terminate
 - the point where authentication, authorization, and transport security are enforced
 
-This makes the Gateway comparable to:
-- an API gateway
+From a **network boundary** perspective, the Graftcode Gateway is comparable to:
+- a traditional API gateway
 - a reverse proxy
 - or a service ingress
 
-but without acting as an execution proxy.
+in that it defines an explicit entry point—but unlike those components, it does not proxy or forward traffic. It hosts runtimes and executes calls directly.
 
 ---
 
@@ -105,7 +105,7 @@ There is no cascading execution dependency.
 For edge clients, the Gateway typically sits:
 - behind a load balancer
 - behind an ingress
-- or behind an API gateway
+- or behind a traditional API gateway
 
 This ensures that:
 - only intended traffic reaches the Gateway

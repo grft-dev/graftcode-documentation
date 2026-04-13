@@ -69,19 +69,11 @@ The measurements were taken under comparable conditions to highlight relative ov
 
 ---
 
-## 📊 Resource usage comparison
+## Resource usage comparison
 
-> **Insert the comparison chart image here**
+The chart below compares average CPU usage, memory usage, and network throughput for REST, gRPC, and Graftcode under load.
 
-**Recommended placement:**  
-👉 *Directly below this heading, before the next section.*
-
-The chart compares:
-- average CPU usage
-- average memory usage
-- average network throughput
-
-for REST, gRPC, and Graftcode under load.
+![REST vs gRPC vs Graftcode Resource Usage](../../assets/rest-vs-grpc-vs-graftcode-comparison.png)
 
 ---
 
@@ -175,8 +167,7 @@ In the lab, you can:
 - with a fixed number of invocations (for example, 1,000 calls)
 - and observe timing and resource differences
 
-> **Link to Performance Lab:**  
-> *(Insert link here once published)*
+> **[Graftcode Performance Lab](https://gc-d-ca-polc-demo-perf-lab-01.blackgrass-d2c29aae.polandcentral.azurecontainerapps.io/)**
 
 The goal of the lab is not to win benchmarks, but to let you observe how execution models behave under identical conditions.
 

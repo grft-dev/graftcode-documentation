@@ -168,4 +168,4 @@ Services stop talking in protocols—and start talking in code.
 
 ---
 
-Next, we’ll look at **edge and client integrations**, and how the same model applies when services are consumed from browsers, mobile apps, and other edge clients.
+See also: [Edge Clients Without APIs](edge-clients-without-apis.md)

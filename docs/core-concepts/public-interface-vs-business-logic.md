@@ -190,4 +190,4 @@ Remote services stop being special cases and start behaving like shared modulesâ
 
 ---
 
-Next, weâ€™ll introduce **callers and receivers**, and how Graftcode connects them at runtime.
+See also: [Caller and Receiver](caller-and-receiver.md)

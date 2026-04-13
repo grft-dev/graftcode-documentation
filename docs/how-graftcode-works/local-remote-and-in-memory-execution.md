@@ -166,4 +166,4 @@ Only configuration changes.
 
 ---
 
-Next, we’ll look at **observability, tracing, and context propagation**, and how visibility is preserved across execution boundaries.
+See also: [Observability, tracing, and context propagation](observability-tracing-and-context-propagation.md)

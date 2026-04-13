@@ -178,6 +178,4 @@ It helps developers move from *“what is this service?”* to *“I’m already
 
 ---
 
-With this, the **Core Concepts** section is complete.
-
-Next, we’ll move into **How Graftcode works**, starting with the difference between **development-time and production-time behavior**.
+See also: [Development-time vs production-time behavior](../how-graftcode-works/development-time-vs-production-time.md)
