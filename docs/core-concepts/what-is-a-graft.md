@@ -1,5 +1,3 @@
-## What a Graft is
-
 A Graft is a strongly-typed client library that represents a remote module or package as if it were a local dependency in your application. From the developer’s perspective, using a graft does not feel like calling an API, a microservice, or a remote system. It feels exactly like calling ordinary code: creating objects, invoking methods, passing arguments, and receiving return values using the native types of the programming language you are working in.
 
 The core idea behind grafts is to remove the traditional integration layer from software development. Instead of defining REST endpoints, gRPC contracts, DTOs, OpenAPI specifications, or client SDKs, a developer simply exposes public methods in a module or consumes an existing package. Graftcode automatically discovers public interfaces and generates a graft — a native, strongly-typed client package — for any supported target technology. This graft mirrors the exposed interface precisely, including method signatures, types, return values, and errors, and stays continuously in sync with the original module or package.
