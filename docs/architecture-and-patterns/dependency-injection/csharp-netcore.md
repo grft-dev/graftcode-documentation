@@ -65,24 +65,24 @@ public interface IRuntimeModule
 }
 
 #region EntryPoint
-public class Program
+internal class Program
 {
-    public static IServiceProvider Services { get; private set; } = default!;
+    internal static IServiceProvider Services { get; private set; } = default!;
 
-    public static void Main(string[] args)
+    internal static void Main(string[] args)
     {
         var services = new ServiceCollection();
-
-        // Example: module-specific registrations
-        IRuntimeModule module = new RuntimeModule();
-        module.ConfigureServices(services);
 
         // Global/shared registrations
         services.AddSingleton<StringBuilder>();
         services.AddScoped<CreditRepository>();
         services.AddScoped<CosmosDbContext>();
 
-        Services = services.BuildServiceProvider();
+        Services = services.BuildServiceProvider(
+                new ServiceProviderOptions  {
+                    ValidateScopes = true,
+                    ValidateOnBuild = true  }
+                );
     }
 }
 #endregion
@@ -107,7 +107,7 @@ public static class CreditRatingService
 }
 #endregion
 
-#region InternalImplementation
+#region Internal Implementation
 internal sealed class CreditRepository
 {
     private readonly CosmosDbContext _context;
@@ -124,13 +124,6 @@ internal sealed class CosmosDbContext
 {
 }
 
-internal sealed class RuntimeModule : IRuntimeModule
-{
-    public void ConfigureServices(IServiceCollection services)
-    {
-        // Put module-specific service registrations here
-    }
-}
 #endregion
 ```
 
