@@ -94,7 +94,7 @@ Plan accordingly and pin specific versions in production environments until you 
 When installing a Graft via npm, you must **manually install** the underlying Hypertube dependency:
 
 ```bash
-npm install javonet-nodejs-sdk
+npm install hypertube-nodejs-sdk
 ```
 
 This dependency is not pulled automatically during Graft installation in the current Alpha.
