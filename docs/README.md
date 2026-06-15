@@ -64,7 +64,14 @@ Each category entry follows this format:
 5. [Cloud Cost Implications](performance-and-efficiency/cloud-cost-implications.md)
 6. [When Performance Gains Matter](performance-and-efficiency/when-performance-gains-matter.md)
 
-### 6. Reference
+### Architecture and Patterns
+#### Dependency Injection
+1. [Dependency Injection in C#/.NET with Stateless Facades](architecture-and-patterns/dependency-injection/csharp-netcore.md)
+
+### Use Cases
+1. [Zero-Boilerplate Microservices Fabric](use-cases/zero-boilerplate-microservices-fabric.md)
+
+### Reference
 1. [Quick Reference](reference/quick-reference.md)
 
 ---
@@ -217,8 +224,24 @@ categories:
         path: "performance-and-efficiency/when-performance-gains-matter.md"
         order: 6
 
-  - name: "Reference"
+  - name: "Architecture and Patterns"
     order: 7
+    path: "architecture-and-patterns"
+    items:
+      - title: "Dependency Injection in C#/.NET with Stateless Facades"
+        path: "architecture-and-patterns/dependency-injection/csharp-netcore.md"
+        order: 1
+
+  - name: "Use Cases"
+    order: 8
+    path: "use-cases"
+    items:
+      - title: "Zero-Boilerplate Microservices Fabric"
+        path: "use-cases/zero-boilerplate-microservices-fabric.md"
+        order: 1
+
+  - name: "Reference"
+    order: 9
     path: "reference"
     items:
       - title: "Quick Reference"
