@@ -51,10 +51,11 @@ Each category entry follows this format:
 ### Security and Trust
 1. [Security Model Overview](security-and-trust/security-model-overview.md)
 2. [Authentication and Authorization](security-and-trust/authentication-and-authorization.md)
-3. [Security Plugins](security-and-trust/security-plugins.md)
-4. [Transport Security TLS/WSS](security-and-trust/transport-security-tls-wss.md)
-5. [Network Boundaries and Isolation](security-and-trust/network-boundaries-and-isolation.md)
-6. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
+3. [Graftcode Context Libraries](security-and-trust/graftcode-context.md)
+4. [Security Plugins](security-and-trust/security-plugins.md)
+5. [Transport Security TLS/WSS](security-and-trust/transport-security-tls-wss.md)
+6. [Network Boundaries and Isolation](security-and-trust/network-boundaries-and-isolation.md)
+7. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
 
 ### Performance and Efficiency
 1. [Compare Performance](performance-and-efficiency/compare-performance.md)
@@ -188,18 +189,21 @@ categories:
       - title: "Authentication and Authorization"
         path: "security-and-trust/authentication-and-authorization.md"
         order: 2
+      - title: "Graftcode Context Libraries"
+        path: "security-and-trust/graftcode-context.md"
+        order: 3
       - title: "Security Plugins"
         path: "security-and-trust/security-plugins.md"
-        order: 3
+        order: 4
       - title: "Transport Security TLS/WSS"
         path: "security-and-trust/transport-security-tls-wss.md"
-        order: 4
+        order: 5
       - title: "Network Boundaries and Isolation"
         path: "security-and-trust/network-boundaries-and-isolation.md"
-        order: 5
+        order: 6
       - title: "Enterprise Self-Hosted Engine"
         path: "security-and-trust/enterprise-self-hosted-engine.md"
-        order: 6
+        order: 7
 
   - name: "Performance and Efficiency"
     order: 6
