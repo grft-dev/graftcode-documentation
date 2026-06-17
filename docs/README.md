@@ -71,6 +71,7 @@ Each category entry follows this format:
 
 ### Use Cases
 1. [Zero-Boilerplate Microservices Fabric](use-cases/zero-boilerplate-microservices-fabric.md)
+2. [MCP Server Without MCP Boilerplate](use-cases/mcp-server-without-mcp-boilerplate.md)
 
 ### Reference
 1. [Quick Reference](reference/quick-reference.md)
@@ -243,6 +244,9 @@ categories:
       - title: "Zero-Boilerplate Microservices Fabric"
         path: "use-cases/zero-boilerplate-microservices-fabric.md"
         order: 1
+      - title: "MCP Server Without MCP Boilerplate"
+        path: "use-cases/mcp-server-without-mcp-boilerplate.md"
+        order: 2
 
   - name: "Reference"
     order: 9
