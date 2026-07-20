@@ -40,7 +40,7 @@ installed package outside .NET and Node.js.
 
 ## Next steps
 
-- [Configure invocation](../how-to-guides/configure-invocation.md)
+- [Configure invocation](../how-to-guides/configure-invocation)
 - [Environment variables](environment-variables.md)
 
 ## Source anchors

@@ -35,9 +35,9 @@ decision. This file is both the human learning path and the source for generated
 
 ## How-to guides
 
-- [Expose code](how-to-guides/expose-code.md)
+- [Expose code](how-to-guides/expose-code)
 - [Obtain and install a Graft](how-to-guides/obtain-install-graft.md)
-- [Configure invocation](how-to-guides/configure-invocation.md)
+- [Configure invocation](how-to-guides/configure-invocation)
 - [Run Gateway locally](how-to-guides/run-gateway-locally.md)
 - [Deploy with Docker](how-to-guides/deploy-with-docker.md)
 - [Handle provider errors](how-to-guides/handle-provider-errors.md)
@@ -176,13 +176,13 @@ categories:
     path: "how-to-guides"
     items:
       - title: "Expose code"
-        path: "how-to-guides/expose-code.md"
+        path: "how-to-guides/expose-code"
         order: 1
       - title: "Obtain and install a Graft"
         path: "how-to-guides/obtain-install-graft.md"
         order: 2
       - title: "Configure invocation"
-        path: "how-to-guides/configure-invocation.md"
+        path: "how-to-guides/configure-invocation"
         order: 3
       - title: "Run Gateway locally"
         path: "how-to-guides/run-gateway-locally.md"

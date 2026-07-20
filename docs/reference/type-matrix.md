@@ -30,7 +30,7 @@ Generated target mappings include numeric collapsing in TypeScript and narrower 
 
 ## Next steps
 
-- [Expose code](../how-to-guides/expose-code.md)
+- [Expose code](../how-to-guides/expose-code)
 - [Errors and status](errors-status.md)
 - [Known limitations](known-limitations.md)
 

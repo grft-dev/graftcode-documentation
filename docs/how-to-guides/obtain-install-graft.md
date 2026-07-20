@@ -49,7 +49,7 @@ invocation form; do not infer casing from the provider language.
 
 ## Next steps
 
-- [Configure invocation](configure-invocation.md)
+- [Configure invocation](configure-invocation)
 - [Generated package structure](../reference/generated-package-structure.md)
 - [Update a provider contract](update-provider-contract.md)
 

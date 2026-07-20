@@ -1,13 +1,10 @@
 ---
 title: "Configure Graft invocation"
 description: "Select in-memory or remote execution and configure generated GraftConfig before first use."
+articleTitle: "Configure Graft invocation"
 ---
 
-# Configure Graft invocation
-
-## Goal
-
-Point an installed Graft at the intended provider.
+Point an installed Node.js Graft at the intended provider.
 
 ## 1. Choose execution mode
 
@@ -15,18 +12,9 @@ Point an installed Graft at the intended provider.
 - `ws://` or `wss://` sends calls to a remote Gateway WebSocket endpoint.
 - TCP and HTTP/2 are optional Gateway transports and must be explicitly enabled.
 
-Generated .NET and Node.js Grafts default to `inmemory`.
+Generated Node.js Grafts default to `inmemory`.
 
 ## 2. Configure before the first call
-
-.NET uses static fields:
-
-```csharp
-using <generated_namespace>;
-
-GraftConfig.Host = "ws://localhost/ws";
-GraftConfig.Stateless = true;
-```
 
 Node.js uses lower-case static fields:
 
@@ -52,18 +40,13 @@ Generated packages inspect six source levels: graft-specific environment, global
 graft-specific file, global file, programmatic user configuration, then library default. Earlier
 levels win in the inspected resolver.
 
-**Gap:** exact field names and supported transport connection strings vary outside generated .NET and
-Node.js packages. Use the installed package and Vision output as the authority.
-
 ## Next steps
 
-- [Configuration keys and precedence](../reference/configuration-keys-precedence.md)
-- [Networking and ports](../operations/networking-ports.md)
-- [Scale Gateway instances](../operations/scaling.md)
+- [Configuration keys and precedence](../../reference/configuration-keys-precedence.md)
+- [Networking and ports](../../operations/networking-ports.md)
+- [Scale Gateway instances](../../operations/scaling.md)
 
 ## Source anchors
 
-- `graftcode-code-generator/src/netcore/GraftCodeCodeGenerator/Core/Generator/Handler/Utils/GraftConfigClassProvider.cs`
 - `graftcode-code-generator/src/nodejs/src/core/generator/templates/config.template.js`
-- `HYPERTUBE/src/netcore/Hypertube.Netcore.Sdk/Configuration/ConfigPriority.cs`
 - `HYPERTUBE/src/js/hypertube-nodejs-sdk/lib/sdk/configuration/ConfigPriority.js`

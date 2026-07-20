@@ -91,7 +91,7 @@ Highest to lowest in the inspected generated .NET and Node.js packages:
 
 ## Next steps
 
-- [Expose code](../how-to-guides/expose-code.md)
+- [Expose code](../how-to-guides/expose-code)
 - [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
 - [Operations and deployment model](../operations/index.md)
 
