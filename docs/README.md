@@ -36,13 +36,22 @@ decision. This file is both the human learning path and the source for generated
 ## How-to guides
 
 - [Expose code](how-to-guides/expose-code)
-- [Obtain and install a Graft](how-to-guides/obtain-install-graft.md)
+- [Obtain and install a Graft](how-to-guides/obtain-install-graft)
 - [Configure invocation](how-to-guides/configure-invocation)
-- [Run Gateway locally](how-to-guides/run-gateway-locally.md)
-- [Deploy with Docker](how-to-guides/deploy-with-docker.md)
-- [Handle provider errors](how-to-guides/handle-provider-errors.md)
-- [Update a provider contract](how-to-guides/update-provider-contract.md)
-- [Dependency injection in .NET](how-to-guides/dependency-injection-dotnet.md)
+- [Run Gateway locally](how-to-guides/run-gateway-locally)
+- [Deploy with Docker](how-to-guides/deploy-with-docker)
+- [Use a project key](how-to-guides/project-key)
+- [Gateway versioning and --noVersioning](how-to-guides/gateway-no-versioning)
+- [Filter the callable surface](how-to-guides/filter-callable-surface)
+- [Expose methods for MCP](how-to-guides/expose-mcp)
+- [Authenticate Graft calls](how-to-guides/authenticate-graft-calls)
+- [Stateless vs stateful calls](how-to-guides/stateless-vs-stateful)
+- [In-memory module path](how-to-guides/inmemory-module-path)
+- [Use Graftcode alongside REST](how-to-guides/coexist-with-rest)
+- [Debug Graft invocations](how-to-guides/debug-graft-invocations)
+- [Handle provider errors](how-to-guides/handle-provider-errors)
+- [Update a provider contract](how-to-guides/update-provider-contract)
+- [Dependency injection facades](how-to-guides/dependency-injection)
 
 ## Language guides
 
@@ -179,26 +188,53 @@ categories:
         path: "how-to-guides/expose-code"
         order: 1
       - title: "Obtain and install a Graft"
-        path: "how-to-guides/obtain-install-graft.md"
+        path: "how-to-guides/obtain-install-graft"
         order: 2
       - title: "Configure invocation"
         path: "how-to-guides/configure-invocation"
         order: 3
       - title: "Run Gateway locally"
-        path: "how-to-guides/run-gateway-locally.md"
+        path: "how-to-guides/run-gateway-locally"
         order: 4
       - title: "Deploy with Docker"
-        path: "how-to-guides/deploy-with-docker.md"
+        path: "how-to-guides/deploy-with-docker"
         order: 5
-      - title: "Handle provider errors"
-        path: "how-to-guides/handle-provider-errors.md"
+      - title: "Use a project key"
+        path: "how-to-guides/project-key"
         order: 6
-      - title: "Update a provider contract"
-        path: "how-to-guides/update-provider-contract.md"
+      - title: "Gateway versioning and --noVersioning"
+        path: "how-to-guides/gateway-no-versioning"
         order: 7
-      - title: "Dependency injection in .NET"
-        path: "how-to-guides/dependency-injection-dotnet.md"
+      - title: "Filter the callable surface"
+        path: "how-to-guides/filter-callable-surface"
         order: 8
+      - title: "Expose methods for MCP"
+        path: "how-to-guides/expose-mcp"
+        order: 9
+      - title: "Authenticate Graft calls"
+        path: "how-to-guides/authenticate-graft-calls"
+        order: 10
+      - title: "Stateless vs stateful calls"
+        path: "how-to-guides/stateless-vs-stateful"
+        order: 11
+      - title: "In-memory module path"
+        path: "how-to-guides/inmemory-module-path"
+        order: 12
+      - title: "Use Graftcode alongside REST"
+        path: "how-to-guides/coexist-with-rest"
+        order: 13
+      - title: "Debug Graft invocations"
+        path: "how-to-guides/debug-graft-invocations"
+        order: 14
+      - title: "Handle provider errors"
+        path: "how-to-guides/handle-provider-errors"
+        order: 15
+      - title: "Update a provider contract"
+        path: "how-to-guides/update-provider-contract"
+        order: 16
+      - title: "Dependency injection facades"
+        path: "how-to-guides/dependency-injection"
+        order: 17
   - name: "Language guides"
     order: 5
     path: "language-guides"

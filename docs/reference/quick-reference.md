@@ -92,7 +92,12 @@ Highest to lowest in the inspected generated .NET and Node.js packages:
 ## Next steps
 
 - [Expose code](../how-to-guides/expose-code)
-- [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
+- [Run Gateway locally](../how-to-guides/run-gateway-locally)
+- [Use a project key](../how-to-guides/project-key)
+- [Gateway versioning](../how-to-guides/gateway-no-versioning)
+- [Filter callable surface](../how-to-guides/filter-callable-surface)
+- [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls)
+- [Debug invocations](../how-to-guides/debug-graft-invocations)
 - [Operations and deployment model](../operations/index.md)
 
 ## Source anchors

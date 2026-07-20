@@ -37,7 +37,7 @@ Vision and smoke tests from the deployed version are authoritative.
 
 ## Next steps
 
-- [Update a provider contract](../how-to-guides/update-provider-contract.md)
+- [Update a provider contract](../how-to-guides/update-provider-contract)
 - [Runtime and package-manager support](../reference/supported-runtimes-package-managers.md)
 - [Known limitations](../reference/known-limitations.md)
 

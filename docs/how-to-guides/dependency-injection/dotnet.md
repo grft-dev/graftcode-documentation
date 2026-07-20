@@ -1,10 +1,8 @@
 ---
-title: "Dependency injection in C#/.NET with stateless facades"
+title: "Dependency injection with stateless facades"
 description: "Keep dependency injection internal while exposing a small Graftcode-compatible facade."
-keywords: "graftcode dependency injection, csharp, dotnet, stateless facade, scoped services"
+articleTitle: "Dependency injection with stateless facades"
 ---
-
-# Dependency injection in C#/.NET with stateless facades
 
 Start with a public business method and keep the container private:
 

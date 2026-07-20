@@ -34,7 +34,7 @@ generated runtime dependency before setting production policy.
 
 - [Errors and status reference](../reference/errors-status.md)
 - [Scaling](scaling.md)
-- [Handle provider errors](../how-to-guides/handle-provider-errors.md)
+- [Handle provider errors](../how-to-guides/handle-provider-errors)
 
 ## Source anchors
 

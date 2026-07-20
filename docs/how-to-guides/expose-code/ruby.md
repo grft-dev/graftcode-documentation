@@ -48,8 +48,8 @@ surface as a review gate: remove accidental public members before consumers inst
 
 ## Next steps
 
-- [Run Gateway locally](../run-gateway-locally.md)
-- [Obtain and install a Graft](../obtain-install-graft.md)
+- [Run Gateway locally](../run-gateway-locally)
+- [Obtain and install a Graft](../obtain-install-graft)
 - [Type compatibility matrix](../../reference/type-matrix.md)
 
 ## Source anchors

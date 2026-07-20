@@ -41,8 +41,8 @@ layout guarantee across releases.
 
 ## Next steps
 
-- [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)
-- [Update a provider contract](../how-to-guides/update-provider-contract.md)
+- [Obtain and install a Graft](../how-to-guides/obtain-install-graft)
+- [Update a provider contract](../how-to-guides/update-provider-contract)
 
 ## Source anchors
 

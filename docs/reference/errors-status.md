@@ -33,7 +33,7 @@ consumer.
 
 ## Next steps
 
-- [Handle provider errors](../how-to-guides/handle-provider-errors.md)
+- [Handle provider errors](../how-to-guides/handle-provider-errors)
 - [Timeouts and retries](../operations/timeouts-retries.md)
 
 ## Source anchors

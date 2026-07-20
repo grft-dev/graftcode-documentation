@@ -44,6 +44,12 @@ The initialized Hypertube context selected by a named resolved configuration.
 **Unified Graft Model (UGM)**  
 The analyzer-produced model consumed by package-generation components. It represents callable types and members independently of a generated target package.
 
+**Project key**  
+Portal-issued JWT (or `env:jwt` form) passed to Gateway as `--projectKey` or `GC_PROJECT_KEY`. Authenticates Gateway to portal/project metadata services and stabilizes project-backed publication. It is **not** the consumer registry URL from Vision install commands.
+
+**Registry URL**  
+Package-manager feed or registry base URL emitted by a running Gateway for installing a generated Graft (for example an npm `--registry` or NuGet `-s` value). Copy it from Vision; do not infer it from the provider name.
+
 **Vision**  
 The Gateway-hosted web UI for inspecting loaded modules. Exact UI features are release-specific unless verified.
 

@@ -21,12 +21,14 @@ without module arguments Gateway scans the current directory and attempts runtim
 | `--http2Server` / `--http2Port` | Enable HTTP/2; default port `83` |
 | `--GV` | Host Vision; default on |
 | `--types` | Comma-separated hosted type names |
+| `--methods` | Comma-separated hosted method names |
 | `--runApp` | Run the application entry point |
 | `--mcpBaseClass` | Declaring type FQN for MCP `tools/call` resolution |
 | `--corsAllowedOrigins` | Comma-separated CORS origins or `*` |
 | `--corsConfig` | CORS `key=value` file; file values can override CLI defaults |
 | `--useContext` | Expose request context/headers to hosted code |
 | `--noVersioning` | Disable hosted-module versioning |
+| `--keepVersioning` | Enable versioning (default `true`; standalone disables unless set) |
 | `--doNotExtractBinaries` | Use externally supplied binaries |
 | `--config` | External server-plugin JSON path |
 
@@ -35,7 +37,7 @@ documented in the inspected README.
 
 ## Next steps
 
-- [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
+- [Run Gateway locally](../how-to-guides/run-gateway-locally)
 - [Environment variables](environment-variables.md)
 - [Ports and protocols](ports-protocols.md)
 

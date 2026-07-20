@@ -37,7 +37,7 @@ the deployment platform and validate them for the installed release.
 ## Next steps
 
 - [Gateway lifecycle](gateway-lifecycle.md)
-- [Deployment with Docker](../how-to-guides/deploy-with-docker.md)
+- [Deployment with Docker](../how-to-guides/deploy-with-docker)
 - [Networking and ports](networking-ports.md)
 
 ## Source anchors

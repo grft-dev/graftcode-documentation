@@ -50,8 +50,8 @@ language pair that uses types beyond the portable baseline.
 
 ## Next steps
 
-- [Run Gateway locally](../run-gateway-locally.md)
-- [Obtain and install a Graft](../obtain-install-graft.md)
+- [Run Gateway locally](../run-gateway-locally)
+- [Obtain and install a Graft](../obtain-install-graft)
 - [Type compatibility matrix](../../reference/type-matrix.md)
 
 ## Source anchors
