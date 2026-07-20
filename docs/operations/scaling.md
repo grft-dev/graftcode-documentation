@@ -45,4 +45,4 @@ WebSocket, optional TCP, or optional HTTP/2 traffic.
 - `HYPERTUBE/` stateful/static invocation and connection implementations
 - `graftcode-gateway/README.md`, listener options
 - [Static and instance context](../core-concepts/static-and-instance-context.md)
-- [Alpha limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)

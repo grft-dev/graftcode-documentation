@@ -42,16 +42,7 @@ decision. This file is both the human learning path and the source for generated
 - [Deploy with Docker](how-to-guides/deploy-with-docker.md)
 - [Handle provider errors](how-to-guides/handle-provider-errors.md)
 - [Update a provider contract](how-to-guides/update-provider-contract.md)
-- [Service-to-service integration](integration-patterns/service-to-service-integration.md)
-- [Edge clients without APIs](integration-patterns/edge-clients-without-apis.md)
-- [Internal business APIs](integration-patterns/internal-business-apis.md)
-- [MCP hosting and AI tools](integration-patterns/mcp-hosting-and-ai-tools.md)
-- [Modular monoliths](integration-patterns/modular-monoliths.md)
-- [Microservices without contracts](integration-patterns/microservices-without-contracts.md)
-- [Event-driven communication preview](integration-patterns/event-driven-communication-preview.md)
-- [Dependency injection in .NET](architecture-and-patterns/dependency-injection/csharp-netcore.md)
-- [Zero-boilerplate microservices fabric](use-cases/zero-boilerplate-microservices-fabric.md)
-- [MCP server without MCP boilerplate](use-cases/mcp-server-without-mcp-boilerplate.md)
+- [Dependency injection in .NET](how-to-guides/dependency-injection-dotnet.md)
 
 ## Language guides
 
@@ -77,27 +68,6 @@ decision. This file is both the human learning path and the source for generated
 - [Timeouts and retries](operations/timeouts-retries.md)
 - [Scaling](operations/scaling.md)
 - [Version compatibility and upgrades](operations/version-compatibility-upgrades.md)
-- [Development-time vs production-time behavior](how-graftcode-works/development-time-vs-production-time.md)
-- [What goes to Graftcode Cloud](how-graftcode-works/what-goes-to-graftcode-cloud.md)
-- [How Grafts are generated](how-graftcode-works/how-grafts-are-generated.md)
-- [Runtime call execution](how-graftcode-works/runtime-call-execution.md)
-- [Local, remote, and in-memory execution](how-graftcode-works/local-remote-and-in-memory-execution.md)
-- [Observability, tracing, and context propagation](how-graftcode-works/observability-tracing-and-context-propagation.md)
-- [Scaling, load balancers, and proxies](how-graftcode-works/scaling-load-balancers-and-proxies.md)
-- [What happens when interfaces change](how-graftcode-works/what-happens-when-interfaces-change.md)
-- [Security model overview](security-and-trust/security-model-overview.md)
-- [Authentication and authorization](security-and-trust/authentication-and-authorization.md)
-- [Graftcode Context](security-and-trust/graftcode-context.md)
-- [Security plugins](security-and-trust/security-plugins.md)
-- [Transport security: TLS and WSS](security-and-trust/transport-security-tls-wss.md)
-- [Network boundaries and isolation](security-and-trust/network-boundaries-and-isolation.md)
-- [Enterprise self-hosted engine](security-and-trust/enterprise-self-hosted-engine.md)
-- [Compare performance](performance-and-efficiency/compare-performance.md)
-- [Why runtime-level integration is faster](performance-and-efficiency/why-runtime-level-integration-is-faster.md)
-- [REST vs gRPC vs Graftcode](performance-and-efficiency/rest-vs-grpc-vs-graftcode.md)
-- [CPU, memory, and network usage](performance-and-efficiency/cpu-memory-and-network-usage.md)
-- [Cloud cost implications](performance-and-efficiency/cloud-cost-implications.md)
-- [When performance gains matter](performance-and-efficiency/when-performance-gains-matter.md)
 
 ## Reference
 
@@ -121,9 +91,6 @@ decision. This file is both the human learning path and the source for generated
 - [Installed package is stale](troubleshooting/stale-package.md)
 - [Gateway or runtime exits](troubleshooting/runtime-exits.md)
 - [Vision and runtime disagree](troubleshooting/vision-mismatch.md)
-- [Alpha limitations and known constraints](how-graftcode-works/alpha-limitations-and-known-constraints.md)
-- [Language support status](language-guides/support-status.md)
-- Runtime-specific troubleshooting is included in each [language guide](language-guides/index.md).
 
 ## Machine-readable navigation
 
@@ -229,36 +196,9 @@ categories:
       - title: "Update a provider contract"
         path: "how-to-guides/update-provider-contract.md"
         order: 7
-      - title: "Service-to-service integration"
-        path: "integration-patterns/service-to-service-integration.md"
-        order: 8
-      - title: "Edge clients without APIs"
-        path: "integration-patterns/edge-clients-without-apis.md"
-        order: 9
-      - title: "Internal business APIs"
-        path: "integration-patterns/internal-business-apis.md"
-        order: 10
-      - title: "MCP hosting and AI tools"
-        path: "integration-patterns/mcp-hosting-and-ai-tools.md"
-        order: 11
-      - title: "Modular monoliths"
-        path: "integration-patterns/modular-monoliths.md"
-        order: 12
-      - title: "Microservices without contracts"
-        path: "integration-patterns/microservices-without-contracts.md"
-        order: 13
-      - title: "Event-driven communication preview"
-        path: "integration-patterns/event-driven-communication-preview.md"
-        order: 14
       - title: "Dependency injection in .NET"
-        path: "architecture-and-patterns/dependency-injection/csharp-netcore.md"
-        order: 15
-      - title: "Zero-boilerplate microservices fabric"
-        path: "use-cases/zero-boilerplate-microservices-fabric.md"
-        order: 16
-      - title: "MCP server without MCP boilerplate"
-        path: "use-cases/mcp-server-without-mcp-boilerplate.md"
-        order: 17
+        path: "how-to-guides/dependency-injection-dotnet.md"
+        order: 8
   - name: "Language guides"
     order: 5
     path: "language-guides"
@@ -324,69 +264,6 @@ categories:
       - title: "Version compatibility and upgrades"
         path: "operations/version-compatibility-upgrades.md"
         order: 10
-      - title: "Development-time vs production-time"
-        path: "how-graftcode-works/development-time-vs-production-time.md"
-        order: 11
-      - title: "What goes to Graftcode Cloud"
-        path: "how-graftcode-works/what-goes-to-graftcode-cloud.md"
-        order: 12
-      - title: "How Grafts are generated"
-        path: "how-graftcode-works/how-grafts-are-generated.md"
-        order: 13
-      - title: "Runtime call execution"
-        path: "how-graftcode-works/runtime-call-execution.md"
-        order: 14
-      - title: "Local, remote, and in-memory execution"
-        path: "how-graftcode-works/local-remote-and-in-memory-execution.md"
-        order: 15
-      - title: "Observability and context propagation"
-        path: "how-graftcode-works/observability-tracing-and-context-propagation.md"
-        order: 16
-      - title: "Scaling, load balancers, and proxies"
-        path: "how-graftcode-works/scaling-load-balancers-and-proxies.md"
-        order: 17
-      - title: "Interface changes"
-        path: "how-graftcode-works/what-happens-when-interfaces-change.md"
-        order: 18
-      - title: "Security model"
-        path: "security-and-trust/security-model-overview.md"
-        order: 19
-      - title: "Authentication and authorization"
-        path: "security-and-trust/authentication-and-authorization.md"
-        order: 20
-      - title: "Graftcode Context"
-        path: "security-and-trust/graftcode-context.md"
-        order: 21
-      - title: "Security plugins"
-        path: "security-and-trust/security-plugins.md"
-        order: 22
-      - title: "TLS and WSS"
-        path: "security-and-trust/transport-security-tls-wss.md"
-        order: 23
-      - title: "Network boundaries"
-        path: "security-and-trust/network-boundaries-and-isolation.md"
-        order: 24
-      - title: "Enterprise self-hosted engine"
-        path: "security-and-trust/enterprise-self-hosted-engine.md"
-        order: 25
-      - title: "Compare performance"
-        path: "performance-and-efficiency/compare-performance.md"
-        order: 26
-      - title: "Runtime-level performance"
-        path: "performance-and-efficiency/why-runtime-level-integration-is-faster.md"
-        order: 27
-      - title: "REST vs gRPC vs Graftcode"
-        path: "performance-and-efficiency/rest-vs-grpc-vs-graftcode.md"
-        order: 28
-      - title: "CPU, memory, and network"
-        path: "performance-and-efficiency/cpu-memory-and-network-usage.md"
-        order: 29
-      - title: "Cloud cost implications"
-        path: "performance-and-efficiency/cloud-cost-implications.md"
-        order: 30
-      - title: "When performance gains matter"
-        path: "performance-and-efficiency/when-performance-gains-matter.md"
-        order: 31
   - name: "Reference"
     order: 7
     path: "reference"
@@ -446,7 +323,4 @@ categories:
       - title: "Vision and runtime disagree"
         path: "troubleshooting/vision-mismatch.md"
         order: 7
-      - title: "Alpha limitations and known constraints"
-        path: "how-graftcode-works/alpha-limitations-and-known-constraints.md"
-        order: 8
 ```

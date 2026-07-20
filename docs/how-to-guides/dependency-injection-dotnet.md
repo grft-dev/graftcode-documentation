@@ -39,4 +39,4 @@ Create a scope inside each public call when scoped dependencies represent per-in
 
 The example initializes lazily through CLR type initialization and does not require a module entrypoint. If an application instead depends on an entrypoint such as `Main` to build its container, start Gateway with the release's `--runApp` option and verify startup before invoking the facade; entrypoint execution is not unconditional.
 
-Use Gateway type/method filters to expose only the intended facade. See [Callable surface](../../core-concepts/callable-surface.md), [Type mapping](../../core-concepts/type-mapping.md), and the [.NET language guide](../../language-guides/dotnet.md).
+Use Gateway type/method filters to expose only the intended facade. See [Callable surface](../core-concepts/callable-surface.md), [Type mapping](../core-concepts/type-mapping.md), and the [.NET language guide](../language-guides/dotnet.md).

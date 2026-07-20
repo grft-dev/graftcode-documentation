@@ -4,11 +4,13 @@
 
 The documentation on `feature/rework-documentation` now starts with a verified cross-runtime call
 instead of product positioning. It separates tutorials, concepts, task guides, language guides,
-operations, reference, and troubleshooting. Existing URLs remain available as rewritten
-compatibility pages because the documentation repository cannot configure portal redirects.
+operations, reference, and troubleshooting. Existing paths remain only where a page still has a
+distinct developer purpose. Legacy compatibility pages were removed; their external address mapping
+is handled separately.
 
-The rewritten corpus contains 97 Markdown pages, seven focused SVG diagrams, a complete
-.NET-to-Node.js sample, a page-by-page audit, a visual-source audit, and repository-local validation.
+The rewritten corpus contains 65 content pages plus the navigation README, seven focused SVG
+diagrams, a complete .NET-to-Node.js sample, a page-by-page audit, a visual-source audit, and
+repository-local validation.
 
 ## Problems addressed
 
@@ -21,7 +23,7 @@ The rewritten corpus contains 97 Markdown pages, seven focused SVG diagrams, a c
 - Split generic concepts from runtime-specific syntax and limitations.
 - Replaced broad performance, security, privacy, compatibility, and production claims with scoped
   implementation evidence or explicit gaps.
-- Preserved technically useful old routes while moving their main content to task-oriented pages.
+- Removed duplicate compatibility pages after moving distinct content into the new structure.
 - Replaced large presentation blueprints with seven single-purpose technical diagrams.
 
 ## New information architecture
@@ -72,12 +74,17 @@ The human and machine-readable navigation are both maintained in `docs/README.md
 
 ## Compatibility handling
 
-No page was deleted. Existing introduction, architecture, integration, security, performance,
-use-case, and `how-graftcode-works` paths were retained and reduced to evidence-bounded pages or
-compatibility routes with links to canonical content.
+Thirty-two legacy pages were deleted from the former architecture, integration-pattern, security,
+performance, use-case, and `how-graftcode-works` sections.
+
+Distinct content was moved before deletion:
+
+- current limitations moved to `docs/reference/known-limitations.md`;
+- the .NET dependency-injection guide moved to
+  `docs/how-to-guides/dependency-injection-dotnet.md`.
 
 The selected docs-only scope did not permit changes to the Next.js redirect configuration. True HTTP
-redirects, canonical URL headers, and portal search-index migration require a separate portal change.
+redirects and old-address mapping are handled separately from this repository.
 
 ## Verified technical assumptions
 
@@ -132,7 +139,7 @@ Passed:
 
 ```text
 python scripts/validate-docs.py
-Validated 97 Markdown files.
+Validated 66 Markdown files.
 0 error(s), 0 warning(s).
 ```
 

@@ -39,11 +39,11 @@ Vision and smoke tests from the deployed version are authoritative.
 
 - [Update a provider contract](../how-to-guides/update-provider-contract.md)
 - [Runtime and package-manager support](../reference/supported-runtimes-package-managers.md)
-- [Known limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)
 
 ## Source anchors
 
 - `graftcode-gateway/README.md`, runtime requirements
 - `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/`
 - `graftcode-package-generation-engine/` and `graftcode-code-generator/`
-- [Alpha limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)

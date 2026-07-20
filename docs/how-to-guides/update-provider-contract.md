@@ -46,7 +46,7 @@ under the same version. Do not rely on automatic drift detection.
 
 - [Version compatibility and upgrades](../operations/version-compatibility-upgrades.md)
 - [Obtain and install a Graft](obtain-install-graft.md)
-- [Known limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)
 
 ## Source anchors
 

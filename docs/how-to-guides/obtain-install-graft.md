@@ -58,4 +58,4 @@ invocation form; do not infer casing from the provider language.
 - `graftcode-package-generation-engine/` and `graftcode-package-manager-gateway/`
 - `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/virtual-repos-smoke-tests/`
 - [Connect .NET microservices](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/3-connect-microservices/dotnet.md)
-- [Known limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)

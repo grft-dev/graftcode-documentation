@@ -12,29 +12,30 @@ movement pattern.
 ## I want one backend to call another
 
 Start with the [.NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md), then read
-[service-to-service integration](../integration-patterns/service-to-service-integration.md).
+[caller and receiver](../core-concepts/caller-and-receiver.md).
 
 Good fit when consumers can install generated packages and you want typed method calls across
 process or language boundaries.
 
 ## I want browser, desktop, or mobile code to call a backend
 
-Read [edge clients without APIs](../integration-patterns/edge-clients-without-apis.md) and the target
+Read the [language support status](../language-guides/support-status.md) and the target
 [language guide](../language-guides/index.md). Verify browser transport, bundler, authentication, and
 supported-type constraints for the exact generated Graft.
 
 ## I want to split or merge a deployment without rewriting callers
 
 Read [execution modes](../core-concepts/execution-modes.md),
-[configuration resolution](../core-concepts/configuration-resolution.md), and
-[modular monoliths](../integration-patterns/modular-monoliths.md).
+[configuration resolution](../core-concepts/configuration-resolution.md), and the
+[invocation lifecycle](../core-concepts/invocation-lifecycle.md).
 
 The consumer programming surface can remain similar while configuration selects in-memory or remote
 execution. Deployment changes still require compatible packages and runtime configuration.
 
 ## I want to expose methods as AI tools
 
-Read [MCP hosting and AI tools](../integration-patterns/mcp-hosting-and-ai-tools.md). Keep the public
+Review [Graftcode Gateway](../core-concepts/graftcode-gateway.md) and
+[known limitations](../reference/known-limitations.md) for current support status. Keep the public
 surface small and treat tool authorization, input validation, and data exposure as explicit design
 work.
 
@@ -59,5 +60,5 @@ These approaches can coexist with Graftcode. Choose per boundary, not per organi
 ## Before production
 
 Review [current status and limitations](where-graftcode-fits.md), the relevant language guides,
-[security](../security-and-trust/security-model-overview.md), and
-[operations](../how-graftcode-works/scaling-load-balancers-and-proxies.md).
+[authentication and authorization](../operations/authentication-authorization.md), and
+[scaling](../operations/scaling.md).

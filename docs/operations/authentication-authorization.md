@@ -31,10 +31,10 @@ propagation must not be assumed.
 
 - [Networking and ports](networking-ports.md)
 - [Environment variables](../reference/environment-variables.md)
-- [Known limitations](../how-graftcode-works/alpha-limitations-and-known-constraints.md)
+- [Known limitations](../reference/known-limitations.md)
 
 ## Source anchors
 
 - `graftcode-gateway/README.md`, `--projectKey`, `--useContext`, and `GC_PROJECT_KEY`
 - generated `SetHeaders`/`setHeaders` and `InvokeWithHeaders` helpers in `graftcode-code-generator/`
-- [Authentication and authorization](../security-and-trust/authentication-and-authorization.md)
+- [Authentication limitations](../reference/known-limitations.md#authentication)

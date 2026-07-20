@@ -11,9 +11,19 @@ The **callable surface** is the part of a module represented in its UGM and ther
 
 ## What analysis includes
 
-For .NET, the inspected analyzer starts from exported, visible top-level types. For each type it records public declared instance and static methods, public constructors, public fields and properties, and public nested types. Special-name methods are excluded, and type and method filters can narrow the result.
+Each provider analyzer defines the boundary differently:
 
-For Node.js/TypeScript, analysis starts from runtime exports and supported re-exports, including CommonJS patterns. Type-only exports are skipped. The exact supported export forms are analyzer-specific, so an exported declaration is not automatically proof that every part of it can be generated for every target.
+- **.NET/CLR:** exported visible types and their public declared members;
+- **Node.js/TypeScript:** runtime exports and supported re-exports, excluding type-only and private declarations;
+- **Java/JVM:** top-level JAR classes and declared methods, with public constructors and no field model;
+- **Python:** module-owned classes, public module functions/variables, and conventionally public class members;
+- **PHP:** parsed classes, interfaces, traits, enums, global functions, and reflected public members;
+- **Ruby:** statically parsed classes, methods, constructors, attributes, constants, and selected globals.
+
+Java and Ruby currently require particular care because their inspected handlers can include declared
+methods that are not public in source. Python analysis imports provider modules, while Ruby analysis
+does not discover runtime metaprogramming. See [Callable surface](callable-surface.md) for the exact
+rules and caveats.
 
 ## Keep internals behind the boundary
 
@@ -38,6 +48,10 @@ Verified against:
 
 - `.NET`: `graftcode-module-analyzer/.../LibraryAnalyzer.cs` and `GetTypeAnalyzerHandler.cs`
 - `Node.js`: `graftcode-module-analyzer/.../export.analyzer.ts`
+- `Java/JVM`: `graftcode-module-analyzer/src/jvm/.../LibraryAnalyzer.java` and `GetTypeAnalyzerHandler.java`
+- `Python`: `graftcode-module-analyzer/src/python/.../library_analyzer.py` and `get_type_analyzer_handler.py`
+- `PHP`: `graftcode-module-analyzer/src/php/.../AnalysisEngine.php` and `GetTypeAnalyzerHandler.php`
+- `Ruby`: `graftcode-module-analyzer/src/ruby/.../library_analyzer.rb` and `get_type_analyzer_handler.rb`
 - generation rejection: `graftcode-package-generation-engine/.../UnsupportedTypeUsageExceptionTests.cs`
 
 The exact hosted surface can also be narrowed by Gateway `--types` and analyzer method filters; the inspected Gateway README documents `--types`, while analyzer tests verify method filtering.
