@@ -5,7 +5,9 @@ description: "Six-level generated GraftConfig resolution order and accepted sour
 
 # Configuration keys and precedence
 
-Generated .NET and Node.js packages use this priority order; lower numeric priority wins:
+Generated consumer packages use this priority order; lower numeric priority wins. .NET and Node.js
+templates are fully verified in source; other runtimes follow the same conceptual levels—confirm
+field names and helpers in the installed package:
 
 | Priority | Source | Generated source name |
 | --- | --- | --- |
@@ -35,12 +37,41 @@ connection-string data and requires at least `name` and `runtime`.
 Set generated static fields before the first call. The runtime context is cached and no supported
 reset/re-resolve operation is exposed by the inspected templates.
 
-**Gap:** this page does not claim identical naming or behavior for every generated runtime. Verify the
-installed package outside .NET and Node.js.
+Programmatic remote host example (copy imports and names from Vision):
+
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
+
+**Gap:** naming and resolver behavior for every generated runtime is not identical. Verify the
+installed package outside the fully inspected .NET and Node.js paths.
 
 ## Next steps
 
-- [Configure invocation](../how-to-guides/configure-invocation)
+- [Configure invocation](../how-to-guides/configure-invocation.md)
 - [Environment variables](environment-variables.md)
 
 ## Source anchors

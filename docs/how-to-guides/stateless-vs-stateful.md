@@ -70,7 +70,7 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 
 ## Next steps
 
-- [Configure invocation](configure-invocation)
+- [Configure invocation](configure-invocation.md)
 - [Scaling](../operations/scaling.md)
 
 ## Source anchors

@@ -23,7 +23,7 @@ CORS, context, versioning, and plugin configuration. Use `gg --help` for the ins
 
 ## Generated consumer package
 
-Generated .NET and Node.js packages resolve six levels, from highest to lowest priority:
+Generated packages resolve six configuration levels, from highest to lowest priority:
 
 1. graft-specific environment variable;
 2. global environment variable;
@@ -33,6 +33,33 @@ Generated .NET and Node.js packages resolve six levels, from highest to lowest p
 6. generated library default.
 
 Configure before the first call because the runtime context is cached.
+
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
 
 **Gap:** no complete, stable environment-variable catalog is verified for every Gateway plugin or
 generated runtime. Plugin config keys are plugin-specific.

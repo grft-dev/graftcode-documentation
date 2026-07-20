@@ -3,7 +3,6 @@ title: "Use a portal project key"
 description: "Obtain a project key from the portal, configure Gateway, and understand how it differs from a registry URL."
 articleTitle: "Use a portal project key"
 ---
-
 A **project key** authenticates Gateway to Graftcode portal and project metadata services. It is not
 the same as the **registry URL** shown on the dashboard for installing a generated Graft.
 
@@ -18,8 +17,8 @@ A Gateway without a project key can receive a **new registry identifier after re
 copy install commands from the **currently running** Gateway or Vision—not from an old log line.
 
 The project key does **not** authenticate individual Graft invocations. See
-[Authenticate Graft calls](../authenticate-graft-calls.md) and
-[Authentication operations](../../operations/authentication-authorization.md).
+[Authenticate Graft calls](authenticate-graft-calls.md) and
+[Authentication operations](../operations/authentication-authorization.md).
 
 ## Obtain a project key
 
@@ -38,31 +37,69 @@ authority.
 
 Prefer environment variables in deployment; they override CLI flags:
 
-```bash
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+```multi
+```dotnet
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ndotnet build ./Pricing/Pricing.csproj
 gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+```
+```javascript
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nnpm ci && npm run build
+gg --runtime nodejs --modules ./dist/index.js
+```
+```python
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ngg --runtime python --modules ./pricing/
+```
+```java
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nmvn package
+gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+```
+```php
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ncomposer install
+gg --runtime php --modules ./src/
+```
+```ruby
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nbundle install
+gg --runtime ruby --modules ./lib/
+```
 ```
 
 Or pass on the command line (avoid in shared shells and images):
 
-```bash
+```multi
+```dotnet
 gg --projectKey "dev:<jwt-copied-from-portal>" --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+```
+```javascript
+gg --projectKey "dev:<jwt-copied-from-portal>" --runtime nodejs --modules ./dist/index.js
+```
+```python
+gg --projectKey "dev:<jwt-copied-from-portal>" --runtime python --modules ./pricing/
+```
+```java
+gg --projectKey "dev:<jwt-copied-from-portal>" --runtime jvm --modules ./target/pricing-1.0.0.jar
+```
+```php
+gg --projectKey "dev:<jwt-copied-from-portal>" --runtime php --modules ./src/
+```
+```ruby
+gg --projectKey "dev:<jwt-copied-from-portal>" --runtime ruby --modules ./lib/
+```
 ```
 
 For Docker, inject `GC_PROJECT_KEY` through the platform secret store—never bake it into the image.
-See [Deploy with Docker](../deploy-with-docker).
+See [Deploy with Docker](deploy-with-docker.md).
 
 ## Versioning interaction
 
 With a project key, Gateway uses project-backed publication semantics. In standalone mode without a
 key, versioning is disabled by default unless `--keepVersioning` is set. See
-[Gateway versioning](gateway-no-versioning).
+[Gateway versioning](gateway-no-versioning.md).
 
 ## Next steps
 
-- [Obtain and install a Graft](../obtain-install-graft)
-- [Environment variables](../../reference/environment-variables.md)
-- [Core-concepts glossary — Project key](../../core-concepts/glossary.md)
+- [Obtain and install a Graft](obtain-install-graft.md)
+- [Environment variables](../reference/environment-variables.md)
+- [Core-concepts glossary — Project key](../core-concepts/glossary.md#project-key)
 
 ## Source anchors
 

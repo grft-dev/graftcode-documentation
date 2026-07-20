@@ -18,7 +18,7 @@ normal production operation.
 
 ## Generated Grafts
 
-The inspected .NET and Node.js templates attempt:
+Inspected templates (including .NET and Node.js) attempt:
 
 - `<graft-name>-config` at priority 1;
 - `graftcode-config` at priority 2.
@@ -27,12 +27,41 @@ Their values identify configuration content understood by the Hypertube resolver
 uses a top-level `configurations` object; semicolon-delimited connection strings require `name` and
 `runtime`.
 
-Environment variables outrank files, `SetConfig`/`setConfig`, and generated defaults. Configure them
+Environment variables outrank files, programmatic configuration, and generated defaults. Configure them
 before the first generated call.
 
+Example programmatic remote host (field names vary—copy from Vision):
+
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
+
 **Gap:** plugin-specific variables and variables used by service-model/package-manager components are
-not Gateway runtime configuration and are intentionally omitted. Generated runtimes beyond .NET and
-Node.js require package-level verification.
+not Gateway runtime configuration and are intentionally omitted. Generated runtimes beyond the fully
+inspected paths require package-level verification.
 
 ## Next steps
 

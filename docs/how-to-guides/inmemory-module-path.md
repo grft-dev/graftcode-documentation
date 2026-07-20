@@ -58,7 +58,7 @@ resolvable module path. See [Errors reference](../reference/errors-status.md).
 
 ## Next steps
 
-- [Configure invocation](configure-invocation)
+- [Configure invocation](configure-invocation.md)
 - [Execution modes](../core-concepts/execution-modes.md)
 
 ## Source anchors

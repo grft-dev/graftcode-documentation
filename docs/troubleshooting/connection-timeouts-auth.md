@@ -47,7 +47,35 @@ after diagnosis.
 ## Fixes
 
 - **Unexpected in-memory loading:** configure the generated Graft host before its first call, then start
-  a new caller process.
+  a new caller process. Example by runtime:
+
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
+
 - **Connection refused:** start the intended Gateway listener or correct the deployment's port mapping
   using values from Gateway output/configuration.
 - **WebSocket/proxy failure:** enable WebSocket forwarding and suitable idle/upgrade behavior in the

@@ -59,8 +59,8 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 
 ## Next steps
 
-- [Expose code](../expose-code)
-- [Dependency injection facade](../dependency-injection)
+- [Expose code](../expose-code.md)
+- [Dependency injection facade](dependency-injection.md)
 - [Gateway CLI reference](../reference/gateway-cli.md)
 
 ## Source anchors

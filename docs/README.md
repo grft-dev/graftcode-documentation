@@ -35,28 +35,29 @@ decision. This file is both the human learning path and the source for generated
 
 ## How-to guides
 
-- [Expose code](how-to-guides/expose-code)
-- [Obtain and install a Graft](how-to-guides/obtain-install-graft)
-- [Configure invocation](how-to-guides/configure-invocation)
+- [Expose code](how-to-guides/expose-code.md)
+- [Obtain and install a Graft](how-to-guides/obtain-install-graft.md)
+- [Configure invocation](how-to-guides/configure-invocation.md)
 - [Run Gateway locally](how-to-guides/run-gateway-locally.md)
-- [Deploy with Docker](how-to-guides/deploy-with-docker)
-- [Use a project key](how-to-guides/project-key)
-- [Gateway versioning and --noVersioning](how-to-guides/gateway-no-versioning)
+- [Deploy with Docker](how-to-guides/deploy-with-docker.md)
+- [Use a project key](how-to-guides/project-key.md)
+- [Gateway versioning and --noVersioning](how-to-guides/gateway-no-versioning.md)
 - [Filter the callable surface](how-to-guides/filter-callable-surface.md)
 - [Expose methods for MCP](how-to-guides/expose-mcp.md)
 - [Authenticate Graft calls](how-to-guides/authenticate-graft-calls.md)
 - [Stateless vs stateful calls](how-to-guides/stateless-vs-stateful.md)
 - [In-memory module path](how-to-guides/inmemory-module-path.md)
-- [Use Graftcode alongside REST](how-to-guides/coexist-with-rest)
-- [Debug Graft invocations](how-to-guides/debug-graft-invocations)
+- [Use Graftcode alongside REST](how-to-guides/coexist-with-rest.md)
+- [Debug Graft invocations](how-to-guides/debug-graft-invocations.md)
 - [Handle provider errors](how-to-guides/handle-provider-errors.md)
 - [Update a provider contract](how-to-guides/update-provider-contract.md)
-- [Dependency injection facades](how-to-guides/dependency-injection)
+- [Dependency injection facades](how-to-guides/dependency-injection.md)
 
-### Authoring multi-runtime how-tos
+### Authoring multi-runtime snippets
 
-Use **one file with `multi` code fences** when only code differs by runtime. The portal renders a
-tab picker inside each snippet (`.NET`, `JavaScript`, …) instead of a page-level stack picker:
+Use **one file with `multi` code fences** when only code differs by runtime (how-to guides,
+reference shortcuts, operations, troubleshooting). The portal renders a tab picker inside each
+snippet (`.NET`, `JavaScript`, `Python`, `Java`, `PHP`, `Ruby`) instead of a page-level stack picker:
 
 ````markdown
 ```multi
@@ -66,11 +67,23 @@ tab picker inside each snippet (`.NET`, `JavaScript`, …) instead of a page-lev
 ```javascript
 // Node example
 ```
+```python
+# Python example
+```
+```java
+// Java example
+```
+```php
+// PHP example
+```
+```ruby
+# Ruby example
+```
 ```
 ````
 
-Use a **folder per runtime** (`how-to-guides/<slug>/dotnet.md`, …) when prose or steps differ by
-stack. The portal shows **Your stack:** at the top of the page.
+Use a **folder per runtime** (`how-to-guides/<slug>/dotnet.md`, …) only when prose or steps
+materially differ by stack. Regenerate consolidated guides with `scripts/consolidate-howto-articles.py`.
 
 ## Language guides
 
@@ -204,25 +217,25 @@ categories:
     path: "how-to-guides"
     items:
       - title: "Expose code"
-        path: "how-to-guides/expose-code"
+        path: "how-to-guides/expose-code.md"
         order: 1
       - title: "Obtain and install a Graft"
-        path: "how-to-guides/obtain-install-graft"
+        path: "how-to-guides/obtain-install-graft.md"
         order: 2
       - title: "Configure invocation"
-        path: "how-to-guides/configure-invocation"
+        path: "how-to-guides/configure-invocation.md"
         order: 3
       - title: "Run Gateway locally"
         path: "how-to-guides/run-gateway-locally.md"
         order: 4
       - title: "Deploy with Docker"
-        path: "how-to-guides/deploy-with-docker"
+        path: "how-to-guides/deploy-with-docker.md"
         order: 5
       - title: "Use a project key"
-        path: "how-to-guides/project-key"
+        path: "how-to-guides/project-key.md"
         order: 6
       - title: "Gateway versioning and --noVersioning"
-        path: "how-to-guides/gateway-no-versioning"
+        path: "how-to-guides/gateway-no-versioning.md"
         order: 7
       - title: "Filter the callable surface"
         path: "how-to-guides/filter-callable-surface.md"
@@ -240,10 +253,10 @@ categories:
         path: "how-to-guides/inmemory-module-path.md"
         order: 12
       - title: "Use Graftcode alongside REST"
-        path: "how-to-guides/coexist-with-rest"
+        path: "how-to-guides/coexist-with-rest.md"
         order: 13
       - title: "Debug Graft invocations"
-        path: "how-to-guides/debug-graft-invocations"
+        path: "how-to-guides/debug-graft-invocations.md"
         order: 14
       - title: "Handle provider errors"
         path: "how-to-guides/handle-provider-errors.md"
@@ -252,7 +265,7 @@ categories:
         path: "how-to-guides/update-provider-contract.md"
         order: 16
       - title: "Dependency injection facades"
-        path: "how-to-guides/dependency-injection"
+        path: "how-to-guides/dependency-injection.md"
         order: 17
   - name: "Language guides"
     order: 5

@@ -80,7 +80,7 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 ## Next steps
 
 - [Authentication operations](../operations/authentication-authorization.md)
-- [Configure invocation](configure-invocation)
+- [Configure invocation](configure-invocation.md)
 
 ## Source anchors
 

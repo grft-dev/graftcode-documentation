@@ -16,9 +16,36 @@ A generated Graft package contains consumer-side code, not the provider implemen
 - target runtime dependencies or references;
 - declarations/types required by the consumer ecosystem.
 
-.NET generation produces compiled NuGet code with a namespace and PascalCase `GraftConfig` fields.
-Node.js generation produces JavaScript/declarations with lower-case configuration fields. Other
-ecosystems use their native package conventions.
+Every generated consumer package includes a `GraftConfig` (or equivalent) type. Field naming follows
+the target language—PascalCase static fields in .NET, lower-case fields in Node.js, class attributes in
+Python, and analogous patterns elsewhere. Copy the exact shape from Vision.
+
+```multi
+```dotnet
+GraftConfig.Host = "inmemory";
+GraftConfig.Stateless = false;
+```
+```javascript
+GraftConfig.host = "inmemory";
+GraftConfig.stateless = false;
+```
+```python
+GraftConfig.host = "inmemory"
+GraftConfig.stateless = False
+```
+```java
+GraftConfig.host = "inmemory";
+GraftConfig.stateless = false;
+```
+```php
+GraftConfig::$host = 'inmemory';
+GraftConfig::$stateless = false;
+```
+```ruby
+GraftConfig.host = "inmemory"
+GraftConfig.stateless = false
+```
+```
 
 ## Not stable enough to infer
 
@@ -41,7 +68,7 @@ layout guarantee across releases.
 
 ## Next steps
 
-- [Obtain and install a Graft](../how-to-guides/obtain-install-graft)
+- [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)
 - [Update a provider contract](../how-to-guides/update-provider-contract.md)
 
 ## Source anchors

@@ -5,7 +5,9 @@ description: "The generated GraftConfig sources, priority order, supported forma
 
 # Configuration resolution
 
-Generated .NET and Node.js Grafts include `GraftConfig`. On first initialization, it loads known sources, registers a package default, and asks Hypertube for the named configuration.
+Generated Grafts include `GraftConfig` (or an equivalent configuration type). On first initialization,
+it loads known sources, registers a package default, and asks Hypertube for the named configuration.
+Field naming and helper APIs differ by runtime—copy them from Vision.
 
 ## Priority order
 
@@ -39,6 +41,39 @@ The resolver accepts JSON, YAML, or semicolon-delimited connection-string data. 
 
 `GraftConfig` caches its runtime context. Change static configuration fields or add sources before the first generated call. The inspected templates do not expose a supported reset/re-resolve operation.
 
+## Remote host example
+
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
+
+Copy imports, property casing, and helper names from the installed package or Vision.
+
 ## Evidence
 
-Verified against generated config templates, `ConfigPriority`, `ConfigsDictionary`, resolver implementations, and `ConfigSourceResolverTests` in .NET and Node.js Hypertube SDKs.
+Verified against generated config templates, `ConfigPriority`, `ConfigsDictionary`, resolver
+implementations, and `ConfigSourceResolverTests` in the .NET and Node.js Hypertube SDKs. Other
+generated runtimes follow the same conceptual model; confirm behavior in the installed package.

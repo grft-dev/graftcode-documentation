@@ -15,10 +15,47 @@ The project key is not proof that runtime calls are authorized. Keep it in a sec
 through the portal process, and restart/redeploy Gateway as required to load the replacement.
 
 For provider calls, the portable Alpha baseline is to pass a token or API key as a supported method
-parameter and validate it before business effects. Generated .NET and Node.js packages also contain
-header APIs, and `--useContext` exposes request context/headers to hosted code. Browser WebSocket
-handshakes cannot set arbitrary custom headers; use only the HTTP/2 configuration emitted by Vision
-when that workflow is required.
+parameter and validate it before business effects. Generated packages also expose header helpers;
+`--useContext` exposes request context/headers to hosted code. Browser WebSocket handshakes cannot
+set arbitrary custom headers; use only the HTTP/2 configuration emitted by Vision when that workflow
+is required.
+
+Example header configuration (copy exact API names from Vision):
+
+```multi
+```dotnet
+GraftConfig.Host = "wss://service.example/ws";
+GraftConfig.Stateless = true;
+GraftConfig.SetHeaders(new Dictionary<string, string> {
+    ["Authorization"] = "Bearer <token>"
+});
+```
+```javascript
+GraftConfig.host = "wss://service.example/ws";
+GraftConfig.stateless = true;
+GraftConfig.setHeaders({ Authorization: "Bearer <token>" });
+```
+```python
+GraftConfig.host = "wss://service.example/ws"
+GraftConfig.stateless = True
+# Copy header helper names from Vision.
+```
+```java
+GraftConfig.host = "wss://service.example/ws";
+GraftConfig.stateless = true;
+GraftConfig.setHeaders(java.util.Map.of("Authorization", "Bearer <token>"));
+```
+```php
+GraftConfig::$host = 'wss://service.example/ws';
+GraftConfig::$stateless = true;
+GraftConfig::setHeaders(['Authorization' => 'Bearer <token>']);
+```
+```ruby
+GraftConfig.host = "wss://service.example/ws"
+GraftConfig.stateless = true
+# Copy header helper names from the generated gem.
+```
+```
 
 Default deny at the provider boundary, log authorization decisions without credentials, and keep
 policy logic independent from transport.

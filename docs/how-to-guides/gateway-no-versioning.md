@@ -3,8 +3,7 @@ title: "Gateway module versioning and --noVersioning"
 description: "Understand hosted-module versioning, when to bump package versions, and how to control versioning with Gateway flags."
 articleTitle: "Gateway module versioning and --noVersioning"
 ---
-
-Hosted-module versioning is separate from the version field on a generated consumer package. Gateway
+Hosted-module versioning is separate from the version on a generated consumer package. Gateway
 decides whether each publication of a provider surface is versioned in the service model.
 
 ## Default behavior
@@ -16,15 +15,15 @@ After CLI and environment parsing:
 - `--keepVersioning` (default `true`) can re-enable versioning even without a project key.
 - `--noVersioning` **explicitly disables** versioning regardless of project key.
 
-A [portal project key](project-key) ties publication to stable project metadata and is the normal
+A [portal project key](project-key.md) ties publication to stable project metadata and is the normal
 production path.
 
 ## When to bump consumer package versions
 
 Bump the generated package version shown in Vision when the **callable surface** changes in a way
 that affects consumers: renamed members, signature changes, removed types, or unsupported type
-introduction. See [Update a provider contract](../update-provider-contract.md) and
-[Contract evolution](../../core-concepts/contract-evolution.md).
+introduction. See [Update a provider contract](update-provider-contract.md) and
+[Contract evolution](../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always
 regenerate, reinstall, and smoke-test each consumer ecosystem.
@@ -39,20 +38,63 @@ the generated package version you install.
 
 ## Examples
 
-Host a .NET provider with versioning disabled:
+Disable versioning:
 
-```bash
+```multi
+```dotnet
 dotnet build ./Pricing/Pricing.csproj
 gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --noVersioning
+```
+```javascript
+npm ci && npm run build
+gg --runtime nodejs --modules ./dist/index.js --noVersioning
+```
+```python
+gg --runtime python --modules ./pricing/ --noVersioning
+```
+```java
+mvn package
+gg --runtime jvm --modules ./target/pricing-1.0.0.jar --noVersioning
+```
+```php
+composer install
+gg --runtime php --modules ./src/ --noVersioning
+```
+```ruby
+bundle install
+gg --runtime ruby --modules ./lib/ --noVersioning
+```
 ```
 
 Standalone mode without a project key (versioning off by default):
 
-```bash
+```multi
+```dotnet
+dotnet build ./Pricing/Pricing.csproj
 gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
+```javascript
+npm ci && npm run build
+gg --runtime nodejs --modules ./dist/index.js
+```
+```python
+gg --runtime python --modules ./pricing/
+```
+```java
+mvn package
+gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+```
+```php
+composer install
+gg --runtime php --modules ./src/
+```
+```ruby
+bundle install
+gg --runtime ruby --modules ./lib/
+```
+```
 
-Re-enable versioning in standalone mode:
+Re-enable versioning in standalone mode (.NET example):
 
 ```bash
 gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVersioning
@@ -60,9 +102,31 @@ gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVers
 
 With a project key (store the key in a secret, not in source):
 
-```bash
+```multi
+```dotnet
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
 gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+```
+```javascript
+export GC_PROJECT_KEY="dev:<jwt-from-portal>"
+gg --runtime nodejs --modules ./dist/index.js
+```
+```python
+export GC_PROJECT_KEY="dev:<jwt-from-portal>"
+gg --runtime python --modules ./pricing/
+```
+```java
+export GC_PROJECT_KEY="dev:<jwt-from-portal>"
+gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+```
+```php
+export GC_PROJECT_KEY="dev:<jwt-from-portal>"
+gg --runtime php --modules ./src/
+```
+```ruby
+export GC_PROJECT_KEY="dev:<jwt-from-portal>"
+gg --runtime ruby --modules ./lib/
+```
 ```
 
 ## Verify
@@ -76,9 +140,9 @@ the inspected implementation.
 
 ## Next steps
 
-- [Use a project key](project-key)
-- [Gateway CLI reference](../../reference/gateway-cli.md)
-- [Version compatibility and upgrades](../../operations/version-compatibility-upgrades.md)
+- [Use a project key](project-key.md)
+- [Gateway CLI reference](../reference/gateway-cli.md)
+- [Version compatibility and upgrades](../operations/version-compatibility-upgrades.md)
 
 ## Source anchors
 

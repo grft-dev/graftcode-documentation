@@ -3,7 +3,6 @@ title: "Use Graftcode alongside an existing REST API"
 description: "Keep HTTP endpoints for external clients while adding Graftcode for typed internal integration."
 articleTitle: "Use Graftcode alongside an existing REST API"
 ---
-
 Graftcode and REST solve different integration problems. They can coexist in one product when each
 boundary has a clear owner.
 
@@ -15,7 +14,7 @@ Keep REST (or OpenAPI) when:
 - partners integrate via webhooks or fixed URLs;
 - consumers cannot install a generated Graft.
 
-See [When to use Graftcode](../../introduction/when-to-use-graftcode.md).
+See [When to use Graftcode](../introduction/when-to-use-graftcode.md).
 
 ## When to add Graftcode
 
@@ -30,8 +29,8 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 ```text
 ┌─────────────────────────────────────┐
 │  Monolith or API host               │
-│  ├─ REST controllers (public)     │
-│  └─ Provider module (Graftcode)    │──► Gateway ──► remote consumers
+│  ├─ REST controllers (public)       │
+│  └─ Provider module (Graftcode)     │──► Gateway ──► remote consumers
 └─────────────────────────────────────┘
 ```
 
@@ -41,19 +40,19 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 3. Host the module with Gateway for Graft consumers.
 4. Do not expose database or HTTP framework types on the Graft contract.
 
-## Consumer example (JVM)
+## Consumer example
 
 After installing the Graft from Vision, configure remote execution before the first call. See
-[Configure invocation](../configure-invocation).
+[Configure invocation](configure-invocation.md).
 
 REST traffic and Graft traffic use separate paths: HTTP routes for REST, generated Graft + Gateway
 transport for Graftcode.
 
 ## Next steps
 
-- [Expose code](../expose-code)
-- [Caller and receiver](../../core-concepts/caller-and-receiver.md)
-- [Authentication operations](../../operations/authentication-authorization.md)
+- [Expose code](expose-code.md)
+- [Caller and receiver](../core-concepts/caller-and-receiver.md)
+- [Authentication operations](../operations/authentication-authorization.md)
 
 ## Source anchors
 

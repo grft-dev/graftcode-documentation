@@ -21,24 +21,64 @@ Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are l
 Open the running Gateway's Vision UI, choose the consumer package manager, and copy the entire install
 command. Never guess or reuse an example registry URL, identifier, package name, import, or version.
 
+Example shapes by runtime (copy the **complete** command from Vision, not these placeholders):
+
+```multi
+```dotnet
+dotnet add package <package-id> --version <version> -s <registry-from-vision>
+```
+```javascript
+npm install <package> --registry <registry-from-vision>
+```
+```python
+python -m pip install <package> --extra-index-url <url-from-vision>
+```
+```java
+# Copy the Maven or Gradle dependency block from Vision
+```
+```php
+composer require <vendor/package>:<version> --repository <repo-from-vision>
+```
+```ruby
+gem install <name> --source <source-from-vision>
+```
+```
+
 ## Configure a remote call
 
-.NET generated packages use fields:
+Generated packages expose `host` and `stateless` configuration (field names, casing, and access differ
+by runtime). Copy the exact API from Vision and set it **before** the first generated call. The default
+is `inmemory`, which requires the provider module to be locally loadable.
 
-```csharp
+```multi
+```dotnet
 GraftConfig.Host = "ws://localhost/ws";
 GraftConfig.Stateless = true;
 ```
-
-Node.js generated packages use lower-case fields:
-
-```typescript
+```javascript
 GraftConfig.host = "ws://localhost/ws";
 GraftConfig.stateless = true;
 ```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
+```
 
-Copy the host from Vision and configure before the first call. The default is `inmemory`, which
-requires the provider module to be locally loadable.
+Use `ws://` or `wss://` for remote Gateway WebSocket endpoints. See
+[Configure invocation](../how-to-guides/configure-invocation.md) for imports and file/env sources.
 
 ## Ports
 
@@ -51,7 +91,9 @@ All ports are configurable.
 
 ## Configuration priority
 
-Highest to lowest in the inspected generated .NET and Node.js packages:
+Inspected generated packages resolve configuration in this order (highest wins first). .NET and
+Node.js templates are fully verified; other runtimes follow the same conceptual levels—confirm field
+names in the installed package:
 
 1. graft-specific environment;
 2. global environment;
@@ -91,13 +133,13 @@ Highest to lowest in the inspected generated .NET and Node.js packages:
 
 ## Next steps
 
-- [Expose code](../how-to-guides/expose-code)
+- [Expose code](../how-to-guides/expose-code.md)
 - [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
-- [Use a project key](../how-to-guides/project-key)
-- [Gateway versioning](../how-to-guides/gateway-no-versioning)
+- [Use a project key](../how-to-guides/project-key.md)
+- [Gateway versioning](../how-to-guides/gateway-no-versioning.md)
 - [Filter callable surface](../how-to-guides/filter-callable-surface.md)
 - [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls.md)
-- [Debug invocations](../how-to-guides/debug-graft-invocations)
+- [Debug invocations](../how-to-guides/debug-graft-invocations.md)
 - [Operations and deployment model](../operations/index.md)
 
 ## Source anchors
