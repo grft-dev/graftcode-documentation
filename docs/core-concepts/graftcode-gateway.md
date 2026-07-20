@@ -1,247 +1,41 @@
 ---
-title: "Graftcode Gateway"
-description: "Graftcode Gateway is a lightweight native runtime host that loads application runtimes, exposes public interfaces, and executes strongly typed calls through Hypertube without acting as a proxy or API gateway."
-keywords: "graftcode gateway, runtime host, hypertube, distributed systems runtime, integration architecture"
+title: "Gateway and hosted modules"
+description: "How Graftcode Gateway selects runtimes, hosts modules, exposes transports, and serves Vision."
 ---
 
-The **Graftcode Gateway** is a lightweight, native runtime host that loads application runtimes, exposes public interfaces, and executes strongly typed calls.
+# Gateway and hosted modules
 
-It is the entry point into the Graftcode ecosystem—but it is not a proxy, not an API gateway, and not a middleware layer that intercepts production traffic.
+**Graftcode Gateway (`gg`)** is the host process for one or more modules. It selects or detects a runtime, loads the configured modules, exposes runtime-call transports, and can serve Graftcode Vision.
 
-The Gateway exists to host code and connect runtimes, not to sit between them.
+## Selecting modules and runtimes
 
----
+The current Gateway supports a first positional module path or `--modules`. If neither is supplied, it scans the current directory. `--runtime` can select a runtime explicitly or use `auto`.
 
-## A native, dependency-free runtime host
+“Hosted module” means a module loaded for execution by this process. It does not mean the generated Graft package.
 
-Graftcode Gateway is a **native application** available for:
-- Windows
-- Linux
-- macOS
+## Ports and transports
 
-It has **no external dependencies**.
+The current Gateway README documents these defaults:
 
-You can run it:
-- as a single executable
-- without installing frameworks
-- without configuring additional services
+- WebSocket service calls: port `80`;
+- Vision HTTP UI: port `81`;
+- optional TCP server: port `82`;
+- optional HTTP/2 server: port `83`.
 
-The Gateway can be obtained in several ways:
-- downloaded directly from GitHub releases (https://github.com/grft-dev/graftcode-gateway/releases/)
-- generated through the Graftcode Portal wizard for a selected platform
-- installed via system package managers (such as Chocolatey or APT)
-- pulled as a ready-to-run Docker image
+TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, not part of a module contract, and deployments can override them.
 
-The goal is simple: if you can run a process, you can run a Graftcode Gateway.
+## Analysis and registration
 
----
+The module analyzer creates a UGM from the selected callable surface. The service-model uploader accepts UGM data, and package-generation components later consume stored UGM data. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
 
-## Hosting runtimes, not forwarding traffic
+![UGM and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
 
-When the Graftcode Gateway starts, it does not forward requests or proxy traffic.
+## What the Gateway is not
 
-Instead, it **loads and hosts application runtimes**.
+It is not the generated Graft and it is not the user module. It does expose network listeners, so describing it as “not in the traffic path” would be inaccurate for remote calls.
 
-Much like a native executable can load the CLR, which then loads your .NET application, the Graftcode Gateway can load:
-- the CLR
-- the JVM
-- Python runtimes
-- and other supported runtimes
+## Evidence and uncertainty
 
-One or multiple runtimes can be loaded at the same time.
+Verified against `graftcode-gateway/README.md`, the module analyzers, `graftcode-service-model-uploader`, and package-generation engine.
 
-Within those runtimes, the Gateway loads the modules you specify. These modules contain your actual business logic.
-
-At this point, the Gateway is no longer just a launcher—it becomes a runtime host.
-
----
-
-## Discovering public interfaces
-
-Once modules are loaded, the Gateway analyzes them to discover **public interfaces**:
-- public classes
-- public methods
-- method signatures
-- argument and return types
-
-From this analysis, the Gateway builds a **Unified Graft Model (UGM)**—a language-agnostic representation of what can be called.
-
-This model describes *intent*, not implementation.
-
-Only this unified interface model is sent to the Graftcode cloud.
-
-No business logic, no implementation code, and no runtime data ever leave your environment.
-
----
-
-## On-demand Graft generation
-
-The Unified Graft Model is used when a package manager requests a Graft.
-
-At that moment:
-1. The request reaches the Graftcode Engine.
-2. The Unified Graft Model is used to generate a strongly typed client for the requested technology.
-3. The generated package is returned to the package manager.
-4. The result is cached for subsequent requests.
-
-Grafts are **generated on demand**.
-
-They are not pre-published, not pre-generated, and not created for technologies that nobody uses.
-
-The Gateway itself does not generate Grafts—it provides the model that makes generation possible.
-
----
-
-## Built-in Hypertube runtime
-
-The Graftcode Gateway contains an embedded **Hypertube™** runtime.
-
-Hypertube is responsible for executing calls between runtimes:
-- in memory
-- or over the network using TCP/IP or WebSocket
-
-Hypertube is directly linked into the Gateway and can:
-- load runtimes
-- execute code inside them
-- route calls between them efficiently
-
-This applies equally to:
-- in-process execution
-- cross-process execution
-- cross-machine execution
-
-The Gateway delegates execution to Hypertube.
-
----
-
-## Intention Invocation Protocol (IIP)
-
-Communication between runtimes is performed using a binary message format called the  
-**Intention Invocation Protocol (IIP)**.
-
-IIP is designed to represent **programming intent**, not network messages.
-
-An IIP message can describe:
-- a single method call
-- a chain of nested operations
-- complex execution flows, similar to lambda expressions
-
-The same protocol is used:
-- for in-memory execution
-- for local inter-process communication
-- for remote network communication
-
-This consistency is what allows Graftcode to virtualize execution without changing code.
-
----
-
-## Full-duplex execution model
-
-Hypertube connections are **full duplex**.
-
-Once a session is established:
-- calls can flow in both directions
-- events can be emitted back to the caller
-- callbacks and delegates can be invoked remotely
-
-If a caller subscribes to an event or provides a callback:
-- the receiver can invoke it
-- the invocation travels back through the same session
-- execution remains strongly typed
-
-This enables interaction patterns similar to in-memory objects or real-time systems, without explicit connection management in application code.
-
----
-
-## Hosting multiple modules and technologies
-
-A single Graftcode Gateway can host:
-- multiple modules
-- written in the same technology
-- or mixed across technologies
-
-For example:
-- several .NET modules
-- a combination of .NET and Python modules
-- or any other supported mix
-
-Each module contributes to the Unified Graft Model, and all are reachable through the same runtime infrastructure.
-
----
-
-## Performance characteristics
-
-The Gateway itself is extremely lightweight.
-
-Execution overhead is minimal because:
-- calls are binary, not text-based
-- there is no serialization into JSON or Protobuf
-- no MVC pipelines or middleware stacks are involved
-
-In-memory calls have **near-zero overhead** and behave like native calls.
-
-Remote calls add only network latency.
-
-This is why Graftcode-based communication is significantly faster and more resource-efficient than REST or gRPC-based approaches.
-
----
-
-## Graftcode Vision and IIP tooling
-
-The **Graftcode Gateway** also hosts **Graftcode Vision**.
-
-Graftcode Vision is a tool that understands:
-- the Unified Graft Model
-- the Intention Invocation Protocol
-
-It uses this knowledge to:
-- visualize exposed interfaces
-- provide live documentation
-- allow interactive “try it” execution of methods
-
-Graftcode Vision is an example of what can be built on top of IIP.
-
-The Intention Invocation Protocol and the Unified Graft Model are designed to be **open and extensible**, allowing third-party tools for:
-- monitoring
-- debugging
-- inspection
-- documentation
-
-Over time, more tools can integrate directly at this level.
-
----
-
-## Source-available and security transparency
-
-The Gateway is expected to be made **source-available** on GitHub:
-- the full source code can be inspected
-- security teams can perform static analysis
-- organizations can run independent penetration tests
-- behavior can be audited rather than assumed
-
-This allows teams to:
-- verify exactly what the Gateway does
-- understand how interfaces are analyzed
-- confirm what data is (and is not) sent outside their environment
-
----
-
-## In short
-
-The Graftcode Gateway is:
-- a native, dependency-free runtime host
-- a loader of application runtimes
-- a producer of unified interface models
-- an execution entry point powered by Hypertube
-
-It is not:
-- a proxy
-- an API gateway
-- a traffic interceptor
-- a cloud-controlled component
-
-It exists to run code, connect runtimes, and make distributed execution feel local.
-
----
-
-See also: [Hypertube Runtime Bridge](hypertube-runtime-bridge.md)
+The inspected implementation does not establish that only interface metadata ever leaves the environment under every Gateway option or plugin. Treat data-egress behavior as deployment- and plugin-specific until separately audited.

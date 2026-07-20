@@ -1,181 +1,35 @@
 ---
 title: "Graftcode Vision"
-description: "Graftcode Vision is a runtime-based interface explorer that helps developers discover what a service exposes, how to connect to it, and how to consume it as a typed dependency."
-keywords: "graftcode vision, service discovery, live api documentation, package manager integration, runtime interfaces"
+description: "What is verified about the Gateway-hosted Vision interface, with unverified UI behavior clearly marked."
 ---
 
-**Graftcode Vision** is a developer tool designed to make it easy to understand **what a service exposes, how to connect to it, and how to consume it**.
+# Graftcode Vision
 
-Its primary goal is not documentation for documentation’s sake, but **reducing the distance between discovering a service and using it in code**.
+**Graftcode Vision** is a web UI that the Gateway can host for inspecting loaded modules. The Gateway README describes it as a web UI and a graph view for loaded modules.
 
-In that sense, Vision plays a role similar to tools like Swagger or Postman—but instead of focusing on endpoints and payloads, it focuses on **public programming interfaces and typed clients**.
+## Verified behavior
 
----
+- Vision hosting is enabled by the Gateway `--GV` option, on by default.
+- The Vision HTTP port defaults to `81` and can be changed with `--httpPort`.
+- Vision is associated with the modules loaded by that Gateway process.
 
-## Discovering what a service exposes
+## Use the running Gateway as the source
 
-When you open Graftcode Vision for a running service, you are looking directly at the service **that is hosting the code**.
+Module selection, runtime detection, filters, and startup success determine what a Gateway actually hosts. Check Gateway output and the Vision instance for that process rather than inferring package names, versions, ports, or registry paths.
 
-Vision shows:
-- public classes exposed by the service
-- available methods
-- arguments and return types
-- overloads and optional parameters
+## Features requiring release-specific verification
 
-This information is derived from the service’s runtime via the **Unified Graft Model (UGM)**.
+The inspected `GraftingAgent` source and tests did not contain the Vision frontend implementation or tests proving all previously documented UI features. Therefore, the following are **not guaranteed by this page**:
 
-There is no separate specification, no generated documentation, and no sync step.  
-What Vision shows is what the service actually exposes at that moment.
+- exact package-install commands or supported package ecosystems shown in the UI;
+- interactive method execution;
+- generated code samples;
+- configuration snippets;
+- immediate UI refresh after contract changes;
+- security equivalence between Vision and runtime-call transports.
 
----
+If a release displays one of these features, treat that running release as evidence for the feature and copy values exactly. Do not generalize it to other versions without tests or release documentation.
 
-## Always reflecting the current interface
+## Evidence
 
-Vision stays up to date because it operates against the running Graftcode Gateway.
-
-If the service changes:
-- new methods appear immediately
-- removed methods disappear
-- signature changes are reflected instantly
-
-This works for the same reason shared libraries stay up to date in an IDE:  
-the information comes directly from code, not from an external description.
-
----
-
-## The first thing most developers do: copy the package manager command
-
-For most developers, the most important part of Graftcode Vision is not browsing methods.
-
-It is this:
-
-> **How do I get a client for this service into my project?**
-
-Vision makes this trivial.
-
-For every exposed service, Vision provides:
-- the exact package manager command
-- for the selected technology (npm, NuGet, Maven, PyPI, etc.)
-- pointing at the correct Graftcode Gateway
-
-It does not matter whether the service exposes:
-- one method
-- or thousands of methods
-
-A developer can simply copy the command, install the dependency, and immediately start working with a strongly typed client in their IDE.
-
----
-
-## Configuration examples, ready to copy
-
-Vision also shows how to configure the client to connect to a specific Gateway instance.
-
-Depending on the selected technology, Vision provides:
-- example configuration via environment variables
-- example configuration via config files
-- minimal, working defaults
-
-This allows a developer to:
-- connect directly to a specific service instance
-- verify behavior quickly
-- and later let DevOps override the configuration for other environments
-
-The important part is that **the first working configuration is easy to get**, and changes can be layered on later.
-
----
-
-## Language-specific code examples
-
-Vision adapts to the selected consumer technology.
-
-When you switch the target to:
-- JavaScript
-- .NET
-- Java
-- Python
-- or another supported runtime
-
-Vision updates:
-- package manager commands
-- configuration examples
-- import statements
-- and code samples
-
-When using the “try it” feature, the code shown is generated **in the selected language**, using the same parameters and values entered during execution.
-
-This code can be copied directly into an application and used as-is.
-
----
-
-## Interactive execution, similar to Swagger or Postman
-
-Vision allows methods to be executed interactively against the running service.
-
-This is similar in spirit to Swagger’s “Try it out” or Postman requests:
-- you provide input values
-- you execute the method
-- you inspect the result or error
-
-The difference is that you are invoking **methods**, not endpoints.
-
-Execution happens against the same runtime that real clients use, and the result reflects the actual behavior of the service.
-
----
-
-## No additional exposure or bypass
-
-Graftcode Vision does not introduce a new access path.
-
-It does not:
-- bypass security
-- expose additional methods
-- create special execution routes
-
-Vision operates within the same boundaries enforced by the Graftcode Gateway.
-
-If something is callable through a Graft, it is callable through Vision.  
-If it is not, Vision cannot access it either.
-
----
-
-## Vision today and Vision tomorrow
-
-Today, Graftcode Vision runs alongside individual Gateways and shows what each service exposes locally.
-
-In the future, Vision will also be available at the platform level, allowing teams to:
-- browse all registered services
-- explore Unified Graft Models across projects
-- view a live, global picture of their interface architecture
-
-This creates a form of **always up-to-date, system-wide documentation**, derived from running services rather than maintained manually.
-
----
-
-## Built on the same runtime foundations
-
-Graftcode Vision understands:
-- the Unified Graft Model (UGM)
-- the Intention Invocation Protocol (IIP)
-
-It is built on the same foundations as:
-- Graft generation
-- runtime execution
-- cross-language communication
-
-Vision is not a special case—it is simply one consumer of the same runtime-level information.
-
----
-
-## In short
-
-Graftcode Vision is:
-- a discovery tool for exposed services
-- a shortcut to installing typed clients
-- a source of copy-ready configuration and code
-- a live view of what a service actually exposes
-
-It helps developers move from *“what is this service?”* to *“I’m already using it”* in minutes.
-
----
-
-See also: [Development-time vs production-time behavior](../how-graftcode-works/development-time-vs-production-time.md)
+Verified against `graftcode-gateway/README.md`. The lack of Vision UI sources/tests in the inspected repository is an explicit evidence gap, not a statement that the listed features do not exist.

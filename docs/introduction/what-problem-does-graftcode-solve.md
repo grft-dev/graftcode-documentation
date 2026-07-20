@@ -1,121 +1,63 @@
 ---
 title: "What problem does Graftcode solve?"
-description: "Modern software systems spend a growing amount of effort on making components talk to each other. Graftcode addresses the structural cost of integration, not just its implementation."
-keywords: "software integration problem, distributed systems, microservices communication, api complexity, service integration"
+description: "A five-minute mental model for modules, Grafts, Gateway, configuration, and calls."
 ---
 
-Modern software systems are not hard to build because of business logic.  
-They are hard to build because of **communication**.
+# The five-minute mental model
 
-As systems grow, they are split into modules, services, and components. Each split introduces a boundary—and every boundary needs a way for code on one side to talk to code on the other.
+Graftcode reduces the separate integration layer that normally sits between a callable business
+method and its consumer. It does not make a distributed call local; it makes the consumer-facing
+programming model look like an installed dependency.
 
-Over time, a surprising amount of effort goes into *maintaining those conversations*.
+## Five things to remember
 
----
+1. **The module is your code.** A provider is an ordinary class library or module. Its intentional,
+   supported public methods form the callable surface.
+2. **The Graft is generated code.** It is a package for the consumer's package manager and language.
+   It mirrors the provider surface; it is not the provider implementation.
+3. **Gateway hosts and analyzes modules.** It loads the provider, exposes runtime transports, serves
+   Vision, and publishes the model used to generate packages.
+4. **Configuration selects execution.** A generated client can resolve in-memory or remote
+   execution. Remote calls must configure the Gateway host before the first invocation.
+5. **A method call is still distributed.** Serialization, routing, failures, compatibility,
+   security, retries, and observability still matter.
 
-## When code stops talking directly
+```text
+provider module
+    -> Gateway discovers public surface
+    -> package service generates a Graft
+    -> consumer installs and calls the Graft
+    -> configured runtime path invokes the provider
+```
 
-Inside a single application, communication is simple. One method calls another. Types are shared. Errors are caught early.
+## Build time versus call time
 
-As soon as code crosses a boundary—another process, another service, another language—direct communication disappears. In its place, we introduce an abstraction:
+During setup, Gateway analyzes the provider and the package system generates a language-specific
+Graft. During normal runtime invocation, the already-installed Graft sends the call through its
+resolved execution path. It does not regenerate the package.
 
-- an API
-- a contract
-- a protocol
-- a client
+## The contract
 
-That abstraction solves the immediate problem, but it also creates a new one: **communication is no longer part of the programming model**. It becomes something external, managed separately from the code it represents.
+The contract is the supported public surface: declaring types, methods, parameters, return values,
+and public model members. Public does not automatically mean portable. The entire analyzer,
+generation, and runtime path must support every exposed type.
 
----
+Keep transport, database, framework, and implementation types private or internal. For the safest
+cross-language surface, use simple primitives, strings, and plain models, then test the exact
+provider/consumer pair.
 
-## The long path of a simple call
+## A useful distinction
 
-Consider a simple operation: getting the current weather.
+- **Written:** provider logic, consumer logic, runtime configuration, operational policy.
+- **Generated:** Graft package, language bindings, contract metadata, Vision views.
+- **Operated:** Gateway process, transports, package access, deployment, security, telemetry.
 
-In a local application, it’s a method call.
+That distinction prevents two common mistakes: treating Gateway as the generated client, or treating
+the generated client as if it removes remote-system failure modes.
 
-In a distributed system, that same intent often travels a much longer path:
-- transformed into a request model
-- serialized into a transport format
-- sent through a network layer
-- deserialized on the other side
-- mapped back into a programming structure
+## Continue
 
-Each step is reasonable on its own. Together, they form a pattern where **the simplest interaction becomes indirect**.
-
-As systems evolve, this path tends to grow—not because the business needs it, but because the architecture does.
-
----
-
-## Integration becomes a parallel system
-
-Over time, integration stops being a thin layer and becomes a system of its own:
-
-- interfaces must be designed and documented
-- clients must be generated and distributed
-- versions must be coordinated across teams
-- changes must be synchronized carefully
-
-The result is that **how systems talk to each other** starts to demand as much attention as **what those systems actually do**.
-
-This isn’t a failure of REST, gRPC, or messaging platforms. These tools solve real problems. The issue is more fundamental:  
-they all treat communication as something *outside* the programming model.
-
----
-
-## Architecture becomes sticky
-
-Once communication is encoded into APIs and protocols, architecture decisions become difficult to reverse.
-
-Changing:
-- a transport
-- a communication style
-- a deployment model
-
-often requires changes across multiple layers and teams. Even small architectural shifts can ripple through contracts, clients, and documentation.
-
-What started as an implementation detail becomes a constraint.
-
----
-
-## A familiar contrast
-
-Developers already know a better model.
-
-When working with shared libraries or modules:
-- public interfaces are carefully designed
-- private details stay private
-- changes are evolutionary
-- compatibility is enforced by the compiler
-
-Remote communication rarely enjoys the same discipline—not because developers don’t care, but because the tools don’t support it naturally.
-
----
-
-## The problem in one sentence
-
-The core problem Graftcode addresses is this:
-
-> **Remote communication forces developers to step outside the programming model they already trust.**
-
-Instead of working with code, types, and interfaces, they work with translations of those concepts—schemas, payloads, contracts, and clients.
-
-Graftcode exists to remove that disconnect.
-
----
-
-## What this means in practice
-
-When communication is externalized:
-- systems become harder to change
-- interfaces drift from implementations
-- integration work accumulates quietly over time
-
-Solving this problem doesn’t mean inventing yet another protocol.  
-It means bringing communication back to where it belongs: **into the runtime and the programming model itself**.
-
-That is the direction Graftcode takes.
-
----
-
-See also: [Where Graftcode fits](where-graftcode-fits.md)
+- Run the [.NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md).
+- Read [caller and receiver](../core-concepts/caller-and-receiver.md).
+- Read [invocation lifecycle](../core-concepts/invocation-lifecycle.md).
+- [Choose a scenario](when-to-use-graftcode.md).

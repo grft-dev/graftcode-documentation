@@ -1,116 +1,103 @@
 ---
 title: "Quick Reference"
-description: "Quick reference guide with common commands, configuration snippets, and troubleshooting tips for Graftcode."
+description: "Verified Gateway, package installation, invocation, ports, and troubleshooting shortcuts."
 ---
 
-## Installation
+# Quick reference
+
+## Provider
+
+Build a plain module, then host the actual artifact:
 
 ```bash
-# Run Graftcode Gateway
-gg.exe --runtime <your_runtime> --modules <your_backend_library>
-
-# Install a Graft (command from Graftcode Vision)
-npm install @graft/nuget-EnergyPrice --registry=http://grft.dev/<project-id>__graftcode
+gg --runtime <runtime> --modules <built-module>
 ```
 
-## Basic Usage
+Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are listed in
+[Gateway CLI](gateway-cli.md). Confirm discovery and successful publication before installation.
+
+## Install a Graft
+
+Open the running Gateway's Vision UI, choose the consumer package manager, and copy the entire install
+command. Never guess or reuse an example registry URL, identifier, package name, import, or version.
+
+## Configure a remote call
+
+.NET generated packages use fields:
+
+```csharp
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+
+Node.js generated packages use lower-case fields:
 
 ```typescript
-import { EnergyService } from "@graft/nuget-EnergyPrice";
-
-const energy = new EnergyService();
-
-const price = await energy.getCurrentPrice("DE");
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
 ```
 
-## Configuration
+Copy the host from Vision and configure before the first call. The default is `inmemory`, which
+requires the provider module to be locally loadable.
 
-### GraftConfig (code)
+## Ports
 
-```typescript
-import { GraftConfig } from "@graft/nuget-EnergyPrice";
+- `80`: WebSocket calls, enabled by default;
+- `81`: Vision HTTP, enabled by default;
+- `82`: TCP, only with `--tcpServer`;
+- `83`: HTTP/2, only with `--http2Server`.
 
-GraftConfig.host = "tcp://energy-service:9000";
-```
+All ports are configurable.
 
-### Graft Connection String
+## Configuration priority
 
-```typescript
-GraftConfig.setConfig("name=@graft/nuget-EnergyPrice;runtime=netcore;host=ws://localhost:8004/ws");
-```
+Highest to lowest in the inspected generated .NET and Node.js packages:
 
-### Environment Variables
+1. graft-specific environment;
+2. global environment;
+3. graft-specific file;
+4. global file;
+5. programmatic user configuration;
+6. generated library default.
 
-Configuration can also be supplied via environment variables or config files, applied per Graft or globally. See [Configuring a Graft](../core-concepts/what-is-a-graft.md#configuring-a-graft) for details.
+## Frequent failures
 
-## Integration Scenarios
+- Provider `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
+- No types: pass explicit `--runtime` and `--modules`; verify public/exported members.
+- Install `404`: repeat the exact registry-qualified command from the current Vision instance.
+- Package generation `422`: remove the named framework complex type from every public signature and
+  public model member.
+- State lost after restart/scale-in: recreate the remote object or redesign as static/stateless.
 
-### Frontend <-> Backend
+## Operations
 
-```typescript
-import { BackendService } from "@graft/nuget-Backend";
+- Store `GC_PROJECT_KEY` as a secret; it overrides `--projectKey`.
+- Use `GG_DEBUG` only for controlled diagnosis because it logs byte traffic.
+- No built-in stable health or metrics endpoint is documented.
+- Pin and test Gateway plus generated packages together; Alpha has no cross-major compatibility
+  guarantee.
 
-const backend = new BackendService();
-const data = await backend.getData();
-```
+## Detailed references
 
-### AI <-> Backend (MCP)
+- [Gateway CLI](gateway-cli.md)
+- [Configuration keys and precedence](configuration-keys-precedence.md)
+- [Environment variables](environment-variables.md)
+- [Supported runtimes and package managers](supported-runtimes-package-managers.md)
+- [Type matrix](type-matrix.md)
+- [Errors and status](errors-status.md)
+- [Generated package structure](generated-package-structure.md)
+- [Ports and protocols](ports-protocols.md)
+- [Known limitations](known-limitations.md)
 
-Services hosted on Graftcode Gateway can be exposed as MCP tools for AI clients without rewriting APIs. See [MCP Hosting and AI Tools](../integration-patterns/mcp-hosting-and-ai-tools.md).
+## Next steps
 
-### Monolith <-> Microservice
+- [Expose code](../how-to-guides/expose-code.md)
+- [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
+- [Operations and deployment model](../operations/index.md)
 
-Switching between in-memory and remote execution is a configuration change, not a code change. Point `GraftConfig.host` at a remote Gateway or leave it unset for in-memory execution.
+## Source anchors
 
-## Error Handling
-
-```typescript
-try {
-  const result = await service.method(params);
-} catch (error) {
-  // Exceptions from the target runtime are propagated
-  // as strongly typed errors in the calling language
-}
-```
-
-## Testing
-
-### Unit Test
-
-```typescript
-const service = new EnergyService();
-const price = await service.getCurrentPrice("DE");
-expect(price).toBeDefined();
-```
-
-### Mock Service
-
-```typescript
-jest.mock("@graft/nuget-EnergyPrice", () => ({
-  EnergyService: jest.fn().mockImplementation(() => ({
-    getCurrentPrice: jest.fn().mockResolvedValue(0.32),
-  })),
-}));
-```
-
-## Common Commands
-
-```bash
-# Start Graftcode Gateway
-gg.exe --runtime <your_runtime> --modules <your_backend_library>
-```
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Gateway won't start | Check port availability and runtime path |
-| Connection failed | Verify `GraftConfig.host` value |
-| Type errors | Regenerate Graft package |
-| Method not found | Check that the method is public |
-
-## Links
-
-- **Graftcode Vision**: hosted by the running Gateway (default: `http://localhost:<port>/vision`)
-- **Graftcode Portal**: [https://graftcode.com](https://graftcode.com)
-- **Graftcode Performance Lab**: [Performance Lab](https://gc-d-ca-polc-demo-perf-lab-01.blackgrass-d2c29aae.polandcentral.azurecontainerapps.io/)
+- `graftcode-gateway/README.md`
+- generated `GraftConfig` templates in `graftcode-code-generator/`
+- `HYPERTUBE/src/*/Configuration/ConfigPriority.*`
+- `graftcode-package-manager-gateway/src/jvm/src/test/java/com/graftcode/gpmg/integration/SoennekerExtensionsTypeArrayIntegrationTest.java`

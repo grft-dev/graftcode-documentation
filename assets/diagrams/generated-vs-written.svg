@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" role="img" aria-labelledby="title desc">
+  <title id="title">Generated and user-written boundaries</title>
+  <desc id="desc">User-written producer code is analyzed into a generated Graft package, which is imported by user-written consumer code. Deployment configuration is also user-controlled.</desc>
+  <style>text{font:16px system-ui,sans-serif;fill:#172033}.h{font-weight:700}.user{fill:#f1f8f2;stroke:#39734a;stroke-width:2}.gen{fill:#edf5ff;stroke:#2764a8;stroke-width:2}.line{stroke:#52627a;stroke-width:2;fill:none}.small{font-size:14px}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#52627a"/></marker></defs>
+  <rect class="user" x="25" y="35" width="190" height="85" rx="10"/><text class="h" x="120" y="68" text-anchor="middle">Producer module</text><text class="small" x="120" y="94" text-anchor="middle">user-written</text>
+  <rect class="gen" x="265" y="35" width="190" height="85" rx="10"/><text class="h" x="360" y="65" text-anchor="middle">Graft package</text><text class="small" x="360" y="89" text-anchor="middle">wrappers + GraftConfig</text><text class="small" x="360" y="108" text-anchor="middle">generated from UGM</text>
+  <rect class="user" x="505" y="35" width="190" height="85" rx="10"/><text class="h" x="600" y="68" text-anchor="middle">Consumer app</text><text class="small" x="600" y="94" text-anchor="middle">user-written</text>
+  <path class="line" marker-end="url(#a)" d="M215 77h50M455 77h50"/>
+  <rect class="user" x="265" y="165" width="190" height="60" rx="10"/><text class="h" x="360" y="191" text-anchor="middle">Deployment config</text><text class="small" x="360" y="213" text-anchor="middle">user-controlled</text>
+  <path class="line" marker-end="url(#a)" d="M360 165v-45"/>
+</svg>

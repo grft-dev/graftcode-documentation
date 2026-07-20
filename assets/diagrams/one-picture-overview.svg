@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+  <title id="title">Graftcode one-picture overview</title>
+  <desc id="desc">A user-written module is analyzed into a UGM, which generates a Graft package. A user-written consumer calls the Graft, whose configuration selects in-memory or Gateway-hosted execution.</desc>
+  <style>
+    text{font:16px system-ui,sans-serif;fill:#172033}.h{font-weight:700}.box{fill:#f7f9fc;stroke:#52627a;stroke-width:2}.gen{fill:#edf5ff;stroke:#2764a8;stroke-width:2}.user{fill:#f1f8f2;stroke:#39734a;stroke-width:2}.line{stroke:#52627a;stroke-width:2;fill:none}.small{font-size:14px}
+  </style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#52627a"/></marker></defs>
+  <rect class="user" x="20" y="35" width="155" height="70" rx="10"/><text class="h" x="98" y="64" text-anchor="middle">Module</text><text class="small" x="98" y="87" text-anchor="middle">user-written</text>
+  <rect class="box" x="220" y="35" width="120" height="70" rx="10"/><text class="h" x="280" y="64" text-anchor="middle">UGM</text><text class="small" x="280" y="87" text-anchor="middle">analyzed model</text>
+  <rect class="gen" x="385" y="35" width="150" height="70" rx="10"/><text class="h" x="460" y="64" text-anchor="middle">Graft package</text><text class="small" x="460" y="87" text-anchor="middle">generated</text>
+  <rect class="user" x="580" y="35" width="120" height="70" rx="10"/><text class="h" x="640" y="64" text-anchor="middle">Consumer</text><text class="small" x="640" y="87" text-anchor="middle">user-written</text>
+  <path class="line" marker-end="url(#a)" d="M175 70h45M340 70h45M580 70h-45"/>
+  <rect class="gen" x="385" y="160" width="150" height="70" rx="10"/><text class="h" x="460" y="189" text-anchor="middle">Configuration</text><text class="small" x="460" y="212" text-anchor="middle">selects execution</text>
+  <path class="line" marker-end="url(#a)" d="M460 105v55"/>
+  <rect class="box" x="155" y="245" width="180" height="45" rx="10"/><text x="245" y="273" text-anchor="middle">In-memory runtime</text>
+  <rect class="box" x="500" y="245" width="200" height="45" rx="10"/><text x="600" y="273" text-anchor="middle">Gateway-hosted module</text>
+  <path class="line" marker-end="url(#a)" d="M425 230l-90 34M495 230l65 15"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
+  <title id="title">In-memory and remote execution</title>
+  <desc id="desc">The same generated Graft resolves configuration. In-memory configuration uses in-memory connection data; a network host uses WebSocket, HTTP/2, TCP, or a plugin to reach a Gateway-hosted module.</desc>
+  <style>text{font:16px system-ui,sans-serif;fill:#172033}.h{font-weight:700}.box{fill:#f7f9fc;stroke:#52627a;stroke-width:2}.choice{fill:#fff8e8;stroke:#8a641f;stroke-width:2}.line{stroke:#52627a;stroke-width:2;fill:none}.small{font-size:14px}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#52627a"/></marker></defs>
+  <rect class="box" x="20" y="100" width="150" height="65" rx="10"/><text class="h" x="95" y="128" text-anchor="middle">Generated Graft</text><text class="small" x="95" y="151" text-anchor="middle">same call site</text>
+  <rect class="choice" x="220" y="100" width="155" height="65" rx="10"/><text class="h" x="297" y="128" text-anchor="middle">Resolved host</text><text class="small" x="297" y="151" text-anchor="middle">configuration</text>
+  <rect class="box" x="455" y="30" width="235" height="75" rx="10"/><text class="h" x="572" y="59" text-anchor="middle">In-memory connection</text><text class="small" x="572" y="83" text-anchor="middle">same-process or runtime bridge</text>
+  <rect class="box" x="455" y="175" width="235" height="75" rx="10"/><text class="h" x="572" y="204" text-anchor="middle">Network / plugin connection</text><text class="small" x="572" y="228" text-anchor="middle">Gateway-hosted module</text>
+  <path class="line" marker-end="url(#a)" d="M170 132h50M375 120l80-42M375 145l80 55"/>
+  <text class="small" x="403" y="66" text-anchor="middle">inmemory</text><text class="small" x="414" y="185" text-anchor="middle">ws / h2 / tcp / plugin</text>
+</svg>

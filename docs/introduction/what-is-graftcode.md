@@ -1,123 +1,133 @@
 ---
 title: "What is Graftcode?"
-description: "Graftcode is a runtime-level integration platform that lets software systems communicate through strongly typed method calls, without requiring traditional APIs or RPC layers."
-keywords: "graftcode, runtime integration, api alternative, grpc alternative, service communication, strongly typed calls"
+description: "Start with a concrete .NET-to-Node.js Graftcode call, then learn what is generated and what runs."
 ---
 
-Graftcode is a **runtime-level integration platform** that allows software systems to communicate using **strongly typed method calls**, even when those systems run in different processes, on different machines, or in different programming languages.
+# What is Graftcode?
 
-Instead of designing endpoints, defining schemas, and generating clients, you expose a **programming interface**—classes, methods, and types—and Graftcode makes that interface callable from other applications as if it were local code.
+Graftcode turns a module's public methods into an installable, typed package called a **Graft**. A
+consumer calls the generated package like ordinary code; Graftcode Gateway routes the call to the
+hosted module. You write business methods and consumer logic. Graftcode discovers the callable
+surface, generates the package, and bridges the runtimes.
 
-From a developer’s point of view, a remote service becomes just another dependency in the project.
+## See a real call first
 
----
+The provider is a plain .NET class library:
 
-## A familiar problem, repeated everywhere
+```csharp
+namespace BillingProvider;
 
-When two pieces of code live in the same application, they can call each other directly.  
-When they don’t, we usually introduce an API.
+public static class BillingService
+{
+    public static double CalculateMonthlyBill(double unitPrice, int units) =>
+        unitPrice * units;
+}
+```
 
-That API then grows a surrounding ecosystem:
-- endpoints and routes
-- request and response models
-- client libraries
-- versioning rules
-- compatibility concerns
+Build it, then host the resulting assembly with Gateway:
 
-Over time, a significant part of the system exists not to implement business behavior, but to *translate* between systems.
+```bash
+dotnet build ./BillingService.csproj
+gg --runtime netcore --modules ./bin/Debug/net9.0/BillingService.dll
+```
 
-This pattern has repeated itself for decades—from early distributed systems, through SOAP and REST, to modern gRPC. Each generation improved performance or ergonomics, but the underlying idea remained the same: **communication lives outside the code**.
+For the Docker-hosted workflow used by the tutorial, the equivalent container command is:
 
-Graftcode challenges that assumption.
+```dockerfile
+CMD ["gg", "--runtime", "netcore", "--modules", "BillingService.dll"]
+```
 
----
+Wait for Gateway to report the enabled type and successful model upload. Then copy the **complete npm
+install command emitted by that running Gateway or shown in its Vision UI**. Run it unchanged. The
+free registry ID is generated at runtime and can change after a restart, so this documentation does
+not print or invent one.
 
-## A different way to think about communication
+For this provider, Gateway 1.3.6 generated the package name
+`@graft/nuget-billingservice`. Run this Node.js consumer:
 
-Graftcode treats communication as a **programming concern**, not a networking one.
+```javascript
+const {
+  GraftConfig,
+  BillingService,
+} = require("@graft/nuget-billingservice");
 
-If one piece of software needs to call another, you define *what* can be called—methods, arguments, return types—and let the runtime handle *how* that call happens.
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
 
-The result feels closer to using a shared library than consuming an external service:
-- you work with real types, not schemas
-- you call methods, not URLs
-- incompatibilities show up early, not at runtime
+(async () => {
+  const total = await BillingService.calculateMonthlyBill(12.5, 4);
+  console.log(`Monthly bill: ${total}`);
+})();
+```
 
-Under the hood, the call may cross process boundaries or machines, but that detail stays out of your application code.
+The registry address remains dynamic and must come from the running Gateway's install command.
+Gateway 1.3.6 generated lower camel case for the Node method while the .NET contract remained
+`BillingService.CalculateMonthlyBill`. Expected result:
 
----
+```text
+Monthly bill: 50
+```
 
-## What Graftcode actually provides
+For every command, file, and working directory, follow the
+[executable .NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md).
 
-Graftcode introduces a small set of core building blocks that work together:
+## What you write and what Graftcode generates
 
-- **Grafts** – strongly typed clients generated from public method signatures
-- **Graftcode Gateway** – a runtime host that exposes those signatures and executes calls
-- **Hypertube™** – a runtime-level bridge that connects different runtimes efficiently
-- **Graftcode Vision** – live, always-up-to-date documentation derived from real code
+| You write | Graftcode provides |
+| --- | --- |
+| The .NET class library and public method | A discovered callable model |
+| The Node.js business code | A generated npm Graft with typed classes and methods |
+| Runtime host configuration | Runtime bridging and invocation dispatch |
+| Deployment, security, retries, and observability policy | Vision metadata and package installation instructions |
 
-Together, they form a system where interfaces are discovered, clients are generated, and calls are executed automatically—without asking developers to design or maintain a separate communication layer.
+![Module, generated Graft, consumer, and execution choices](../../assets/diagrams/one-picture-overview.svg)
 
----
+Text version: `.NET module -> Gateway analysis -> generated npm Graft -> Node.js call -> Gateway -> .NET method -> result`.
 
-## What Graftcode replaces—and what it doesn’t
+## The call flow
 
-It’s important to be precise here.
+1. Gateway loads `BillingService.dll` and discovers the supported public surface.
+2. Gateway produces and uploads the Unified Graft Model used for package generation.
+3. The developer copies the exact npm command from the live Gateway output or Vision.
+4. npm installs the generated Graft in the Node.js project.
+5. The consumer configures `GraftConfig.host` before its first generated call.
+6. Node `BillingService.calculateMonthlyBill(...)` serializes an invocation of the .NET
+   `BillingService.CalculateMonthlyBill(...)` method through the Graft.
+7. Gateway dispatches the invocation to the .NET method and returns its result.
+8. The generated promise resolves to `50` in Node.js.
 
-Graftcode can **replace**:
-- REST-based service APIs
-- gRPC-based service communication
-- custom client libraries built around messaging or RPC
+Package generation is not repeated on every call.
 
-Graftcode does **not** replace:
-- your infrastructure
-- your security model
-- your monitoring and observability tools
-- your deployment strategy
+## How this differs from REST
 
-It works with existing load balancers, proxies, logging systems, and tracing tools. Communication happens over standard, well-understood transports, and all execution remains under your control.
+With REST, a team normally defines an HTTP resource or operation, chooses URLs and verbs, serializes
+payloads, and writes or generates a client from a separate contract such as OpenAPI. With Graftcode,
+the supported public programming surface is the contract and the installed Graft is the client.
 
----
+This is a difference in developer workflow, not a claim that networks disappear. Remote Graft calls
+still cross a transport, can fail, require compatible contract types, and need authentication,
+authorization, observability, timeouts, retries, and deployment controls appropriate to the system.
+REST remains useful for public protocol-oriented APIs, webhooks, broad third-party interoperability,
+and clients that cannot install a generated Graft.
 
-## How Graftcode fits into an architecture
+## Boundaries
 
-Graftcode sits between **business logic** and **infrastructure**, removing the need to explicitly design how services talk to each other.
+- Graftcode does not replace business logic, infrastructure, deployment, security, or monitoring.
+- Public contracts must use types supported by the complete provider-to-consumer generation path.
+- Current .NET public methods must be synchronous; keep `Task`, framework types, streams, HTTP
+  abstractions, and cancellation tokens out of the public surface.
+- Prefer static stateless methods for remote work. Stateful instances require affinity and have a
+  lifecycle across calls.
+- `Host` defaults to in-memory execution. Set the generated host field before the first remote call.
+- A free Gateway registry ID is dynamic. A project key is required when stable project identity is
+  needed.
+- Generated output and Vision from the running Gateway are authoritative for package names, imports,
+  versions, and configuration snippets.
 
-During development:
-- public method signatures are analyzed
-- typed clients are generated on demand
-- those clients are distributed through standard package managers
+## Next steps
 
-At runtime:
-- calls are executed directly between runtimes
-- execution can happen in memory, over TCP/IP, or via WebSocket
-- routing, security, and transport are configured outside the code
-
-This separation allows teams to evolve architecture independently of application logic.
-
----
-
-## When Graftcode is a good fit
-
-Graftcode works particularly well when:
-
-- systems are composed of multiple services or modules
-- teams want strong typing across service boundaries
-- communication patterns change over time
-- integration code has become a maintenance burden
-
-It can be introduced gradually. Existing APIs can continue to operate alongside Grafts, and adoption can start with a single service or use case.
-
----
-
-## The core idea
-
-At its heart, Graftcode is based on a simple observation:
-
-> **If code already knows how to talk to other code, it shouldn’t need to relearn that through an API.**
-
-By moving communication closer to the runtime, Graftcode lets developers focus on what software *does*, not how it negotiates with its neighbors.
-
----
-
-See also: [What is a Graft](../core-concepts/what-is-a-graft.md)
+1. Run [Call a .NET BillingService from Node.js](../tutorials/dotnet-to-nodejs.md).
+2. Learn [what a Graft is](../core-concepts/what-is-a-graft.md).
+3. Check [.NET](../language-guides/dotnet.md) and
+   [Node.js/TypeScript](../language-guides/nodejs-typescript.md) support.
+4. Review [current limitations](where-graftcode-fits.md) before production use.

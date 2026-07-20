@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "8QDaWBZV6Ew=",
+  "success": true,
+  "projectFilePath": "D:\\GRAFTCODE\\WebPortals\\graftcode-documentation\\docs\\tutorials\\dotnet-to-nodejs\\provider\\BillingService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PiotrChrzan\\AppData\\Local\\Temp\\cursor-sandbox-cache\\dfe47e9f65eb2383ea636e2fa338456d\\nuget\\microsoft.netcore.app.ref\\9.0.17\\microsoft.netcore.app.ref.9.0.17.nupkg.sha512",
+    "C:\\Users\\PiotrChrzan\\AppData\\Local\\Temp\\cursor-sandbox-cache\\dfe47e9f65eb2383ea636e2fa338456d\\nuget\\microsoft.windowsdesktop.app.ref\\9.0.17\\microsoft.windowsdesktop.app.ref.9.0.17.nupkg.sha512",
+    "C:\\Users\\PiotrChrzan\\AppData\\Local\\Temp\\cursor-sandbox-cache\\dfe47e9f65eb2383ea636e2fa338456d\\nuget\\microsoft.aspnetcore.app.ref\\9.0.17\\microsoft.aspnetcore.app.ref.9.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

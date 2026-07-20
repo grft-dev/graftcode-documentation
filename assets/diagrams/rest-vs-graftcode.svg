@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+  <title id="title">REST and Graftcode integration models</title>
+  <desc id="desc">REST uses a client, routes and verbs, payload schemas, and server handlers. Graftcode analyzes a callable surface, generates a Graft package, and invokes a hosted implementation through the runtime bridge.</desc>
+  <style>text{font:15px system-ui,sans-serif;fill:#172033}.h{font-weight:700;font-size:18px}.box{fill:#f7f9fc;stroke:#52627a;stroke-width:2}.line{stroke:#52627a;stroke-width:2;fill:none}.divider{stroke:#9aa6b6;stroke-width:2;stroke-dasharray:7 7}.small{font-size:13px}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#52627a"/></marker></defs>
+  <text class="h" x="180" y="28" text-anchor="middle">REST</text><text class="h" x="540" y="28" text-anchor="middle">Graftcode</text><line class="divider" x1="360" y1="10" x2="360" y2="285"/>
+  <rect class="box" x="25" y="55" width="125" height="55" rx="9"/><text x="87" y="88" text-anchor="middle">HTTP client</text>
+  <rect class="box" x="195" y="55" width="135" height="55" rx="9"/><text x="262" y="78" text-anchor="middle">Route + verb</text><text class="small" x="262" y="98" text-anchor="middle">payload schema</text>
+  <rect class="box" x="110" y="165" width="140" height="55" rx="9"/><text x="180" y="188" text-anchor="middle">Server handler</text><text class="small" x="180" y="208" text-anchor="middle">implementation</text>
+  <path class="line" marker-end="url(#a)" d="M150 82h45M262 110l-62 55"/>
+  <rect class="box" x="390" y="55" width="135" height="55" rx="9"/><text x="457" y="78" text-anchor="middle">Callable surface</text><text class="small" x="457" y="98" text-anchor="middle">analyzed to UGM</text>
+  <rect class="box" x="565" y="55" width="130" height="55" rx="9"/><text x="630" y="78" text-anchor="middle">Generated Graft</text><text class="small" x="630" y="98" text-anchor="middle">consumer package</text>
+  <rect class="box" x="475" y="165" width="160" height="55" rx="9"/><text x="555" y="188" text-anchor="middle">Runtime bridge</text><text class="small" x="555" y="208" text-anchor="middle">hosted implementation</text>
+  <path class="line" marker-end="url(#a)" d="M525 82h40M630 110l-55 55"/>
+  <text class="small" x="360" y="267" text-anchor="middle">Both remote forms retain network and process failure modes</text>
+</svg>

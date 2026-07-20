@@ -1,135 +1,63 @@
 ---
 title: "When should you use Graftcode?"
-description: "Graftcode works best when systems communicate through well-defined interfaces that evolve over time. Learn when Graftcode is a good fit and when other approaches may still make sense."
-keywords: "when to use graftcode, service communication patterns, microservices integration, api alternatives, distributed systems design"
+description: "Choose a Graftcode learning path from your integration scenario."
 ---
 
-Graftcode is not a universal answer to every communication problem.  
-It is designed for a specific set of scenarios—ones that appear frequently in modern systems and tend to grow in complexity over time.
+# Choose your scenario
 
-Understanding when Graftcode fits well helps teams adopt it naturally, without forcing it into places where simpler solutions are sufficient.
+Use this page as a route into the documentation. Graftcode is best suited to callable behavior with
+an intentional programming interface; it is not a universal replacement for every protocol or data
+movement pattern.
 
----
+## I want one backend to call another
 
-## When Graftcode is a good fit
+Start with the [.NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md), then read
+[service-to-service integration](../integration-patterns/service-to-service-integration.md).
 
-### Backend-to-backend communication
+Good fit when consumers can install generated packages and you want typed method calls across
+process or language boundaries.
 
-Graftcode works especially well when services call other services.
+## I want browser, desktop, or mobile code to call a backend
 
-Instead of defining endpoints and clients, you expose a public interface and consume it as a dependency. Calls remain strongly typed, errors propagate as native exceptions, and changes are easier to reason about.
+Read [edge clients without APIs](../integration-patterns/edge-clients-without-apis.md) and the target
+[language guide](../language-guides/index.md). Verify browser transport, bundler, authentication, and
+supported-type constraints for the exact generated Graft.
 
-This is often the first place teams see immediate value.
+## I want to split or merge a deployment without rewriting callers
 
----
+Read [execution modes](../core-concepts/execution-modes.md),
+[configuration resolution](../core-concepts/configuration-resolution.md), and
+[modular monoliths](../integration-patterns/modular-monoliths.md).
 
-### Internal business APIs
+The consumer programming surface can remain similar while configuration selects in-memory or remote
+execution. Deployment changes still require compatible packages and runtime configuration.
 
-Many systems expose APIs not for the outside world, but for other internal components or teams.
+## I want to expose methods as AI tools
 
-In these cases:
-- stability matters more than protocol standardization
-- strong typing matters more than URL structure
-- evolution matters more than strict versioning schemes
+Read [MCP hosting and AI tools](../integration-patterns/mcp-hosting-and-ai-tools.md). Keep the public
+surface small and treat tool authorization, input validation, and data exposure as explicit design
+work.
 
-Graftcode allows internal APIs to behave like shared modules, even when they are deployed separately.
+## I am designing a production contract
 
-Optionally, anything you expose via Graftcode Gateway can also be published as MCP tools for AI clients—without rewriting your API surface.
+Read [callable surface](../core-concepts/callable-surface.md),
+[type mapping](../core-concepts/type-mapping.md), and
+[contract evolution](../core-concepts/contract-evolution.md). Generate and smoke-test the exact
+provider/consumer pair before depending on advanced types.
 
----
+## Keep another integration style when
 
-### Edge clients calling backend logic
+- external consumers require a public, protocol-defined HTTP API;
+- a third party supports only REST, webhooks, gRPC, or another fixed protocol;
+- the interaction is event streaming, queueing, bulk transfer, or one-way data exchange rather than
+  method invocation;
+- consumers cannot install or run a supported generated package;
+- a simple stable local function or direct library reference already solves the problem.
 
-When frontend or edge applications need access to business capabilities, APIs are often shaped around transport rather than intent.
+These approaches can coexist with Graftcode. Choose per boundary, not per organization.
 
-Graftcode allows those clients to consume business logic directly through typed interfaces, while still operating over standard network transports.
+## Before production
 
-This reduces duplication between backend logic and API representations of that logic.
-
----
-
-### Systems that evolve over time
-
-Architectures rarely stay fixed.
-
-Services are split, merged, moved, or rehosted. Communication patterns change. Infrastructure decisions are revisited.
-
-Graftcode decouples *how code is called* from *where it runs*, making these changes easier to apply without rewriting application logic.
-
----
-
-### Teams working across technologies
-
-When different parts of a system are written in different languages or runtimes, communication often becomes the least common denominator.
-
-Graftcode allows each side to remain idiomatic to its own technology while sharing a single interface definition at the runtime level.
-
-This is particularly useful in organizations that standardize on interfaces rather than implementations.
-
----
-
-## When Graftcode may not be necessary
-
-### Simple, static integrations
-
-If you have a small number of services with stable, rarely changing interfaces, a traditional API may be sufficient.
-
-Graftcode shines when communication evolves. If it doesn’t, the benefits may be less pronounced.
-
----
-
-### Public, protocol-driven APIs
-
-Some APIs are designed primarily for external consumers and are intentionally shaped around widely adopted standards.
-
-In these cases, REST or similar approaches may still be the right choice—especially when human readability or protocol-level compatibility is a primary concern.
-
-Graftcode does not prevent you from continuing to offer such APIs alongside it.
-
----
-
-### One-off data exchange
-
-For simple, asynchronous data handoffs or batch-style processing, introducing runtime-level integration may be unnecessary.
-
-Graftcode is optimized for **calling behavior**, not for occasional data transfer.
-
----
-
-## Using Graftcode alongside existing solutions
-
-Adopting Graftcode does not require replacing existing communication mechanisms.
-
-Many teams:
-- start with a single service
-- use Graftcode for internal communication
-- keep REST or gRPC for external access
-
-Over time, usage expands naturally where it provides clear value.
-
-This incremental approach allows teams to learn the model and validate it in real systems.
-
----
-
-## A practical rule of thumb
-
-Graftcode is a strong candidate when:
-
-- you care about type safety across service boundaries
-- interfaces change and evolve
-- communication logic is starting to influence architecture decisions
-- you want remote code to feel closer to local code
-
-If those statements resonate, Graftcode is likely worth exploring.
-
----
-
-## Choosing deliberately
-
-The goal of Graftcode is not to replace every form of communication, but to reduce the cost of the most common ones.
-
-Used deliberately, it becomes a tool that simplifies systems rather than adding another layer to manage.
-
----
-
-See also: [What is a Graft](../core-concepts/what-is-a-graft.md)
+Review [current status and limitations](where-graftcode-fits.md), the relevant language guides,
+[security](../security-and-trust/security-model-overview.md), and
+[operations](../how-graftcode-works/scaling-load-balancers-and-proxies.md).

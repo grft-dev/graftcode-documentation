@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
+  <title id="title">Public callable surface and private implementation</title>
+  <desc id="desc">Consumers depend on the analyzer-selected public callable surface. The surface delegates to private helpers, storage, frameworks, and other implementation details that are not represented as the public contract.</desc>
+  <style>text{font:16px system-ui,sans-serif;fill:#172033}.h{font-weight:700}.surface{fill:#edf5ff;stroke:#2764a8;stroke-width:2}.internal{fill:#f7f9fc;stroke:#52627a;stroke-width:2}.line{stroke:#52627a;stroke-width:2;fill:none}.small{font-size:14px}</style>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0l8 4-8 4z" fill="#52627a"/></marker></defs>
+  <rect class="surface" x="40" y="35" width="640" height="75" rx="10"/><text class="h" x="360" y="64" text-anchor="middle">Callable surface - represented in UGM</text><text class="small" x="360" y="89" text-anchor="middle">selected public/exported types, constructors, methods, fields, and properties</text>
+  <path class="line" marker-end="url(#a)" d="M360 110v45"/>
+  <rect class="internal" x="40" y="155" width="640" height="95" rx="10"/><text class="h" x="360" y="184" text-anchor="middle">Implementation - not the generated contract</text>
+  <text class="small" x="360" y="211" text-anchor="middle">private helpers | persistence | frameworks | secrets | transport adapters</text>
+  <text class="small" x="360" y="234" text-anchor="middle">authorization and business behavior execute here</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "name": "billing-service-consumer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js consumer for the Graftcode .NET-to-Node.js tutorial",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
