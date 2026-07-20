@@ -13,7 +13,7 @@ Use a base image that includes the Node.js runtime and install the Linux `gg` pa
 CMD ["gg", "--runtime", "nodejs", "--modules", "<module-path>"]
 ```
 
-Host locally first with [Run Gateway locally](../run-gateway-locally), then containerize the same
+Host locally first with [Run Gateway locally](../run-gateway-locally.md), then containerize the same
 `gg` command line.
 
 **Gap:** no verified multi-stage Dockerfile for Node.js is maintained here.

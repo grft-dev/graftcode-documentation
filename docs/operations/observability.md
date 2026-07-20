@@ -39,7 +39,7 @@ Instrument applications and infrastructure until a release specifies one.
 
 ## Next steps
 
-- [Handle provider errors](../how-to-guides/handle-provider-errors)
+- [Handle provider errors](../how-to-guides/handle-provider-errors.md)
 - [Timeouts and retries](timeouts-retries.md)
 - [Environment variables](../reference/environment-variables.md)
 

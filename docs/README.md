@@ -38,20 +38,39 @@ decision. This file is both the human learning path and the source for generated
 - [Expose code](how-to-guides/expose-code)
 - [Obtain and install a Graft](how-to-guides/obtain-install-graft)
 - [Configure invocation](how-to-guides/configure-invocation)
-- [Run Gateway locally](how-to-guides/run-gateway-locally)
+- [Run Gateway locally](how-to-guides/run-gateway-locally.md)
 - [Deploy with Docker](how-to-guides/deploy-with-docker)
 - [Use a project key](how-to-guides/project-key)
 - [Gateway versioning and --noVersioning](how-to-guides/gateway-no-versioning)
-- [Filter the callable surface](how-to-guides/filter-callable-surface)
-- [Expose methods for MCP](how-to-guides/expose-mcp)
-- [Authenticate Graft calls](how-to-guides/authenticate-graft-calls)
-- [Stateless vs stateful calls](how-to-guides/stateless-vs-stateful)
-- [In-memory module path](how-to-guides/inmemory-module-path)
+- [Filter the callable surface](how-to-guides/filter-callable-surface.md)
+- [Expose methods for MCP](how-to-guides/expose-mcp.md)
+- [Authenticate Graft calls](how-to-guides/authenticate-graft-calls.md)
+- [Stateless vs stateful calls](how-to-guides/stateless-vs-stateful.md)
+- [In-memory module path](how-to-guides/inmemory-module-path.md)
 - [Use Graftcode alongside REST](how-to-guides/coexist-with-rest)
 - [Debug Graft invocations](how-to-guides/debug-graft-invocations)
-- [Handle provider errors](how-to-guides/handle-provider-errors)
-- [Update a provider contract](how-to-guides/update-provider-contract)
+- [Handle provider errors](how-to-guides/handle-provider-errors.md)
+- [Update a provider contract](how-to-guides/update-provider-contract.md)
 - [Dependency injection facades](how-to-guides/dependency-injection)
+
+### Authoring multi-runtime how-tos
+
+Use **one file with `multi` code fences** when only code differs by runtime. The portal renders a
+tab picker inside each snippet (`.NET`, `JavaScript`, …) instead of a page-level stack picker:
+
+````markdown
+```multi
+```dotnet
+// .NET example
+```
+```javascript
+// Node example
+```
+```
+````
+
+Use a **folder per runtime** (`how-to-guides/<slug>/dotnet.md`, …) when prose or steps differ by
+stack. The portal shows **Your stack:** at the top of the page.
 
 ## Language guides
 
@@ -194,7 +213,7 @@ categories:
         path: "how-to-guides/configure-invocation"
         order: 3
       - title: "Run Gateway locally"
-        path: "how-to-guides/run-gateway-locally"
+        path: "how-to-guides/run-gateway-locally.md"
         order: 4
       - title: "Deploy with Docker"
         path: "how-to-guides/deploy-with-docker"
@@ -206,19 +225,19 @@ categories:
         path: "how-to-guides/gateway-no-versioning"
         order: 7
       - title: "Filter the callable surface"
-        path: "how-to-guides/filter-callable-surface"
+        path: "how-to-guides/filter-callable-surface.md"
         order: 8
       - title: "Expose methods for MCP"
-        path: "how-to-guides/expose-mcp"
+        path: "how-to-guides/expose-mcp.md"
         order: 9
       - title: "Authenticate Graft calls"
-        path: "how-to-guides/authenticate-graft-calls"
+        path: "how-to-guides/authenticate-graft-calls.md"
         order: 10
       - title: "Stateless vs stateful calls"
-        path: "how-to-guides/stateless-vs-stateful"
+        path: "how-to-guides/stateless-vs-stateful.md"
         order: 11
       - title: "In-memory module path"
-        path: "how-to-guides/inmemory-module-path"
+        path: "how-to-guides/inmemory-module-path.md"
         order: 12
       - title: "Use Graftcode alongside REST"
         path: "how-to-guides/coexist-with-rest"
@@ -227,10 +246,10 @@ categories:
         path: "how-to-guides/debug-graft-invocations"
         order: 14
       - title: "Handle provider errors"
-        path: "how-to-guides/handle-provider-errors"
+        path: "how-to-guides/handle-provider-errors.md"
         order: 15
       - title: "Update a provider contract"
-        path: "how-to-guides/update-provider-contract"
+        path: "how-to-guides/update-provider-contract.md"
         order: 16
       - title: "Dependency injection facades"
         path: "how-to-guides/dependency-injection"

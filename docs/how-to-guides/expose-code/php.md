@@ -53,7 +53,7 @@ Treat that as a release-verification gap, not as permission to invent commands.
 
 ## Next steps
 
-- [Run Gateway locally](../run-gateway-locally)
+- [Run Gateway locally](../run-gateway-locally.md)
 - [Obtain and install a Graft](../obtain-install-graft)
 - [Type compatibility matrix](../../reference/type-matrix.md)
 

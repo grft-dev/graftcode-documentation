@@ -1,17 +1,37 @@
 ---
-title: "Expose provider methods for MCP"
-description: "Host a module with MCP support and resolve tool calls with --mcpBaseClass."
-articleTitle: "Expose provider methods for MCP"
+title: Expose provider methods for MCP
+description: Host a module with MCP support and resolve tool calls with --mcpBaseClass.
+articleTitle: Expose provider methods for MCP
 ---
-
 Gateway can participate in MCP workflows when the deployment enables the relevant HTTP surfaces and
 CORS settings. This is an **Alpha** area—verify behavior on your Gateway release.
 
 ## 1. Host the provider
 
-```bash
+```multi
+```dotnet
+dotnet build ./Pricing/Pricing.csproj
+gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --types Pricing.PriceService --methods Calculate
+```
+```javascript
+npm ci && npm run build
+gg --runtime nodejs --modules ./dist/index.js --types PriceService --methods calculate
+```
+```python
+gg --runtime python --modules ./pricing/
+```
+```java
+mvn package
+gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+```
+```php
 composer install
 gg --runtime php --modules ./src/
+```
+```ruby
+bundle install
+gg --runtime ruby --modules ./lib/
+```
 ```
 
 ## 2. Set MCP base class
@@ -52,13 +72,13 @@ Confirm types in Vision, exercise an MCP client against the Gateway HTTP surface
 authorization as explicit application work.
 
 **Gap:** no verified end-to-end MCP tutorial is maintained in this documentation set. See
-[Known limitations](../../reference/known-limitations.md) and
-[When to use Graftcode](../../introduction/when-to-use-graftcode.md).
+[Known limitations](../reference/known-limitations.md) and
+[When to use Graftcode](../introduction/when-to-use-graftcode.md).
 
 ## Next steps
 
-- [Filter the callable surface](../filter-callable-surface)
-- [Networking and ports](../../operations/networking-ports.md)
+- [Filter the callable surface](filter-callable-surface.md)
+- [Networking and ports](../operations/networking-ports.md)
 
 ## Source anchors
 

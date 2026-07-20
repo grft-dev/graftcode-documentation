@@ -29,7 +29,7 @@ gg --runtime jvm --modules ./target/pricing-1.0.0.jar
 ## Next steps
 
 - [Use a project key](project-key)
-- [Update a provider contract](../update-provider-contract)
+- [Update a provider contract](../update-provider-contract.md)
 
 ## Source anchors
 

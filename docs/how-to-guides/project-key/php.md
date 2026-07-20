@@ -18,7 +18,7 @@ A Gateway without a project key can receive a **new registry identifier after re
 copy install commands from the **currently running** Gateway or Vision—not from an old log line.
 
 The project key does **not** authenticate individual Graft invocations. See
-[Authenticate Graft calls](authenticate-graft-calls) and
+[Authenticate Graft calls](../authenticate-graft-calls.md) and
 [Authentication operations](../../operations/authentication-authorization.md).
 
 ## Obtain a project key

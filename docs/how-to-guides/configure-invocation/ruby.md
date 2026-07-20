@@ -27,7 +27,7 @@ Prefer class methods for remote routing. Instance methods require session affini
 ## Next steps
 
 - [Configuration keys and precedence](../../reference/configuration-keys-precedence.md)
-- [Stateless vs stateful](../stateless-vs-stateful)
+- [Stateless vs stateful](../stateless-vs-stateful.md)
 
 ## Source anchors
 

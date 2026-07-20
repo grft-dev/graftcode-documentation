@@ -13,7 +13,7 @@ Use a base image that includes the Python runtime and install the Linux `gg` pac
 CMD ["gg", "--runtime", "python", "--modules", "<module-path>"]
 ```
 
-Host locally first with [Run Gateway locally](../run-gateway-locally), then containerize the same
+Host locally first with [Run Gateway locally](../run-gateway-locally.md), then containerize the same
 `gg` command line.
 
 **Gap:** no verified multi-stage Dockerfile for Python is maintained here.

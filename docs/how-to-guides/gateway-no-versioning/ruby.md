@@ -28,7 +28,7 @@ gg --runtime ruby --modules ./lib/
 ## Next steps
 
 - [Use a project key](project-key)
-- [Update a provider contract](../update-provider-contract)
+- [Update a provider contract](../update-provider-contract.md)
 
 ## Source anchors
 

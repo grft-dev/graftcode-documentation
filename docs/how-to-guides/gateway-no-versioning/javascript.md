@@ -45,7 +45,7 @@ gg --runtime nodejs --modules ./dist/index.js
 
 - [Use a project key](project-key)
 - [Gateway CLI reference](../../reference/gateway-cli.md)
-- [Update a provider contract](../update-provider-contract)
+- [Update a provider contract](../update-provider-contract.md)
 
 ## Source anchors
 

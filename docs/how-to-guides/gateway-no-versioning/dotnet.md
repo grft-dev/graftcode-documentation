@@ -23,7 +23,7 @@ production path.
 
 Bump the generated package version shown in Vision when the **callable surface** changes in a way
 that affects consumers: renamed members, signature changes, removed types, or unsupported type
-introduction. See [Update a provider contract](../update-provider-contract) and
+introduction. See [Update a provider contract](../update-provider-contract.md) and
 [Contract evolution](../../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always

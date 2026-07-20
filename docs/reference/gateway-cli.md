@@ -37,7 +37,7 @@ documented in the inspected README.
 
 ## Next steps
 
-- [Run Gateway locally](../how-to-guides/run-gateway-locally)
+- [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
 - [Environment variables](environment-variables.md)
 - [Ports and protocols](ports-protocols.md)
 

@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Generate multi-language how-to stubs for guides that share Gateway-centric content."""
+"""Generate how-to guide stubs.
+
+Two authoring patterns (see docs/README.md — How-to guides):
+
+1. **Code-only runtime differences** — single `how-to-guides/<slug>.md` with fenced
+   ` ```multi ` blocks (runtime tabs in the portal). Prose is shared; only code differs.
+
+2. **Prose differs by runtime** — folder `how-to-guides/<slug>/` with one file per runtime
+   (`dotnet.md`, `javascript.md`, …). The portal shows a page-level stack picker.
+"""
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / "docs" / "how-to-guides"
@@ -37,11 +46,9 @@ intentional public API in source code.
 | `--types` | Comma-separated type names to expose |
 | `--methods` | Comma-separated method names to expose |
 
-Example for this runtime:
+Example by runtime:
 
-```bash
-{host_example}
-```
+{host_multi}
 
 Combine with `--GMA` when you need analyzer output without starting servers:
 
@@ -50,7 +57,7 @@ gg --graftOnly --runtime <runtime> --modules <module> --types <Type> --methods <
 ```
 
 Analyzer-level method filters also exist for some runtimes (wildcard patterns). See
-[Callable surface](../../core-concepts/callable-surface.md).
+[Callable surface](../core-concepts/callable-surface.md).
 
 ## Workflow
 
@@ -63,7 +70,7 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 
 - [Expose code](../expose-code)
 - [Dependency injection facade](../dependency-injection)
-- [Gateway CLI reference](../../reference/gateway-cli.md)
+- [Gateway CLI reference](../reference/gateway-cli.md)
 
 ## Source anchors
 
@@ -81,9 +88,7 @@ CORS settings. This is an **Alpha** area—verify behavior on your Gateway relea
 
 ## 1. Host the provider
 
-```bash
-{host_example}
-```
+{host_multi}
 
 ## 2. Set MCP base class
 
@@ -123,13 +128,13 @@ Confirm types in Vision, exercise an MCP client against the Gateway HTTP surface
 authorization as explicit application work.
 
 **Gap:** no verified end-to-end MCP tutorial is maintained in this documentation set. See
-[Known limitations](../../reference/known-limitations.md) and
-[When to use Graftcode](../../introduction/when-to-use-graftcode.md).
+[Known limitations](../reference/known-limitations.md) and
+[When to use Graftcode](../introduction/when-to-use-graftcode.md).
 
 ## Next steps
 
-- [Filter the callable surface](../filter-callable-surface)
-- [Networking and ports](../../operations/networking-ports.md)
+- [Filter the callable surface](filter-callable-surface.md)
+- [Networking and ports](../operations/networking-ports.md)
 
 ## Source anchors
 
@@ -209,6 +214,38 @@ LANG_LABEL = {
 }
 
 
+def strip_fence(code: str) -> str:
+    lines = code.strip().splitlines()
+    if lines and lines[0].startswith("```"):
+        lines = lines[1:]
+    if lines and lines[-1].strip() == "```":
+        lines = lines[:-1]
+    return "\n".join(lines)
+
+
+def multi_fence(codes: dict[str, str]) -> str:
+    parts = []
+    for lang in LANGS:
+        if lang not in codes:
+            continue
+        body = codes[lang]
+        if body.strip().startswith("```"):
+            body = strip_fence(body)
+        parts.append(f"```{lang}\n{body.strip()}\n```")
+    return "```multi\n" + "\n".join(parts) + "\n```"
+
+
+def host_multi_fence() -> str:
+    return multi_fence(HOST_EXAMPLES)
+
+
+def write_code_only_guide(slug: str, template: str, **fmt):
+    path = ROOT / f"{slug}.md"
+    content = template.format(host_multi=host_multi_fence(), **fmt)
+    path.write_text(content, encoding="utf-8")
+    print(f"wrote {slug}.md (multi fences)")
+
+
 def write_guide(folder: str, template: str, **fmt):
     d = ROOT / folder
     d.mkdir(parents=True, exist_ok=True)
@@ -220,8 +257,8 @@ def write_guide(folder: str, template: str, **fmt):
 
 
 if __name__ == "__main__":
-    write_guide("filter-callable-surface", FILTER_GUIDE)
-    write_guide("expose-mcp", MCP_GUIDE)
+    write_code_only_guide("filter-callable-surface", FILTER_GUIDE)
+    write_code_only_guide("expose-mcp", MCP_GUIDE)
     write_guide("coexist-with-rest", COEXIST_GUIDE)
 
     AUTH = {
@@ -297,7 +334,7 @@ This works in every runtime and in browser clients.
 
 ## Option 2: generated headers
 
-{auth_code}
+{auth_multi}
 
 Configure `host` and headers **before** the first generated call. Browser WebSocket clients cannot
 set arbitrary handshake headers; use the HTTP/2 configuration emitted by Vision when required.
@@ -308,8 +345,8 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 
 ## Next steps
 
-- [Authentication operations](../../operations/authentication-authorization.md)
-- [Configure invocation](../configure-invocation)
+- [Authentication operations](../operations/authentication-authorization.md)
+- [Configure invocation](configure-invocation)
 
 ## Source anchors
 
@@ -317,13 +354,11 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 - `operations/authentication-authorization.md`
 """
 
-    for lang in LANGS:
-        d = ROOT / "authenticate-graft-calls"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(
-            auth_tpl.format(auth_code=AUTH[lang]), encoding="utf-8"
-        )
-    print("wrote authenticate-graft-calls x 6")
+    write_code_only_guide(
+        "authenticate-graft-calls",
+        auth_tpl,
+        auth_multi=multi_fence(AUTH),
+    )
 
     STATE = {
         "dotnet": """```csharp
@@ -386,7 +421,7 @@ articleTitle: "Stateless vs stateful Graft calls"
 
 ## Examples
 
-{state_code}
+{state_multi}
 
 ## When to use which
 
@@ -394,12 +429,12 @@ articleTitle: "Stateless vs stateful Graft calls"
 - Use **instances** when the domain model requires constructor inputs and follow-up calls on the same
   object—and accept affinity requirements.
 
-See [Static and instance context](../../core-concepts/static-and-instance-context.md).
+See [Static and instance context](../core-concepts/static-and-instance-context.md).
 
 ## Next steps
 
-- [Configure invocation](../configure-invocation)
-- [Scaling](../../operations/scaling.md)
+- [Configure invocation](configure-invocation)
+- [Scaling](../operations/scaling.md)
 
 ## Source anchors
 
@@ -407,11 +442,11 @@ See [Static and instance context](../../core-concepts/static-and-instance-contex
 - generated `GraftConfig` templates
 """
 
-    for lang in LANGS:
-        d = ROOT / "stateless-vs-stateful"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(state_tpl.format(state_code=STATE[lang]), encoding="utf-8")
-    print("wrote stateless-vs-stateful x 6")
+    write_code_only_guide(
+        "stateless-vs-stateful",
+        state_tpl,
+        state_multi=multi_fence(STATE),
+    )
 
     INMEM = {
         "dotnet": """```csharp
@@ -469,29 +504,26 @@ artifact locally.
 
 ## Programmatic configuration
 
-{inmem_code}
+{inmem_multi}
 
 If you see `FileNotFound` for the provider module, the client remained in `inmemory` without a
-resolvable module path. See [Errors reference](../../reference/errors-status.md).
+resolvable module path. See [Errors reference](../reference/errors-status.md).
 
 ## Next steps
 
-- [Configure invocation](../configure-invocation)
-- [Execution modes](../../core-concepts/execution-modes.md)
+- [Configure invocation](configure-invocation)
+- [Execution modes](../core-concepts/execution-modes.md)
 
 ## Source anchors
 
 - `reference/configuration-keys-precedence.md`
 """
 
-    for lang in LANGS:
-        d = ROOT / "inmemory-module-path"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(
-            inmem_tpl.format(inmem_code=INMEM[lang], runtime=lang if lang != "javascript" else "nodejs"),
-            encoding="utf-8",
-        )
-    print("wrote inmemory-module-path x 6")
+    write_code_only_guide(
+        "inmemory-module-path",
+        inmem_tpl,
+        inmem_multi=multi_fence(INMEM),
+    )
 
     debug_tpl = """---
 title: "Debug Graft invocations"
@@ -631,9 +663,7 @@ Download from [Gateway releases](https://github.com/grft-dev/graftcode-gateway/r
 
 ## 2. Build and host
 
-```bash
-{host_example}
-```
+{host_multi}
 
 Use `gg.exe` on Windows. Prefer explicit `--runtime` and `--modules` over auto-scan in crowded directories.
 
@@ -649,21 +679,15 @@ Check logs for enabled types and successful publication, then open Vision.
 
 ## Next steps
 
-- [Obtain and install a Graft](../obtain-install-graft)
-- [Gateway CLI](../../reference/gateway-cli.md)
+- [Obtain and install a Graft](obtain-install-graft)
+- [Gateway CLI](../reference/gateway-cli.md)
 
 ## Source anchors
 
 - `graftcode-gateway/README.md`
 """
 
-    for lang in LANGS:
-        d = ROOT / "run-gateway-locally"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(
-            RUN_GW.format(host_example=HOST_EXAMPLES[lang]), encoding="utf-8"
-        )
-    print("wrote run-gateway-locally x 6")
+    write_code_only_guide("run-gateway-locally", RUN_GW)
 
     DOCKER_DOTNET = """---
 title: "Deploy Gateway with Docker"
@@ -745,21 +769,13 @@ Validate inputs and throw domain exceptions with safe messages—no secrets in e
 
 ## Host example
 
-```bash
-{host_example}
-```
+{host_multi}
 
-See [Timeouts and retries](../../operations/timeouts-retries.md) and
-[Errors reference](../../reference/errors-status.md).
+See [Timeouts and retries](../operations/timeouts-retries.md) and
+[Errors reference](../reference/errors-status.md).
 """
 
-    for lang in LANGS:
-        d = ROOT / "handle-provider-errors"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(
-            ERRORS.format(host_example=HOST_EXAMPLES[lang]), encoding="utf-8"
-        )
-    print("wrote handle-provider-errors x 6")
+    write_code_only_guide("handle-provider-errors", ERRORS)
 
     UPDATE = """---
 title: "Update a provider contract"
@@ -767,26 +783,18 @@ description: "Change a public surface, regenerate packages, and upgrade consumer
 articleTitle: "Update a provider contract"
 ---
 
-1. Classify breaking vs additive changes ([Contract evolution](../../core-concepts/contract-evolution.md)).
+1. Classify breaking vs additive changes ([Contract evolution](../core-concepts/contract-evolution.md)).
 2. Rebuild and host:
 
-```bash
-{host_example}
-```
+{host_multi}
 
 3. Regenerate every consumer package from Vision.
 4. Upgrade consumers with the new install command before removing old compatibility.
 
-See [Version compatibility](../../operations/version-compatibility-upgrades.md).
+See [Version compatibility](../operations/version-compatibility-upgrades.md).
 """
 
-    for lang in LANGS:
-        d = ROOT / "update-provider-contract"
-        d.mkdir(parents=True, exist_ok=True)
-        (d / f"{lang}.md").write_text(
-            UPDATE.format(host_example=HOST_EXAMPLES[lang]), encoding="utf-8"
-        )
-    print("wrote update-provider-contract x 6")
+    write_code_only_guide("update-provider-contract", UPDATE)
 
     DI_DOTNET = Path(__file__).resolve().parents[1] / "docs" / "how-to-guides" / "dependency-injection-dotnet.md"
     di_body = ""
