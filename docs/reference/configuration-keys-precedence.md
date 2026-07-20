@@ -73,10 +73,3 @@ installed package outside the fully inspected .NET and Node.js paths.
 
 - [Configure invocation](../how-to-guides/configure-invocation.md)
 - [Environment variables](environment-variables.md)
-
-## Source anchors
-
-- `HYPERTUBE/src/netcore/Hypertube.Netcore.Sdk/Configuration/ConfigPriority.cs`
-- `HYPERTUBE/src/js/hypertube-nodejs-sdk/lib/sdk/configuration/ConfigPriority.js`
-- `graftcode-code-generator/src/netcore/GraftCodeCodeGenerator/Core/Generator/Handler/Utils/GraftConfigClassProvider.cs`
-- `graftcode-code-generator/src/nodejs/src/core/generator/templates/config.template.js`

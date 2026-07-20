@@ -100,8 +100,3 @@ key, versioning is disabled by default unless `--keepVersioning` is set. See
 - [Obtain and install a Graft](obtain-install-graft.md)
 - [Environment variables](../reference/environment-variables.md)
 - [Core-concepts glossary — Project key](../core-concepts/glossary.md#project-key)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--projectKey` and `GC_PROJECT_KEY`
-- [Graftcode Portal](https://portal.graftcode.com/)

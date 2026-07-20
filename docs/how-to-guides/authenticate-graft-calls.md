@@ -81,8 +81,3 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 
 - [Authentication operations](../operations/authentication-authorization.md)
 - [Configure invocation](configure-invocation.md)
-
-## Source anchors
-
-- `graftcode-code-generator/` header templates
-- `operations/authentication-authorization.md`

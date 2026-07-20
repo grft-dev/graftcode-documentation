@@ -53,7 +53,3 @@ Check logs for enabled types and successful publication, then open Vision.
 
 - [Obtain and install a Graft](obtain-install-graft.md)
 - [Gateway CLI](../reference/gateway-cli.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`

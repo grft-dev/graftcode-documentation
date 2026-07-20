@@ -48,7 +48,3 @@ Inspect generated namespaces, imports, and method names in the installed package
 
 - [Configure invocation](configure-invocation.md)
 - [Generated package structure](../reference/generated-package-structure.md)
-
-## Source anchors
-
-- `graftcode-package-manager-gateway/`

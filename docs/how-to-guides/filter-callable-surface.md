@@ -62,7 +62,3 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 - [Expose code](../expose-code.md)
 - [Dependency injection facade](dependency-injection.md)
 - [Gateway CLI reference](../reference/gateway-cli.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--types`, `--methods`, Examples section

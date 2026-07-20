@@ -199,11 +199,6 @@ key, versioning is disabled by default unless `--keepVersioning` is set. See
 - [Obtain and install a Graft](obtain-install-graft.md)
 - [Environment variables](../reference/environment-variables.md)
 - [Core-concepts glossary — Project key](../core-concepts/glossary.md#project-key)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--projectKey` and `GC_PROJECT_KEY`
-- [Graftcode Portal](https://portal.graftcode.com/)
 """
     write_article(
         "project-key",
@@ -241,10 +236,6 @@ Inspect generated namespaces, imports, and method names in the installed package
 
 - [Configure invocation](configure-invocation.md)
 - [Generated package structure](../reference/generated-package-structure.md)
-
-## Source anchors
-
-- `graftcode-package-manager-gateway/`
 """
     write_article(
         "obtain-install-graft",
@@ -290,11 +281,6 @@ settings, then library defaults). Earlier levels win in the inspected resolver.
 - [Configuration keys and precedence](../reference/configuration-keys-precedence.md)
 - [Networking and ports](../operations/networking-ports.md)
 - [Scale Gateway instances](../operations/scaling.md)
-
-## Source anchors
-
-- `graftcode-code-generator/` config templates per runtime
-- `HYPERTUBE/` configuration priority implementations
 """
     write_article(
         "configure-invocation",
@@ -356,11 +342,6 @@ transport for Graftcode.
 - [Expose code](expose-code.md)
 - [Caller and receiver](../core-concepts/caller-and-receiver.md)
 - [Authentication operations](../operations/authentication-authorization.md)
-
-## Source anchors
-
-- `introduction/when-to-use-graftcode.md`
-- `core-concepts/caller-and-receiver.md`
 """
     write_article(
         "coexist-with-rest",
@@ -414,10 +395,6 @@ See [Troubleshooting index](../troubleshooting/index.md).
 - [Vision mismatch](../troubleshooting/vision-mismatch.md)
 - [Connection and auth failures](../troubleshooting/connection-timeouts-auth.md)
 - [Observability](../operations/observability.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `GG_DEBUG`
 """
     write_article(
         "debug-graft-invocations",
@@ -510,10 +487,6 @@ the inspected implementation.
 - [Use a project key](project-key.md)
 - [Gateway CLI reference](../reference/gateway-cli.md)
 - [Version compatibility and upgrades](../operations/version-compatibility-upgrades.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, “Versioning” section
 """
     write_article(
         "gateway-no-versioning",
@@ -564,11 +537,6 @@ language pair that uses types beyond the portable baseline.
 - [Run Gateway locally](run-gateway-locally.md)
 - [Obtain and install a Graft](obtain-install-graft.md)
 - [Type compatibility matrix](../reference/type-matrix.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, “Usage” and “Runtimes (typical setups)”
-- [Quick Start — expose backend](https://github.com/grft-dev/graftcode-quick-start-guide/tree/main/2-expose-backend)
 """
     write_article(
         "expose-code",
@@ -626,11 +594,6 @@ set.
 - [Run Gateway locally](run-gateway-locally.md)
 - [Use a project key](project-key.md)
 - [Networking and ports](../operations/networking-ports.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`
-- [Quick Start — expose backend](https://github.com/grft-dev/graftcode-quick-start-guide/tree/main/2-expose-backend)
 """
     write_article(
         "deploy-with-docker",

@@ -71,10 +71,6 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 - [Expose code](../expose-code)
 - [Dependency injection facade](../dependency-injection)
 - [Gateway CLI reference](../reference/gateway-cli.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--types`, `--methods`, Examples section
 """
 
 MCP_GUIDE = """---
@@ -135,10 +131,6 @@ authorization as explicit application work.
 
 - [Filter the callable surface](filter-callable-surface.md)
 - [Networking and ports](../operations/networking-ports.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--mcpBaseClass`, CORS config
 """
 
 COEXIST_GUIDE = """---
@@ -197,11 +189,6 @@ transport for Graftcode.
 - [Expose code](../expose-code)
 - [Caller and receiver](../../core-concepts/caller-and-receiver.md)
 - [Authentication operations](../../operations/authentication-authorization.md)
-
-## Source anchors
-
-- `introduction/when-to-use-graftcode.md`
-- `core-concepts/caller-and-receiver.md`
 """
 
 LANG_LABEL = {
@@ -347,11 +334,6 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 
 - [Authentication operations](../operations/authentication-authorization.md)
 - [Configure invocation](configure-invocation)
-
-## Source anchors
-
-- `graftcode-code-generator/` header templates
-- `operations/authentication-authorization.md`
 """
 
     write_code_only_guide(
@@ -435,11 +417,6 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 
 - [Configure invocation](configure-invocation)
 - [Scaling](../operations/scaling.md)
-
-## Source anchors
-
-- `core-concepts/static-and-instance-context.md`
-- generated `GraftConfig` templates
 """
 
     write_code_only_guide(
@@ -513,10 +490,6 @@ resolvable module path. See [Errors reference](../reference/errors-status.md).
 
 - [Configure invocation](configure-invocation)
 - [Execution modes](../core-concepts/execution-modes.md)
-
-## Source anchors
-
-- `reference/configuration-keys-precedence.md`
 """
 
     write_code_only_guide(
@@ -575,10 +548,6 @@ See [Troubleshooting index](../../troubleshooting/index.md).
 - [Vision mismatch](../../troubleshooting/vision-mismatch.md)
 - [Connection and auth failures](../../troubleshooting/connection-timeouts-auth.md)
 - [Observability](../../operations/observability.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `GG_DEBUG`
 """
 
     for lang in LANGS:
@@ -636,10 +605,6 @@ Inspect generated namespaces, imports, and method names in the installed package
 
 - [Configure invocation](../configure-invocation)
 - [Generated package structure](../../reference/generated-package-structure.md)
-
-## Source anchors
-
-- `graftcode-package-manager-gateway/`
 """
 
     for lang in LANGS:
@@ -681,10 +646,6 @@ Check logs for enabled types and successful publication, then open Vision.
 
 - [Obtain and install a Graft](obtain-install-graft)
 - [Gateway CLI](../reference/gateway-cli.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`
 """
 
     write_code_only_guide("run-gateway-locally", RUN_GW)

@@ -69,7 +69,3 @@ gg --runtime ruby --modules ./lib/
 - [Vision mismatch](../troubleshooting/vision-mismatch.md)
 - [Connection and auth failures](../troubleshooting/connection-timeouts-auth.md)
 - [Observability](../operations/observability.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `GG_DEBUG`

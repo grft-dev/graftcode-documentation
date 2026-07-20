@@ -79,7 +79,3 @@ authorization as explicit application work.
 
 - [Filter the callable surface](filter-callable-surface.md)
 - [Networking and ports](../operations/networking-ports.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, `--mcpBaseClass`, CORS config

@@ -53,8 +53,3 @@ transport for Graftcode.
 - [Expose code](expose-code.md)
 - [Caller and receiver](../core-concepts/caller-and-receiver.md)
 - [Authentication operations](../operations/authentication-authorization.md)
-
-## Source anchors
-
-- `introduction/when-to-use-graftcode.md`
-- `core-concepts/caller-and-receiver.md`

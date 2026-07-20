@@ -125,8 +125,3 @@ language pair that uses types beyond the portable baseline.
 - [Run Gateway locally](run-gateway-locally.md)
 - [Obtain and install a Graft](obtain-install-graft.md)
 - [Type compatibility matrix](../reference/type-matrix.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, “Usage” and “Runtimes (typical setups)”
-- [Quick Start — expose backend](https://github.com/grft-dev/graftcode-quick-start-guide/tree/main/2-expose-backend)

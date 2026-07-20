@@ -35,8 +35,3 @@ generated runtime dependency before setting production policy.
 - [Errors and status reference](../reference/errors-status.md)
 - [Scaling](scaling.md)
 - [Handle provider errors](../how-to-guides/handle-provider-errors.md)
-
-## Source anchors
-
-- `HYPERTUBE/src/*/` WebSocket and HTTP/2 client implementations and tests
-- `graftcode-gateway/README.md`, plugin `rpcTimeoutMs` example (plugin-specific, not a global call timeout)

@@ -67,8 +67,3 @@ inspected paths require package-level verification.
 
 - [Environment and configuration](../operations/environment-configuration.md)
 - [Configuration keys and precedence](configuration-keys-precedence.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, lines 93–100
-- generated `GraftConfig` templates in `graftcode-code-generator/src/netcore/` and `src/nodejs/`

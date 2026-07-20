@@ -60,7 +60,3 @@ resolvable module path. See [Errors reference](../reference/errors-status.md).
 
 - [Configure invocation](configure-invocation.md)
 - [Execution modes](../core-concepts/execution-modes.md)
-
-## Source anchors
-
-- `reference/configuration-keys-precedence.md`

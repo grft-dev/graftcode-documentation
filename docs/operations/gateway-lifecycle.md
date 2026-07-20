@@ -37,9 +37,3 @@ behavior for the exact Gateway release and provider runtime.
 - [Health checks](health-checks.md)
 - [Scaling](scaling.md)
 - [Version compatibility and upgrades](version-compatibility-upgrades.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, “Usage” and “Known issues”
-- `HYPERTUBE/` stateful connection and object-resolution implementations
-- [Static and instance context](../core-concepts/static-and-instance-context.md)

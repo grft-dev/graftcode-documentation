@@ -143,7 +143,3 @@ the inspected implementation.
 - [Use a project key](project-key.md)
 - [Gateway CLI reference](../reference/gateway-cli.md)
 - [Version compatibility and upgrades](../operations/version-compatibility-upgrades.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, “Versioning” section

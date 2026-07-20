@@ -40,9 +40,3 @@ explicit provider method until a release documents a native endpoint.
 - [Gateway lifecycle](gateway-lifecycle.md)
 - [Timeouts and retries](timeouts-retries.md)
 - [Logging, metrics, and tracing](observability.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, startup behavior, listeners, and known issues
-- [Invocation lifecycle](../core-concepts/invocation-lifecycle.md)
-- `HYPERTUBE/` remote invocation implementations

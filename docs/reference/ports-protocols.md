@@ -32,8 +32,3 @@ configuration is documented here.
 
 - [Networking and ports](../operations/networking-ports.md)
 - [Gateway CLI](gateway-cli.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, lines 18–40 and 139–146
-- generated WebSocket host examples in the .NET and Node.js language guides

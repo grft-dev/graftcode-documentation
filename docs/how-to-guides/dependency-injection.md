@@ -63,8 +63,3 @@ runtime-specific packaging notes.
 - [Callable surface](../core-concepts/callable-surface.md)
 - [Type mapping](../core-concepts/type-mapping.md)
 - [.NET language guide](../language-guides/dotnet.md)
-
-## Source anchors
-
-- `graftcode-quick-start-guide` expose-backend patterns
-- [.NET language guide](../language-guides/dotnet.md)

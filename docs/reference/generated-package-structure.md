@@ -70,10 +70,3 @@ layout guarantee across releases.
 
 - [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)
 - [Update a provider contract](../how-to-guides/update-provider-contract.md)
-
-## Source anchors
-
-- `graftcode-package-generation-engine/`
-- `graftcode-code-generator/src/netcore/`
-- `graftcode-code-generator/src/nodejs/`
-- [Package generation](../core-concepts/package-generation.md)

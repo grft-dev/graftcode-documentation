@@ -70,8 +70,3 @@ settings, then library defaults). Earlier levels win in the inspected resolver.
 - [Configuration keys and precedence](../reference/configuration-keys-precedence.md)
 - [Networking and ports](../operations/networking-ports.md)
 - [Scale Gateway instances](../operations/scaling.md)
-
-## Source anchors
-
-- `graftcode-code-generator/` config templates per runtime
-- `HYPERTUBE/` configuration priority implementations

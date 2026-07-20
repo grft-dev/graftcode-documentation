@@ -35,9 +35,3 @@ consumer.
 
 - [Handle provider errors](../how-to-guides/handle-provider-errors.md)
 - [Timeouts and retries](../operations/timeouts-retries.md)
-
-## Source anchors
-
-- `graftcode-package-generation-engine/src/netcore/GraftCodePackageGenerationEngine/Exceptions/UnsupportedTypeUsageException.cs`
-- `graftcode-package-generation-engine/src/netcore/GraftCodePackageGenerationEngineTest/Exceptions/UnsupportedTypeUsageExceptionTests.cs`
-- `graftcode-package-manager-gateway/src/jvm/src/test/java/com/graftcode/gpmg/integration/SoennekerExtensionsTypeArrayIntegrationTest.java`, lines 22–150

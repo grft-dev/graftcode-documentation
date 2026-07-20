@@ -58,8 +58,3 @@ set.
 - [Run Gateway locally](run-gateway-locally.md)
 - [Use a project key](project-key.md)
 - [Networking and ports](../operations/networking-ports.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`
-- [Quick Start — expose backend](https://github.com/grft-dev/graftcode-quick-start-guide/tree/main/2-expose-backend)

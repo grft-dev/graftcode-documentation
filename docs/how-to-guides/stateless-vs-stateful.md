@@ -72,8 +72,3 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 
 - [Configure invocation](configure-invocation.md)
 - [Scaling](../operations/scaling.md)
-
-## Source anchors
-
-- `core-concepts/static-and-instance-context.md`
-- generated `GraftConfig` templates

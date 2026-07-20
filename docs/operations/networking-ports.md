@@ -33,8 +33,3 @@ the actual proxy.
 - [Ports and protocols reference](../reference/ports-protocols.md)
 - [Health checks](health-checks.md)
 - [Scaling](scaling.md)
-
-## Source anchors
-
-- `graftcode-gateway/README.md`, common options, CORS config, and known issues
-- `HYPERTUBE/src/*/` WebSocket, TCP, and HTTP/2 connection implementations
