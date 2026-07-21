@@ -47,8 +47,9 @@ mapping—still a protocol integration you maintain beside your domain code.
 
 1. The .NET team exposes a plain public method on a class library (the **provider**).
 2. **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`) hosts that built module,
-   discovers the callable surface, and publishes the model used to generate packages. Gateway is the
-   **runtime host and bridge**—not the generated npm/NuGet package the consumer installs. See
+   discovers the [callable surface](../core-concepts/callable-surface.md), and publishes it for
+   [package generation](../core-concepts/package-generation.md). Gateway is the **runtime host**—not
+   the generated npm/NuGet package the consumer installs. See
    [Gateway and hosted modules](../core-concepts/graftcode-gateway.md) and
    [install `gg`](../how-to-guides/run-gateway-locally.md#1-install-gateway).
 3. The Node team installs the generated **Graft** (one package) and calls it like local code.
@@ -94,23 +95,40 @@ Expected outcome for a billing example: `unitPrice * units` computed on the prov
 the caller. Method naming may differ by target language (for example PascalCase on .NET, lower camel
 case in generated JavaScript).
 
-## What you write and what Graftcode generates
+## How the pieces fit together
+
+![Consumer Graft, Hypertube, Gateway, and provider business logic](../../assets/diagrams/how-it-works-overview.png)
+
+The diagram uses product labels. The same picture in documentation terms:
+
+| On the diagram | In these docs |
+| --- | --- |
+| **Service business logic** (left) | Your **consumer** application—the [caller](../core-concepts/caller-and-receiver.md). |
+| `npm install @graft/...` | Install the generated **[Graft](../core-concepts/what-is-a-graft.md)**—copy the command from [Vision](../core-concepts/graftcode-vision.md) or use a [public package](../how-to-guides/obtain-install-graft.md#install-a-public-graft). |
+| **Graft** (left) | The generated package wrappers your consumer imports. |
+| **Hypertube** | The [runtime bridge](../core-concepts/hypertube-runtime-bridge.md) inside the Graft—serializes the call, uses `GraftConfig` to pick in-memory or remote execution, and returns the result. |
+| **Gateway** (right) | **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`)—hosts the provider module and receives remote invocations. |
+| **Service business logic** (right) | Your **provider** module—the [hosted implementation](../core-concepts/graftcode-gateway.md), not the Graft package. |
+| **Graftcode Vision** | The Gateway-hosted UI for discovery, install commands, and configuration snippets. |
+| **Public interface** | The provider's [callable surface](../core-concepts/callable-surface.md)—public types and methods Gateway analyzes. |
+| **Graftcode Engine** | The [package-generation](../core-concepts/package-generation.md) services that turn that surface into installable Grafts. This is **setup time**; normal calls use the installed Graft and Hypertube—they do not regenerate the package. |
+
+**What you write vs what Graftcode generates:**
 
 | You write | Graftcode provides |
 | --- | --- |
-| The provider library and public methods | A discovered callable model |
-| Consumer business code | A generated Graft with typed classes and methods |
-| Runtime host configuration | Runtime bridging and invocation dispatch |
-| Deployment, security, retries, and observability policy | Vision metadata and package installation instructions |
+| Provider library and public methods | Callable-surface analysis, Gateway hosting, and generated Grafts |
+| Consumer business logic | Typed Graft wrappers and Hypertube invocation plumbing |
+| Runtime host configuration (`GraftConfig`) | Transport selection and remote dispatch |
+| Deployment, security, retries, and observability | Vision metadata and package install coordinates |
 
-![Module, generated Graft, consumer, and execution choices](../../assets/diagrams/one-picture-overview.svg)
-
-Text version: `provider module -> Gateway analysis -> generated Graft -> consumer call -> Gateway -> provider method -> result`.
+Text version: `consumer code -> Graft -> Hypertube -> Gateway -> provider method -> result` (after the Graft is installed and configured).
 
 ## The call flow
 
-1. Gateway loads the provider module and discovers the supported public surface.
-2. Gateway produces and uploads the Unified Graft Model used for package generation.
+1. Gateway loads the provider module and discovers the supported [callable surface](../core-concepts/callable-surface.md).
+2. Gateway publishes that surface for [package generation](../core-concepts/package-generation.md)
+   (stored internally as a [UGM](../core-concepts/glossary.md#unified-graft-model-ugm)).
 3. The developer copies the exact install command from the live Gateway output or Vision.
 4. The consumer installs the generated Graft in the target project.
 5. The consumer configures the generated host field before its first call.
@@ -120,6 +138,8 @@ Text version: `provider module -> Gateway analysis -> generated Graft -> consume
 Package generation is not repeated on every call.
 
 ## How this differs from REST and GraphQL
+
+![REST routes and payloads versus Graftcode callable surface and generated Graft](../../assets/diagrams/rest-vs-graftcode.svg)
 
 With REST or GraphQL, a team normally maintains a **protocol contract** separate from the provider's
 business code: resources or operations, schemas, clients, serialization, and versioning. With

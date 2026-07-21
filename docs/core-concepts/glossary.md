@@ -41,8 +41,10 @@ Execution through a configured network transport such as WebSocket, HTTP/2, or T
 **Runtime context**  
 The initialized Hypertube context selected by a named resolved configuration.
 
+<a id="unified-graft-model-ugm"></a>
+
 **Unified Graft Model (UGM)**  
-The analyzer-produced model consumed by package-generation components. It represents callable types and members independently of a generated target package.
+The analyzer-produced model consumed by package-generation components. It represents callable types and members independently of a generated target package. See [Package generation](package-generation.md).
 
 **Project key**  
 Portal-issued JWT (or `env:jwt` form) passed to Gateway as `--projectKey` or `GC_PROJECT_KEY`. Authenticates Gateway to portal/project metadata services and stabilizes project-backed publication. It is **not** the consumer registry URL from Vision install commands.

@@ -5,7 +5,9 @@ description: "How analyzer output becomes a target-language Graft package, separ
 
 # Package generation
 
-Package generation converts a UGM into a package for the caller's ecosystem. It is a package/build activity, not part of each runtime call.
+Package generation converts a **Unified Graft Model (UGM)**—the analyzer's language-neutral record
+of the provider's [callable surface](callable-surface.md)—into a package for the caller's ecosystem.
+It is a package/build activity, not part of each runtime call.
 
 ![User-written modules are analyzed into a UGM, while generated packages supply consumer wrappers](../../assets/diagrams/generated-vs-written.svg)
 

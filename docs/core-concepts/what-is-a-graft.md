@@ -12,7 +12,8 @@ A **Graft** is a generated package for calling a module through Graftcode. It pr
 ## The four parts
 
 1. A producer writes a module.
-2. A module analyzer represents its callable surface as a Unified Graft Model (UGM).
+2. A module analyzer represents its callable surface as a
+   [Unified Graft Model (UGM)](package-generation.md).
 3. A package generator uses the UGM to build a Graft for a target package ecosystem.
 4. At runtime, the installed Graft resolves configuration and invokes the hosted or in-memory module.
 

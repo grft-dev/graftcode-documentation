@@ -35,7 +35,7 @@ TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, 
 
 ## Analysis and registration
 
-The module analyzer creates a UGM from the selected callable surface. The service-model uploader accepts UGM data, and package-generation components later consume stored UGM data. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
+The module analyzer creates a [UGM](package-generation.md) from the selected callable surface. The service-model uploader accepts UGM data, and package-generation components later consume stored UGM data. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
 
 ![UGM and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
 
