@@ -130,9 +130,16 @@ JavaScript; use `int` or a decimal string unless your exact generated graft is t
 - **Method or namespace not found:** inspect Vision's generated contract; do not infer casing.
 - **Remote nested DTO is slow:** use a static provider method and set `Stateless = true`.
 
+## Quick start courses
+
+- [Expose a backend service (.NET)](https://docs.graftcode.com/quick-start/expose-backend/dotnet)
+- [Connect microservices (.NET)](https://docs.graftcode.com/quick-start/connect-microservices/dotnet)
+- [Use modules from any technology (.NET)](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/dotnet)
+- [Expose MCP (.NET)](https://docs.graftcode.com/quick-start/expose-mcp/dotnet)
+- [Switch monolith ↔ microservices (.NET)](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/dotnet)
+
 ## Verified samples and tests
 
-- [.NET expose-backend Quick Start](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/2-expose-backend/dotnet.md)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
 - Inspected generated config:
   `graftcode-code-generator/src/netcore/GraftCodeCodeGenerator/Core/Generator/Handler/Utils/GraftConfigClassProvider.cs`

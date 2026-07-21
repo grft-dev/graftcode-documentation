@@ -50,8 +50,8 @@ Gateway release notes until a complete path is added.
 
 ## Evidence and samples
 
+- [Quick start courses](https://docs.graftcode.com/quick-start) — [full index by scenario and runtime](../reference/quick-start-courses.md)
 - [Gateway runtime list](https://github.com/grft-dev/graftcode-gateway#usage)
-- [Quick Start repository](https://github.com/grft-dev/graftcode-quick-start-guide)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
 - [Repository-dependency sample](https://github.com/grft-dev/grft-test-simple-car-repository)
 - Inspected E2E evidence:

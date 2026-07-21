@@ -125,9 +125,37 @@ variant are not exhaustively demonstrated by the inspected E2E matrix.
 - **Consumer tries local loading:** set `GraftConfig.host`.
 - **Kotlin companion method missing:** expose Java-compatible static bytecode with `@JvmStatic`.
 
+## Quick start courses
+
+Java articles use Java source; Kotlin and Groovy courses expose JVM bytecode through the same Gateway
+workflow:
+
+**Java**
+
+- [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend/java)
+- [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices/java)
+- [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/java)
+- [Expose MCP](https://docs.graftcode.com/quick-start/expose-mcp/java)
+- [Switch monolith ↔ microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/java)
+
+**Kotlin**
+
+- [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend/kotlin)
+- [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices/kotlin)
+- [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/kotlin)
+- [Expose MCP](https://docs.graftcode.com/quick-start/expose-mcp/kotlin)
+- [Switch monolith ↔ microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/kotlin)
+
+**Groovy**
+
+- [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend/groovy)
+- [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices/groovy)
+- [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/groovy)
+- [Expose MCP](https://docs.graftcode.com/quick-start/expose-mcp/groovy)
+- [Switch monolith ↔ microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/groovy)
+
 ## Verified samples and tests
 
-- [Java expose-backend Quick Start](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/2-expose-backend/java.md)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
 - Inspected generated config:
   `graftcode-code-generator/src/jvm/graftcode-code-generator/src/main/java/com/graftcode/core/generator/handler/utils/GraftConfigClassProvider.java`

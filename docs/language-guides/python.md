@@ -123,9 +123,14 @@ method decorators, and complex inheritance are not exhaustively verified.
 - **Process does not exit after a successful script:** confirm the result first, then investigate
   native runtime thread cleanup.
 
+## Quick start courses
+
+- [Expose a backend service (Python)](https://docs.graftcode.com/quick-start/expose-backend/python)
+- [Connect microservices (Python)](https://docs.graftcode.com/quick-start/connect-microservices/python)
+- [Expose MCP (Python)](https://docs.graftcode.com/quick-start/expose-mcp/python)
+
 ## Verified samples and tests
 
-- [Python expose-backend Quick Start](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/2-expose-backend/python.md)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
 - Inspected generated config:
   `graftcode-code-generator/src/python/graftcodecodegenerator/src/core/generator/handler/utils/graft_config_class_provider.py`

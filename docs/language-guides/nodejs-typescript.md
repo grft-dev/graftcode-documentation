@@ -128,10 +128,19 @@ the simple-car E2E baseline. Verify their generated form before use.
 - **Browser auth header missing:** use the emitted HTTP/2 configuration; browser WebSockets cannot set
   custom handshake headers.
 
+## Quick start courses
+
+- [Expose a backend service (JavaScript)](https://docs.graftcode.com/quick-start/expose-backend/javascript)
+- [Connect frontend to backend (React)](https://docs.graftcode.com/quick-start/connect-frontend-to-backend/react)
+- [Connect frontend to backend (Vue)](https://docs.graftcode.com/quick-start/connect-frontend-to-backend/vue)
+- [Connect frontend to backend (Angular)](https://docs.graftcode.com/quick-start/connect-frontend-to-backend/angular)
+- [Connect microservices (JavaScript)](https://docs.graftcode.com/quick-start/connect-microservices/javascript)
+- [Use modules from any technology (JavaScript)](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/javascript)
+- [Expose MCP (JavaScript)](https://docs.graftcode.com/quick-start/expose-mcp/javascript)
+- [Switch monolith ↔ microservices (JavaScript)](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/javascript)
+
 ## Verified samples and tests
 
-- [JavaScript expose-backend Quick Start](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/2-expose-backend/javascript.md)
-- [React consumer Quick Start](https://github.com/grft-dev/graftcode-quick-start-guide/blob/main/1-connect-frontend-to-backend/react.md)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
 - Inspected generated config:
   `graftcode-code-generator/src/nodejs/src/core/generator/templates/config.template.js`

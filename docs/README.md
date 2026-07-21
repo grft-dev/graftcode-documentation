@@ -1,18 +1,25 @@
 # Graftcode documentation
 
-Start with a working cross-language call, then use concepts and guides when you need to make a design
-decision. This file is both the human learning path and the source for generated navigation.
+**Documentation** (this site) explains concepts, procedures, reference material, operations, and
+troubleshooting. **[Quick start](https://docs.graftcode.com/quick-start)** on the same site contains
+hands-on tutorials (expose a backend, connect a frontend, connect microservices, and more). Run
+Quick start first for your stack; return here when you need to understand *why* something works or
+*what* to do in production.
 
 ## Start here
 
-1. [What is Graftcode?](introduction/what-is-graftcode.md)
-2. [The five-minute mental model](introduction/what-problem-does-graftcode-solve.md)
-3. [Choose a scenario](introduction/when-to-use-graftcode.md)
-4. [Current status and limitations](introduction/where-graftcode-fits.md)
+1. **[Quick start](https://docs.graftcode.com/quick-start)** — first working call (hands-on).
+2. [What is Graftcode?](introduction/what-is-graftcode.md) — mental model and call flow.
+3. [The five-minute mental model](introduction/what-problem-does-graftcode-solve.md).
+4. [Choose a scenario](introduction/when-to-use-graftcode.md) — Quick start links per goal.
+5. [Quick reference](reference/quick-reference.md) — bookmark while coding.
+6. [Current status and limitations](introduction/where-graftcode-fits.md).
 
-## Tutorials
+## Verification samples
 
-1. [Call a .NET BillingService from Node.js](tutorials/dotnet-to-nodejs.md)
+Maintained sample projects used to verify documentation claims—not step-by-step tutorials:
+
+1. [Cross-runtime verification sample (.NET → Node.js)](tutorials/dotnet-to-nodejs.md)
 
 ## Core concepts
 
@@ -113,6 +120,7 @@ materially differ by stack. Regenerate consolidated guides with `scripts/consoli
 ## Reference
 
 - [Quick reference](reference/quick-reference.md)
+- [Quick start courses](reference/quick-start-courses.md)
 - [Gateway CLI](reference/gateway-cli.md)
 - [Configuration keys and precedence](reference/configuration-keys-precedence.md)
 - [Environment variables](reference/environment-variables.md)
@@ -153,11 +161,11 @@ categories:
       - title: "Current status and limitations"
         path: "introduction/where-graftcode-fits.md"
         order: 4
-  - name: "Tutorials"
+  - name: "Verification samples"
     order: 2
     path: "tutorials"
     items:
-      - title: "Call a .NET BillingService from Node.js"
+      - title: "Cross-runtime verification sample (.NET → Node.js)"
         path: "tutorials/dotnet-to-nodejs.md"
         order: 1
   - name: "Core concepts"
@@ -339,33 +347,36 @@ categories:
       - title: "Quick reference"
         path: "reference/quick-reference.md"
         order: 1
+      - title: "Quick start courses"
+        path: "reference/quick-start-courses.md"
+        order: 2
       - title: "Gateway CLI"
         path: "reference/gateway-cli.md"
-        order: 2
+        order: 3
       - title: "Configuration keys and precedence"
         path: "reference/configuration-keys-precedence.md"
-        order: 3
+        order: 4
       - title: "Environment variables"
         path: "reference/environment-variables.md"
-        order: 4
+        order: 5
       - title: "Supported runtimes and package managers"
         path: "reference/supported-runtimes-package-managers.md"
-        order: 5
+        order: 6
       - title: "Type compatibility matrix"
         path: "reference/type-matrix.md"
-        order: 6
+        order: 7
       - title: "Errors and status codes"
         path: "reference/errors-status.md"
-        order: 7
+        order: 8
       - title: "Generated package structure"
         path: "reference/generated-package-structure.md"
-        order: 8
+        order: 9
       - title: "Ports and protocols"
         path: "reference/ports-protocols.md"
-        order: 9
+        order: 10
       - title: "Known limitations"
         path: "reference/known-limitations.md"
-        order: 10
+        order: 11
   - name: "Troubleshooting"
     order: 8
     path: "troubleshooting"

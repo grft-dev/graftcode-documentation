@@ -77,5 +77,5 @@ validated for the deployed version and configuration. Plugins and options can ch
 6. Add telemetry at both the caller and Gateway/provider boundary.
 7. Pin versions and retain reproducible install configuration.
 
-Start locally with the [.NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md), then use the
-[scenario chooser](when-to-use-graftcode.md).
+Start with [Quick start](https://docs.graftcode.com/quick-start) for a hands-on first call,
+then use the [scenario chooser](when-to-use-graftcode.md).

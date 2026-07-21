@@ -57,7 +57,7 @@ the generated client as if it removes remote-system failure modes.
 
 ## Continue
 
-- Run the [.NET-to-Node.js tutorial](../tutorials/dotnet-to-nodejs.md).
+- [Quick start](https://docs.graftcode.com/quick-start) — hands-on tutorials for your stack.
 - Read [caller and receiver](../core-concepts/caller-and-receiver.md).
 - Read [invocation lifecycle](../core-concepts/invocation-lifecycle.md).
 - [Choose a scenario](when-to-use-graftcode.md).

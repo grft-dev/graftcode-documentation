@@ -143,6 +143,13 @@ shapes are not comprehensively verified.
 - **Client attempts local loading:** set `GraftConfig::$host`.
 - **Unexpected generated shape:** replace associative or weakly typed public values with explicit DTOs.
 
+## Quick start courses
+
+PHP does not have a dedicated Quick start article. Follow
+[Expose a backend service (JavaScript)](https://docs.graftcode.com/quick-start/expose-backend/javascript)
+or [.NET](https://docs.graftcode.com/quick-start/expose-backend/dotnet) for the hosting workflow, then
+apply PHP install and import shapes from Vision. See [Quick start courses](../reference/quick-start-courses.md).
+
 ## Verified samples and tests
 
 - [PHP simple-car package source](https://github.com/grft-dev/sdn-test-simple-car)
@@ -156,6 +163,5 @@ shapes are not comprehensively verified.
 
 ## Known gaps
 
-No dedicated PHP Quick Start or PHP virtual-repository first-publish test was found in the inspected
-trees. Exact provider packaging, installation output, namespaces, and service calls must come from the
-running Gateway and generated Composer package.
+No dedicated PHP Quick start course was available at the time of writing. Rely on Vision and the
+generated Composer package for PHP-specific output.

@@ -133,6 +133,13 @@ methods, and heterogeneous arrays are not exhaustively verified.
 - **Client attempts local loading:** set `GraftConfig.host`.
 - **Inconsistent result mapping:** replace hashes/heterogeneous values with stable objects and arrays.
 
+## Quick start courses
+
+Ruby does not have a dedicated Quick start article. Follow
+[Expose a backend service (JavaScript)](https://docs.graftcode.com/quick-start/expose-backend/javascript)
+or [Python](https://docs.graftcode.com/quick-start/expose-backend/python) for the hosting workflow,
+then apply Ruby install and require names from Vision. See [Quick start courses](../reference/quick-start-courses.md).
+
 ## Verified samples and tests
 
 - [Gateway runtime documentation](https://github.com/grft-dev/graftcode-gateway#runtimes-typical-setups)
@@ -146,6 +153,5 @@ methods, and heterogeneous arrays are not exhaustively verified.
 
 ## Known gaps
 
-No dedicated Ruby Quick Start or Ruby virtual-repository first-publish test was found. Exact
-publication output, gem source, require name, module path, and service API must come from the running
-Gateway and generated gem.
+No dedicated Ruby Quick start course was available at the time of writing. Rely on Vision and the
+generated gem for Ruby-specific output.
