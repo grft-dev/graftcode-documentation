@@ -15,12 +15,6 @@ Quick start first for your stack; return here when you need to understand *why* 
 5. [Quick reference](reference/quick-reference.md) — bookmark while coding.
 6. [Current status and limitations](introduction/where-graftcode-fits.md).
 
-## Verification samples
-
-Maintained sample projects used to verify documentation claims—not step-by-step tutorials:
-
-1. [Cross-runtime verification sample (.NET → Node.js)](tutorials/dotnet-to-nodejs.md)
-
 ## Core concepts
 
 1. [Core concepts overview](core-concepts/index.md)
@@ -161,15 +155,8 @@ categories:
       - title: "Current status and limitations"
         path: "introduction/where-graftcode-fits.md"
         order: 4
-  - name: "Verification samples"
-    order: 2
-    path: "tutorials"
-    items:
-      - title: "Cross-runtime verification sample (.NET → Node.js)"
-        path: "tutorials/dotnet-to-nodejs.md"
-        order: 1
   - name: "Core concepts"
-    order: 3
+    order: 2
     path: "core-concepts"
     items:
       - title: "Overview"
@@ -221,7 +208,7 @@ categories:
         path: "core-concepts/glossary.md"
         order: 16
   - name: "How-to guides"
-    order: 4
+    order: 3
     path: "how-to-guides"
     items:
       - title: "Expose code"
@@ -276,7 +263,7 @@ categories:
         path: "how-to-guides/dependency-injection.md"
         order: 17
   - name: "Language guides"
-    order: 5
+    order: 4
     path: "language-guides"
     items:
       - title: "Overview"
@@ -307,7 +294,7 @@ categories:
         path: "language-guides/template.md"
         order: 9
   - name: "Operations"
-    order: 6
+    order: 5
     path: "operations"
     items:
       - title: "Operations and deployment model"
@@ -341,7 +328,7 @@ categories:
         path: "operations/version-compatibility-upgrades.md"
         order: 10
   - name: "Reference"
-    order: 7
+    order: 6
     path: "reference"
     items:
       - title: "Quick reference"
@@ -378,7 +365,7 @@ categories:
         path: "reference/known-limitations.md"
         order: 11
   - name: "Troubleshooting"
-    order: 8
+    order: 7
     path: "troubleshooting"
     items:
       - title: "Troubleshooting index"
