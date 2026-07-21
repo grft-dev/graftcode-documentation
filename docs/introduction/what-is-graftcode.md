@@ -97,7 +97,7 @@ case in generated JavaScript).
 
 ## How the pieces fit together
 
-![Consumer Graft, Hypertube, Gateway, and provider business logic](../../assets/diagrams/how-it-works-overview.png)
+![Consumer Graft, Hypertube, Gateway, and provider business logic](../../assets/diagrams/how-it-works-diagram.png)
 
 The diagram uses product labels. The same picture in documentation terms:
 
