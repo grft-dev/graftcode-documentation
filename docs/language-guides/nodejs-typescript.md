@@ -20,8 +20,9 @@ declaration metadata; Node.js is the runtime.
 
 ## Provider support
 
-Expose a plain module, not an Express/Next.js request handler. Build TypeScript before hosting and
-point Gateway at the package/module path shown by your project:
+Expose a plain module, not an Express/Next.js request handler. Build TypeScript before hosting, then
+start **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`) against the built entry
+point—see [Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway):
 
 ```bash
 npm ci

@@ -88,7 +88,8 @@ bundle install
 
 ## 3. Start Gateway with the real module
 
-Install **`gg`** (Graftcode Gateway) if you have not already—see
+Install and run **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`) if you have not
+already—it hosts your built module, discovers the public surface, and publishes the model. See
 [Run Gateway locally](run-gateway-locally.md#1-install-gateway).
 
 ```multi

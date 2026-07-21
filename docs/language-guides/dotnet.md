@@ -21,7 +21,11 @@ NuGet generation, compilation, and generated-client tests. Public and virtual E2
 ## Provider support
 
 Expose a class library, not a web application. Public classes, methods, and public DTO members become
-contract candidates. Build the specific project, then point Gateway at the resulting DLL:
+contract candidates. Build the specific project, then host the resulting assembly with
+**[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`)—the process that loads your
+module, analyzes its public surface, and routes remote calls. Install `gg` from
+[Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) or see
+[Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway):
 
 ```bash
 dotnet build ./Pricing/Pricing.csproj

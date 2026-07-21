@@ -63,6 +63,7 @@ the generated client as if it removes remote-system failure modes.
 ## Continue
 
 - [Quick start](https://docs.graftcode.com/quick-start) — hands-on tutorials for your stack.
+- [What is Graftcode?](what-is-graftcode.md#example-calling-a-billing-method-across-services) — REST vs Graftcode example.
 - Read [caller and receiver](../core-concepts/caller-and-receiver.md).
 - Read [invocation lifecycle](../core-concepts/invocation-lifecycle.md).
 - [Choose a scenario](when-to-use-graftcode.md).

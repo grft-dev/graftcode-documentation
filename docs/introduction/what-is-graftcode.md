@@ -15,6 +15,61 @@ generates the package, and bridges the runtimes.
 > first. This documentation explains concepts, procedures, and reference material—it does not replace
 > those step-by-step tutorials.
 
+## Example: calling a billing method across services
+
+**The problem:** a Node.js application needs `calculateMonthlyBill(unitPrice, units)` implemented in
+a .NET service on another team.
+
+### Without Graftcode (typical REST or GraphQL integration)
+
+A separate integration layer usually appears between business code and the remote capability:
+
+1. Agree an HTTP or GraphQL contract (OpenAPI, schema, versioning rules).
+2. Generate or hand-write a client, DTOs, and error mapping.
+3. Build URLs or queries, serialize payloads, and parse responses on every call.
+4. Maintain that layer when the contract changes.
+
+```javascript
+// Illustrative REST-style consumer code — not Graftcode
+const response = await fetch("https://billing.example/api/v1/monthly-bill", {
+  method: "POST",
+  headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+  body: JSON.stringify({ unitPrice: 10, units: 5 }),
+});
+if (!response.ok) throw new Error(`HTTP ${response.status}`);
+const { total } = await response.json();
+```
+
+GraphQL follows the same pattern at the workflow level: schema, client, query documents, and response
+mapping—still a protocol integration you maintain beside your domain code.
+
+### With Graftcode
+
+1. The .NET team exposes a plain public method on a class library (the **provider**).
+2. **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`) hosts that built module,
+   discovers the callable surface, and publishes the model used to generate packages. Gateway is the
+   **runtime host and bridge**—not the generated npm/NuGet package the consumer installs. See
+   [Gateway and hosted modules](../core-concepts/graftcode-gateway.md) and
+   [install `gg`](../how-to-guides/run-gateway-locally.md#1-install-gateway).
+3. The Node team installs the generated **Graft** (one package) and calls it like local code.
+
+```javascript
+// Illustrative Graftcode consumer — copy package name and host from Vision
+import { BillingService } from "<package-from-vision>";
+import { GraftConfig } from "<package-from-vision>/config.js";
+
+GraftConfig.host = "ws://billing.example/ws"; // before the first call
+const total = BillingService.calculateMonthlyBill(10, 5);
+```
+
+No hand-written HTTP client, route map, or JSON DTO layer for this internal call—the public method
+signature is the contract, and the installed Graft is the client. You still operate a distributed
+system (hosts, auth, failures, observability); Graftcode removes the repetitive protocol glue for
+**controlled callers** that can install generated packages.
+
+For a public HTTP API aimed at arbitrary third parties, REST or GraphQL may remain the better
+boundary—see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
+
 ## What a successful call looks like
 
 A typical cross-language flow:
@@ -64,17 +119,34 @@ Text version: `provider module -> Gateway analysis -> generated Graft -> consume
 
 Package generation is not repeated on every call.
 
-## How this differs from REST
+## How this differs from REST and GraphQL
 
-With REST, a team normally defines an HTTP resource or operation, chooses URLs and verbs, serializes
-payloads, and writes or generates a client from a separate contract such as OpenAPI. With Graftcode,
-the supported public programming surface is the contract and the installed Graft is the client.
+With REST or GraphQL, a team normally maintains a **protocol contract** separate from the provider's
+business code: resources or operations, schemas, clients, serialization, and versioning. With
+Graftcode, the supported **public programming surface** is the contract and the installed Graft is
+the client—so much of the integration scaffolding disappears for callers that can use generated
+packages.
+
+| Typical REST / GraphQL integration | Graftcode (internal / controlled callers) |
+| --- | --- |
+| Design URLs, verbs, or GraphQL operations | Expose public methods on a module |
+| OpenAPI / GraphQL schema and codegen (or manual client) | Install one generated Graft package |
+| Per-call request building and response parsing | Typed method call in the consumer language |
+| Contract drift between spec and implementation | Callable surface analyzed from the provider |
+| Often natural for public, browser, and partner APIs | Strong fit for service-to-service and cross-language modules |
+
+**What you stop writing (in the common case):** HTTP client wrappers, route constants, request/response
+DTOs mapped only for transport, and glue that turns exceptions into status codes for internal callers.
+
+**What you still own:** provider business logic, Gateway deployment, `GraftConfig` / host configuration,
+authentication, retries, monitoring, and compatibility across language and type boundaries.
 
 This is a difference in developer workflow, not a claim that networks disappear. Remote Graft calls
 still cross a transport, can fail, require compatible contract types, and need authentication,
 authorization, observability, timeouts, retries, and deployment controls appropriate to the system.
-REST remains useful for public protocol-oriented APIs, webhooks, broad third-party interoperability,
-and clients that cannot install a generated Graft.
+REST and GraphQL remain useful for public protocol-oriented APIs, webhooks, broad third-party
+interoperability, and clients that cannot install a generated Graft. Many products use both—see
+[Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
 
 ## Boundaries
 
