@@ -7,6 +7,8 @@ description: "How analyzers and generators distinguish type-level calls from obj
 
 The UGM and code generators distinguish **static** operations from **instance** operations.
 
+![Side-by-side comparison: a static call executes at type level with no object, while an instance call constructs an object whose runtime context is retained but is not durable across restarts](../../assets/diagrams/static-vs-instance.svg)
+
 ## Static operations
 
 A static method belongs to the type. The .NET analyzer records it as `STATIC_METHOD`; the Node.js analyzer has a corresponding static-method handler. Generated wrappers invoke it without first constructing an object.

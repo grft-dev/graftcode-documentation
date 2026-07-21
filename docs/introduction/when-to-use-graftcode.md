@@ -14,6 +14,8 @@ protocol or data movement pattern.
 > pages when you need concepts, constraints, or operations detail. See the full course index in
 > [Quick start courses](../reference/quick-start-courses.md).
 
+![Routing from an integration goal to one of six Quick start courses](../../assets/diagrams/integration-scenarios.svg)
+
 ## I want one backend to call another
 
 **Quick start:** [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices)

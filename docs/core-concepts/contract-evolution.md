@@ -7,6 +7,8 @@ description: "How changes to the callable surface affect UGM versions, generated
 
 A Graft contract is the analyzer-selected callable surface plus the type information represented in the UGM. Changing that surface can require a new generated package and consumer changes.
 
+![Seven-stage safe workflow: change the surface, analyze and diff the UGM, generate packages, compile consumers, smoke test, publish a new version, and keep the old version side by side](../../assets/diagrams/contract-evolution-timeline.svg)
+
 ## Usually additive
 
 Examples include adding a new type or method without changing existing generated names or signatures. “Additive” does not guarantee compatibility in every target ecosystem: overload resolution, name casing, package exports, and type generation can still change.

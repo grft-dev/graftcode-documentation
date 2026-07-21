@@ -11,6 +11,8 @@ programming model look like an installed dependency.
 
 ## Five things to remember
 
+![The five-step Graftcode mental model: your module, the generated Graft, Gateway hosting and analysis, configuration selecting execution, and a still-distributed call](../../assets/diagrams/graftcode-mental-model.svg)
+
 1. **The module is your code.** A provider is an ordinary class library or module. Its intentional,
    supported public methods form the [callable surface](../core-concepts/callable-surface.md).
 2. **The Graft is generated code.** It is a package for the consumer's package manager and language.

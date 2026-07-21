@@ -11,6 +11,8 @@ Field naming and helper APIs differ by runtime—copy them from Vision.
 
 ## Priority order
 
+![Six GraftConfig configuration sources checked from highest to lowest priority, from runtime-specific environment variable down to the generated library default](../../assets/diagrams/configuration-precedence.svg)
+
 The inspected SDK resolves lower enum values first:
 
 1. runtime-specific environment variable;

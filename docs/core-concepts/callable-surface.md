@@ -7,6 +7,8 @@ description: "How supported provider analyzers select declarations for the Unifi
 
 The **callable surface** is the analyzer-selected set of declarations represented in the UGM. It is the input to package generation, not a promise that every target generator supports every represented type.
 
+![Public or exported declarations pass through type and method filters and a supported-type check to produce the UGM consumed by package generation](../../assets/diagrams/callable-surface-to-ugm.svg)
+
 Discovery is language-specific. A declaration that is public in source is not necessarily discovered,
 and a discovered declaration is not necessarily portable to every consumer language.
 

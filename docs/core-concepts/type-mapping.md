@@ -7,6 +7,8 @@ description: "How UGM values map into supported consumer languages and where gen
 
 Type mapping occurs between the producer analyzer, the UGM, and the target code generator. Support is a property of that complete path—not just the source language.
 
+![A provider type becomes a UGM category, which the target generator maps to a consumer type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.svg)
+
 ## Detailed mappings verified in generators
 
 For generated TypeScript/JSDoc, current primitive mappings include:
