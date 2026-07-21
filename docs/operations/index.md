@@ -19,8 +19,10 @@ Hypertube and Gateway. Graftcode cloud services are not proven to be in every ru
 
 ## Deployment choices
 
-- Run Gateway beside the module on a host or VM.
-- Package Gateway and the provider in one container.
+- Run [Gateway](../core-concepts/graftcode-gateway.md) beside the module on a host or VM
+  ([Run Gateway locally](../how-to-guides/run-gateway-locally.md)).
+- Package Gateway and the provider in one container you build
+  ([Deploy with Docker](../how-to-guides/deploy-with-docker.md)—there is no official pre-built image).
 - Replicate stateless Gateway/provider instances behind WebSocket-, TCP-, or HTTP/2-aware
   infrastructure.
 - Keep stateful sessions pinned to one instance.

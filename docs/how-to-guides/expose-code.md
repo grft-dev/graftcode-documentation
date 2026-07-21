@@ -88,6 +88,9 @@ bundle install
 
 ## 3. Start Gateway with the real module
 
+Install **`gg`** (Graftcode Gateway) if you have not already—see
+[Run Gateway locally](run-gateway-locally.md#1-install-gateway).
+
 ```multi
 ```dotnet
 gg ./Pricing/bin/Debug/net9.0/Pricing.dll

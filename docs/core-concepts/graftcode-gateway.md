@@ -5,7 +5,9 @@ description: "How Graftcode Gateway selects runtimes, hosts modules, exposes tra
 
 # Gateway and hosted modules
 
-**Graftcode Gateway (`gg`)** is the host process for one or more modules. It selects or detects a runtime, loads the configured modules, exposes runtime-call transports, and can serve Graftcode Vision.
+**Graftcode Gateway (`gg`)** is the host process for one or more modules. Install `gg` from
+[Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) before use—see
+[Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway). It selects or detects a runtime, loads the configured modules, exposes runtime-call transports, and can serve Graftcode Vision.
 
 ## Selecting modules and runtimes
 
@@ -23,6 +25,13 @@ The current Gateway README documents these defaults:
 - optional HTTP/2 server: port `83`.
 
 TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, not part of a module contract, and deployments can override them.
+
+## Where to run Gateway
+
+- **On a host or VM** — install `gg` and run it beside the provider module. See
+  [Run Gateway locally](../how-to-guides/run-gateway-locally.md).
+- **In a container** — build an image that bundles your provider and `gg`. Graftcode does not publish a
+  ready-made image to pull; see [Deploy with Docker](../how-to-guides/deploy-with-docker.md).
 
 ## Analysis and registration
 

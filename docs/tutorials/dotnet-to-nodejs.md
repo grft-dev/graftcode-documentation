@@ -27,15 +27,18 @@ and [Quick reference](../reference/quick-reference.md) while coding.
 Node.js consumer
   -> generated npm Graft
   -> ws://localhost/ws
-  -> Docker-hosted Gateway
+  -> Gateway (in a container you build — see Deploy with Docker)
   -> BillingService.CalculateMonthlyBill(...)
   -> result
 ```
 
 - A synchronous .NET `BillingService` with primitive parameters.
-- Gateway hosting via `gg BillingService.dll` inside a container.
-- npm Graft installation from the **live** Gateway/Vision output (dynamic registry).
-- Remote execution after `GraftConfig.host = "ws://localhost/ws"` before the first call.
+- [Gateway](../core-concepts/graftcode-gateway.md) hosting via `gg BillingService.dll` inside a
+  [container you build](../how-to-guides/deploy-with-docker.md) (no official pre-built image).
+- npm Graft installation from the **live** Gateway/[Vision](../core-concepts/graftcode-vision.md)
+  output (dynamic registry).
+- Remote execution after `GraftConfig.host = "ws://localhost/ws"` before the first call
+  ([Configure invocation](../how-to-guides/configure-invocation.md)).
 - Cross-language method naming (PascalCase provider, lower camel case generated Node API).
 
 ## Sample layout
@@ -45,7 +48,7 @@ Complete files live under [`docs/tutorials/dotnet-to-nodejs/`](dotnet-to-nodejs/
 | Path | Purpose |
 | --- | --- |
 | `provider/BillingService.cs` | Provider contract |
-| `provider/Dockerfile` | Gateway + published assembly |
+| `provider/Dockerfile` | Example image recipe (runtime base + `gg` + published assembly) |
 | `consumer/index.js` | Node consumer using the generated Graft |
 
 Use this tree when validating documentation changes or reproducing reported issues—not as a

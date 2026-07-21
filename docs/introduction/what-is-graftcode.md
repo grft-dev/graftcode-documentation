@@ -5,10 +5,11 @@ description: "What Graftcode generates, how Gateway fits in, and how a cross-lan
 
 # What is Graftcode?
 
-Graftcode turns a module's public methods into an installable, typed package called a **Graft**. A
-consumer calls the generated package like ordinary code; Graftcode Gateway routes the call to the
-hosted module. You write business methods and consumer logic. Graftcode discovers the callable
-surface, generates the package, and bridges the runtimes.
+Graftcode turns a module's public methods into an installable, typed package called a
+**[Graft](../core-concepts/what-is-a-graft.md)**. A consumer calls the generated package like ordinary
+code; **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** routes the call to the hosted
+module. You write business methods and consumer logic. Graftcode discovers the callable surface,
+generates the package, and bridges the runtimes.
 
 > **New here?** Run a hands-on course in [Quick start](https://docs.graftcode.com/quick-start)
 > first. This documentation explains concepts, procedures, and reference material—it does not replace
@@ -18,14 +19,20 @@ surface, generates the package, and bridges the runtimes.
 
 A typical cross-language flow:
 
-1. A **provider** exposes a plain public method (for example a static `CalculateMonthlyBill` on a .NET
-   class).
-2. **Gateway** hosts the built module (`gg ./path/to/module.dll`), discovers the surface, and
-   publishes the model.
-3. You copy the **complete install command** from that Gateway's Vision UI—never guess registry URLs or
-   package names.
-4. The **consumer** installs the generated Graft, sets `GraftConfig.host` to the Gateway WebSocket
-   endpoint **before the first call**, and invokes the generated method.
+1. A **[provider](../core-concepts/callable-surface.md)** exposes a plain public method (for example a
+   static `CalculateMonthlyBill` on a .NET class).
+2. **[Gateway](../core-concepts/graftcode-gateway.md)** hosts the built module. The host CLI is
+   **`gg`** ([install Gateway](../how-to-guides/run-gateway-locally.md#1-install-gateway), then
+   `gg ./path/to/module.dll`); it discovers the surface and publishes the model. To run in a
+   container, [build your own image](../how-to-guides/deploy-with-docker.md)—there is no official
+   pre-built Gateway image.
+3. You copy the **complete install command** from that Gateway's
+   **[Vision](../core-concepts/graftcode-vision.md)** UI when publishing your own module—or install a
+   **public Graft** from `https://grft.dev` when consuming a published package
+   ([Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)).
+4. The **consumer** installs the generated Graft, sets
+   [`GraftConfig` host](../how-to-guides/configure-invocation.md) to the Gateway WebSocket endpoint
+   **before the first call**, and invokes the generated method.
 5. The result returns as if the remote method were local—still a distributed call under the hood.
 
 Expected outcome for a billing example: `unitPrice * units` computed on the provider and returned to

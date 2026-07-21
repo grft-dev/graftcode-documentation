@@ -5,7 +5,11 @@ description: "Verified common options for the Graftcode Gateway command-line int
 
 # Gateway CLI reference
 
-Run `gg --help` (`gg.exe --help` on Windows) for the installed release. Pass the built module as the
+**Graftcode Gateway** is installed separately. The CLI executable is **`gg`** (`gg.exe` on Windows).
+Download it from [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) or follow
+[Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway).
+
+Run `gg --help` for the installed release. Pass the built module as the
 first positional argument:
 
 ```bash
@@ -44,6 +48,8 @@ documented in the inspected README.
 
 ## Next steps
 
+- [Install Gateway](../how-to-guides/run-gateway-locally.md#1-install-gateway)
 - [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
-- [Environment variables](environment-variables.md)
-- [Ports and protocols](ports-protocols.md)
+- [Deploy with Docker](../how-to-guides/deploy-with-docker.md)
+- [Environment variables](../reference/environment-variables.md)
+- [Ports and protocols](../reference/ports-protocols.md)

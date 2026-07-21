@@ -7,6 +7,10 @@ description: "Verified Gateway, package installation, invocation, ports, and tro
 
 ## Provider
 
+Install **Graftcode Gateway** (`gg`) from
+[Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) before hosting a module.
+See [Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway).
+
 Build a plain module, then host the actual artifact:
 
 ```bash
@@ -18,8 +22,14 @@ Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are l
 
 ## Install a Graft
 
-Open the running Gateway's Vision UI, choose the consumer package manager, and copy the entire install
-command. Never guess or reuse an example registry URL, identifier, package name, import, or version.
+**Public packages:** install from the Graftcode registry at `https://grft.dev` (Maven:
+`https://grft.dev/maven2/`, pip: `https://grft.dev/simple/`) using documented package coordinates.
+See [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md#install-a-public-graft) for
+sample packages and commands.
+
+**Your own provider:** open the running Gateway's Vision UI, choose the consumer package manager, and
+copy the entire install command. Never guess or reuse an example registry URL, identifier, package
+name, import, or version.
 
 Example shapes by runtime (copy the **complete** command from Vision, not these placeholders):
 

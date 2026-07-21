@@ -12,13 +12,18 @@ programming model look like an installed dependency.
 ## Five things to remember
 
 1. **The module is your code.** A provider is an ordinary class library or module. Its intentional,
-   supported public methods form the callable surface.
+   supported public methods form the [callable surface](../core-concepts/callable-surface.md).
 2. **The Graft is generated code.** It is a package for the consumer's package manager and language.
-   It mirrors the provider surface; it is not the provider implementation.
+   It mirrors the provider surface; it is not the provider implementation. See
+   [What is a Graft?](../core-concepts/what-is-a-graft.md).
 3. **Gateway hosts and analyzes modules.** It loads the provider, exposes runtime transports, serves
-   Vision, and publishes the model used to generate packages.
+   [Vision](../core-concepts/graftcode-vision.md), and publishes the model used to generate packages.
+   Install `gg` from [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) or
+   [build a container image](../how-to-guides/deploy-with-docker.md). Details:
+   [Gateway and hosted modules](../core-concepts/graftcode-gateway.md).
 4. **Configuration selects execution.** A generated client can resolve in-memory or remote
-   execution. Remote calls must configure the Gateway host before the first invocation.
+   execution. Remote calls must [configure the Gateway host](../how-to-guides/configure-invocation.md)
+   before the first invocation.
 5. **A method call is still distributed.** Serialization, routing, failures, compatibility,
    security, retries, and observability still matter.
 

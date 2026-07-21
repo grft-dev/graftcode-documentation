@@ -3,8 +3,27 @@ title: "Deploy Gateway with Docker"
 description: "Build a provider and Gateway into a container."
 articleTitle: "Deploy Gateway with Docker"
 ---
-Host Gateway in a container with your provider artifacts and the Linux `gg` package from
-[Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases).
+
+# Deploy Gateway with Docker
+
+Graftcode does **not** publish a ready-made Gateway image to `docker pull`. You **build your own**
+image: a standard runtime base image, your compiled provider artifacts, and the Linux `gg` package
+from [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases).
+
+Typical layout:
+
+1. Start from an official runtime image (for example `mcr.microsoft.com/dotnet/sdk:9.0`).
+2. Copy and build/publish your provider module inside the image.
+3. Download and install `gg` inside the image (see [Run Gateway locally](run-gateway-locally.md#1-install-gateway)).
+4. Set `CMD` to the same `gg <module>` command you would run on a host.
+5. Expose ports `80` (WebSocket) and `81` (Vision).
+
+A maintained example Dockerfile lives in the
+[cross-runtime verification sample](../tutorials/dotnet-to-nodejs.md#sample-layout)
+(`docs/tutorials/dotnet-to-nodejs/provider/Dockerfile`).
+
+Host Gateway on a machine first with [Run Gateway locally](run-gateway-locally.md), then
+containerize the verified command line.
 
 ## Verified .NET workflow
 
