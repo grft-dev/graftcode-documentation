@@ -25,7 +25,7 @@ Hypertube and Gateway. Graftcode cloud services are not proven to be in every ru
   infrastructure.
 - Keep stateful sessions pinned to one instance.
 
-Use explicit module/runtime arguments, pin Gateway and generated-package versions, and obtain registry
+Pass the built module path explicitly, pin Gateway and generated-package versions, and obtain registry
 and host values from current Gateway/Vision output.
 
 ## Operational gaps

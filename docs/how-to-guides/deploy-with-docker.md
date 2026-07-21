@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y wget \
  && dpkg -i /usr/app/gg.deb && rm /usr/app/gg.deb \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 EXPOSE 80 81
-CMD ["gg", "--modules", "Provider.dll"]
+CMD ["gg", "Provider.dll"]
 ```
 
 ```bash
@@ -34,19 +34,19 @@ containerize the same `gg` command line.
 
 ```multi
 ```javascript
-CMD ["gg", "--runtime", "nodejs", "--modules", "./dist/index.js"]
+CMD ["gg", "./dist/index.js"]
 ```
 ```python
-CMD ["gg", "--runtime", "python", "--modules", "./pricing/"]
+CMD ["gg", "./pricing/"]
 ```
 ```java
-CMD ["gg", "--runtime", "jvm", "--modules", "./target/pricing-1.0.0.jar"]
+CMD ["gg", "./target/pricing-1.0.0.jar"]
 ```
 ```php
-CMD ["gg", "--runtime", "php", "--modules", "./src/"]
+CMD ["gg", "./src/"]
 ```
 ```ruby
-CMD ["gg", "--runtime", "ruby", "--modules", "./lib/"]
+CMD ["gg", "./lib/"]
 ```
 ```
 

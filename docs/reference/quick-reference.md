@@ -10,7 +10,7 @@ description: "Verified Gateway, package installation, invocation, ports, and tro
 Build a plain module, then host the actual artifact:
 
 ```bash
-gg --runtime <runtime> --modules <built-module>
+gg <path-to-built-module>
 ```
 
 Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are listed in
@@ -105,7 +105,7 @@ names in the installed package:
 ## Frequent failures
 
 - Provider `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
-- No types: pass explicit `--runtime` and `--modules`; verify public/exported members.
+- No types: pass the built module path explicitly; verify public/exported members.
 - Install `404`: repeat the exact registry-qualified command from the current Vision instance.
 - Package generation `422`: remove the named framework complex type from every public signature and
   public model member.

@@ -23,7 +23,7 @@ Use an ordinary library JAR. Public Java classes and methods form the discovery 
 
 ```bash
 mvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 
 `java` and `jvm` are accepted runtime names. Confirm the exact JAR and discovered surface in Vision.

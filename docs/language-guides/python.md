@@ -22,7 +22,7 @@ listed as a legacy Gateway host mode; this guide covers Python 3 only.
 Point Gateway at the module directory containing the source and metadata:
 
 ```bash
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 
 Keep test scripts and unrelated public functions outside that directory. Confirm discovery in Vision.

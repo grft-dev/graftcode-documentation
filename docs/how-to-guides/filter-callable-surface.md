@@ -18,33 +18,33 @@ Example by runtime:
 ```multi
 ```dotnet
 dotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --types Pricing.PriceService --methods Calculate
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll --types Pricing.PriceService --methods Calculate
 ```
 ```javascript
 npm ci && npm run build
-gg --runtime nodejs --modules ./dist/index.js --types PriceService --methods calculate
+gg ./dist/index.js --types PriceService --methods calculate
 ```
 ```python
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 ```java
 mvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
 composer install
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
 bundle install
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 
 Combine with `--GMA` when you need analyzer output without starting servers:
 
 ```bash
-gg --graftOnly --runtime <runtime> --modules <module> --types <Type> --methods <Method>
+gg --graftOnly <module-path> --types <Type> --methods <Method>
 ```
 
 Analyzer-level method filters also exist for some runtimes (wildcard patterns). See

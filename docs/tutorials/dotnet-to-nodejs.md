@@ -115,7 +115,7 @@ WORKDIR /usr/app/publish
 EXPOSE 80
 EXPOSE 81
 
-CMD ["gg", "--runtime", "netcore", "--modules", "BillingService.dll"]
+CMD ["gg", "BillingService.dll"]
 ```
 
 Path: `provider/.dockerignore`
@@ -211,7 +211,7 @@ Monthly bill: 50
 
 That output verifies the generated Node method `BillingService.calculateMonthlyBill(12.5, 4)`
 reached the .NET provider method `BillingService.CalculateMonthlyBill(12.5, 4)` and returned its
-result. Gateway 1.3.6 preserves PascalCase in the .NET contract and emits lower camel case in the
+result. Gateway preserves PascalCase in the .NET contract and emits lower camel case in the
 Node Graft.
 
 ## 5. Verify the call
@@ -243,8 +243,8 @@ to include the mapped host port. If you remap Vision, open the mapped port inste
 
 **No enabled BillingService type appears**
 
-Run `docker logs billing-service-gateway`. Confirm the image built `BillingService.dll`, Gateway uses
-`--runtime netcore`, and `--modules BillingService.dll` resolves from `/usr/app/publish`.
+Run `docker logs billing-service-gateway`. Confirm the image built `BillingService.dll` and that
+`gg BillingService.dll` resolves from `/usr/app/publish`.
 
 **Package installation returns 404**
 
@@ -264,7 +264,7 @@ execution mode is in-memory.
 **Method or class name is missing**
 
 Inspect the generated exports or Vision snippet. Cross-language naming is generator output. In the
-live Gateway 1.3.6 verification, .NET `BillingService.CalculateMonthlyBill` was emitted as Node
+Gateway verification, .NET `BillingService.CalculateMonthlyBill` was emitted as Node
 `BillingService.calculateMonthlyBill`; use the declaration installed by your current Gateway.
 
 **Gateway rejects the package model**
@@ -305,6 +305,6 @@ rm -rf node_modules package-lock.json
 - [Configuration resolution](../core-concepts/configuration-resolution.md)
 - [Current status and limitations](../introduction/where-graftcode-fits.md)
 
-This tutorial was verified with a local .NET build, Docker-hosted Gateway 1.3.6, its exact dynamically
+This tutorial was verified with a local .NET build, Gateway, its exact dynamically
 emitted npm install command, and a Node.js remote call. The dynamic registry ID is intentionally not
 recorded in this page.

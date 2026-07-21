@@ -28,13 +28,13 @@ Build it, then host the resulting assembly with Gateway:
 
 ```bash
 dotnet build ./BillingService.csproj
-gg --runtime netcore --modules ./bin/Debug/net9.0/BillingService.dll
+gg ./bin/Debug/net9.0/BillingService.dll
 ```
 
 For the Docker-hosted workflow used by the tutorial, the equivalent container command is:
 
 ```dockerfile
-CMD ["gg", "--runtime", "netcore", "--modules", "BillingService.dll"]
+CMD ["gg", "BillingService.dll"]
 ```
 
 Wait for Gateway to report the enabled type and successful model upload. Then copy the **complete npm
@@ -42,7 +42,7 @@ install command emitted by that running Gateway or shown in its Vision UI**. Run
 free registry ID is generated at runtime and can change after a restart, so this documentation does
 not print or invent one.
 
-For this provider, Gateway 1.3.6 generated the package name
+For this provider, Gateway generated the package name
 `@graft/nuget-billingservice`. Run this Node.js consumer:
 
 ```javascript
@@ -61,7 +61,7 @@ GraftConfig.stateless = true;
 ```
 
 The registry address remains dynamic and must come from the running Gateway's install command.
-Gateway 1.3.6 generated lower camel case for the Node method while the .NET contract remained
+Gateway generated lower camel case for the Node method while the .NET contract remained
 `BillingService.CalculateMonthlyBill`. Expected result:
 
 ```text

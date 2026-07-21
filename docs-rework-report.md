@@ -91,7 +91,7 @@ redirects and old-address mapping are handled separately from this repository.
 - Gateway loads provider modules, analyzes their callable surface, uploads a Unified Graft Model, and
   prints package-manager installation instructions after successful publication.
 - The free registry identifier is generated at runtime and can change when Gateway restarts.
-- The canonical tutorial's live Gateway 1.3.6 run generated the npm package
+- The canonical tutorial's Gateway run generated the npm package
   `@graft/nuget-billingservice`.
 - The generated Node method was `BillingService.calculateMonthlyBill`; the .NET provider method was
   `BillingService.CalculateMonthlyBill`.
@@ -153,7 +153,7 @@ Also passed:
 - IDE lint diagnostics for the documentation repository
 - `dotnet build -c Release` for the tutorial provider: zero warnings and zero errors
 - `node --check index.js` for the tutorial consumer
-- live Docker-hosted Gateway 1.3.6 module discovery and publication
+- live Gateway module discovery and publication
 - live npm Graft installation from the emitted registry command
 - live remote Node.js-to-.NET call returning `Monthly bill: 50`
 - `npm run lint:docs`

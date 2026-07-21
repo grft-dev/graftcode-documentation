@@ -9,7 +9,7 @@ description: "How Graftcode Gateway selects runtimes, hosts modules, exposes tra
 
 ## Selecting modules and runtimes
 
-The current Gateway supports a first positional module path or `--modules`. If neither is supplied, it scans the current directory. `--runtime` can select a runtime explicitly or use `auto`.
+Pass the built module as the first positional argument (`gg ./path/to/module.dll`). If no path is supplied, Gateway scans the current directory and attempts runtime detection. Use `--runtime` only when auto-detection is wrong.
 
 “Hosted module” means a module loaded for execution by this process. It does not mean the generated Graft package.
 

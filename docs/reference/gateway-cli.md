@@ -5,13 +5,20 @@ description: "Verified common options for the Graftcode Gateway command-line int
 
 # Gateway CLI reference
 
-Run `gg --help` (`gg.exe --help` on Windows) for the installed release. All options are optional;
-without module arguments Gateway scans the current directory and attempts runtime detection.
+Run `gg --help` (`gg.exe --help` on Windows) for the installed release. Pass the built module as the
+first positional argument:
+
+```bash
+gg ./path/to/module.dll
+```
+
+Without a module path, Gateway scans the current directory and attempts runtime detection. All
+options below are optional.
 
 | Option | Verified behavior |
 | --- | --- |
-| first positional argument | Main module path; alternative to `--modules` |
-| `--modules` | Comma-separated module paths |
+| first positional argument | Main module path (preferred) |
+| `--modules` | Comma-separated module paths (alternative to the positional argument) |
 | `--runtime` | `auto`, `clr`, `netcore`, `java`, `jvm`, `python`, `python27`, `ruby`, `nodejs`, `php`, `perl` |
 | `--projectKey` | Portal project JWT; overridden by `GC_PROJECT_KEY` |
 | `--endpoint` | Metadata/service-model endpoint; default `https://grft.dev`, overridden by `GSMU_ENDPOINT` |
@@ -40,7 +47,3 @@ documented in the inspected README.
 - [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
 - [Environment variables](environment-variables.md)
 - [Ports and protocols](ports-protocols.md)
-
-## Source anchor
-
-- `graftcode-gateway/README.md`, lines 6–140 in the inspected repository

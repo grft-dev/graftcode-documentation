@@ -25,7 +25,7 @@ Use ordinary Ruby modules/classes. Point Gateway at the module path and verify d
 
 ```bash
 bundle install
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 
 The exact path can be a source file or module directory depending on the package. Vision is the
@@ -72,7 +72,7 @@ come from Vision or the installed gem; do not infer them from the gem filename.
 
 ## Installation
 
-1. Run Gateway with `--runtime ruby` and wait for publication.
+1. Run Gateway against the provider module and wait for publication.
 2. Open Vision's RubyGems configuration. Do not assume a route name.
 3. Copy the complete emitted gem install/source command, package name, and version exactly.
 4. Execute it unchanged, or copy the emitted source and gem declaration into the Gemfile.
@@ -116,7 +116,7 @@ methods, and heterogeneous arrays are not exhaustively verified.
 
 ## Runtime-specific limitations
 
-- Explicit `--runtime ruby` is safer than relying on auto-detection.
+- Pass the module path explicitly when auto-detection is ambiguous.
 - Package and require names use different normalization in tested gems.
 - Generated module paths have had packaging regressions; current tests contain module-path correction
   helpers for some cross-runtime packages. Prefer current Gateway output and report mismatches.
@@ -129,7 +129,7 @@ methods, and heterogeneous arrays are not exhaustively verified.
   generated source.
 - **Hosted file not found:** verify `GraftConfig.module` in the generated gem and the packaged source
   path.
-- **No types discovered:** pass `--runtime ruby` and point `--modules` at loadable source.
+- **No types discovered:** point `gg` at loadable source.
 - **Client attempts local loading:** set `GraftConfig.host`.
 - **Inconsistent result mapping:** replace hashes/heterogeneous values with stable objects and arrays.
 

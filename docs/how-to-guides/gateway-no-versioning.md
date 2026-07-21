@@ -43,26 +43,26 @@ Disable versioning:
 ```multi
 ```dotnet
 dotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --noVersioning
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll --noVersioning
 ```
 ```javascript
 npm ci && npm run build
-gg --runtime nodejs --modules ./dist/index.js --noVersioning
+gg ./dist/index.js --noVersioning
 ```
 ```python
-gg --runtime python --modules ./pricing/ --noVersioning
+gg ./pricing/ --noVersioning
 ```
 ```java
 mvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar --noVersioning
+gg ./target/pricing-1.0.0.jar --noVersioning
 ```
 ```php
 composer install
-gg --runtime php --modules ./src/ --noVersioning
+gg ./src/ --noVersioning
 ```
 ```ruby
 bundle install
-gg --runtime ruby --modules ./lib/ --noVersioning
+gg ./lib/ --noVersioning
 ```
 ```
 
@@ -71,33 +71,33 @@ Standalone mode without a project key (versioning off by default):
 ```multi
 ```dotnet
 dotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
 npm ci && npm run build
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 ```python
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 ```java
 mvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
 composer install
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
 bundle install
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 
 Re-enable versioning in standalone mode (.NET example):
 
 ```bash
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVersioning
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVersioning
 ```
 
 With a project key (store the key in a secret, not in source):
@@ -105,27 +105,27 @@ With a project key (store the key in a secret, not in source):
 ```multi
 ```dotnet
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 ```python
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 ```java
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
 export GC_PROJECT_KEY="dev:<jwt-from-portal>"
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 

@@ -20,7 +20,7 @@ generalize it into a complete HTTP status contract for every package-manager rou
 
 | Failure | Likely boundary | Action |
 | --- | --- | --- |
-| No discovered type | Module/runtime selection or public exports | Pass explicit `--runtime`/`--modules`; inspect Vision |
+| No discovered type | Module/runtime selection or public exports | Pass the module path explicitly; inspect Vision |
 | Local module `FileNotFound` | Consumer remained in `inmemory` | Configure generated remote host before first call |
 | Connection failure | Listener, route, firewall, proxy, or Gateway | Verify selected port/protocol and process readiness |
 | Provider exception | User code or provider dependency | Preserve actionable message; do not retry domain errors |

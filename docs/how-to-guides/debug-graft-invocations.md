@@ -7,7 +7,7 @@ articleTitle: "Debug Graft invocations"
 
 ```bash
 export GG_DEBUG=1
-gg --runtime <runtime> --modules <module>
+gg <module>
 ```
 
 **Warning:** logs may contain sensitive payload bytes. Use only in controlled environments.
@@ -41,26 +41,26 @@ See [Troubleshooting index](../troubleshooting/index.md).
 ```multi
 ```dotnet
 dotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
 npm ci && npm run build
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 ```python
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 ```java
 mvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
 composer install
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
 bundle install
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 

@@ -16,4 +16,4 @@ WORKDIR /usr/app/publish
 EXPOSE 80
 EXPOSE 81
 
-CMD ["gg", "--runtime", "netcore", "--modules", "BillingService.dll"]
+CMD ["gg", "BillingService.dll"]

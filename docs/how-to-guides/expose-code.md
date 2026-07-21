@@ -90,22 +90,22 @@ bundle install
 
 ```multi
 ```dotnet
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 ```python
-gg --runtime python --modules ./pricing/
+gg ./pricing/
 ```
 ```java
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 

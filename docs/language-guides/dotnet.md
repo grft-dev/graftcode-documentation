@@ -25,7 +25,7 @@ contract candidates. Build the specific project, then point Gateway at the resul
 
 ```bash
 dotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 
 Use the actual target framework and output path. Confirm `Type enabled` and successful model upload in

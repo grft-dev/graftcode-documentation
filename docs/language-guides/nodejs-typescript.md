@@ -26,7 +26,7 @@ point Gateway at the package/module path shown by your project:
 ```bash
 npm ci
 npm run build
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 
 The exact module can be a package directory or entry file depending on its metadata. Confirm the

@@ -26,7 +26,7 @@ Use plain typed PHP classes and point Gateway at the module directory:
 
 ```bash
 composer install
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 
 The exact module root must make project classes and Composer autoload metadata available. Confirm
@@ -86,7 +86,7 @@ method must be copied from the actual generated package.
 
 ## Installation
 
-1. Run Gateway with `--runtime php` against the provider and wait for successful publication.
+1. Run Gateway against the provider module and wait for successful publication.
 2. Open Vision's Composer configuration. Do not assume a route name.
 3. Copy the emitted Composer repository configuration and `composer require` command exactly.
 4. Run them in the consumer project unchanged.
@@ -127,7 +127,7 @@ shapes are not comprehensively verified.
 
 ## Runtime-specific limitations
 
-- Explicit `--runtime php` is safer than relying on auto-detection.
+- Pass the module path explicitly when auto-detection is ambiguous.
 - Composer package generation may require Hypertube post-install extraction scripts; retain generated
   package scripts and inspect Composer output.
 - Autoloading alone may not expose every generated class in older packages; the E2E harness includes
@@ -139,7 +139,7 @@ shapes are not comprehensively verified.
 - **Class not found:** run `composer dump-autoload`, verify PSR-4 metadata, and use Vision's namespace.
 - **Native binary/extraction error:** retain generated Composer scripts and ensure platform
   architecture compatibility.
-- **No provider types:** pass `--runtime php`, verify module root, and ensure dependencies are installed.
+- **No provider types:** point `gg` at the module root and ensure dependencies are installed.
 - **Client attempts local loading:** set `GraftConfig::$host`.
 - **Unexpected generated shape:** replace associative or weakly typed public values with explicit DTOs.
 

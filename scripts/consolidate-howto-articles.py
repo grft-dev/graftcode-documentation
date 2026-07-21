@@ -11,16 +11,16 @@ LANGS = ["dotnet", "javascript", "python", "java", "php", "ruby"]
 HOST = {
     "dotnet": (
         "dotnet build ./Pricing/Pricing.csproj\n"
-        "gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll"
+        "gg ./Pricing/bin/Debug/net9.0/Pricing.dll"
     ),
     "javascript": (
         "npm ci && npm run build\n"
-        "gg --runtime nodejs --modules ./dist/index.js"
+        "gg ./dist/index.js"
     ),
-    "python": "gg --runtime python --modules ./pricing/",
-    "java": "mvn package\ngg --runtime jvm --modules ./target/pricing-1.0.0.jar",
-    "php": "composer install\ngg --runtime php --modules ./src/",
-    "ruby": "bundle install\ngg --runtime ruby --modules ./lib/",
+    "python": "gg ./pricing/",
+    "java": "mvn package\ngg ./target/pricing-1.0.0.jar",
+    "php": "composer install\ngg ./src/",
+    "ruby": "bundle install\ngg ./lib/",
 }
 
 INSTALL = {
@@ -99,12 +99,12 @@ BUILD = {
 }
 
 GG_START = {
-    "dotnet": "gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll",
-    "javascript": "gg --runtime nodejs --modules ./dist/index.js",
-    "python": "gg --runtime python --modules ./pricing/",
-    "java": "gg --runtime jvm --modules ./target/pricing-1.0.0.jar",
-    "php": "gg --runtime php --modules ./src/",
-    "ruby": "gg --runtime ruby --modules ./lib/",
+    "dotnet": "gg ./Pricing/bin/Debug/net9.0/Pricing.dll",
+    "javascript": "gg ./dist/index.js",
+    "python": "gg ./pricing/",
+    "java": "gg ./target/pricing-1.0.0.jar",
+    "php": "gg ./src/",
+    "ruby": "gg ./lib/",
 }
 
 
@@ -357,7 +357,7 @@ def debug_graft_invocations() -> None:
 
 ```bash
 export GG_DEBUG=1
-gg --runtime <runtime> --modules <module>
+gg <module>
 ```
 
 **Warning:** logs may contain sensitive payload bytes. Use only in controlled environments.
@@ -466,7 +466,7 @@ Standalone mode without a project key (versioning off by default):
 Re-enable versioning in standalone mode (.NET example):
 
 ```bash
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVersioning
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll --keepVersioning
 ```
 
 With a project key (store the key in a secret, not in source):
@@ -549,11 +549,11 @@ language pair that uses types beyond the portable baseline.
 
 def deploy_with_docker() -> None:
     other_cmd = {
-        "javascript": 'CMD ["gg", "--runtime", "nodejs", "--modules", "./dist/index.js"]',
-        "python": 'CMD ["gg", "--runtime", "python", "--modules", "./pricing/"]',
-        "java": 'CMD ["gg", "--runtime", "jvm", "--modules", "./target/pricing-1.0.0.jar"]',
-        "php": 'CMD ["gg", "--runtime", "php", "--modules", "./src/"]',
-        "ruby": 'CMD ["gg", "--runtime", "ruby", "--modules", "./lib/"]',
+        "javascript": 'CMD ["gg", "./dist/index.js"]',
+        "python": 'CMD ["gg", "./pricing/"]',
+        "java": 'CMD ["gg", "./target/pricing-1.0.0.jar"]',
+        "php": 'CMD ["gg", "./src/"]',
+        "ruby": 'CMD ["gg", "./lib/"]',
     }
     body = f"""Host Gateway in a container with your provider artifacts and the Linux `gg` package from
 [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases).
@@ -570,7 +570,7 @@ RUN apt-get update && apt-get install -y wget \\
  && dpkg -i /usr/app/gg.deb && rm /usr/app/gg.deb \\
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 EXPOSE 80 81
-CMD ["gg", "--modules", "Provider.dll"]
+CMD ["gg", "Provider.dll"]
 ```
 
 ```bash

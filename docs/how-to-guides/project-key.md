@@ -40,26 +40,26 @@ Prefer environment variables in deployment; they override CLI flags:
 ```multi
 ```dotnet
 export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ndotnet build ./Pricing/Pricing.csproj
-gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
 export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nnpm ci && npm run build
-gg --runtime nodejs --modules ./dist/index.js
+gg ./dist/index.js
 ```
 ```python
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ngg --runtime python --modules ./pricing/
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ngg ./pricing/
 ```
 ```java
 export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nmvn package
-gg --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar
 ```
 ```php
 export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ncomposer install
-gg --runtime php --modules ./src/
+gg ./src/
 ```
 ```ruby
 export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nbundle install
-gg --runtime ruby --modules ./lib/
+gg ./lib/
 ```
 ```
 
@@ -67,22 +67,22 @@ Or pass on the command line (avoid in shared shells and images):
 
 ```multi
 ```dotnet
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll
+gg --projectKey "dev:<jwt-copied-from-portal>" ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime nodejs --modules ./dist/index.js
+gg --projectKey "dev:<jwt-copied-from-portal>" ./dist/index.js
 ```
 ```python
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime python --modules ./pricing/
+gg --projectKey "dev:<jwt-copied-from-portal>" ./pricing/
 ```
 ```java
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime jvm --modules ./target/pricing-1.0.0.jar
+gg --projectKey "dev:<jwt-copied-from-portal>" ./target/pricing-1.0.0.jar
 ```
 ```php
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime php --modules ./src/
+gg --projectKey "dev:<jwt-copied-from-portal>" ./src/
 ```
 ```ruby
-gg --projectKey "dev:<jwt-copied-from-portal>" --runtime ruby --modules ./lib/
+gg --projectKey "dev:<jwt-copied-from-portal>" ./lib/
 ```
 ```
 

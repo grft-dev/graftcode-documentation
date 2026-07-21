@@ -17,17 +17,17 @@ LANGS = ["dotnet", "javascript", "python", "java", "php", "ruby"]
 HOST_EXAMPLES = {
     "dotnet": (
         "dotnet build ./Pricing/Pricing.csproj\n"
-        'gg --runtime netcore --modules ./Pricing/bin/Debug/net9.0/Pricing.dll '
+        'gg ./Pricing/bin/Debug/net9.0/Pricing.dll '
         '--types Pricing.PriceService --methods Calculate'
     ),
     "javascript": (
         "npm ci && npm run build\n"
-        "gg --runtime nodejs --modules ./dist/index.js --types PriceService --methods calculate"
+        "gg ./dist/index.js --types PriceService --methods calculate"
     ),
-    "python": "gg --runtime python --modules ./pricing/",
-    "java": "mvn package\ngg --runtime jvm --modules ./target/pricing-1.0.0.jar",
-    "php": "composer install\ngg --runtime php --modules ./src/",
-    "ruby": "bundle install\ngg --runtime ruby --modules ./lib/",
+    "python": "gg ./pricing/",
+    "java": "mvn package\ngg ./target/pricing-1.0.0.jar",
+    "php": "composer install\ngg ./src/",
+    "ruby": "bundle install\ngg ./lib/",
 }
 
 FILTER_GUIDE = """---
@@ -53,7 +53,7 @@ Example by runtime:
 Combine with `--GMA` when you need analyzer output without starting servers:
 
 ```bash
-gg --graftOnly --runtime <runtime> --modules <module> --types <Type> --methods <Method>
+gg --graftOnly <module-path> --types <Type> --methods <Method>
 ```
 
 Analyzer-level method filters also exist for some runtimes (wildcard patterns). See
@@ -92,7 +92,7 @@ When MCP `tools/call` uses a bare method name and `params.class` is empty, Gatew
 declaring type from `--mcpBaseClass`:
 
 ```bash
-gg --runtime <runtime> --modules <module> \\
+gg <module> \\
   --mcpBaseClass <fully-qualified-type-name>
 ```
 
@@ -115,7 +115,7 @@ allowCredentials=false
 Start Gateway with:
 
 ```bash
-gg --modules <module> --corsConfig ./cors.config
+gg <module> --corsConfig ./cors.config
 ```
 
 ## 4. Verify
@@ -508,7 +508,7 @@ articleTitle: "Debug Graft invocations"
 
 ```bash
 export GG_DEBUG=1
-gg --runtime <runtime> --modules <module>
+gg <module>
 ```
 
 **Warning:** logs may contain sensitive payload bytes. Use only in controlled environments.
@@ -630,7 +630,7 @@ Download from [Gateway releases](https://github.com/grft-dev/graftcode-gateway/r
 
 {host_multi}
 
-Use `gg.exe` on Windows. Prefer explicit `--runtime` and `--modules` over auto-scan in crowded directories.
+Use `gg.exe` on Windows. Pass the built module path explicitly when auto-scan would pick the wrong artifact.
 
 ## 3. Custom ports
 
@@ -668,7 +668,7 @@ RUN apt-get update && apt-get install -y wget \\
  && dpkg -i /usr/app/gg.deb && rm /usr/app/gg.deb \\
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 EXPOSE 80 81
-CMD ["gg", "--modules", "Provider.dll"]
+CMD ["gg", "Provider.dll"]
 ```
 
 ```bash
@@ -691,7 +691,7 @@ Use a base image that includes the {lang_label} runtime and install the Linux `g
 ```dockerfile
 # Illustrative — pin Gateway version and base image for production
 # COPY provider artifacts, install gg.deb, EXPOSE 80 81
-CMD ["gg", "--runtime", "<runtime>", "--modules", "<module-path>"]
+CMD ["gg", "<module-path>"]
 ```
 
 Host locally first with [Run Gateway locally](../run-gateway-locally), then containerize the same
