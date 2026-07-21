@@ -29,13 +29,7 @@ programming model look like an installed dependency.
 5. **A method call is still distributed.** Serialization, routing, failures, compatibility,
    security, retries, and observability still matter.
 
-```text
-provider module
-    -> Gateway discovers public surface
-    -> package service generates a Graft
-    -> consumer installs and calls the Graft
-    -> configured runtime path invokes the provider
-```
+![Setup happens once — analyze the provider, discover its public surface, generate a Graft, and install it; at runtime each consumer call is invoked on the provider and a result or error returns](../../assets/diagrams/mental-model-procedure.svg)
 
 ## Build time versus call time
 

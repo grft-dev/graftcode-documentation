@@ -5,7 +5,7 @@ description: "Precise execution-mode terminology and the host formats recognized
 
 # In-memory, same-machine, and remote execution
 
-![The same generated Graft can resolve to in-memory or network execution paths](../../assets/diagrams/local-vs-remote.svg)
+![The same generated Graft and call site resolve to in-memory, same-machine, or remote execution depending on the host configuration — only configuration changes, not your code](../../assets/diagrams/local-vs-remote.svg)
 
 ## In memory
 
