@@ -17,7 +17,7 @@ Pass the built module as the first positional argument (`gg ./path/to/module.dll
 
 ## Ports and transports
 
-The current Gateway README documents these defaults:
+Gateway uses these default ports:
 
 - WebSocket service calls: port `80`;
 - Vision HTTP UI: port `81`;
@@ -35,14 +35,30 @@ TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, 
 
 ## Analysis and registration
 
-The Graftcode Engine creates a [UGM](package-generation.md) from the selected callable surface and later uses it to generate packages. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
+Gateway captures the selected callable surface, and the Graftcode Engine uses that metadata to generate packages. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
 
-![UGM and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
+![Callable-surface capture and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
 
 ## What the Gateway is not
 
 It is not the generated Graft and it is not the user module. It does expose network listeners, so describing it as “not in the traffic path” would be inaccurate for remote calls.
 
-## Data-egress note
+## Data boundary
 
-Graftcode does not guarantee that only interface metadata leaves the environment under every Gateway option or plugin. Treat data-egress behavior as deployment- and plugin-specific, and review it for your configuration.
+Receiver business logic remains in the Receiver-controlled environment. During a normal invocation,
+runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver.
+They do not pass through Graftcode Engine unless a separately documented feature explicitly requires it.
+
+This table is the canonical description of where each category of data goes:
+
+| Data category | Destination | Purpose | Runtime path | Notes |
+| --- | --- | --- | --- | --- |
+| Receiver business logic | Customer environment | Execution | No Engine transfer | Remains customer-controlled |
+| Public type and method metadata | Graftcode Engine | Graft creation | Setup only | May contain sensitive naming |
+| Package metadata | Engine / registry | Package publication | Setup only | Versioned |
+| Runtime arguments and results | Gateway / Receiver | Invocation | Data plane | Not routed through Engine |
+| Project / Gateway metadata | Graftcode Engine | Management | Control plane | Association and publication metadata |
+| Telemetry metadata | Configured backend | Monitoring | Optional / configured | Only what you instrument and export |
+
+Data-egress behavior can still depend on the Gateway options and plugins you enable. Review your
+configuration before assuming only the categories above leave the environment.

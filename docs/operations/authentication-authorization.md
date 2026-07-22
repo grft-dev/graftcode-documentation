@@ -15,7 +15,10 @@ Four security concerns are separate and must not be conflated (see the canonical
 
 ![Caller and Graft in the Caller environment; TLS/WSS terminating at ingress; Gateway and Receiver business logic in the Receiver environment; registry and Graftcode Engine on a separate control plane](../../assets/diagrams/security-boundaries.svg)
 
-Business logic and runtime payloads stay in the Receiver environment. The **Project Key** associates
+Receiver business logic remains in the Receiver-controlled environment. During a normal invocation,
+runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver;
+they do not pass through Graftcode Engine (see the canonical
+[data boundary](../core-concepts/graftcode-gateway.md#data-boundary)). The **Project Key** associates
 Gateway with a project; it is **not** proof that a runtime call is authorized.
 
 ## Recommended approach (current release)

@@ -29,7 +29,7 @@ The project key does **not** authenticate individual Graft invocations. See
 The key is a JWT, often used in `env:jwt` form (for example `dev:eyJ...`) or as a bare token. Copy
 the exact format the portal displays.
 
-**Gap:** portal screen names and navigation can change between releases. Use the live portal UI as
+Portal screen names and navigation can change between releases. Use the live portal UI as the
 authority.
 
 ## Configure Gateway

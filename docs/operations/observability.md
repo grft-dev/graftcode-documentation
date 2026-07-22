@@ -1,6 +1,6 @@
 ---
 title: "Logging, metrics, and tracing"
-description: "Capture Gateway logs and integrate verified trace propagation with existing tooling."
+description: "Capture Gateway logs and integrate trace propagation with existing tooling."
 ---
 
 # Logging, metrics, and tracing
@@ -55,11 +55,11 @@ Record at the caller/Receiver boundary:
 
 Avoid IDs, argument values, and unbounded exception text as metric labels.
 
-**Gap:** no stable Prometheus/OpenMetrics endpoint or complete Gateway metric catalog is documented.
-Instrument applications and infrastructure until a release specifies one.
+Gateway does not expose a built-in Prometheus/OpenMetrics endpoint or a metric catalog. Instrument
+your applications and infrastructure to collect metrics.
 
 ## Next steps
 
-- [Handle Receiver errors](../how-to-guides/handle-provider-errors.md)
+- [Handle Receiver errors](../how-to-guides/handle-receiver-errors.md)
 - [Timeouts and retries](timeouts-retries.md)
 - [Environment variables](../reference/environment-variables.md)

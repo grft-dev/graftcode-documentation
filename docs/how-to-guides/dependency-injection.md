@@ -8,7 +8,7 @@ Keep framework containers and infrastructure types off the public callable surfa
 facade with primitive or plain-model parameters and wire dependencies inside the facade method or
 through internal modules.
 
-## Verified .NET example
+## Example: .NET Receiver
 
 Start with a public business method and keep the container private:
 
@@ -41,9 +41,21 @@ Only the facade and its supported primitive/string or plain-DTO values belong on
 Keep `IServiceProvider`, repositories, database contexts, framework types, and DI constructors
 internal.
 
-Create a scope inside each public call when scoped dependencies represent per-invocation work.
-Singleton lifetime means process-wide shared state; use it only when the dependency is thread-safe
-and that lifecycle is intended.
+## Lifetime, disposal, and concurrency
+
+A static facade is **not** automatically stateless. The method above holds no per-call state, but the
+static `ServiceProvider` is process-wide shared state. Treat these as separate concerns:
+
+- **Per-invocation work:** create a scope inside each public call (as above) when dependencies are
+  scoped, so each call gets its own scoped instances.
+- **Singleton safety:** singleton lifetime means process-wide shared state reused across concurrent
+  calls. Use it only when the dependency is thread-safe and that lifecycle is intended.
+- **Concurrency:** Gateway can invoke the facade concurrently. Do not store per-caller or
+  request-specific state in static fields; pass request-specific identity as method parameters or
+  per-invocation context.
+- **Disposal and graceful shutdown:** a process-wide provider lives for the process lifetime. If your
+  dependencies hold connections or files, dispose per-call scoped instances (the `using` scope handles
+  this) and dispose the root provider on graceful shutdown rather than leaking resources.
 
 The example initializes lazily through CLR type initialization and does not require a module
 entrypoint. If an application instead depends on an entrypoint such as `Main` to build its container,

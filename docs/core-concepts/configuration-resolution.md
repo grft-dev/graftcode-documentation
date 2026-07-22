@@ -22,7 +22,7 @@ Graftcode resolves configuration in this order (highest priority first):
 5. user configuration supplied through `SetConfig`/`setConfig`;
 6. generated library default.
 
-This order means environment and file sources override a programmatic user configuration in the current implementation. At the same name and priority, the first added configuration wins.
+This order means environment and file sources override a programmatic user configuration. At the same name and priority, the first added configuration wins.
 
 ## Generated source names
 

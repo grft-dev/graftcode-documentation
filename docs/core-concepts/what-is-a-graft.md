@@ -12,9 +12,8 @@ A **Graft** is a generated package for calling a module through Graftcode. It pr
 ## The four parts
 
 1. A Receiver writes a module.
-2. The Graftcode Engine represents its callable surface as a
-   [Unified Graft Model (UGM)](package-generation.md).
-3. The Graftcode Engine uses the UGM to build a Graft for a target package ecosystem.
+2. Gateway captures the selected [callable surface](callable-surface.md).
+3. The Graftcode Engine uses that callable-surface metadata to build a Graft for a target package ecosystem.
 4. At runtime, the installed Graft resolves configuration and invokes the hosted or in-memory module.
 
 The module implementation and the consuming application are user-written. The wrapper, configuration class, and invocation plumbing inside a Graft are generated.
@@ -23,13 +22,13 @@ The module implementation and the consuming application are user-written. The wr
 
 ## What a Graft is not
 
-A Graft is not the hosted implementation, the Gateway, or a copy of the Receiver's source code. It is also not a manually maintained HTTP SDK. Its shape is generated from the UGM, while its runtime behavior depends on resolved configuration.
+A Graft is not the hosted implementation, the Gateway, or a copy of the Receiver's code. It is also not a manually maintained HTTP SDK. Its shape is generated from the Receiver's callable surface, while its runtime behavior depends on resolved configuration.
 
 ## Build time and runtime
 
 Package generation and invocation are separate:
 
-- **Build/package time:** analyze a module, create a UGM, and generate a package.
+- **Build/package time:** select the callable surface and generate a package.
 - **Application build time:** restore the package and type-check or compile calls.
 - **Runtime:** resolve the Graft configuration, initialize a runtime context, transport the command, execute the module, and return a result or error.
 

@@ -66,8 +66,8 @@ GraftConfig.stateless = true
 ```
 ```
 
-**Gap:** naming and resolver behavior for every generated runtime is not identical. .NET and Node.js
-are fully covered; verify the installed package for other runtimes.
+Naming and resolver behavior is not identical for every generated runtime. .NET and Node.js are fully
+covered; confirm the installed package for other runtimes.
 
 ## Next steps
 

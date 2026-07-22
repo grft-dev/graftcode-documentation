@@ -1,6 +1,6 @@
 ---
 title: "Invocation lifecycle"
-description: "The verified sequence from generated wrapper call through configuration, transport, dispatch, and response."
+description: "The sequence from a generated wrapper call through configuration, transport, dispatch, and response."
 ---
 
 # Invocation lifecycle
@@ -11,10 +11,10 @@ description: "The verified sequence from generated wrapper call through configur
 2. **The generated `GraftConfig` initializes once.** It loads known environment and file sources, registers the generated default, and initializes a named runtime context.
 3. **Configuration resolution selects connection data.** The winning source determines in-memory, WebSocket, HTTP/2, TCP, or plugin behavior.
 4. **Generated code builds an operation.** Instance operations carry the generated instance context; static operations target the type directly.
-5. **Hypertube serializes the command.**
-6. **The selected execution path sends or dispatches it.** In-memory .NET commands can call the receiver directly; network paths use their configured clients or native transmitter.
-7. **The receiver deserializes and handles the command.**
-8. **A response is serialized, returned, and converted by generated code.**
+5. **Hypertube represents the call for transfer.**
+6. **The selected execution mode carries it.** In-memory execution runs the Receiver in the same process; network modes send the call over the configured transport.
+7. **The Receiver handles the call.**
+8. **The result is returned and converted back to the Caller's types.**
 
 ## Failure points
 

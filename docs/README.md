@@ -49,8 +49,8 @@ Quick start first for your stack; return here when you need to understand *why* 
 - [In-memory module path](how-to-guides/inmemory-module-path.md)
 - [Use Graftcode alongside REST](how-to-guides/coexist-with-rest.md)
 - [Debug Graft invocations](how-to-guides/debug-graft-invocations.md)
-- [Handle Receiver errors](how-to-guides/handle-provider-errors.md)
-- [Update a Receiver contract](how-to-guides/update-provider-contract.md)
+- [Handle Receiver errors](how-to-guides/handle-receiver-errors.md)
+- [Update a Receiver contract](how-to-guides/update-receiver-contract.md)
 - [Dependency injection facades](how-to-guides/dependency-injection.md)
 
 ### Authoring multi-runtime snippets
@@ -239,10 +239,10 @@ categories:
         path: "how-to-guides/debug-graft-invocations.md"
         order: 14
       - title: "Handle Receiver errors"
-        path: "how-to-guides/handle-provider-errors.md"
+        path: "how-to-guides/handle-receiver-errors.md"
         order: 15
       - title: "Update a Receiver contract"
-        path: "how-to-guides/update-provider-contract.md"
+        path: "how-to-guides/update-receiver-contract.md"
         order: 16
       - title: "Dependency injection facades"
         path: "how-to-guides/dependency-injection.md"

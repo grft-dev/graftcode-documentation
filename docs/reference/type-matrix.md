@@ -1,51 +1,86 @@
 ---
-title: "Public contract type matrix"
-description: "Portable public types, verified target mappings, and unsupported framework-type boundaries."
+title: "Type compatibility matrix"
+description: "Portable baseline types, pair-specific types, types that require validation, and unsupported categories."
 ---
 
-# Public contract type matrix
+# Type compatibility matrix
 
-| Contract shape | .NET Receiver to generated packages | Node.js/TypeScript Receiver | Guidance |
-| --- | --- | --- | --- |
-| `string` | Portable baseline | Portable baseline | Use for IDs and ISO-8601 timestamps |
-| `bool` / `boolean` | Portable baseline | Portable baseline | Supported |
-| integer | `int` baseline | Maps to JavaScript `number` | Avoid values beyond safe target range |
-| floating point | `double` baseline | `number` baseline | Test precision-sensitive uses |
-| `decimal` | .NET baseline | No direct JS equivalent | Test exact caller pair |
-| plain models | Simple members supported | Plain exported shapes supported | Every public member must be portable |
-| homogeneous arrays | Verified baseline | Verified baseline | Prefer over framework collections |
-| nullable values | Generator handlers exist | Union with `null` in TS output | Verify Receiver/Caller pair |
-| async wrapper | .NET `Task`/`Task<T>` rejected on public surface | Receiver promises vary by path | Keep .NET Receiver methods synchronous |
-| framework date/ID types | Rejected/unsupported | `Date` not portable baseline | Use strings |
-| streams/files/HTTP objects | Unsupported public contract | Unsupported public contract | Keep internal |
-| dictionaries/maps/sets | Not portable baseline | Not portable baseline | Use explicit plain models/arrays |
-| callbacks/delegates | Not portable baseline | Not portable baseline | Redesign as explicit calls |
-| inheritance/generics/enums | Not fully verified | Not fully verified | Generate and smoke-test |
+Type support is a property of the whole **Receiver → Caller** path, not just the source type. Use the
+groups below to design a contract, then generate and smoke-test the exact pair before depending on
+richer types. The Graftcode Engine rejects complex framework types on the public surface; discovery of
+a type does not prove generation or runtime compatibility.
 
-The Graftcode Engine explicitly rejects complex framework types. Discovery does not prove
-generation or runtime compatibility.
+## Portable baseline
 
-## Directional caveats (Receiver to Caller)
+Expected to work across all currently supported runtime pairs. Prefer these for any cross-runtime
+contract.
 
-Type behavior depends on the **Receiver → Caller** pair, not just the source type. Verify these with a
-generated-package smoke test:
+| Type | Notes |
+| --- | --- |
+| `string` | Also use for IDs and ISO-8601 timestamps. |
+| `bool` / `boolean` | Supported. |
+| 32-bit integer (`int`) | Within the safe range of the target's number type. |
+| floating point (`double`) | Test precision-sensitive uses. |
+| homogeneous arrays / lists of supported values | Prefer over framework collections. |
+| plain objects / models of supported values | Every public member must itself be portable. |
 
-- **.NET `long` / 64-bit integer → JavaScript/TypeScript Caller:** JavaScript `number` cannot safely
-  represent every 64-bit value. Use `int` or a decimal string unless the exact pair is tested.
-- **.NET `decimal` → JavaScript/TypeScript Caller:** no direct equivalent; represent as a string for
-  exactness.
-- **Framework date/time or ID types (any Receiver → any Caller):** not portable; use ISO-8601 strings
-  and string identifiers.
-- **`Task`/`Task<T>` on a .NET Receiver's public method:** rejected; keep public methods synchronous.
-  The generated Caller API may still be asynchronous (see
-  [Async, cancellation, and timeouts](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts)).
-- **Nullable, enums, inheritance, generics:** behavior varies by pair; generate and smoke-test.
+## Pair-specific
+
+Supported for selected Receiver–Caller combinations. Confirm the exact pair.
+
+| Type | Behavior | Recommendation |
+| --- | --- | --- |
+| enums | Representation varies by pair. | Generate and smoke-test; a string or int is more portable. |
+| nullable values | Handled by some pairs (for example a TS union with `null`). | Verify the pair; consider an explicit "empty" model. |
+| nested models | Supported where every member is portable. | Keep nesting shallow and members simple. |
+
+## Requires validation
+
+Behavior depends on precision, runtime library, or the generated package. Test before depending on
+these.
+
+| Type | Risk | Recommendation |
+| --- | --- | --- |
+| 64-bit integer (`long`) | Target number type may not represent every value. | Use `int` or a string for exact values. |
+| `decimal` | No exact equivalent in some Callers. | Represent as a string for exactness. |
+| maps / dictionaries / sets | Not a portable baseline. | Use explicit plain models or arrays. |
+| inheritance / polymorphism | Constructor, dispatch, and serialization semantics vary. | Flatten to standalone facade types. |
+| generics | Constraints, variance, and nesting are not universal. | Expose a concrete facade with closed types. |
+
+## Unsupported (keep off the public surface)
+
+| Type | Why | Instead |
+| --- | --- | --- |
+| framework date/time and ID types (`DateTime`, `Guid`, …) | Rejected / not portable. | ISO-8601 strings and string identifiers. |
+| `Task` / `Task<T>` on a .NET public method | Rejected on the public surface. | Keep public methods synchronous; the generated Caller API may still be async. |
+| streams, files, HTTP request/response objects | Not a transferable contract. | Keep internal; expose primitive/model results. |
+| callbacks, delegates, events | No portable lifecycle across pairs/transports. | Redesign as explicit request/result calls. |
+| remote object references as durable state | No durable lifetime guarantee. | Keep state behind explicit IDs. |
+
+## Directional pairs to verify
+
+Behavior can differ by direction. Confirm each pair your application uses with a generated-package
+smoke test:
+
+- **.NET Receiver → Node Caller:** `long` and `decimal` are unsafe as JavaScript `number`; use `int`
+  or strings. `Task<T>` is rejected on the .NET public surface; the generated Node call may still
+  return a `Promise<T>`.
+- **Node Receiver → .NET Caller:** confirm numeric width and nullability mapping; a JS `number` maps to
+  a floating-point type unless modeled otherwise.
+- **Java Receiver → Node Caller:** confirm `long` handling (JavaScript cannot safely hold all 64-bit
+  values) and that non-public methods were filtered from the surface.
+- **Python Receiver → .NET Caller:** confirm numeric precision and that only intended module-defined
+  types are exposed.
+- **PHP Receiver → Node Caller:** confirm model shapes and that magic/non-public members are excluded.
+- **Ruby Receiver → .NET Caller:** confirm that dynamically defined methods are not relied upon and
+  that non-public methods were filtered.
 
 For the safest cross-runtime contract, use primitives, strings, and plain models, and always test the
 exact Receiver/Caller pair before depending on richer types.
 
 ## Next steps
 
+- [Type mapping](../core-concepts/type-mapping.md)
 - [Expose code](../how-to-guides/expose-code.md)
 - [Errors and status](errors-status.md)
 - [Known limitations](known-limitations.md)

@@ -1,6 +1,6 @@
 ---
 title: "Gateway CLI reference"
-description: "Verified common options for the Graftcode Gateway command-line interface."
+description: "Common options for the Graftcode Gateway command-line interface."
 ---
 
 # Gateway CLI reference
@@ -19,13 +19,13 @@ gg ./path/to/module.dll
 Without a module path, Gateway scans the current directory and attempts runtime detection. All
 options below are optional.
 
-| Option | Verified behavior |
+| Option | Behavior |
 | --- | --- |
 | first positional argument | Main module path (preferred) |
 | `--modules` | Comma-separated module paths (alternative to the positional argument) |
 | `--runtime` | `auto`, `clr`, `netcore`, `java`, `jvm`, `python`, `python27`, `ruby`, `nodejs`, `php`, `perl` |
 | `--projectKey` | Portal project JWT; overridden by `GC_PROJECT_KEY` |
-| `--endpoint` | Graftcode Engine metadata endpoint; default `https://grft.dev`, overridden by `GSMU_ENDPOINT` |
+| `--endpoint` | Graftcode Engine endpoint; default `https://grft.dev`, overridden by the legacy `GSMU_ENDPOINT` variable |
 | `--port` | WebSocket port; default `80` |
 | `--httpPort` | Vision HTTP port; default `81` |
 | `--tcpServer` / `--tcpPort` | Enable TCP; default port `82` |

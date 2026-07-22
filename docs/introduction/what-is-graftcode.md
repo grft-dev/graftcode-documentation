@@ -17,8 +17,8 @@ generates the package, and bridges the runtimes.
 
 ## Example: calling a billing method across services
 
-**The problem:** a Node.js application needs `calculateMonthlyBill(unitPrice, units)` implemented in
-a .NET service on another team.
+**The problem:** a Node.js application needs `calculateMonthlyBill(unitPrice, units)`, which lives in
+a .NET service owned by another team.
 
 ### Without Graftcode (typical REST or GraphQL integration)
 

@@ -26,12 +26,12 @@ object identity. Prefer static stateless operations for retryable workflows.
 Coordinate proxy idle timeout, transport timeout, application deadline, and Receiver dependency
 timeout so the outer layer does not expire first without useful diagnostics.
 
-**Gap:** timeout, keep-alive, reconnect, and retry behavior differs across current Hypertube runtime
-clients and is not documented as one stable cross-runtime configuration surface. Inspect and test the
-generated runtime dependency before setting production policy.
+Timeout, keep-alive, reconnect, and retry behavior differs across runtimes and is not a single
+cross-runtime configuration surface. Check and test the generated runtime dependency before setting
+production policy.
 
 ## Next steps
 
 - [Errors and status reference](../reference/errors-status.md)
 - [Scaling](scaling.md)
-- [Handle Receiver errors](../how-to-guides/handle-provider-errors.md)
+- [Handle Receiver errors](../how-to-guides/handle-receiver-errors.md)

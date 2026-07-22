@@ -1,103 +1,52 @@
 ---
 title: "Callable surface"
-description: "How the Graftcode Engine selects declarations for the Unified Graft Model."
+description: "How Graftcode selects which public types and methods are exposed as the callable surface."
 ---
 
 # Callable surface
 
-The **callable surface** is the set of declarations the Graftcode Engine selects and represents in the UGM. It is the input to package generation, not a promise that every target ecosystem supports every represented type.
+The **callable surface** is the set of public types and methods intentionally exposed through Gateway. It is the input to Graft generation, not a promise that every target ecosystem supports every exposed type.
 
-![Public or exported declarations pass through type and method filters and a supported-type check to produce the UGM consumed by package generation](../../assets/diagrams/callable-surface-to-ugm.svg)
+![Public or exported declarations pass through type and method filters and a supported-type check to produce the callable-surface metadata used for Graft generation](../../assets/diagrams/callable-surface-selection.svg)
 
-Discovery is language-specific. A declaration that is public in source is not necessarily discovered,
-and a discovered declaration is not necessarily portable to every Caller language.
+## Design it intentionally
 
-## .NET and CLR
+The callable surface is a contract. Everything you expose becomes part of the generated Graft that Callers install and depend on, so treat it as a deliberate design decision rather than a side effect of what happens to be public.
 
-For .NET, the Graftcode Engine starts with exported, visible, top-level assembly types. It records public declared
-instance and static methods, public constructors, fields, properties, and public nested types.
-Special-name and generated record methods are excluded. Type and method filters can narrow the
-result.
+- **Public code is not automatically exposed code.** Being public or exported in source makes a member *eligible*; type and method filters and the supported-type check decide what is actually exposed.
+- **A member that is exposed on the Receiver is not guaranteed to be portable** to every Caller language. Discovery is only the first gate; type mapping, package generation, installation, and a runtime call must all succeed for the chosen Receiver–Caller pair.
 
-Method filters support comma-separated `*` and `?` patterns against bare or fully qualified method names. Tests verify empty, bare, wildcard, qualified, and combined type/method filters.
+## Verify in Vision
 
-## Node.js and TypeScript
+Always confirm the actual surface in [Graftcode Vision](graftcode-vision.md) rather than reasoning from source alone. Vision reflects exactly the types and methods the current Gateway exposes for the loaded module. Use it before you generate or publish a Graft.
 
-Discovery begins with package runtime exports. The Graftcode Engine handles direct ESM exports, supported
-default and CommonJS forms, and re-exports. Type-only exports, interfaces, type aliases, private
-members, and `#` private names are skipped. Exported classes, functions, and constants can become
-types, global methods, and global fields. Class constructors, methods, accessors, and properties are
-modeled separately where supported.
+## Control exposure with filters
 
-Because export analysis has many syntax paths, use the discovered surface (in Vision)—not the source file alone—as authoritative.
+Type and method filters are available for every supported runtime. Use them to expose only intentional operations and to keep implementation details off the contract. Filter syntax and matching rules differ per runtime — copy the exact form from the current Gateway/Vision output. See [Filter the callable surface](../how-to-guides/filter-callable-surface.md).
 
-## Java and JVM
+## Runtime-specific behavior to watch (current Alpha)
 
-For the JVM, the Graftcode Engine scans top-level `.class` entries in the selected JAR. It excludes `module-info`,
-synthetic methods, and `$`-named class entries from top-level discovery. Public constructors and
-nested classes are represented.
+Discovery differs by language. The consequences that affect your contract:
 
-Current caveat: JVM method discovery uses `getDeclaredMethods()` without a visibility
-filter, so private and protected declared methods can enter the analyzed model. Fields and properties
-are not currently modeled. Treat the discovered surface and Vision output as authoritative, and use method filters
-to prevent unintended methods from entering the surface.
+- **.NET:** Public types and their public methods, constructors, fields, properties, and nested types are exposed. Compiler-generated members (for example record helpers) are not. This surface is close to what you expect from visibility, so filtering is mostly about scope, not safety.
+- **Node.js / TypeScript:** Exposure is based on the package's runtime exports. Type-only constructs (interfaces, type aliases) and private members do not appear. Because there are many valid export styles, treat the surface shown in Vision — not the source file — as authoritative.
+- **Java:** Discovery may include declared methods that are not intended for remote use, and fields are not currently exposed. Review the surface in Vision and use method filters to expose only intentional operations.
+- **Python:** Only classes and functions defined by the analyzed module are exposed; imported symbols are not, and leading-underscore/dunder names are generally excluded. Importing the module can run module-level initialization, so keep Receiver imports deterministic and free of unsafe startup side effects.
+- **PHP:** Public methods, constructors, constants, and properties of discovered classes, interfaces, traits, and enums are exposed; magic methods and non-public members are not.
+- **Ruby:** Dynamically generated methods (for example via `define_method` or `method_missing`) may not appear in the callable surface, and non-public methods are not consistently excluded. Prefer explicit public methods for anything that must be exposed, and verify the result in Vision.
+- **Perl:** Gateway can host Perl code, but there is no current Graft-generation path for a Perl Receiver. Do not plan to publish a Graft from a Perl Receiver today. See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md).
 
-## Python
+## Security implications
 
-For Python, the Graftcode Engine imports files from the selected module tree. Classes and module-level functions
-must be defined by the analyzed module; imported classes are excluded. Public module functions and
-variables can become global members. For classes, explicit `__init__`, ordinary methods,
-`@staticmethod` methods, public fields, and `@property` accessors are analyzed. Leading-underscore
-and dunder names are generally excluded.
-
-Import-based analysis can execute module initialization code. Keep Receiver imports deterministic
-and free of unsafe startup side effects. When a type filter is active, Python global functions and
-variables are not included.
-
-## PHP
-
-For PHP, the Graftcode Engine parses `.php` files and discovers classes, interfaces, traits, enums, and top-level
-functions. Reflection then exposes public methods, constructors, constants, and properties.
-Constructors, destructors, magic methods, and non-public members are excluded. A default public
-zero-argument constructor can be inferred for eligible classes without an explicit constructor.
-
-## Ruby
-
-For Ruby, the Graftcode Engine statically parses `.rb` files. Classes become callable types; modules
-act as namespaces rather than top-level callable types. File-scope methods and selected globals can
-be represented. Instance methods, class methods, `initialize`, constants, class variables, and
-`attr_*` declarations contribute to the model.
-
-Dynamic methods created through `define_method`, `method_missing`, or other runtime metaprogramming
-are not discovered by static analysis. The current handler also does not consistently remove methods
-marked private or protected, so verify and filter the generated surface.
-
-## Perl
-
-Gateway contains Perl runtime-hosting hooks, but the Graftcode Engine has no Perl analysis or
-generated-client pipeline equivalent to the six runtimes above. Do not assume a Perl Receiver can
-produce a UGM or Graft package today.
-
-See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md).
-
-## Cross-language summary
-
-- The Graftcode Engine supports type and method filtering for all six runtimes, but filter names and matching rules differ.
-- .NET and PHP are primarily visibility-based.
-- Node.js is export-based.
-- Python combines module ownership with naming conventions and runtime import.
-- Java and Ruby currently require extra review because non-public methods
-  may enter the analyzed model.
-- Discovery is only the first gate; type mapping, package generation, installation, and runtime
-  invocation must also succeed for the chosen Receiver-Caller pair.
+The callable surface is an exposure boundary, not an authorization boundary. Filtering keeps unintended methods off the contract, but it does not authenticate or authorize a caller. Combine intentional surface design with invocation authentication and authorization — see [Authentication and authorization](../operations/authentication-authorization.md).
 
 ## A practical rule
 
 Expose only declarations intended for Callers, then verify:
 
-1. the Graftcode Engine includes the intended members;
+1. Vision shows the intended members and nothing else;
 2. package generation succeeds for the target ecosystem;
 3. the generated package has the expected names and types;
-4. a runtime smoke test reaches the intended implementation.
+4. a runtime smoke test reaches the intended Receiver code.
 
 See [Public surface vs implementation](public-interface-vs-business-logic.md) and [Type mapping](type-mapping.md).

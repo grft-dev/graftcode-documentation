@@ -4,7 +4,7 @@ description: Limit which types and methods Gateway hosts using --types and --met
 articleTitle: Filter the callable surface
 ---
 Narrow the **callable surface** before Callers install a Graft. Use Gateway flags plus an
-intentional public API in source code.
+intentional public API.
 
 ## CLI filters
 
@@ -41,7 +41,7 @@ gg ./lib/
 ```
 ```
 
-Combine with `--GMA` when you need the discovered surface without starting servers:
+Use `--graftOnly` when Gateway should publish the callable surface without starting runtime listeners:
 
 ```bash
 gg --graftOnly <module-path> --types <Type> --methods <Method>

@@ -44,7 +44,7 @@ gg <module> \
   --mcpBaseClass <fully-qualified-type-name>
 ```
 
-Use the UGM type name form for your runtime (for example `Pricing.PriceService`, `com.app.Util`,
+Use the fully qualified type name for your runtime (for example `Pricing.PriceService`, `com.app.Util`,
 `package.module`, `MyModule::MyClass`).
 
 ## 3. Configure CORS for MCP clients
@@ -74,9 +74,9 @@ List explicit origins. Do not use a wildcard (`*`) origin in production, and kee
 Confirm types in Vision, exercise an MCP client against the Gateway HTTP surface, and treat
 authorization as explicit application work.
 
-**Gap:** no end-to-end MCP tutorial is maintained here yet. See
-[Known limitations](../reference/known-limitations.md) and
-[When to use Graftcode](../introduction/when-to-use-graftcode.md).
+For the complete end-to-end flow, follow the
+[MCP Quick Start](https://docs.graftcode.com/quick-start/expose-mcp). See
+[Known limitations](../reference/known-limitations.md) for current MCP status and constraints.
 
 ## Next steps
 

@@ -9,9 +9,9 @@ description: "Precise execution-mode terminology and the host formats recognized
 
 ## In memory
 
-`host=inmemory` or `host=in-memory` creates in-memory connection data. For .NET, a command with this connection type dispatches directly to the receiver; other runtime combinations may go through the native transmitter to load or bridge a runtime.
+`host=inmemory` or `host=in-memory` runs the Receiver in the same process, without a network hop.
 
-Do not describe all in-memory calls as zero-copy, zero-serialization, or equivalent to a direct CLR/JavaScript call. The command path still constructs and serializes runtime commands.
+Do not describe in-memory calls as zero-copy, zero-serialization, or equivalent to a direct language-level call. Arguments and results are still represented and transferred.
 
 ## Same machine
 

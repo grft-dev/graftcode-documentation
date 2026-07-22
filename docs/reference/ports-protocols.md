@@ -13,7 +13,7 @@ description: "Gateway listener defaults, enabling flags, and deployment caveats.
 | `83` | HTTP/2 runtime calls | No | `--http2Server --http2Port <port>` |
 
 For generated WebSocket clients, copy the full `ws://` or `wss://` host, including path, from Vision.
-The verified local route is `/ws`; do not extrapolate routes for other transports.
+The local route is `/ws`; do not extrapolate routes for other transports.
 
 ## Transport support
 

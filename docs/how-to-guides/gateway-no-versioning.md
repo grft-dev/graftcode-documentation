@@ -22,7 +22,7 @@ production path.
 
 Bump the generated package version shown in Vision when the **callable surface** changes in a way
 that affects Callers: renamed members, signature changes, removed types, or unsupported type
-introduction. See [Update a Receiver contract](update-provider-contract.md) and
+introduction. See [Update a Receiver contract](update-receiver-contract.md) and
 [Contract evolution](../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always
@@ -135,8 +135,8 @@ After startup, confirm discovery and publication in Gateway logs and Vision. If 
 old package while the hosted surface changed, failures appear at invocation time—not as an automatic
 drift rejection unless your deployment verifies versions.
 
-**Gap:** automatic rejection of a changed UGM registered under the same version is not guaranteed.
-Verify versioning in your deployment.
+**Current limitation:** automatic rejection of a changed callable surface published under the same
+version is not guaranteed. Verify versioning in your deployment.
 
 ## Next steps
 

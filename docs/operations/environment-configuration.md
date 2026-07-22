@@ -9,10 +9,10 @@ Gateway CLI/environment settings and Caller `GraftConfig` are separate configura
 
 ## Gateway process
 
-Verified Gateway environment variables are:
+Gateway environment variables are:
 
 - `GG_DEBUG`: `1` or `TRUE` enables byte-traffic console logging;
-- `GSMU_ENDPOINT`: overrides the `--endpoint` value;
+- `GSMU_ENDPOINT`: legacy public variable name that overrides the Graftcode Engine endpoint (`--endpoint`);
 - `GC_PROJECT_KEY`: overrides `--projectKey`.
 
 Store `GC_PROJECT_KEY` as a secret. Avoid `GG_DEBUG` in production because byte-level traffic can
@@ -61,8 +61,8 @@ GraftConfig.stateless = true
 ```
 ```
 
-**Gap:** no complete, stable environment-variable catalog is verified for every Gateway plugin or
-generated runtime. Plugin config keys are plugin-specific.
+There is no single complete catalog of environment variables for every Gateway plugin or generated
+runtime. Plugin config keys are plugin-specific; confirm them for the plugin you use.
 
 ## Next steps
 

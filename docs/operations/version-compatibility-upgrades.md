@@ -32,11 +32,11 @@ Record:
 Never infer compatibility from a matching public method signature alone; the Graftcode Engine and runtime
 protocols also participate.
 
-**Gap:** no published exhaustive compatibility table or automatic contract-drift rejection was found.
-Vision and smoke tests from the deployed version are authoritative.
+There is no exhaustive compatibility table or automatic contract-drift rejection. Treat Vision and
+smoke tests from the deployed version as authoritative.
 
 ## Next steps
 
-- [Update a Receiver contract](../how-to-guides/update-provider-contract.md)
+- [Update a Receiver contract](../how-to-guides/update-receiver-contract.md)
 - [Runtime and package-manager support](../reference/supported-runtimes-package-managers.md)
 - [Known limitations](../reference/known-limitations.md)

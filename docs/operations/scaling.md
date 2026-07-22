@@ -5,6 +5,12 @@ description: "Scale stateless calls horizontally and preserve affinity for state
 
 # Scaling Gateway Receivers
 
+![A Caller sends TLS/WSS runtime calls through ingress to a load balancer, which spreads stateless calls across identical Gateway plus Receiver replicas and pins stateful calls to one replica; the registry and Graftcode Engine sit on a separate control plane](../../assets/diagrams/production-deployment.svg)
+
+*Production topology: stateless calls fan out across replicas; stateful calls stay pinned by
+connection affinity. The registry and Graftcode Engine are control-plane services, not part of the
+runtime data path.*
+
 ## Stateless Receivers
 
 Static, stateless methods are the safest scaling unit. Run identical Gateway/Receiver instances
@@ -30,9 +36,9 @@ Scale on observed saturation rather than assuming one call maps to one lightweig
 Use one reviewed project identity strategy. A project key gives stable project-backed registry
 addressing, but it does not replace load balancing or runtime-call authorization.
 
-**Gap:** no verified universal autoscaling formula, connection-drain API, distributed object-state
-store, or transparent state migration is documented. Infrastructure compatibility must be tested for
-WebSocket, optional TCP, or optional HTTP/2 traffic.
+Graftcode does not provide a built-in autoscaling formula, connection-drain API, distributed
+object-state store, or transparent state migration. Test infrastructure compatibility for WebSocket,
+and for optional TCP or HTTP/2 traffic, in your own environment.
 
 ## Next steps
 

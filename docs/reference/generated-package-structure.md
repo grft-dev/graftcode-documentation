@@ -7,9 +7,9 @@ description: "Stable responsibilities and intentionally variable details in gene
 
 A generated Graft package contains Caller-side code, not the Receiver implementation.
 
-## Verified responsibilities
+## Responsibilities
 
-- generated classes/models matching the accepted UGM surface;
+- generated classes/models matching the exposed callable surface;
 - generated method wrappers that invoke Hypertube;
 - `GraftConfig` and its generated defaults;
 - target package metadata;
@@ -63,10 +63,10 @@ files as the source of truth; change the Receiver contract and regenerate.
 Normal runtime calls do not regenerate the package. They use installed wrappers and resolved
 configuration to invoke the Receiver.
 
-**Gap:** this reference describes responsibilities shared by generated packages, not an ABI or file
-layout guarantee across releases.
+This reference describes responsibilities shared by generated packages. It is not an ABI or file-layout
+guarantee across releases.
 
 ## Next steps
 
 - [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)
-- [Update a Receiver contract](../how-to-guides/update-provider-contract.md)
+- [Update a Receiver contract](../how-to-guides/update-receiver-contract.md)

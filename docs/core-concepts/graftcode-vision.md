@@ -1,31 +1,37 @@
 ---
 title: "Graftcode Vision"
-description: "What is verified about the Gateway-hosted Vision interface, with unverified UI behavior clearly marked."
+description: "What Graftcode Vision shows in the current release and how to use it as the source for install and configuration details."
 ---
 
 # Graftcode Vision
 
-**Graftcode Vision** is a web UI that the Gateway can host for inspecting loaded modules. The Gateway README describes it as a web UI and a graph view for loaded modules.
-
-## What Vision provides
+**Graftcode Vision** is the developer-facing web UI that Gateway hosts for inspecting the callable
+surface of the loaded modules and obtaining the information you need to install and configure a Graft.
 
 - Vision hosting is enabled by the Gateway `--GV` option, on by default.
 - The Vision HTTP port defaults to `81` and can be changed with `--httpPort`.
 - Vision reflects the callable surface of the modules loaded by that Gateway process.
 
+## Available now
+
+For the modules loaded by the running Gateway, Vision provides:
+
+- callable-surface browsing (modules, types, and methods);
+- package coordinates for the generated Graft;
+- the installation command;
+- configuration information (for example the runtime host to set);
+- version information.
+
+## Not currently available
+
+- interactive method execution from the UI;
+- a guarantee that every runtime or package ecosystem is represented identically;
+- readiness, metrics, or health dashboards (use `GET /status` for liveness — see
+  [Health checks](../operations/health-checks.md)).
+
 ## Use the running Gateway as the source
 
-Module selection, runtime detection, filters, and startup success determine what a Gateway actually hosts. Check Gateway output and the Vision instance for that process rather than inferring package names, versions, ports, or registry paths.
-
-## Features requiring release-specific verification
-
-The exact Vision UI features depend on your Gateway release. The following are **not guaranteed by this page**:
-
-- exact package-install commands or supported package ecosystems shown in the UI;
-- interactive method execution;
-- generated code samples;
-- configuration snippets;
-- immediate UI refresh after contract changes;
-- security equivalence between Vision and runtime-call transports.
-
-If a release displays one of these features, treat that running release as confirmation of the feature and copy values exactly. Do not generalize it to other versions without release documentation.
+Vision is the source for install and configuration details **for the Gateway process it belongs to**.
+Module selection, runtime detection, filters, and startup success determine what a Gateway actually
+hosts, so copy package names, versions, ports, registry paths, and the runtime host from Vision (or the
+Gateway output) for that process rather than inferring them or reusing values from another environment.

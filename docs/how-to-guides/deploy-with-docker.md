@@ -19,27 +19,63 @@ Typical layout:
 5. Expose ports `80` (WebSocket) and `81` (Vision).
 
 Host Gateway on a machine first with [Run Gateway locally](run-gateway-locally.md), then
-containerize the verified command line. The `.NET` workflow below is a complete reference.
+containerize the same command line. The `.NET` example below uses a multi-stage build, a pinned
+Gateway version, a non-root user, and a `GET /status` health check.
 
-## Verified .NET workflow
+## Example: .NET Receiver
 
 ```dockerfile
-FROM mcr.microsoft.com/dotnet/sdk:9.0
-WORKDIR /usr/app
-COPY . /usr/app/
-RUN dotnet build && dotnet publish -c Release -o /usr/app/
-RUN apt-get update && apt-get install -y wget \
- && wget -O /usr/app/gg.deb https://github.com/grft-dev/graftcode-gateway/releases/latest/download/gg_linux_amd64.deb \
- && dpkg -i /usr/app/gg.deb && rm /usr/app/gg.deb \
- && apt-get clean && rm -rf /var/lib/apt/lists/*
+# --- build stage ---
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet publish -c Release -o /app
+
+# --- runtime stage ---
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
+# Pin the Gateway release you deploy. Set a checksum when the release publishes one.
+ARG GRAFTCODE_GATEWAY_VERSION=1.2.12
+# ARG GRAFTCODE_GATEWAY_SHA256=<sha256-from-release-if-published>
+
+RUN apt-get update && apt-get install -y --no-install-recommends wget curl \
+ && wget -O /tmp/gg.deb \
+      "https://github.com/grft-dev/graftcode-gateway/releases/download/${GRAFTCODE_GATEWAY_VERSION}/gg_linux_amd64.deb" \
+ # && echo "${GRAFTCODE_GATEWAY_SHA256}  /tmp/gg.deb" | sha256sum -c - \
+ && dpkg -i /tmp/gg.deb && rm /tmp/gg.deb \
+ && apt-get purge -y wget && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY --from=build /app /app
+
+# Run as a non-root user.
+RUN useradd --system --uid 10001 gateway && chown -R gateway:gateway /app
+USER gateway
+
 EXPOSE 80 81
+
+# Liveness: Gateway serves GET /status on the HTTP port (81).
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD curl -f http://localhost:81/status || exit 1
+
 CMD ["gg", "Receiver.dll"]
 ```
 
 ```bash
-docker build -t Receiver:test .
-docker run -d -p 80:80 -p 81:81 -e GC_PROJECT_KEY="$GC_PROJECT_KEY" --name Receiver Receiver:test
+docker build --build-arg GRAFTCODE_GATEWAY_VERSION=1.2.12 -t receiver:1.0.0 .
+docker run -d -p 80:80 -p 81:81 -e GC_PROJECT_KEY="$GC_PROJECT_KEY" --name receiver receiver:1.0.0
 ```
+
+Operational notes:
+
+- **Pin the version.** Build against a specific `GRAFTCODE_GATEWAY_VERSION`, not a floating "latest",
+  so images are reproducible. Add the `sha256sum -c` step once the release publishes a checksum.
+- **Secrets.** Inject `GC_PROJECT_KEY` at runtime (environment or secret store); do not bake it into
+  the image.
+- **Vision exposure.** Port `81` serves Vision and `/status`. Do not expose it publicly in production;
+  restrict it to your network or an internal health check.
+- **Graceful termination.** Ensure your orchestrator sends `SIGTERM` and allows the process to exit
+  cleanly; pin Receiver dependencies in your build so the runtime image is deterministic.
 
 ## Other runtimes (illustrative)
 
@@ -65,8 +101,8 @@ CMD ["gg", "./lib/"]
 ```
 ```
 
-**Gap:** verified multi-stage Dockerfiles for every runtime are not maintained in this documentation
-set.
+Complete multi-stage Dockerfiles for every runtime are not maintained here. Apply the same pattern:
+multi-stage build, pinned Gateway version, non-root user, and a `GET /status` health check.
 
 ## Next steps
 

@@ -89,7 +89,7 @@ bundle install
 ## 3. Start Gateway with the real module
 
 Install and run **[Graftcode Gateway](../core-concepts/graftcode-gateway.md)** (`gg`) if you have not
-already—it hosts your built module, discovers the public surface, and publishes the model. See
+already—it hosts your built module, discovers the public surface, and publishes the callable surface. See
 [Run Gateway locally](run-gateway-locally.md#1-install-gateway).
 
 ```multi
@@ -121,8 +121,8 @@ keys from examples.
 Check Gateway output and Graftcode Vision for the expected type and methods. Treat the discovered
 surface as a review gate: remove accidental public members before Callers install a Graft.
 
-**Gap:** there is no verified universal type matrix. Generate and smoke-test every Receiver/Caller
-language pair that uses types beyond the portable baseline.
+There is no universal type matrix. Generate and smoke-test every Receiver/Caller language pair that
+uses types beyond the portable baseline.
 
 ## Next steps
 

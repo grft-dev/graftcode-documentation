@@ -24,7 +24,7 @@ the documented package name and version.
 
 Maintained cross-runtime **sample** packages (useful for smoke-testing installs):
 
-| Package | Versions used in tests |
+| Package | Example package versions |
 | --- | --- |
 | `grft-test-simple-car-e2e` | `0.2.1` (npm, NuGet, Maven), `0.2.3` (PyPI), `0.2.4` (Composer graft package) |
 | `grft-test-simple-car-repository-e2e` | `0.2.1`–`0.2.2` (see [supported runtimes](../reference/supported-runtimes-package-managers.md)) |

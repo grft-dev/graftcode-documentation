@@ -5,17 +5,17 @@ description: "How the Graftcode Engine turns a callable surface into a target-la
 
 # Package generation
 
-The **Graftcode Engine** converts a **Unified Graft Model (UGM)**—the language-neutral record of the
-Receiver's [callable surface](callable-surface.md)—into a package for the caller's ecosystem. It is a
+The **Graftcode Engine** turns metadata from the Receiver's selected
+[callable surface](callable-surface.md) into a package for the Caller's ecosystem. It is a
 package/build activity, not part of each runtime call.
 
-![User-written modules are analyzed into a UGM, while generated packages supply Caller wrappers](../../assets/diagrams/generated-vs-written.svg)
+![User-written modules provide callable-surface metadata, and generated packages supply Caller wrappers](../../assets/diagrams/generated-vs-written.svg)
 
 ## Flow
 
-1. The Graftcode Engine analyzes a hosted module and builds a UGM for a Receiver package and version.
-2. On a package request, the Engine selects the target ecosystem and retrieves the UGM and optional
-   dependency-tree data.
+1. Gateway identifies the selected callable surface of a hosted Receiver module.
+2. On a package request, the Graftcode Engine uses that callable-surface metadata and any dependency
+   information for the selected Caller ecosystem.
 3. The Engine generates the target-language wrappers and `GraftConfig`, then builds the requested
    package artifact and returns its install location.
 

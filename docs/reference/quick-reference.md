@@ -1,6 +1,6 @@
 ---
 title: "Quick Reference"
-description: "Verified Gateway, package installation, invocation, ports, and troubleshooting shortcuts."
+description: "Gateway, package installation, invocation, ports, and troubleshooting shortcuts."
 ---
 
 # Quick reference
@@ -104,7 +104,7 @@ All ports are configurable.
 ## Configuration priority
 
 Generated packages resolve configuration in this order (highest wins first). .NET and
-Node.js templates are fully verified; other runtimes follow the same conceptual levels—confirm field
+Node.js are fully covered; other runtimes follow the same conceptual levels—confirm field
 names in the installed package:
 
 1. graft-specific environment;
@@ -127,7 +127,8 @@ names in the installed package:
 
 - Store `GC_PROJECT_KEY` as a secret; it overrides `--projectKey`.
 - Use `GG_DEBUG` only for controlled diagnosis because it logs byte traffic.
-- No built-in stable health or metrics endpoint is documented.
+- Gateway provides `GET /status` for liveness. It does not provide a dedicated readiness or metrics
+  endpoint unless a newer product version explicitly adds one.
 - Pin and test Gateway plus generated packages together; Alpha has no cross-major compatibility
   guarantee.
 

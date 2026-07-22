@@ -1,13 +1,13 @@
 ---
 title: "Contract evolution"
-description: "How changes to the callable surface affect UGM versions, generated packages, and Callers."
+description: "How changes to the callable surface affect the generated public API, package versions, and Callers."
 ---
 
 # Contract evolution
 
-A Graft contract is the callable surface the Graftcode Engine selects plus the type information represented in the UGM. Changing that surface can require a new generated package and Caller changes.
+A Graft contract is the exposed callable surface plus its type information. Changing that surface can require a new generated package and Caller changes.
 
-![Seven-stage safe workflow: change the surface, analyze and diff the UGM, generate packages, compile Callers, smoke test, publish a new version, and keep the old version side by side](../../assets/diagrams/contract-evolution-timeline.svg)
+![Seven-stage safe workflow: change the surface, compare the generated public API, generate packages, compile Callers, smoke test, publish a new version, and keep the old version side by side](../../assets/diagrams/contract-evolution-timeline.svg)
 
 ## Usually additive
 
@@ -26,7 +26,7 @@ Examples include adding a new type or method without changing existing generated
 ## Safe workflow
 
 1. Change the Receiver surface deliberately.
-2. Re-run analysis (host the module with Gateway) and compare the resulting UGM in Vision.
+2. Re-host the module with Gateway and compare the resulting callable surface in Vision.
 3. Generate packages for every supported caller ecosystem.
 4. Compile/type-check representative Callers.
 5. Run in-memory and remote smoke tests as applicable.
@@ -35,6 +35,6 @@ Examples include adding a new type or method without changing existing generated
 
 ## Compatibility caveats
 
-Graftcode includes module/package versions and version-query paths, but does not guarantee automatic rejection when a different UGM is registered under the same version. Do not rely on automatic contract-drift prevention; verify it in your deployment.
+Graftcode tracks module and package versions, but does not guarantee automatic rejection when a changed callable surface is published under the same version. Do not rely on automatic contract-drift prevention; verify it in your deployment.
 
 Not every additive source change is guaranteed to be binary- or source-compatible in every generated target.

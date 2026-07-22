@@ -1,6 +1,6 @@
 ---
 title: "Environment variable reference"
-description: "Verified Gateway process and generated Graft configuration environment variables."
+description: "Gateway process and generated Graft configuration environment variables."
 ---
 
 # Environment variable reference
@@ -10,7 +10,7 @@ description: "Verified Gateway process and generated Graft configuration environ
 | Variable | Values / purpose | Precedence |
 | --- | --- | --- |
 | `GG_DEBUG` | `1` or `TRUE` logs incoming/outgoing byte traffic | Independent debug switch |
-| `GSMU_ENDPOINT` | Graftcode Engine metadata endpoint | Overrides `--endpoint` |
+| `GSMU_ENDPOINT` | Legacy public variable name that overrides the Graftcode Engine endpoint | Overrides `--endpoint` |
 | `GC_PROJECT_KEY` | Portal project JWT | Overrides `--projectKey` |
 
 Treat `GC_PROJECT_KEY` as a secret. `GG_DEBUG` can expose invocation data and should remain off during
@@ -59,9 +59,9 @@ GraftConfig.stateless = true
 ```
 ```
 
-**Gap:** plugin-specific variables and variables used by the Graftcode Engine are not Gateway runtime
-configuration and are intentionally omitted. For runtimes other than .NET and Node.js, verify behavior
-in the installed package.
+Plugin-specific variables and Graftcode Engine variables are not Gateway runtime configuration and are
+intentionally omitted here. For runtimes other than .NET and Node.js, confirm behavior in the installed
+package.
 
 ## Next steps
 

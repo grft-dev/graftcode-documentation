@@ -1,13 +1,13 @@
 ---
 title: "Type mapping"
-description: "How UGM values map into supported Caller languages and where generation can fail."
+description: "How Receiver types appear to the Caller across supported languages, and where generation can fail."
 ---
 
 # Type mapping
 
-Type mapping occurs as the Graftcode Engine analyzes the Receiver, builds the UGM, and generates the target package. Support is a property of that complete path—not just the source language.
+Type mapping occurs as Graftcode captures the Receiver's callable surface and generates the Caller package. Support is a property of that complete Receiver-to-Caller path—not just the source language.
 
-![A Receiver type becomes a UGM category, which the target generator maps to a Caller type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.svg)
+![A Receiver type is captured as callable-surface metadata and mapped to a Caller type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.svg)
 
 ## Detailed mappings by target language
 

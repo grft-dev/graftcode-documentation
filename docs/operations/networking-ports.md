@@ -24,9 +24,9 @@ are disabled unless `--tcpServer` or `--http2Server` is enabled.
 The generated local WebSocket host is typically copied from Vision and includes the `/ws` path. Do
 not invent TCP or HTTP/2 connection strings; use generated configuration for the selected runtime.
 
-**Gap:** no canonical Kubernetes Service/Ingress, reverse-proxy recipe, native TLS flag, or universal
-idle-timeout value is documented. Validate upgrades, frame sizes, and long-lived connections through
-the actual proxy.
+Graftcode does not ship a canonical Kubernetes Service/Ingress, reverse-proxy recipe, native TLS flag,
+or universal idle-timeout value. Validate upgrades, frame sizes, and long-lived connections through
+your actual proxy.
 
 ## Next steps
 

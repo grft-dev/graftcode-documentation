@@ -5,7 +5,7 @@ description: "Separate the callable contract discovered by Graftcode from privat
 
 # Public surface vs implementation
 
-The **callable surface** is the part of a module represented in its UGM and therefore available for generated Grafts. The **implementation** is everything that executes behind that surface.
+The **callable surface** is the part of a module intentionally exposed through Gateway and therefore available for generated Grafts. The **implementation** is everything that executes behind that surface.
 
 ![Public callable surface forms the contract while implementation details remain behind it](../../assets/diagrams/public-surface-vs-implementation.svg)
 
