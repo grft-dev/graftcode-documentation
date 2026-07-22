@@ -4,7 +4,7 @@ description: "Understand hosted-module versioning, when to bump package versions
 articleTitle: "Gateway module versioning and --noVersioning"
 ---
 Hosted-module versioning is separate from the version on a generated consumer package. Gateway
-decides whether each publication of a provider surface is versioned in the service model.
+decides whether each publication of a provider surface is versioned.
 
 ## Default behavior
 
@@ -30,8 +30,8 @@ regenerate, reinstall, and smoke-test each consumer ecosystem.
 
 ## When to use --noVersioning
 
-Use `--noVersioning` for local experiments where you do not want Gateway to track module versions in
-the service model, or when a deployment policy requires a single unversioned hosted surface.
+Use `--noVersioning` for local experiments where you do not want Gateway to track module versions, or
+when a deployment policy requires a single unversioned hosted surface.
 
 Do not use it to avoid republishing after a **breaking** contract change. Consumers still depend on
 the generated package version you install.
@@ -135,8 +135,8 @@ After startup, confirm discovery and publication in Gateway logs and Vision. If 
 old package while the hosted surface changed, failures appear at invocation time—not as an automatic
 drift rejection unless your deployment verifies versions.
 
-**Gap:** automatic rejection of a changed UGM registered under the same version is not established in
-the inspected implementation.
+**Gap:** automatic rejection of a changed UGM registered under the same version is not guaranteed.
+Verify versioning in your deployment.
 
 ## Next steps
 

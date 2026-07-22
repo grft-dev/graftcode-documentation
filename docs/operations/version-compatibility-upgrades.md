@@ -29,7 +29,7 @@ Record:
 7. Deploy a stateless canary; keep the previous set available for rollback.
 8. Drain old instances before removal and upgrade stateful workloads in a maintenance window.
 
-Never infer compatibility from a matching public method signature alone; generators and runtime
+Never infer compatibility from a matching public method signature alone; the Graftcode Engine and runtime
 protocols also participate.
 
 **Gap:** no published exhaustive compatibility table or automatic contract-drift rejection was found.

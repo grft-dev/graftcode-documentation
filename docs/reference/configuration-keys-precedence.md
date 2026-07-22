@@ -18,8 +18,8 @@ field names and helpers in the installed package:
 | 5 | Programmatic user config | `SetConfig(...)` / `setConfig(...)` |
 | 6 | Generated library default | registered by `GraftConfig` |
 
-At equal name and priority, the inspected dictionary keeps the first added configuration. Relative
-files resolve from the application's current working directory.
+At equal name and priority, the first added configuration is kept. Relative files resolve from the
+application's current working directory.
 
 ## Keys
 
@@ -35,7 +35,7 @@ JSON and YAML require a top-level `configurations` object. Text accepts semicolo
 connection-string data and requires at least `name` and `runtime`.
 
 Set generated static fields before the first call. The runtime context is cached and no supported
-reset/re-resolve operation is exposed by the inspected templates.
+reset/re-resolve operation is exposed by generated packages.
 
 Programmatic remote host example (copy imports and names from Vision):
 
@@ -66,8 +66,8 @@ GraftConfig.stateless = true
 ```
 ```
 
-**Gap:** naming and resolver behavior for every generated runtime is not identical. Verify the
-installed package outside the fully inspected .NET and Node.js paths.
+**Gap:** naming and resolver behavior for every generated runtime is not identical. .NET and Node.js
+are fully covered; verify the installed package for other runtimes.
 
 ## Next steps
 

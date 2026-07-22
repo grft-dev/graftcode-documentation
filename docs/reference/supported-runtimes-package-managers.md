@@ -17,7 +17,7 @@ description: "Verified provider, consumer, and package-manager directions by run
 | PHP | PHP 7.4+ | Verified | Verified | Composer |
 | Perl | CLI host runtime listed | Limited evidence | Not verified | None documented |
 
-“Verified” means corresponding analyzer/generator and cross-runtime smoke evidence was inspected. It
+“Verified” means the Graftcode Engine supports the runtime end to end, with cross-runtime smoke coverage. It
 does not mean every source type, framework, target version, browser, or package-manager feature works.
 
 TypeScript providers are hosted as compiled JavaScript with declarations/metadata. `java` and `jvm`

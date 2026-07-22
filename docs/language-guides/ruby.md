@@ -7,10 +7,9 @@ description: "Expose Ruby modules and consume generated Grafts through RubyGems.
 
 ## Support status and direction
 
-**Provider: supported. Consumer: supported, with gaps.** Gateway lists Ruby hosting, and the inspected
-implementation contains Ruby analysis, RubyGems resolution, Ruby code generation, and public
-cross-runtime install/invoke tests. No inspected virtual-repository suite verifies Ruby's complete
-Gateway first-publish path.
+**Provider: supported. Consumer: supported, with gaps.** Gateway hosts Ruby, and Graftcode provides
+Ruby analysis, RubyGems resolution, Ruby code generation, and cross-runtime install/invoke coverage.
+Ruby's complete Gateway first-publish path is not yet fully verified.
 
 ## Prerequisites
 
@@ -33,9 +32,9 @@ authority for what was loaded.
 
 ## Consumer support
 
-Ruby consumers receive a generated gem. The inspected generator defines class accessors
-`GraftConfig.host`, `.stateless`, and `.module`, and generated classes use Ruby-style methods. Public
-E2E tests cover installation and invocation against all six complete provider ecosystems.
+Ruby consumers receive a generated gem. The generated gem defines class accessors
+`GraftConfig.host`, `.stateless`, and `.module`, and generated classes use Ruby-style methods.
+Installation and invocation are covered against all six complete provider ecosystems.
 
 ## Package manager
 
@@ -96,7 +95,7 @@ GraftConfig.set_headers('Authorization' => 'Bearer <token>')
 GraftConfig.invoke_with_headers({ 'Authorization' => 'Bearer <token>' }) { PriceService.calculate(100, 15) }
 ```
 
-The header hash is the first argument to `invoke_with_headers` in the inspected generator.
+The header hash is the first argument to `invoke_with_headers` in the generated gem.
 
 ## Supported types
 
@@ -140,16 +139,10 @@ Ruby does not have a dedicated Quick start article. Follow
 or [Python](https://docs.graftcode.com/quick-start/expose-backend/python) for the hosting workflow,
 then apply Ruby install and require names from Vision. See [Quick start courses](../reference/quick-start-courses.md).
 
-## Verified samples and tests
+## Samples
 
 - [Gateway runtime documentation](https://github.com/grft-dev/graftcode-gateway#runtimes-typical-setups)
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
-- Inspected generated config:
-  `graftcode-code-generator/src/ruby/graftcodecodegenerator/src/core/generator/handler/utils/graft_config_class_provider.rb`
-- Inspected Ruby-to-Ruby test:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/ruby/ruby-to-ruby.spec.ts`
-- Inspected Ruby caller matrix:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/ruby/`
 
 ## Known gaps
 

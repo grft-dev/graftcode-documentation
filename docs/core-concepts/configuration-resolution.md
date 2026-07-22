@@ -13,7 +13,7 @@ Field naming and helper APIs differ by runtime—copy them from Vision.
 
 ![Six GraftConfig configuration sources checked from highest to lowest priority, from runtime-specific environment variable down to the generated library default](../../assets/diagrams/configuration-precedence.svg)
 
-The inspected SDK resolves lower enum values first:
+Graftcode resolves configuration in this order (highest priority first):
 
 1. runtime-specific environment variable;
 2. global environment variable;
@@ -41,7 +41,7 @@ The resolver accepts JSON, YAML, or semicolon-delimited connection-string data. 
 
 ## Initialization timing
 
-`GraftConfig` caches its runtime context. Change static configuration fields or add sources before the first generated call. The inspected templates do not expose a supported reset/re-resolve operation.
+`GraftConfig` caches its runtime context. Change static configuration fields or add sources before the first generated call. Generated packages do not expose a supported reset/re-resolve operation.
 
 ## Remote host example
 
@@ -74,8 +74,4 @@ GraftConfig.stateless = true
 
 Copy imports, property casing, and helper names from the installed package or Vision.
 
-## Evidence
-
-Verified against generated config templates, `ConfigPriority`, `ConfigsDictionary`, resolver
-implementations, and `ConfigSourceResolverTests` in the .NET and Node.js Hypertube SDKs. Other
-generated runtimes follow the same conceptual model; confirm behavior in the installed package.
+.NET and Node.js are fully covered; other generated runtimes follow the same conceptual model — confirm behavior in the installed package.

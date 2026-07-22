@@ -19,7 +19,7 @@ Module selection, runtime detection, filters, and startup success determine what
 
 ## Features requiring release-specific verification
 
-The inspected `GraftingAgent` source and tests did not contain the Vision frontend implementation or tests proving all previously documented UI features. Therefore, the following are **not guaranteed by this page**:
+The exact Vision UI features depend on your Gateway release. The following are **not guaranteed by this page**:
 
 - exact package-install commands or supported package ecosystems shown in the UI;
 - interactive method execution;
@@ -30,6 +30,4 @@ The inspected `GraftingAgent` source and tests did not contain the Vision fronte
 
 If a release displays one of these features, treat that running release as evidence for the feature and copy values exactly. Do not generalize it to other versions without tests or release documentation.
 
-## Evidence
-
-Verified against `graftcode-gateway/README.md`. The lack of Vision UI sources/tests in the inspected repository is an explicit evidence gap, not a statement that the listed features do not exist.
+The exact set of Vision features depends on your Gateway release. Treat the running Vision instance as authoritative, and copy values from it rather than assuming a feature exists in every version.

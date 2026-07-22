@@ -1,9 +1,9 @@
 ---
-title: "What problem does Graftcode solve?"
-description: "A five-minute mental model for modules, Grafts, Gateway, configuration, and calls."
+title: "How Graftcode works"
+description: "The core mental model: modules, Grafts, Gateway, configuration, and calls."
 ---
 
-# The five-minute mental model
+# How Graftcode works
 
 Graftcode reduces the separate integration layer that normally sits between a callable business
 method and its consumer. It does not make a distributed call local; it makes the consumer-facing
@@ -40,8 +40,8 @@ resolved execution path. It does not regenerate the package.
 ## The contract
 
 The contract is the supported public surface: declaring types, methods, parameters, return values,
-and public model members. Public does not automatically mean portable. The entire analyzer,
-generation, and runtime path must support every exposed type.
+and public model members. Public does not automatically mean portable. The whole path—Graftcode
+Engine generation and runtime execution—must support every exposed type.
 
 Keep transport, database, framework, and implementation types private or internal. For the safest
 cross-language surface, use simple primitives, strings, and plain models, then test the exact

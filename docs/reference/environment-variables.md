@@ -10,7 +10,7 @@ description: "Verified Gateway process and generated Graft configuration environ
 | Variable | Values / purpose | Precedence |
 | --- | --- | --- |
 | `GG_DEBUG` | `1` or `TRUE` logs incoming/outgoing byte traffic | Independent debug switch |
-| `GSMU_ENDPOINT` | Service-model endpoint | Overrides `--endpoint` |
+| `GSMU_ENDPOINT` | Graftcode Engine metadata endpoint | Overrides `--endpoint` |
 | `GC_PROJECT_KEY` | Portal project JWT | Overrides `--projectKey` |
 
 Treat `GC_PROJECT_KEY` as a secret. `GG_DEBUG` can expose invocation data and should remain off during
@@ -59,9 +59,9 @@ GraftConfig.stateless = true
 ```
 ```
 
-**Gap:** plugin-specific variables and variables used by service-model/package-manager components are
-not Gateway runtime configuration and are intentionally omitted. Generated runtimes beyond the fully
-inspected paths require package-level verification.
+**Gap:** plugin-specific variables and variables used by the Graftcode Engine are not Gateway runtime
+configuration and are intentionally omitted. For runtimes other than .NET and Node.js, verify behavior
+in the installed package.
 
 ## Next steps
 

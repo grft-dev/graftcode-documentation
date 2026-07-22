@@ -18,15 +18,16 @@ The verified local route is `/ws`; do not extrapolate routes for other transport
 Gateway defaults may require elevated privileges or conflict with another web server. Change ports or
 container host mappings as needed. Open only selected listeners through firewalls and security groups.
 
-TLS/WSS termination is infrastructure-specific. The inspected Gateway CLI does not document native
-certificate flags. Browser WebSockets cannot attach arbitrary custom handshake headers; when headers
-are required, use only the HTTP/2 endpoint/configuration emitted by Vision.
+TLS/WSS termination is infrastructure-specific. Gateway does not provide native certificate flags.
+Browser WebSockets cannot attach arbitrary custom handshake headers; when headers are required, use
+only the HTTP/2 endpoint/configuration emitted by Vision.
 
 CORS affects browser HTTP surfaces and is configured with `--corsAllowedOrigins` or `--corsConfig`;
 it is not a substitute for authentication.
 
-**Gap:** no stable health/metrics port, MCP route table, maximum message size, idle timeout, or proxy
-configuration is documented here.
+The HTTP listener also serves a built-in `GET /status` liveness endpoint (returns `200 OK`). No
+dedicated metrics port, MCP route table, maximum message size, idle timeout, or proxy configuration
+is provided.
 
 ## Next steps
 

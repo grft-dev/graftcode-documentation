@@ -23,7 +23,3 @@ Failures can occur before execution (missing package or invalid configuration), 
 ## What does not happen per call
 
 The module is not re-analyzed and the Graft package is not regenerated during an ordinary invocation. Those belong to the package/build path.
-
-## Evidence
-
-Verified against generated `GraftConfig` templates, generated static/instance body handlers, `RuntimeBridge`, and the caller/receiver interpreter paths under `HYPERTUBE`.

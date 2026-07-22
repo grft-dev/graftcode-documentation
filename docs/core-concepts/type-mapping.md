@@ -5,11 +5,11 @@ description: "How UGM values map into supported consumer languages and where gen
 
 # Type mapping
 
-Type mapping occurs between the producer analyzer, the UGM, and the target code generator. Support is a property of that complete path—not just the source language.
+Type mapping occurs as the Graftcode Engine analyzes the provider, builds the UGM, and generates the target package. Support is a property of that complete path—not just the source language.
 
 ![A provider type becomes a UGM category, which the target generator maps to a consumer type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.svg)
 
-## Detailed mappings verified in generators
+## Detailed mappings by target language
 
 For generated TypeScript/JSDoc, current primitive mappings include:
 
@@ -37,8 +37,8 @@ Unknown values can degrade to `unknown` in TypeScript or `object` in .NET, excep
 
 ## Portable baselines for all generated consumers
 
-The repository also contains generators and cross-runtime smoke tests for Java/JVM, Python, PHP, and
-Ruby. Their conservative public-contract baselines are:
+Graftcode also supports Java/JVM, Python, PHP, and Ruby, with cross-runtime smoke coverage. Their
+conservative public-contract baselines are:
 
 - **Java/JVM:** `String`, primitive numbers, `boolean`, plain Java objects, and homogeneous arrays.
 - **Python:** `str`, `int`, `float`, `bool`, simply typed classes, and homogeneous `list[T]` values.
@@ -62,22 +62,17 @@ remain synchronous.
 - [PHP](../language-guides/php.md#supported-types)
 - [Ruby](../language-guides/ruby.md#supported-types)
 
-Perl has no equivalent generated-client/type-mapping path verified in this repository. See
+Perl has no equivalent generated-client/type-mapping path. See
 [Language support status](../language-guides/support-status.md#perl).
 
 ## Supported surface is stricter than discovery
 
-The package-generation engine rejects framework complex types in public interfaces. Its tests use `System.DateTime` as an example. Therefore, a type appearing in analyzer output does not prove that package generation will accept it.
+The Graftcode Engine rejects framework complex types in public interfaces (`System.DateTime` is a typical example). Therefore, a type appearing in the discovered surface does not prove that package generation will accept it.
 
 Use simple primitives and explicitly modeled public types. Prefer ISO-8601 strings and string identifiers for cross-language contracts unless the exact producer/consumer pair has generation and runtime tests for richer types.
 
 ## Collections, generics, callbacks, and nullability
 
-The implementation contains handlers for arrays, generics, delegates, nested types, and nullable metadata, but support varies by analyzer and target generator. Verify each intended language pair with generator tests or a generated-package smoke test.
+Graftcode handles arrays, generics, delegates, nested types, and nullable metadata, but support varies by language pair. Verify each intended language pair with a generated-package smoke test.
 
-## Evidence
-
-Detailed mappings were verified against `SharedPrimitiveTypeHandler.cs`,
-`primitive-type-converter.ts`, nullable generator tests, and package-generation unsupported-type
-tests. The additional language baselines come from their dedicated generation engines and public
-cross-runtime smoke suites. This is not a complete compatibility matrix.
+This is not a complete compatibility matrix. Confirm richer types for the exact provider/consumer pair before relying on them.

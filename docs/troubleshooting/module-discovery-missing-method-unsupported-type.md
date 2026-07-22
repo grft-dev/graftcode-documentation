@@ -23,7 +23,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
    directory when no module is supplied; mixed files can cause wrong detection. Use the runtime and
    module options shown by `gg --help` for the installed release.
 3. **Read startup output in order.** Find runtime selection, module load, discovered/enabled types,
-   analyzer errors, and model-upload/publication completion. Fix the earliest failed stage.
+   analysis errors, and model-upload/publication completion. Fix the earliest failed stage.
 4. **Check callable-surface rules.**
    - .NET requires visible top-level types and public declared methods; special-name methods are treated
      separately.
@@ -36,7 +36,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
    package, the target generator/mapping is the failing stage.
 7. **For HTTP 422, locate the named type.** Inspect parameters, return types, public properties, generic
    arguments, base types, and constructor parameters. Framework complex types can be rejected even when
-   the analyzer represented them.
+   they were discovered.
 
 ## Fixes
 
@@ -54,12 +54,12 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
 - **Constructor mismatch:** use a single unambiguous constructor with supported parameter types or a
   static factory with explicit IDs.
 
-Do not treat analyzer success as final success. The corrected contract must complete analysis,
+Do not treat successful discovery as final success. The corrected contract must complete analysis,
 publication, target package generation, consumer compilation, and an invocation smoke test.
 
 ## Escalation evidence
 
-Provide the module path, selected runtime, complete analyzer/publication error, relevant public
+Provide the module path, selected runtime, complete discovery/publication error, relevant public
 signature, active type/method filters, target consumer runtime, and the 422 error code/message. Reduce
 the provider to the smallest public declaration that reproduces the failure.
 

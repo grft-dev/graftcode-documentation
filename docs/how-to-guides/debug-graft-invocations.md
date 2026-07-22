@@ -32,7 +32,7 @@ gg <module>
 | `FileNotFound` provider DLL | `inmemory` without local module |
 | `422` package generation | unsupported public type |
 | Connection timeout | wrong host, proxy, or TLS termination |
-| Missing method | filters, stale package, or analyzer gap |
+| Missing method | filters, stale package, or discovery gap |
 
 See [Troubleshooting index](../troubleshooting/index.md).
 

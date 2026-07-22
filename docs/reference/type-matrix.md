@@ -22,11 +22,11 @@ description: "Portable public types, verified target mappings, and unsupported f
 | callbacks/delegates | Not portable baseline | Not portable baseline | Redesign as explicit calls |
 | inheritance/generics/enums | Incomplete evidence | Incomplete evidence | Generate and smoke-test |
 
-The package-generation engine explicitly rejects complex framework types. Discovery does not prove
+The Graftcode Engine explicitly rejects complex framework types. Discovery does not prove
 generation or runtime compatibility.
 
 Generated target mappings include numeric collapsing in TypeScript and narrower primitive mapping in
-.NET; therefore support belongs to the complete producer-analyzer-generator-consumer path.
+.NET; therefore support belongs to the complete provider-to-consumer path.
 
 ## Next steps
 

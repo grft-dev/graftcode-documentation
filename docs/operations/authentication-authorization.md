@@ -5,11 +5,13 @@ description: "Separate project publication identity, transport security, and inv
 
 # Authentication and authorization operations
 
-Three controls must not be conflated:
+Distinct controls must not be conflated (see the canonical
+[Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md)):
 
 1. `--projectKey` / `GC_PROJECT_KEY` authenticates Gateway to portal/project metadata services.
 2. TLS/WSS protects transport when terminated by deployment infrastructure.
-3. Provider-call authentication and authorization must be explicitly implemented and configured.
+3. Provider-call authentication and authorization (the **call credential**) must be explicitly
+   implemented and configured.
 
 The project key is not proof that runtime calls are authorized. Keep it in a secret store, rotate it
 through the portal process, and restart/redeploy Gateway as required to load the replacement.

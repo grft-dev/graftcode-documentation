@@ -85,7 +85,7 @@ GraftConfig.host = "wss://service.example/ws"
 GraftConfig.stateless = True
 ```
 
-Defaults are `host = "inmemory"` and `stateless = False`. The inspected generator also verifies
+Defaults are `host = "inmemory"` and `stateless = False`. The generated package also provides
 `set_headers(...)`, `invoke_with_headers(...)`, and asynchronous scoped-header invocation. Configure
 before the first call.
 
@@ -129,17 +129,11 @@ method decorators, and complex inheritance are not exhaustively verified.
 - [Connect microservices (Python)](https://docs.graftcode.com/quick-start/connect-microservices/python)
 - [Expose MCP (Python)](https://docs.graftcode.com/quick-start/expose-mcp/python)
 
-## Verified samples and tests
+## Samples
 
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
-- Inspected generated config:
-  `graftcode-code-generator/src/python/graftcodecodegenerator/src/core/generator/handler/utils/graft_config_class_provider.py`
-- Inspected E2E caller suite:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/python/`
-- Full publish tests:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/virtual-repos-smoke-tests/python/`
 
 ## Known gaps
 
-The inspected evidence does not make Python 2.7, every Python implementation, or advanced typing
-constructs part of this guide's supported contract.
+Python 2.7, every Python implementation, and advanced typing constructs are not part of this guide's
+supported contract.

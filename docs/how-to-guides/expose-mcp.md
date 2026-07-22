@@ -71,7 +71,7 @@ gg <module> --corsConfig ./cors.config
 Confirm types in Vision, exercise an MCP client against the Gateway HTTP surface, and treat
 authorization as explicit application work.
 
-**Gap:** no verified end-to-end MCP tutorial is maintained in this documentation set. See
+**Gap:** no end-to-end MCP tutorial is maintained here yet. See
 [Known limitations](../reference/known-limitations.md) and
 [When to use Graftcode](../introduction/when-to-use-graftcode.md).
 

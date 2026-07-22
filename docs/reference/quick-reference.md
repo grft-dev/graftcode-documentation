@@ -58,7 +58,9 @@ gem install <name> --source <source-from-vision>
 
 Generated packages expose `host` and `stateless` configuration (field names, casing, and access differ
 by runtime). Copy the exact API from Vision and set it **before** the first generated call. The default
-is `inmemory`, which requires the provider module to be locally loadable.
+is `inmemory`, which requires the provider module to be locally loadable. The `host` is the runtime
+endpoint, **not** the registry URL — see
+[Project Key, registry, host, and credentials](identifiers-and-auth.md).
 
 ```multi
 ```dotnet

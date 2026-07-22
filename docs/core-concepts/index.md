@@ -25,4 +25,4 @@ Read these pages in order:
 14. [Contract evolution](contract-evolution.md)
 15. [Graftcode Vision](graftcode-vision.md)
 
-These pages separate analyzer/package-time behavior from runtime behavior and identify evidence gaps rather than presenting unverified behavior as a guarantee.
+These pages separate setup/package-time behavior from runtime behavior and mark current gaps rather than presenting unverified behavior as a guarantee.

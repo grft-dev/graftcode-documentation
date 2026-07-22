@@ -1,6 +1,6 @@
 ---
 title: "Errors and status reference"
-description: "Verified package-generation status behavior and operational failure categories."
+description: "Package-generation status behavior and operational failure categories."
 ---
 
 # Errors and status reference

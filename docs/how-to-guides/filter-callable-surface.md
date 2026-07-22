@@ -41,13 +41,13 @@ gg ./lib/
 ```
 ```
 
-Combine with `--GMA` when you need analyzer output without starting servers:
+Combine with `--GMA` when you need the discovered surface without starting servers:
 
 ```bash
 gg --graftOnly <module-path> --types <Type> --methods <Method>
 ```
 
-Analyzer-level method filters also exist for some runtimes (wildcard patterns). See
+Additional method filters also exist for some runtimes (wildcard patterns). See
 [Callable surface](../core-concepts/callable-surface.md).
 
 ## Workflow

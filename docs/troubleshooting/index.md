@@ -42,7 +42,7 @@ credential files. Redact values while preserving header names, status codes, and
 
 - Package generation and package installation happen before normal runtime calls.
 - Vision describes the Gateway process that hosts it; another Gateway can show a different model.
-- Analyzer discovery does not prove that every target generator accepts the discovered types.
+- Discovery does not prove that every target ecosystem accepts the discovered types.
 - A remote failure has network and authentication causes that do not exist in in-memory mode.
 - Generated runtime context is cached after first initialization; late configuration changes may not
   affect the current process.

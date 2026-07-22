@@ -25,7 +25,7 @@ options below are optional.
 | `--modules` | Comma-separated module paths (alternative to the positional argument) |
 | `--runtime` | `auto`, `clr`, `netcore`, `java`, `jvm`, `python`, `python27`, `ruby`, `nodejs`, `php`, `perl` |
 | `--projectKey` | Portal project JWT; overridden by `GC_PROJECT_KEY` |
-| `--endpoint` | Metadata/service-model endpoint; default `https://grft.dev`, overridden by `GSMU_ENDPOINT` |
+| `--endpoint` | Graftcode Engine metadata endpoint; default `https://grft.dev`, overridden by `GSMU_ENDPOINT` |
 | `--port` | WebSocket port; default `80` |
 | `--httpPort` | Vision HTTP port; default `81` |
 | `--tcpServer` / `--tcpPort` | Enable TCP; default port `82` |
@@ -43,8 +43,8 @@ options below are optional.
 | `--doNotExtractBinaries` | Use externally supplied binaries |
 | `--config` | External server-plugin JSON path |
 
-No stable `--health`, metrics, drain, reload, TLS-certificate, or global invocation-timeout option is
-documented in the inspected README.
+Gateway does not provide a `--health`, metrics, drain, reload, TLS-certificate, or global
+invocation-timeout option.
 
 ## Next steps
 

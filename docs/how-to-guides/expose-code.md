@@ -60,7 +60,7 @@ end
 ```
 
 Use primitives and plain models. For cross-runtime contracts, represent dates and identifiers as
-strings. The .NET package-generation path rejects framework complex types on the public surface.
+strings. For .NET, the Graftcode Engine rejects framework complex types on the public surface.
 
 ## 2. Build the provider
 

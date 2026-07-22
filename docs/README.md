@@ -9,9 +9,9 @@ Quick start first for your stack; return here when you need to understand *why* 
 ## Start here
 
 1. **[Quick start](https://docs.graftcode.com/quick-start)** — first working call (hands-on).
-2. [What is Graftcode?](introduction/what-is-graftcode.md) — mental model and call flow.
-3. [The five-minute mental model](introduction/what-problem-does-graftcode-solve.md).
-4. [Choose a scenario](introduction/when-to-use-graftcode.md) — Quick start links per goal.
+2. [How Graftcode works](introduction/what-problem-does-graftcode-solve.md) — the core mental model.
+3. [What is Graftcode?](introduction/what-is-graftcode.md) — definition, before/after, and use cases.
+4. [Choose a scenario](introduction/when-to-use-graftcode.md) — pick your goal, then your runtime.
 5. [Quick reference](reference/quick-reference.md) — bookmark while coding.
 6. [Current status and limitations](introduction/where-graftcode-fits.md).
 
@@ -96,7 +96,6 @@ materially differ by stack. Regenerate consolidated guides with `scripts/consoli
 6. [Python](language-guides/python.md)
 7. [Ruby](language-guides/ruby.md)
 8. [PHP](language-guides/php.md)
-9. [Language guide template](language-guides/template.md)
 
 ## Operations
 
@@ -115,6 +114,7 @@ materially differ by stack. Regenerate consolidated guides with `scripts/consoli
 
 - [Quick reference](reference/quick-reference.md)
 - [Quick start courses](reference/quick-start-courses.md)
+- [Project Key, registry, host, and credentials](reference/identifiers-and-auth.md)
 - [Gateway CLI](reference/gateway-cli.md)
 - [Configuration keys and precedence](reference/configuration-keys-precedence.md)
 - [Environment variables](reference/environment-variables.md)
@@ -143,11 +143,11 @@ categories:
     order: 1
     path: "introduction"
     items:
+      - title: "How Graftcode works"
+        path: "introduction/what-problem-does-graftcode-solve.md"
+        order: 1
       - title: "What is Graftcode?"
         path: "introduction/what-is-graftcode.md"
-        order: 1
-      - title: "The five-minute mental model"
-        path: "introduction/what-problem-does-graftcode-solve.md"
         order: 2
       - title: "Choose a scenario"
         path: "introduction/when-to-use-graftcode.md"
@@ -290,9 +290,6 @@ categories:
       - title: "PHP"
         path: "language-guides/php.md"
         order: 8
-      - title: "Language guide template"
-        path: "language-guides/template.md"
-        order: 9
   - name: "Operations"
     order: 5
     path: "operations"
@@ -337,33 +334,36 @@ categories:
       - title: "Quick start courses"
         path: "reference/quick-start-courses.md"
         order: 2
+      - title: "Project Key, registry, host, and credentials"
+        path: "reference/identifiers-and-auth.md"
+        order: 3
       - title: "Gateway CLI"
         path: "reference/gateway-cli.md"
-        order: 3
+        order: 4
       - title: "Configuration keys and precedence"
         path: "reference/configuration-keys-precedence.md"
-        order: 4
+        order: 5
       - title: "Environment variables"
         path: "reference/environment-variables.md"
-        order: 5
+        order: 6
       - title: "Supported runtimes and package managers"
         path: "reference/supported-runtimes-package-managers.md"
-        order: 6
+        order: 7
       - title: "Type compatibility matrix"
         path: "reference/type-matrix.md"
-        order: 7
+        order: 8
       - title: "Errors and status codes"
         path: "reference/errors-status.md"
-        order: 8
+        order: 9
       - title: "Generated package structure"
         path: "reference/generated-package-structure.md"
-        order: 9
+        order: 10
       - title: "Ports and protocols"
         path: "reference/ports-protocols.md"
-        order: 10
+        order: 11
       - title: "Known limitations"
         path: "reference/known-limitations.md"
-        order: 11
+        order: 12
   - name: "Troubleshooting"
     order: 7
     path: "troubleshooting"

@@ -35,7 +35,7 @@ TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, 
 
 ## Analysis and registration
 
-The module analyzer creates a [UGM](package-generation.md) from the selected callable surface. The service-model uploader accepts UGM data, and package-generation components later consume stored UGM data. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
+The Graftcode Engine creates a [UGM](package-generation.md) from the selected callable surface and later uses it to generate packages. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
 
 ![UGM and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
 
@@ -43,8 +43,6 @@ The module analyzer creates a [UGM](package-generation.md) from the selected cal
 
 It is not the generated Graft and it is not the user module. It does expose network listeners, so describing it as “not in the traffic path” would be inaccurate for remote calls.
 
-## Evidence and uncertainty
+## Data-egress note
 
-Verified against `graftcode-gateway/README.md`, the module analyzers, `graftcode-service-model-uploader`, and package-generation engine.
-
-The inspected implementation does not establish that only interface metadata ever leaves the environment under every Gateway option or plugin. Treat data-egress behavior as deployment- and plugin-specific until separately audited.
+Graftcode does not guarantee that only interface metadata leaves the environment under every Gateway option or plugin. Treat data-egress behavior as deployment- and plugin-specific, and review it for your configuration.

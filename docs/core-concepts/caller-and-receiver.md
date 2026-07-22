@@ -37,6 +37,4 @@ REST starts from manually designed resources, routes, HTTP verbs, and payloads. 
 
 ![REST exposes routes and payloads while Graftcode generates calls from a callable surface](../../assets/diagrams/rest-vs-graftcode.svg)
 
-## Evidence
-
-The terms align with the caller-side `Interpreter.Execute` and receiver-side `Interpreter.Process` paths in Hypertube. Bidirectional callbacks and event guarantees are intentionally not claimed here because the inspected core-concept evidence did not establish their supported scope across runtimes and transports.
+Bidirectional callbacks and event guarantees are not claimed here; verify their supported scope for your runtime and transport pair before relying on them.

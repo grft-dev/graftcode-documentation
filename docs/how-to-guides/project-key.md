@@ -4,14 +4,13 @@ description: "Obtain a project key from the portal, configure Gateway, and under
 articleTitle: "Use a portal project key"
 ---
 A **project key** authenticates Gateway to Graftcode portal and project metadata services. It is not
-the same as the **registry URL** shown on the dashboard for installing a generated Graft.
+the same as the **registry URL**, the **runtime host**, or a **call credential**.
 
-## What each identifier is for
+> **Project Key** registers the Gateway in a project. The **registry URL** installs the Graft. The
+> **runtime host** executes methods. The **call credential** authorizes a specific call.
 
-| Identifier | Used by | Purpose |
-| --- | --- | --- |
-| **Project key** (`--projectKey`, `GC_PROJECT_KEY`) | Gateway at startup | Portal/project identity, stable publication context |
-| **Registry URL** (in Vision install commands) | Consumer package managers | Download a specific generated Graft package |
+See [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md) for the
+canonical diagram and table.
 
 A Gateway without a project key can receive a **new registry identifier after restart**. Consumers must
 copy install commands from the **currently running** Gateway or Vision—not from an old log line.

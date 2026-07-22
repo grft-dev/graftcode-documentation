@@ -52,10 +52,9 @@ entrypoint execution is not unconditional.
 
 ## Other runtimes
 
-Verified DI walkthroughs for Node.js, Python, Java, PHP, and Ruby are not maintained in this
-documentation set. Apply the same facade pattern: internal container, public static or module-level
-methods with portable types only. See the [language guides](../language-guides/index.md) for
-runtime-specific packaging notes.
+Dedicated DI walkthroughs for Node.js, Python, Java, PHP, and Ruby are not included here. Apply the
+same facade pattern: internal container, public static or module-level methods with portable types
+only. See the [language guides](../language-guides/index.md) for runtime-specific packaging notes.
 
 ## Next steps
 

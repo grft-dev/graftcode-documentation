@@ -15,8 +15,8 @@ are disabled unless `--tcpServer` or `--http2Server` is enabled.
 3. Restrict Vision to trusted networks unless public access is intended and reviewed.
 4. Use a WebSocket-capable proxy for `ws://`/`wss://`; preserve upgrade headers and suitable idle
    timeouts.
-5. Terminate TLS at reviewed Gateway-capable infrastructure. The inspected Gateway documentation does
-   not establish native certificate configuration.
+5. Terminate TLS at reviewed Gateway-capable infrastructure. Gateway does not provide native
+   certificate configuration.
 6. Keep stateful connections pinned to the same Gateway instance.
 7. Configure CORS only for browser-facing HTTP surfaces. `--corsConfig` values can override CLI
    origin defaults during startup.

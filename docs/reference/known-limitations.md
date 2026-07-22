@@ -6,16 +6,16 @@ keywords: "graftcode alpha, limitations, runtime support, type support, compatib
 
 # Known limitations
 
-This is the canonical limitations page for the current inspected implementation. A runtime name in
-Gateway, a declaration in an analyzer model, or a generated package by itself does not prove that the
-complete provider-to-consumer path works. Validate the exact runtime pair, generated package, transport,
-and deployment you intend to operate.
+This is the canonical limitations page for the current release. A runtime name in Gateway, a
+declaration in the analyzed surface, or a generated package by itself does not prove that the complete
+provider-to-consumer path works. Validate the exact runtime pair, generated package, transport, and
+deployment you intend to operate.
 
 Status terms used below:
 
-- **Verified** — implementation and automated test evidence was found.
-- **Partial** — some paths are implemented or tested, but no complete matrix exists.
-- **Unknown** — the inspected evidence does not establish a guarantee.
+- **Verified** — supported and covered by automated tests.
+- **Partial** — some paths are supported, but no complete matrix exists.
+- **Unknown** — not established as a guarantee.
 
 This page does not publish roadmap dates or links that have not been independently confirmed.
 
@@ -26,7 +26,7 @@ This page does not publish roadmap dates or links that have not been independent
 - **Scenario:** Choose a provider or consumer runtime.
 - **Observed behavior:** .NET/CLR, Node.js/TypeScript, Java/JVM, Python 3, PHP, and Ruby have generation
   engines and cross-runtime install/invoke evidence. Gateway advertises Perl hosting, but no Perl code
-  generator, package-manager endpoint, caller suite, or complete analyzer-to-publication path was found.
+  generation, package endpoint, caller coverage, or complete provider-to-publication path was found.
 - **Workaround:** Use one of the six verified caller runtimes. Treat Perl as limited hosting only and do
   not infer a CPAN or generated-client workflow.
 - **Evidence/status:** **Verified** for the six workflows; **partial** for Perl. See
@@ -65,15 +65,15 @@ This page does not publish roadmap dates or links that have not been independent
   as “Using complex types from framework in public interfaces is not supported yet.”
 - **Workaround:** Use primitives and explicitly modeled public types. Represent dates as ISO-8601
   strings and identifiers as strings unless the exact language pair is tested for a richer mapping.
-- **Evidence/status:** **Verified** in GPGE error protocol and unsupported-type tests. Analyzer discovery
-  of a type is not proof that package generation accepts it.
+- **Evidence/status:** **Verified** by the Graftcode Engine's error handling and unsupported-type tests.
+  Discovery of a type is not proof that package generation accepts it.
 
 ### There is no universal supported-type matrix
 
 - **Scenario:** Use arrays, nested models, nullability, enums, unions, maps, sets, streams, files, or
   other non-primitive values.
-- **Observed behavior:** Handlers exist for several richer shapes, but support differs across analyzers,
-  target generators, and runtimes. Unknown values may degrade to `unknown` or `object`.
+- **Observed behavior:** Several richer shapes are handled, but support differs across runtimes.
+  Unknown values may degrade to `unknown` or `object`.
 - **Workaround:** Keep the contract to primitives, arrays of supported values, and plain modeled types;
   generate and smoke-test every target package.
 - **Evidence/status:** **Partial**. See [Type mapping](../core-concepts/type-mapping.md).
@@ -83,12 +83,12 @@ This page does not publish roadmap dates or links that have not been independent
 ### Generic metadata is not equivalent to portable generic contracts
 
 - **Scenario:** Expose generic classes, methods, constraints, or nested generic collections.
-- **Observed behavior:** The .NET analyzer records generic parameters and has complex-generic tests, and
-  generators contain generic handlers. No complete cross-runtime matrix proves equivalent constraints,
+- **Observed behavior:** For .NET, the Graftcode Engine records generic parameters and generates them, with
+  complex-generic tests. No complete cross-runtime matrix proves equivalent constraints,
   variance, overloads, or nested generic mappings.
 - **Workaround:** Expose a concrete facade with closed, simple contract types. Keep generic
   implementation details behind that facade.
-- **Evidence/status:** **Partial**; analyzer and generator evidence exists, universal generation and
+- **Evidence/status:** **Partial**; per-runtime support exists, universal generation and
   invocation compatibility does not.
 
 ## Inheritance
@@ -97,7 +97,7 @@ This page does not publish roadmap dates or links that have not been independent
 
 - **Scenario:** Expose base classes, derived classes, interfaces with implementation inheritance, or
   polymorphic values.
-- **Observed behavior:** Some analyzers and generators represent inherited or nested type information,
+- **Observed behavior:** The Graftcode Engine represents inherited or nested type information for some runtimes,
   but no complete language-pair matrix establishes constructor, member, dispatch, and serialization
   semantics for arbitrary hierarchies.
 - **Workaround:** Flatten the public contract into standalone facade types and delegate to inherited
@@ -111,7 +111,7 @@ This page does not publish roadmap dates or links that have not been independent
 
 - **Scenario:** Consumers construct a remote instance, including overloaded or parameterized
   constructors.
-- **Observed behavior:** .NET and Node analyzers record public constructors, and generators have
+- **Observed behavior:** For .NET and Node.js, the Graftcode Engine records and generates public constructors, and has
   constructor and overloaded-constructor coverage. This does not prove every overload shape or
   cross-runtime mapping.
 - **Workaround:** Prefer one unambiguous constructor with simple parameters, or expose a static factory
@@ -134,7 +134,7 @@ This page does not publish roadmap dates or links that have not been independent
 
 ## Async
 
-### Async behavior is runtime- and generator-specific
+### Async behavior is runtime-specific
 
 - **Scenario:** Expose or consume `Task`, `Promise`, future, or awaitable methods.
 - **Observed behavior:** Node-generated methods and declarations include Promise/thenable paths. This
@@ -151,7 +151,7 @@ This page does not publish roadmap dates or links that have not been independent
 ### Bidirectional callback, delegate, and event support has no complete matrix
 
 - **Scenario:** Pass a callback/delegate, subscribe to an event, or rely on reverse invocation.
-- **Observed behavior:** Analyzer/runtime code contains delegate and callback-related handlers, but no
+- **Observed behavior:** Graftcode contains delegate and callback-related handling, but no
   complete provider/consumer/transport matrix establishes lifecycle, reconnect, error, or browser
   behavior.
 - **Workaround:** Use request/result methods for portable contracts. Introduce callbacks only after an
@@ -187,7 +187,7 @@ This page does not publish roadmap dates or links that have not been independent
 ### npm dependency behavior must be read from the generated package
 
 - **Scenario:** Install an npm Graft and its runtime dependency.
-- **Observed behavior:** Current generator and package-manager code names
+- **Observed behavior:** Generated npm packages depend on
   `hypertube-nodejs-sdk`, and generated package metadata can declare it as a dependency. Older
   documentation contradicted itself by prescribing both `hypertube-nodejs-sdk` and
   `javonet-nodejs-sdk`, and by claiming manual installation was always required.
@@ -269,7 +269,7 @@ This page does not publish roadmap dates or links that have not been independent
   context is cached after first initialization.
 - **Workaround:** Inspect higher-priority environment/file sources and set configuration before the
   first generated call.
-- **Evidence/status:** **Verified** in `ConfigPriority`, resolvers, and generator tests. See
+- **Evidence/status:** **Verified** for .NET and Node.js configuration resolution. See
   [Configuration resolution](../core-concepts/configuration-resolution.md).
 
 ## Deployment
@@ -278,9 +278,9 @@ This page does not publish roadmap dates or links that have not been independent
 
 - **Scenario:** Deploy behind load balancers, service meshes, multiple replicas, or unreliable
   networks.
-- **Observed behavior:** The inspected implementation does not establish universal health-check,
-  session-affinity, failover, retry, backoff, circuit-breaker, idempotency, or exactly-once behavior.
-  Retrying an invocation can repeat business effects.
+- **Observed behavior:** Beyond the basic `GET /status` liveness endpoint, Gateway does not provide
+  universal readiness, session-affinity, failover, retry, backoff, circuit-breaker, idempotency, or
+  exactly-once behavior. Retrying an invocation can repeat business effects.
 - **Workaround:** Add deployment-specific health checks and resilience at an owned layer. Retry only
   operations designed and tested as idempotent; use explicit operation IDs for deduplication.
 - **Evidence/status:** **Unknown** as a general guarantee; validate each topology.
@@ -298,7 +298,7 @@ This page does not publish roadmap dates or links that have not been independent
 
 ### There is no universal backward-compatibility guarantee
 
-- **Scenario:** Upgrade Gateway, Hypertube, generator, provider contract, or generated package.
+- **Scenario:** Upgrade Gateway, Hypertube, the Graftcode Engine, provider contract, or generated package.
 - **Observed behavior:** The implementation contains versions and package-query paths, but no complete
   test suite proves wire, binary, source, or old-client/new-provider compatibility across releases and
   ecosystems. Additive source changes can still alter generated names, overloads, exports, or mappings.

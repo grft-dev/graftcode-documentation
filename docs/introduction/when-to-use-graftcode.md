@@ -14,7 +14,21 @@ protocol or data movement pattern.
 > pages when you need concepts, constraints, or operations detail. See the full course index in
 > [Quick start courses](../reference/quick-start-courses.md).
 
+## Start with your goal
+
+Most tasks map to one of four goals. Pick yours, then choose your runtime in the matching section
+below:
+
+1. **Expose a new provider** — make a module callable → [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend)
+2. **One backend calls another** — service-to-service → [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices)
+3. **A frontend calls a backend** → [Connect frontend to backend](https://docs.graftcode.com/quick-start/connect-frontend-to-backend)
+4. **Call a module in another language** → [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology)
+
+Less common goals: [switch between monolith and microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices) · [expose methods as AI tools](https://docs.graftcode.com/quick-start/expose-mcp).
+
 ![Routing from an integration goal to one of six Quick start courses](../../assets/diagrams/integration-scenarios.svg)
+
+The sections below add the runtime-specific links and the concepts to read for each goal.
 
 ## I want one backend to call another
 

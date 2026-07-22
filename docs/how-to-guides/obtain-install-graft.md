@@ -7,6 +7,9 @@ articleTitle: "Obtain and install a Graft"
 A **Graft** is a generated consumer package. You do not write it by hand—you install it with your
 normal package manager. There are two common paths.
 
+The **registry URL** here is only for installation. It is separate from the runtime host you set later
+to execute calls — see [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md).
+
 ## Install a public Graft
 
 Grafts published to the **public Graftcode registry** can be installed without running your own

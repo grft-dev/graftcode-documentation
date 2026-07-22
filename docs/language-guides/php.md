@@ -7,10 +7,10 @@ description: "Expose PHP modules and consume generated Grafts through Composer."
 
 ## Support status and direction
 
-**Provider: supported. Consumer: supported, with gaps.** Gateway lists PHP hosting, and the inspected
-implementation contains PHP analysis, Composer resolution, PHP code generation, and public
-cross-runtime install/invoke tests. Unlike .NET, Node.js, JVM, and Python, no inspected virtual-repo
-suite demonstrates the complete first-publish Gateway path for PHP. Treat that as a documentation and
+**Provider: supported. Consumer: supported, with gaps.** Gateway hosts PHP, and Graftcode provides
+PHP analysis, Composer resolution, PHP code generation, and cross-runtime install/invoke coverage.
+Unlike .NET, Node.js, JVM, and Python, the complete first-publish Gateway path for PHP is not yet
+fully verified. Treat that as a documentation and
 release-verification gap, not as permission to invent commands.
 
 ## Prerequisites
@@ -34,7 +34,7 @@ loaded types and publication in Vision before consuming.
 
 ## Consumer support
 
-PHP consumers receive a Composer package containing generated classes. The inspected generator
+PHP consumers receive a Composer package containing generated classes. The generated package
 defines public static properties `GraftConfig::$host`, `::$stateless`, and `::$module`, plus
 `setHeaders(...)` and scoped invocation methods. Generated namespaces and method names vary by source
 runtime.
@@ -103,7 +103,7 @@ GraftConfig::$stateless = true;
 ```
 
 Defaults are `host = 'inmemory'` and `stateless = false`. Configure before the first generated call.
-The inspected generated class also supports:
+The generated class also supports:
 
 ```php
 GraftConfig::setHeaders(['Authorization' => 'Bearer <token>']);
@@ -150,16 +150,10 @@ PHP does not have a dedicated Quick start article. Follow
 or [.NET](https://docs.graftcode.com/quick-start/expose-backend/dotnet) for the hosting workflow, then
 apply PHP install and import shapes from Vision. See [Quick start courses](../reference/quick-start-courses.md).
 
-## Verified samples and tests
+## Samples
 
 - [PHP simple-car package source](https://github.com/grft-dev/sdn-test-simple-car)
 - [Gateway runtime documentation](https://github.com/grft-dev/graftcode-gateway#runtimes-typical-setups)
-- Inspected generated config:
-  `graftcode-code-generator/src/php/GraftcodeCodeGenerator/Core/Generator/Handler/Utils/GraftConfigClassProvider.php`
-- Inspected PHP-to-PHP test:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/php/php-to-php.spec.ts`
-- Inspected PHP caller matrix:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/php/`
 
 ## Known gaps
 

@@ -88,7 +88,7 @@ GraftConfig.host = "wss://service.example/ws";
 GraftConfig.stateless = true;
 ```
 
-Defaults are `host = "inmemory"` and `stateless = false`. The inspected generator also provides
+Defaults are `host = "inmemory"` and `stateless = false`. The generated package also provides
 `setHeaders(Map<String,String>)` and scoped invocation helpers. Configure before the first generated
 call.
 
@@ -106,7 +106,7 @@ arrays. Avoid `CompletableFuture`, reactive types, `Optional`, collections/maps/
 timestamps and IDs.
 
 **Gap:** boxed/null values, records, enums, inheritance, `BigDecimal`, generics, and every collection
-variant are not exhaustively demonstrated by the inspected E2E matrix.
+variant are not exhaustively verified. Confirm the generated form for your exact pair.
 
 ## Runtime-specific limitations
 
@@ -154,15 +154,9 @@ workflow:
 - [Expose MCP](https://docs.graftcode.com/quick-start/expose-mcp/groovy)
 - [Switch monolith ↔ microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/groovy)
 
-## Verified samples and tests
+## Samples
 
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
-- Inspected generated config:
-  `graftcode-code-generator/src/jvm/graftcode-code-generator/src/main/java/com/graftcode/core/generator/handler/utils/GraftConfigClassProvider.java`
-- Inspected E2E caller suite:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/jvm/`
-- Full publish tests:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/virtual-repos-smoke-tests/jvm/`
 
 ## Known gaps
 

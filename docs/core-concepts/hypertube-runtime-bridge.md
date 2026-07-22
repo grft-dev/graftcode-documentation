@@ -5,7 +5,7 @@ description: "The verified role of Hypertube in serializing, transporting, execu
 
 # Hypertube runtime bridge
 
-**Hypertube** is the runtime layer used by generated Grafts. The inspected SDK turns generated wrapper operations into commands, serializes them, selects an execution path from resolved connection data, and deserializes the response.
+**Hypertube** is the runtime layer used by generated Grafts. It turns generated wrapper operations into commands, serializes them, selects an execution path from resolved connection data, and deserializes the response.
 
 ![Hypertube is the bridge between the consumer's generated Graft and the Gateway-hosted provider, carrying the serialized call and the response](../../assets/diagrams/how-it-works-diagram.svg)
 
@@ -32,10 +32,8 @@ At runtime, the caller-side interpreter:
 
 The receiver-side interpreter deserializes an incoming command, dispatches it to a handler, and produces a response.
 
-## What is not established here
+## Scope
 
-The inspected code clearly uses serialized command models, but these pages do not claim a stable public wire specification named “IIP”; that name and compatibility guarantee were not established by the inspected tests. Likewise, no general performance comparison with REST or gRPC is asserted without benchmark scope and results.
+Hypertube uses serialized command models. These pages do not claim a stable public wire specification named “IIP”; treat that name and its compatibility as unversioned. No general performance comparison with REST or gRPC is asserted without benchmark scope and results.
 
-## Evidence
-
-Verified against `HYPERTUBE/src/netcore/Hypertube.Netcore.Core/Interpreters/Interpreter.cs`, `Transmitter/Transmitter.cs`, and SDK configuration resolvers. See [Invocation lifecycle](invocation-lifecycle.md) for the end-to-end sequence.
+See [Invocation lifecycle](invocation-lifecycle.md) for the end-to-end sequence.

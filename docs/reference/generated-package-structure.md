@@ -58,12 +58,12 @@ GraftConfig.stateless = false
 - whether runtime dependencies are transitive in the current Alpha.
 
 Read these values from current Gateway/Vision output and the installed artifact. Do not edit generated
-files as the source of truth; change the provider contract or generator and regenerate.
+files as the source of truth; change the provider contract and regenerate.
 
 Normal runtime calls do not regenerate the package. They use installed wrappers and resolved
 configuration to invoke the provider.
 
-**Gap:** this reference describes responsibilities shared by inspected generators, not an ABI or file
+**Gap:** this reference describes responsibilities shared by generated packages, not an ABI or file
 layout guarantee across releases.
 
 ## Next steps

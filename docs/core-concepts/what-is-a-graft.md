@@ -12,9 +12,9 @@ A **Graft** is a generated package for calling a module through Graftcode. It pr
 ## The four parts
 
 1. A producer writes a module.
-2. A module analyzer represents its callable surface as a
+2. The Graftcode Engine represents its callable surface as a
    [Unified Graft Model (UGM)](package-generation.md).
-3. A package generator uses the UGM to build a Graft for a target package ecosystem.
+3. The Graftcode Engine uses the UGM to build a Graft for a target package ecosystem.
 4. At runtime, the installed Graft resolves configuration and invokes the hosted or in-memory module.
 
 The module implementation and the consuming application are user-written. The wrapper, configuration class, and invocation plumbing inside a Graft are generated.
@@ -35,8 +35,8 @@ Package generation and invocation are separate:
 
 ![Build and package activities separated from runtime invocation](../../assets/diagrams/build-vs-runtime.svg)
 
-## Verified scope
+## Scope
 
-This definition is based on the module analyzers, code generators, package-generation engine, generated `GraftConfig` templates, and Hypertube SDK under `GraftingAgent`. It does **not** imply that every source-language type can be mapped to every target language; see [Type mapping](type-mapping.md).
+This does **not** imply that every source-language type can be mapped to every target language; see [Type mapping](type-mapping.md).
 
 Next: [Callable surface](callable-surface.md), [Package generation](package-generation.md), and [Invocation lifecycle](invocation-lifecycle.md).

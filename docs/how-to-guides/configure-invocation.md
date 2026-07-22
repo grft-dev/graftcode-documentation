@@ -5,6 +5,10 @@ articleTitle: "Configure Graft invocation"
 ---
 Point an installed Graft at the intended provider.
 
+The `GraftConfig` **host** is the runtime endpoint that executes your calls. It is **not** the
+registry URL used to install the Graft — see
+[Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md).
+
 ## 1. Choose execution mode
 
 - `inmemory` loads the provider module in the consumer process.
@@ -62,7 +66,7 @@ Gateway restart or scale-in.
 ## 4. Use another configuration source only when needed
 
 Generated packages inspect multiple configuration source levels (environment, files, programmatic
-settings, then library defaults). Earlier levels win in the inspected resolver.
+settings, then library defaults). Earlier levels win.
 
 ## Next steps
 

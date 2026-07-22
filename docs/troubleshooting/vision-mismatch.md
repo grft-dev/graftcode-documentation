@@ -36,7 +36,7 @@ keywords: "graftcode vision stale, contract mismatch, gateway UI, generated pack
 7. **Refresh only after verifying backend state.** A browser refresh cannot fix wrong process routing,
    failed publication, stale provider artifacts, or an old installed package.
 8. **Treat UI snippets as release-scoped evidence.** Exact Vision install-command, execution, and live
-   refresh behavior is not established for every release by the inspected backend tests.
+   refresh behavior is not guaranteed for every release.
 
 ## Fixes
 

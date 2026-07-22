@@ -3,8 +3,10 @@ title: Authenticate Graft calls
 description: Pass tokens to remote providers using headers or supported method parameters.
 articleTitle: Authenticate Graft calls
 ---
-Gateway `--projectKey` authenticates **publication**, not each invocation. Validate credentials inside
-provider methods or through generated header APIs.
+Gateway `--projectKey` authenticates **publication**, not each invocation. A **call credential**
+authorizes one specific call and is validated inside provider methods or through generated header
+APIs. See [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md) for how
+this differs from the Project Key, registry URL, and runtime host.
 
 ## Option 1: token as a method parameter
 

@@ -71,29 +71,8 @@ system (hosts, auth, failures, observability); Graftcode removes the repetitive 
 For a public HTTP API aimed at arbitrary third parties, REST or GraphQL may remain the better
 boundary—see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
 
-## What a successful call looks like
-
-A typical cross-language flow:
-
-1. A **[provider](../core-concepts/callable-surface.md)** exposes a plain public method (for example a
-   static `CalculateMonthlyBill` on a .NET class).
-2. **[Gateway](../core-concepts/graftcode-gateway.md)** hosts the built module. The host CLI is
-   **`gg`** ([install Gateway](../how-to-guides/run-gateway-locally.md#1-install-gateway), then
-   `gg ./path/to/module.dll`); it discovers the surface and publishes the model. To run in a
-   container, [build your own image](../how-to-guides/deploy-with-docker.md)—there is no official
-   pre-built Gateway image.
-3. You copy the **complete install command** from that Gateway's
-   **[Vision](../core-concepts/graftcode-vision.md)** UI when publishing your own module—or install a
-   **public Graft** from `https://grft.dev` when consuming a published package
-   ([Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)).
-4. The **consumer** installs the generated Graft, sets
-   [`GraftConfig` host](../how-to-guides/configure-invocation.md) to the Gateway WebSocket endpoint
-   **before the first call**, and invokes the generated method.
-5. The result returns as if the remote method were local—still a distributed call under the hood.
-
-Expected outcome for a billing example: `unitPrice * units` computed on the provider and returned to
-the caller. Method naming may differ by target language (for example PascalCase on .NET, lower camel
-case in generated JavaScript).
+For the step-by-step build → host → install → call sequence, see
+[How Graftcode works](what-problem-does-graftcode-solve.md).
 
 ## How the pieces fit together
 
@@ -111,7 +90,7 @@ The diagram uses product labels. The same picture in documentation terms:
 | **Service business logic** (right) | Your **provider** module—the [hosted implementation](../core-concepts/graftcode-gateway.md), not the Graft package. |
 | **Graftcode Vision** | The Gateway-hosted UI for discovery, install commands, and configuration snippets. |
 | **Public interface** | The provider's [callable surface](../core-concepts/callable-surface.md)—public types and methods Gateway analyzes. |
-| **Graftcode Engine** | The [package-generation](../core-concepts/package-generation.md) services that turn that surface into installable Grafts. This is **setup time**; normal calls use the installed Graft and Hypertube—they do not regenerate the package. |
+| **Graftcode Engine** | Analyzes the surface and [generates](../core-concepts/package-generation.md) the installable Graft. This is **setup time**; normal calls use the installed Graft and Hypertube—they do not regenerate the package. |
 
 **What you write vs what Graftcode generates:**
 
@@ -124,69 +103,31 @@ The diagram uses product labels. The same picture in documentation terms:
 
 Text version: `consumer code -> Graft -> Hypertube -> Gateway -> provider method -> result` (after the Graft is installed and configured).
 
-## The call flow
-
-1. Gateway loads the provider module and discovers the supported [callable surface](../core-concepts/callable-surface.md).
-2. Gateway publishes that surface for [package generation](../core-concepts/package-generation.md)
-   (stored internally as a [UGM](../core-concepts/glossary.md#unified-graft-model-ugm)).
-3. The developer copies the exact install command from the live Gateway output or Vision.
-4. The consumer installs the generated Graft in the target project.
-5. The consumer configures the generated host field before its first call.
-6. The generated client serializes an invocation of the provider method.
-7. Gateway dispatches the invocation and returns the result.
-
-Package generation is not repeated on every call.
-
 ## How this differs from REST and GraphQL
 
 ![REST routes and payloads versus Graftcode callable surface and generated Graft](../../assets/diagrams/rest-vs-graftcode.svg)
 
-With REST or GraphQL, a team normally maintains a **protocol contract** separate from the provider's
-business code: resources or operations, schemas, clients, serialization, and versioning. With
-Graftcode, the supported **public programming surface** is the contract and the installed Graft is
-the client—so much of the integration scaffolding disappears for callers that can use generated
-packages.
-
-| Typical REST / GraphQL integration | Graftcode (internal / controlled callers) |
-| --- | --- |
-| Design URLs, verbs, or GraphQL operations | Expose public methods on a module |
-| OpenAPI / GraphQL schema and codegen (or manual client) | Install one generated Graft package |
-| Per-call request building and response parsing | Typed method call in the consumer language |
-| Contract drift between spec and implementation | Callable surface analyzed from the provider |
-| Often natural for public, browser, and partner APIs | Strong fit for service-to-service and cross-language modules |
-
-**What you stop writing (in the common case):** HTTP client wrappers, route constants, request/response
-DTOs mapped only for transport, and glue that turns exceptions into status codes for internal callers.
-
-**What you still own:** provider business logic, Gateway deployment, `GraftConfig` / host configuration,
-authentication, retries, monitoring, and compatibility across language and type boundaries.
-
-This is a difference in developer workflow, not a claim that networks disappear. Remote Graft calls
-still cross a transport, can fail, require compatible contract types, and need authentication,
-authorization, observability, timeouts, retries, and deployment controls appropriate to the system.
-REST and GraphQL remain useful for public protocol-oriented APIs, webhooks, broad third-party
-interoperability, and clients that cannot install a generated Graft. Many products use both—see
+With REST or GraphQL you maintain a **protocol contract** (URLs/operations, schemas, clients,
+serialization, versioning) separate from your business code. With Graftcode the supported **public
+method surface** is the contract and the installed Graft is the client, so that scaffolding
+disappears for callers that can install generated packages. It is still a distributed call — auth,
+failures, timeouts, and observability still matter. REST and GraphQL remain the better fit for public,
+browser, and partner APIs; many products use both. See
 [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
 
-## Boundaries
+## Where teams use Graftcode
 
-- Graftcode does not replace business logic, infrastructure, deployment, security, or monitoring.
-- Public contracts must use types supported by the complete provider-to-consumer generation path.
-- Current .NET public methods must be synchronous; keep `Task`, framework types, streams, HTTP
-  abstractions, and cancellation tokens out of the public surface.
-- Prefer static stateless methods for remote work. Stateful instances require affinity and have a
-  lifecycle across calls.
-- `Host` defaults to in-memory execution. Set the generated host field before the first remote call.
-- A free Gateway registry ID is dynamic. A project key is required when stable project identity is
-  needed.
-- Generated output and Vision from the running Gateway are authoritative for package names, imports,
-  versions, and configuration snippets.
+- Service-to-service calls across languages, without hand-written HTTP clients.
+- Sharing a provider library with internal or controlled consumers.
+- Flipping the same code between in-memory and remote execution by configuration.
+- Exposing provider methods as MCP tools.
+
+Pick your goal and runtime in [Choose a scenario](when-to-use-graftcode.md), and review
+[current status and limitations](where-graftcode-fits.md) before production.
 
 ## Next steps
 
 1. [Quick start](https://docs.graftcode.com/quick-start) — first working call for your stack.
-2. [The five-minute mental model](what-problem-does-graftcode-solve.md).
-3. [What is a Graft?](../core-concepts/what-is-a-graft.md).
+2. [How Graftcode works](what-problem-does-graftcode-solve.md) — the core mental model.
+3. [Choose a scenario](when-to-use-graftcode.md) — pick your goal, then your runtime.
 4. [Quick reference](../reference/quick-reference.md) — keep open while coding.
-5. [Choose a scenario](when-to-use-graftcode.md) — Quick start links for your integration goal.
-6. [Current limitations](where-graftcode-fits.md) before production use.

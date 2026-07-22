@@ -34,7 +34,7 @@ keywords: "graftcode connection refused, timeout, websocket, authentication, JWT
    certificate.
 7. **Separate project identity from call authentication.** Gateway `--projectKey`/`GC_PROJECT_KEY`
    concerns portal/project metadata. It does not by itself authorize runtime invocations.
-8. **Check header constraints.** Generated .NET/Node packages have header hooks in inspected code, but
+8. **Check header constraints.** Generated .NET/Node packages have header hooks, but
    browser WebSocket handshakes cannot set arbitrary custom headers. Use only the browser transport and
    auth configuration emitted/documented for that release.
 9. **Classify the timeout.** Record whether it occurs during connect, TLS/handshake, authentication,

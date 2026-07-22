@@ -17,6 +17,18 @@ successful publication. A listening socket alone does not prove the provider loa
 At minimum, supervise the Gateway process and selected listener. A process/socket check answers
 whether the host is alive, not whether calls are correct.
 
+Gateway also exposes a built-in **`GET /status`** endpoint on its HTTP listener (default port `81`,
+available when the HTTP server is enabled). It returns `200 OK` with the body `OK` once the HTTP
+server is running, which is a convenient liveness probe:
+
+```bash
+curl -f http://<gateway-host>:81/status
+```
+
+`/status` confirms the Gateway HTTP server is responsive. It does not prove that a specific provider
+method executes correctly or that the WebSocket runtime-call listener is ready — use a provider
+method for readiness (below).
+
 ## Readiness
 
 Use a small, side-effect-free provider method through an installed Graft from the same network path as
@@ -31,9 +43,9 @@ listener.
 After readiness fails, stop new traffic before terminating the instance. Stateful sessions cannot be
 moved transparently; a restart may invalidate remote object identity.
 
-**Gap:** no stable built-in `/health`, `/ready`, or `/live` endpoint is documented in the inspected
-Gateway README. Do not publish an invented route. Platform probes must use process/socket checks or an
-explicit provider method until a release documents a native endpoint.
+**Note:** Gateway provides `GET /status` for liveness but no dedicated `/ready` or `/live` routes.
+Use `/status` (or a process/socket check) for liveness and an explicit provider method for readiness.
+Do not invent other routes.
 
 ## Next steps
 

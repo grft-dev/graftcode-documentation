@@ -7,8 +7,8 @@ description: "Expose JavaScript or TypeScript modules and consume generated Graf
 
 ## Support status and direction
 
-**Provider: supported. Consumer: supported.** Node.js has module analysis, npm package generation, and
-cross-runtime public and virtual E2E coverage. TypeScript is supported through compiled JavaScript and
+**Provider: supported. Consumer: supported.** Graftcode supports Node.js end to end — analysis, npm
+package generation, and cross-runtime coverage. TypeScript is supported through compiled JavaScript and
 declaration metadata; Node.js is the runtime.
 
 ## Prerequisites
@@ -89,8 +89,8 @@ GraftConfig.stateless = true;
 ```
 
 Defaults are `host = "inmemory"` and `stateless = false`. In-memory mode loads the provider module
-locally; remote mode uses the Gateway endpoint. Configure before the first call. The inspected
-generator also provides `setHeaders(...)`, `invokeWithHeaders(...)`, and `setConfig(...)`.
+locally; remote mode uses the Gateway endpoint. Configure before the first call. The generated
+package also provides `setHeaders(...)`, `invokeWithHeaders(...)`, and `setConfig(...)`.
 
 For browsers, WebSocket handshakes cannot carry arbitrary custom headers. If auth headers are needed,
 use the HTTP/2 endpoint emitted by Vision and the Gateway context/HTTP2 options; do not invent its URL.
@@ -140,17 +140,11 @@ the simple-car E2E baseline. Verify their generated form before use.
 - [Expose MCP (JavaScript)](https://docs.graftcode.com/quick-start/expose-mcp/javascript)
 - [Switch monolith ↔ microservices (JavaScript)](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices/javascript)
 
-## Verified samples and tests
+## Samples
 
 - [Cross-runtime simple-car sample](https://github.com/grft-dev/grft-test-simple-car)
-- Inspected generated config:
-  `graftcode-code-generator/src/nodejs/src/core/generator/templates/config.template.js`
-- Inspected E2E caller suite:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/public-repos-smoke-tests/node/`
-- Full publish tests:
-  `graftcode-e2e-tests/src/nodejs/grafting-agent-e2e-tests/tests/virtual-repos-smoke-tests/node/`
 
 ## Known gaps
 
-The inspected tests do not prove every browser/bundler combination or advanced TypeScript type.
+Not every browser/bundler combination or advanced TypeScript type is guaranteed.
 Vision's exports and the installed `.d.ts` files are authoritative.
