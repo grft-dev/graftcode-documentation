@@ -11,25 +11,25 @@ a quick capability summary and the key limits to check. For the exhaustive list,
 
 ## Capability summary
 
-| Runtime | Provider | Consumer |
+| Runtime | Host Receiver code | Act as Caller |
 | --- | --- | --- |
-| [.NET](../language-guides/dotnet.md) | Supported | Supported |
-| [Node.js / TypeScript](../language-guides/nodejs-typescript.md) | Supported | Supported |
-| [Java / JVM](../language-guides/java-jvm.md) | Supported | Supported |
-| [Python](../language-guides/python.md) | Supported | Supported |
-| [PHP](../language-guides/php.md) | Supported, with gaps | Supported, with gaps |
-| [Ruby](../language-guides/ruby.md) | Supported, with gaps | Supported, with gaps |
-| Perl | Hosting only | Not available |
+| .NET | Yes | Yes |
+| Node.js / TypeScript | Yes | Yes |
+| Java / JVM | Yes | Yes |
+| Python | Yes | Yes |
+| PHP | Yes | Yes |
+| Ruby | Yes | Yes |
+| Perl / Python 2.7 | CLI name only | No |
 
-See [Support status](../language-guides/support-status.md) for details. Generated Gateway/Vision output
-is the source of truth for the package, imports, configuration, and call surface of your running
-version.
+See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md) for
+versions, package ecosystems, and status. Generated Gateway/Vision output is the source of truth for
+the package, imports, configuration, and call surface of your running version.
 
 ## Key limits to check
 
 - **Contract types:** prefer primitives, strings, and plain models; framework complex types are
   rejected at generation. Verify advanced types (nullability, unions, enums, generics, collections)
-  for your exact provider/consumer pair.
+  for your exact Receiver/Caller pair.
 - **Execution:** clients default to in-memory; set the remote host before the first call. Static,
   stateless methods scale best; instance identity needs affinity and can break on restart.
 - **Packages:** a free standalone Gateway's registry ID can change on restart. Copy the emitted

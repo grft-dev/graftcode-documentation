@@ -17,7 +17,7 @@ Four Graftcode concepts are easy to confuse. They are **separate** and serve dif
 | Concept | Set on / used by | Purpose | Example |
 | --- | --- | --- | --- |
 | **Project Key** | Gateway at startup (`--projectKey`, `GC_PROJECT_KEY`) | Registers the Gateway in a portal project; gives stable publication identity | `dev:eyJ...` |
-| **Registry URL** | Consumer package manager | Installs the generated Graft package | `https://grft.dev` |
+| **Registry URL** | Caller package manager | Installs the generated Graft package | `https://grft.dev` |
 | **Runtime host** | `GraftConfig` host field | Executes methods — in-memory or a remote Gateway endpoint | `ws://host/ws`, `wss://host/ws`, `inmemory` |
 | **Call credential** | A method parameter or a generated header | Authorizes one specific invocation | `Authorization: Bearer <token>` |
 
@@ -26,7 +26,7 @@ Four Graftcode concepts are easy to confuse. They are **separate** and serve dif
 - The **Project Key** is **not** a registry URL and **not** proof that a runtime call is authorized.
 - The **registry URL** is only for installation; it is **not** the runtime endpoint.
 - **`GraftConfig` host is the runtime endpoint for executing calls — it is never the registry URL.**
-- A **call credential** is validated by your provider; it is **not** replaced by the Project Key or TLS.
+- A **call credential** is validated by your Receiver; it is **not** replaced by the Project Key or TLS.
 
 ## Where to go next
 

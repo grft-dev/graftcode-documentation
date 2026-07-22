@@ -19,24 +19,24 @@ gg <module>
 3. Compare discovered types/methods with your source.
 4. Re-copy the install command from this Gateway instance.
 
-## 3. Verify consumer configuration
+## 3. Verify Caller configuration
 
 - Remote: `host`/`Host` set to `ws://` or `wss://` **before** the first call.
-- In-memory: provider module locally resolvable.
-- After config changes, restart the consumer process (context is cached).
+- In-memory: Receiver module locally resolvable.
+- After config changes, restart the Caller process (context is cached).
 
 ## 4. Classify the failure
 
 | Symptom | Likely cause |
 | --- | --- |
-| `FileNotFound` provider DLL | `inmemory` without local module |
+| `FileNotFound` Receiver DLL | `inmemory` without local module |
 | `422` package generation | unsupported public type |
 | Connection timeout | wrong host, proxy, or TLS termination |
 | Missing method | filters, stale package, or discovery gap |
 
 See [Troubleshooting index](../troubleshooting/index.md).
 
-## Provider example
+## Receiver example
 
 ```multi
 ```dotnet

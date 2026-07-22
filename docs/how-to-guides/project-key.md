@@ -12,7 +12,7 @@ the same as the **registry URL**, the **runtime host**, or a **call credential**
 See [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md) for the
 canonical diagram and table.
 
-A Gateway without a project key can receive a **new registry identifier after restart**. Consumers must
+A Gateway without a project key can receive a **new registry identifier after restart**. Callers must
 copy install commands from the **currently running** Gateway or Vision—not from an old log line.
 
 The project key does **not** authenticate individual Graft invocations. See
@@ -22,7 +22,7 @@ The project key does **not** authenticate individual Graft invocations. See
 ## Obtain a project key
 
 1. Sign in to [Graftcode Portal](https://portal.graftcode.com/).
-2. Open or create a project for the provider you host.
+2. Open or create a project for the Receiver you host.
 3. Copy the project key from the project settings or onboarding flow shown in the portal UI for your
    account.
 

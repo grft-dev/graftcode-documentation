@@ -19,7 +19,7 @@ protocol or data movement pattern.
 Most tasks map to one of four goals. Pick yours, then choose your runtime in the matching section
 below:
 
-1. **Expose a new provider** — make a module callable → [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend)
+1. **Expose a new Receiver** — make a module callable → [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend)
 2. **One backend calls another** — service-to-service → [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices)
 3. **A frontend calls a backend** → [Connect frontend to backend](https://docs.graftcode.com/quick-start/connect-frontend-to-backend)
 4. **Call a module in another language** → [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology)
@@ -33,7 +33,7 @@ The sections below add the runtime-specific links and the concepts to read for e
 ## I want one backend to call another
 
 **Quick start:** [Connect microservices](https://docs.graftcode.com/quick-start/connect-microservices)
-— by consumer runtime:
+— by Caller runtime:
 
 - [.NET](https://docs.graftcode.com/quick-start/connect-microservices/dotnet)
 - [JavaScript](https://docs.graftcode.com/quick-start/connect-microservices/javascript)
@@ -45,7 +45,7 @@ The sections below add the runtime-specific links and the concepts to read for e
 **Then read:** [Caller and receiver](../core-concepts/caller-and-receiver.md),
 [Configure invocation](../how-to-guides/configure-invocation.md).
 
-Good fit when consumers can install generated packages and you want typed method calls across
+Good fit when Callers can install generated packages and you want typed method calls across
 process or language boundaries.
 
 ## I want browser, desktop, or mobile code to call a backend
@@ -57,8 +57,8 @@ process or language boundaries.
 - [Vue](https://docs.graftcode.com/quick-start/connect-frontend-to-backend/vue)
 - [Angular](https://docs.graftcode.com/quick-start/connect-frontend-to-backend/angular)
 
-**Then read:** [Language support status](../language-guides/support-status.md), the target
-[language guide](../language-guides/index.md), and [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls.md).
+**Then read:** [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md)
+and [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls.md).
 
 Verify browser transport, bundler, authentication, and supported-type constraints for the exact
 generated Graft.
@@ -66,7 +66,7 @@ generated Graft.
 ## I want to call a module written in another language
 
 **Quick start:** [Use modules from any technology](https://docs.graftcode.com/quick-start/use-modules-from-any-technology)
-— by consumer runtime:
+— by Caller runtime:
 
 - [.NET](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/dotnet)
 - [JavaScript](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/javascript)
@@ -74,8 +74,8 @@ generated Graft.
 - [Kotlin](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/kotlin)
 - [Groovy](https://docs.graftcode.com/quick-start/use-modules-from-any-technology/groovy)
 
-**Then read:** [Type mapping](../core-concepts/type-mapping.md) and the relevant
-[language guide](../language-guides/index.md).
+**Then read:** [Type mapping](../core-concepts/type-mapping.md) and
+[Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md).
 
 ## I want to split or merge a deployment without rewriting callers
 
@@ -92,13 +92,13 @@ generated Graft.
 [Configuration resolution](../core-concepts/configuration-resolution.md), and
 [Invocation lifecycle](../core-concepts/invocation-lifecycle.md).
 
-The consumer programming surface can remain similar while configuration selects in-memory or remote
+The Caller programming surface can remain similar while configuration selects in-memory or remote
 execution. Deployment changes still require compatible packages and runtime configuration.
 
-## I want to expose a new provider
+## I want to expose a new Receiver
 
 **Quick start:** [Expose a backend service](https://docs.graftcode.com/quick-start/expose-backend)
-— by provider runtime:
+— by Receiver runtime:
 
 - [.NET](https://docs.graftcode.com/quick-start/expose-backend/dotnet)
 - [JavaScript](https://docs.graftcode.com/quick-start/expose-backend/javascript)
@@ -134,21 +134,22 @@ explicit design work.
 [type mapping](../core-concepts/type-mapping.md), and
 [Contract evolution](../core-concepts/contract-evolution.md).
 
-Generate and smoke-test the exact provider/consumer pair before depending on advanced types.
+Generate and smoke-test the exact Receiver/Caller pair before depending on advanced types.
 
 ## Keep another integration style when
 
-- external consumers require a public, protocol-defined HTTP API;
+- external Callers require a public, protocol-defined HTTP API;
 - a third party supports only REST, webhooks, gRPC, or another fixed protocol;
 - the interaction is event streaming, queueing, bulk transfer, or one-way data exchange rather than
   method invocation;
-- consumers cannot install or run a supported generated package;
+- Callers cannot install or run a supported generated package;
 - a simple stable local function or direct library reference already solves the problem.
 
 These approaches can coexist with Graftcode. Choose per boundary, not per organization.
 
 ## Before production
 
-Review [current status and limitations](where-graftcode-fits.md), the relevant language guides,
+Review [current status and limitations](where-graftcode-fits.md),
+[supported runtimes and package managers](../reference/supported-runtimes-package-managers.md),
 [authentication and authorization](../operations/authentication-authorization.md), and
 [scaling](../operations/scaling.md).

@@ -3,8 +3,8 @@ title: "Gateway module versioning and --noVersioning"
 description: "Understand hosted-module versioning, when to bump package versions, and how to control versioning with Gateway flags."
 articleTitle: "Gateway module versioning and --noVersioning"
 ---
-Hosted-module versioning is separate from the version on a generated consumer package. Gateway
-decides whether each publication of a provider surface is versioned.
+Hosted-module versioning is separate from the version on a generated Caller package. Gateway
+decides whether each publication of a Receiver surface is versioned.
 
 ## Default behavior
 
@@ -18,22 +18,22 @@ After CLI and environment parsing:
 A [portal project key](project-key.md) ties publication to stable project metadata and is the normal
 production path.
 
-## When to bump consumer package versions
+## When to bump Caller package versions
 
 Bump the generated package version shown in Vision when the **callable surface** changes in a way
-that affects consumers: renamed members, signature changes, removed types, or unsupported type
-introduction. See [Update a provider contract](update-provider-contract.md) and
+that affects Callers: renamed members, signature changes, removed types, or unsupported type
+introduction. See [Update a Receiver contract](update-provider-contract.md) and
 [Contract evolution](../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always
-regenerate, reinstall, and smoke-test each consumer ecosystem.
+regenerate, reinstall, and smoke-test each Caller ecosystem.
 
 ## When to use --noVersioning
 
 Use `--noVersioning` for local experiments where you do not want Gateway to track module versions, or
 when a deployment policy requires a single unversioned hosted surface.
 
-Do not use it to avoid republishing after a **breaking** contract change. Consumers still depend on
+Do not use it to avoid republishing after a **breaking** contract change. Callers still depend on
 the generated package version you install.
 
 ## Examples
@@ -131,7 +131,7 @@ gg ./lib/
 
 ## Verify
 
-After startup, confirm discovery and publication in Gateway logs and Vision. If consumers install an
+After startup, confirm discovery and publication in Gateway logs and Vision. If Callers install an
 old package while the hosted surface changed, failures appear at invocation time—not as an automatic
 drift rejection unless your deployment verifies versions.
 

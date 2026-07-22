@@ -1,12 +1,12 @@
 ---
-title: Expose provider methods for MCP
+title: Expose Receiver methods for MCP
 description: Host a module with MCP support and resolve tool calls with --mcpBaseClass.
-articleTitle: Expose provider methods for MCP
+articleTitle: Expose Receiver methods for MCP
 ---
 Gateway can participate in MCP workflows when the deployment enables the relevant HTTP surfaces and
 CORS settings. This is an **Alpha** area—verify behavior on your Gateway release.
 
-## 1. Host the provider
+## 1. Host the Receiver
 
 ```multi
 ```dotnet

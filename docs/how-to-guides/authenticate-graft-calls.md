@@ -1,10 +1,10 @@
 ---
 title: Authenticate Graft calls
-description: Pass tokens to remote providers using headers or supported method parameters.
+description: Pass tokens to remote Receivers using headers or supported method parameters.
 articleTitle: Authenticate Graft calls
 ---
 Gateway `--projectKey` authenticates **publication**, not each invocation. A **call credential**
-authorizes one specific call and is validated inside provider methods or through generated header
+authorizes one specific call and is validated inside Receiver methods or through generated header
 APIs. See [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md) for how
 this differs from the Project Key, registry URL, and runtime host.
 
@@ -75,7 +75,7 @@ price = PriceService.calculate(100, 10)
 Configure `host` and headers **before** the first generated call. Browser WebSocket clients cannot
 set arbitrary handshake headers; use the HTTP/2 configuration emitted by Vision when required.
 
-## Provider-side validation
+## Receiver-side validation
 
 Default deny: reject missing or invalid tokens with a clear domain exception. Do not log secrets.
 

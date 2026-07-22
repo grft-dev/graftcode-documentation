@@ -5,7 +5,7 @@ description: "Portable public types, verified target mappings, and unsupported f
 
 # Public contract type matrix
 
-| Contract shape | .NET provider to generated packages | Node.js/TypeScript provider | Guidance |
+| Contract shape | .NET Receiver to generated packages | Node.js/TypeScript Receiver | Guidance |
 | --- | --- | --- | --- |
 | `string` | Portable baseline | Portable baseline | Use for IDs and ISO-8601 timestamps |
 | `bool` / `boolean` | Portable baseline | Portable baseline | Supported |
@@ -14,19 +14,19 @@ description: "Portable public types, verified target mappings, and unsupported f
 | `decimal` | .NET baseline | No direct JS equivalent | Test exact caller pair |
 | plain models | Simple members supported | Plain exported shapes supported | Every public member must be portable |
 | homogeneous arrays | Verified baseline | Verified baseline | Prefer over framework collections |
-| nullable values | Generator handlers exist | Union with `null` in TS output | Verify producer/consumer pair |
-| async wrapper | .NET `Task`/`Task<T>` rejected on public surface | Provider promises vary by path | Keep .NET provider methods synchronous |
+| nullable values | Generator handlers exist | Union with `null` in TS output | Verify Receiver/Caller pair |
+| async wrapper | .NET `Task`/`Task<T>` rejected on public surface | Receiver promises vary by path | Keep .NET Receiver methods synchronous |
 | framework date/ID types | Rejected/unsupported | `Date` not portable baseline | Use strings |
 | streams/files/HTTP objects | Unsupported public contract | Unsupported public contract | Keep internal |
 | dictionaries/maps/sets | Not portable baseline | Not portable baseline | Use explicit plain models/arrays |
 | callbacks/delegates | Not portable baseline | Not portable baseline | Redesign as explicit calls |
-| inheritance/generics/enums | Incomplete evidence | Incomplete evidence | Generate and smoke-test |
+| inheritance/generics/enums | Not fully verified | Not fully verified | Generate and smoke-test |
 
 The Graftcode Engine explicitly rejects complex framework types. Discovery does not prove
 generation or runtime compatibility.
 
 Generated target mappings include numeric collapsing in TypeScript and narrower primitive mapping in
-.NET; therefore support belongs to the complete provider-to-consumer path.
+.NET; therefore support belongs to the complete Receiver-to-Caller path.
 
 ## Next steps
 

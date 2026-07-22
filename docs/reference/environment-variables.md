@@ -18,7 +18,7 @@ normal production operation.
 
 ## Generated Grafts
 
-Inspected templates (including .NET and Node.js) attempt:
+Generated packages (including .NET and Node.js) attempt:
 
 - `<graft-name>-config` at priority 1;
 - `graftcode-config` at priority 2.

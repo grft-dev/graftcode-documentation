@@ -3,7 +3,7 @@ title: Set the module path for in-memory execution
 description: Configure modules and GraftConfig.module when host is inmemory.
 articleTitle: Set the module path for in-memory execution
 ---
-`host=inmemory` loads the provider in the consumer process. The consumer must resolve the provider
+`host=inmemory` loads the Receiver in the Caller process. The Caller must resolve the Receiver
 artifact locally.
 
 ## Configuration file example
@@ -16,7 +16,7 @@ artifact locally.
     "default": {
       "name": "default",
       "runtime": "<runtime>",
-      "modules": "<provider-artifact-path>",
+      "modules": "<Receiver-artifact-path>",
       "host": "inmemory",
       "stateless": true
     }
@@ -33,7 +33,7 @@ GraftConfig.Module = "Pricing.dll"; // copy exact module id from generated packa
 ```
 ```javascript
 GraftConfig.host = "inmemory";
-// Ensure the provider JS module is resolvable on disk; copy module path from Vision.
+// Ensure the Receiver JS module is resolvable on disk; copy module path from Vision.
 ```
 ```python
 GraftConfig.host = "inmemory"
@@ -53,7 +53,7 @@ GraftConfig.module = "<module-path-from-generated-package>"
 ```
 ```
 
-If you see `FileNotFound` for the provider module, the client remained in `inmemory` without a
+If you see `FileNotFound` for the Receiver module, the client remained in `inmemory` without a
 resolvable module path. See [Errors reference](../reference/errors-status.md).
 
 ## Next steps

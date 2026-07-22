@@ -1,9 +1,9 @@
 ---
-title: "Expose code as a Graftcode provider"
+title: "Expose code as a Graftcode Receiver"
 description: "Prepare a small public contract and verify that Gateway discovers it."
-articleTitle: "Expose code as a Graftcode provider"
+articleTitle: "Expose code as a Graftcode Receiver"
 ---
-Turn an existing library or module into a provider without adding HTTP route handlers, controllers,
+Turn an existing library or module into a Receiver without adding HTTP route handlers, controllers,
 or transport types on the public surface.
 
 ## 1. Choose the public surface
@@ -62,7 +62,7 @@ end
 Use primitives and plain models. For cross-runtime contracts, represent dates and identifiers as
 strings. For .NET, the Graftcode Engine rejects framework complex types on the public surface.
 
-## 2. Build the provider
+## 2. Build the Receiver
 
 ```multi
 ```dotnet
@@ -73,7 +73,7 @@ npm ci
 npm run build
 ```
 ```python
-# Build or package the provider module per your project layout
+# Build or package the Receiver module per your project layout
 ```
 ```java
 mvn package
@@ -119,9 +119,9 @@ keys from examples.
 ## 4. Verify discovery
 
 Check Gateway output and Graftcode Vision for the expected type and methods. Treat the discovered
-surface as a review gate: remove accidental public members before consumers install a Graft.
+surface as a review gate: remove accidental public members before Callers install a Graft.
 
-**Gap:** there is no verified universal type matrix. Generate and smoke-test every producer/consumer
+**Gap:** there is no verified universal type matrix. Generate and smoke-test every Receiver/Caller
 language pair that uses types beyond the portable baseline.
 
 ## Next steps

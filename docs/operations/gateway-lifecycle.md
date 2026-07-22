@@ -7,14 +7,14 @@ description: "Start, supervise, replace, and stop Gateway safely."
 
 ## Start
 
-Build the provider first, then start Gateway with explicit module and runtime values. Startup includes
+Build the Receiver first, then start Gateway with explicit module and runtime values. Startup includes
 runtime selection, module loading, callable-surface analysis, listener startup, and model
 publication. Do not advertise install commands until discovery and publication succeed.
 
 ## Run
 
 Use a service manager or container orchestrator to supervise the process. Capture standard output and
-standard error. Keep provider dependencies available for the full process lifetime.
+standard error. Keep Receiver dependencies available for the full process lifetime.
 
 ## Replace or restart
 
@@ -30,7 +30,7 @@ supports a grace period. Force termination only after that period.
 
 **Gap:** the Gateway README does not document a dedicated drain, reload, readiness, or graceful
 shutdown command, nor a guaranteed response to each operating-system signal. Test termination
-behavior for the exact Gateway release and provider runtime.
+behavior for the exact Gateway release and Receiver runtime.
 
 ## Next steps
 

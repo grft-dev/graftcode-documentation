@@ -3,7 +3,7 @@ title: Filter the callable surface
 description: Limit which types and methods Gateway hosts using --types and --methods.
 articleTitle: Filter the callable surface
 ---
-Narrow the **callable surface** before consumers install a Graft. Use Gateway flags plus an
+Narrow the **callable surface** before Callers install a Graft. Use Gateway flags plus an
 intentional public API in source code.
 
 ## CLI filters
@@ -55,10 +55,10 @@ Additional method filters also exist for some runtimes (wildcard patterns). See
 1. Start with the smallest public API in code (internal helpers stay non-public).
 2. Add `--types` / `--methods` when Gateway would otherwise discover too much.
 3. Open Vision and confirm only intended members appear.
-4. Generate and smoke-test the consumer package.
+4. Generate and smoke-test the Caller package.
 
 ## Next steps
 
-- [Expose code](../expose-code.md)
+- [Expose code](expose-code.md)
 - [Dependency injection facade](dependency-injection.md)
 - [Gateway CLI reference](../reference/gateway-cli.md)

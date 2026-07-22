@@ -17,7 +17,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
 
 ## Diagnostics
 
-1. **Verify the input artifact.** Build the provider and confirm Gateway is pointed at the actual output
+1. **Verify the input artifact.** Build the Receiver and confirm Gateway is pointed at the actual output
    DLL, JAR, package directory, source directory, or entry file—not a stale or source-only path.
 2. **Make runtime selection explicit when auto-detection is ambiguous.** Gateway scans the current
    directory when no module is supplied; mixed files can cause wrong detection. Use the runtime and
@@ -28,7 +28,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
    - .NET requires visible top-level types and public declared methods; special-name methods are treated
      separately.
    - Node.js/TypeScript starts from runtime exports; type-only exports are not callable.
-   - Other runtimes require loadable public declarations according to their language guide.
+   - Other runtimes require loadable public declarations; see the [runtime-specific notes](../reference/known-limitations.md#runtime-specific-notes).
 5. **Check active filters.** A type or method filter can intentionally remove a member. Compare the
    fully qualified type and bare/qualified method names against the configured patterns.
 6. **Inspect the analyzed model before the generated package.** If the member is absent from the model,
@@ -41,8 +41,8 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
 ## Fixes
 
 - **Wrong artifact/runtime:** rebuild, point Gateway at the exact built artifact, and select the matching
-  runtime. For JVM providers, package the expected JAR; for Node, ensure `main`/`exports` points to the
-  built entry; for interpreted runtimes, install provider dependencies in Gateway's environment.
+  runtime. For JVM Receivers, package the expected JAR; for Node, ensure `main`/`exports` points to the
+  built entry; for interpreted runtimes, install Receiver dependencies in Gateway's environment.
 - **Member not public/exported:** expose only the intended facade member using the source language's
   public/export mechanism, then republish.
 - **Filter excludes member:** correct or remove the active filter and confirm the new model before
@@ -55,13 +55,13 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
   static factory with explicit IDs.
 
 Do not treat successful discovery as final success. The corrected contract must complete analysis,
-publication, target package generation, consumer compilation, and an invocation smoke test.
+publication, target package generation, Caller compilation, and an invocation smoke test.
 
-## Escalation evidence
+## Data to collect before reporting
 
 Provide the module path, selected runtime, complete discovery/publication error, relevant public
-signature, active type/method filters, target consumer runtime, and the 422 error code/message. Reduce
-the provider to the smallest public declaration that reproduces the failure.
+signature, active type/method filters, target Caller runtime, and the 422 error code/message. Reduce
+the Receiver to the smallest public declaration that reproduces the failure.
 
 ## Next steps
 

@@ -5,7 +5,7 @@ description: "Six-level generated GraftConfig resolution order and accepted sour
 
 # Configuration keys and precedence
 
-Generated consumer packages use this priority order; lower numeric priority wins. .NET and Node.js
+Generated Caller packages use this priority order; lower numeric priority wins. .NET and Node.js
 templates are fully verified in source; other runtimes follow the same conceptual levels—confirm
 field names and helpers in the installed package:
 

@@ -5,7 +5,7 @@ description: "Verified Gateway, package installation, invocation, ports, and tro
 
 # Quick reference
 
-## Provider
+## Receiver
 
 Install **Graftcode Gateway** (`gg`) from
 [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) before hosting a module.
@@ -27,7 +27,7 @@ Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are l
 See [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md#install-a-public-graft) for
 sample packages and commands.
 
-**Your own provider:** open the running Gateway's Vision UI, choose the consumer package manager, and
+**Your own Receiver:** open the running Gateway's Vision UI, choose the Caller package manager, and
 copy the entire install command. Never guess or reuse an example registry URL, identifier, package
 name, import, or version.
 
@@ -58,7 +58,7 @@ gem install <name> --source <source-from-vision>
 
 Generated packages expose `host` and `stateless` configuration (field names, casing, and access differ
 by runtime). Copy the exact API from Vision and set it **before** the first generated call. The default
-is `inmemory`, which requires the provider module to be locally loadable. The `host` is the runtime
+is `inmemory`, which requires the Receiver module to be locally loadable. The `host` is the runtime
 endpoint, **not** the registry URL — see
 [Project Key, registry, host, and credentials](identifiers-and-auth.md).
 
@@ -103,7 +103,7 @@ All ports are configurable.
 
 ## Configuration priority
 
-Inspected generated packages resolve configuration in this order (highest wins first). .NET and
+Generated packages resolve configuration in this order (highest wins first). .NET and
 Node.js templates are fully verified; other runtimes follow the same conceptual levels—confirm field
 names in the installed package:
 
@@ -116,7 +116,7 @@ names in the installed package:
 
 ## Frequent failures
 
-- Provider `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
+- Receiver `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
 - No types: pass the built module path explicitly; verify public/exported members.
 - Install `404`: repeat the exact registry-qualified command from the current Vision instance.
 - Package generation `422`: remove the named framework complex type from every public signature and

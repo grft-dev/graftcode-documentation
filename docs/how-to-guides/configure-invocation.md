@@ -3,7 +3,7 @@ title: "Configure Graft invocation"
 description: "Select in-memory or remote execution and configure generated GraftConfig before first use."
 articleTitle: "Configure Graft invocation"
 ---
-Point an installed Graft at the intended provider.
+Point an installed Graft at the intended Receiver.
 
 The `GraftConfig` **host** is the runtime endpoint that executes your calls. It is **not** the
 registry URL used to install the Graft — see
@@ -11,7 +11,7 @@ registry URL used to install the Graft — see
 
 ## 1. Choose execution mode
 
-- `inmemory` loads the provider module in the consumer process.
+- `inmemory` loads the Receiver module in the Caller process.
 - `ws://` or `wss://` sends calls to a remote Gateway WebSocket endpoint.
 - TCP and HTTP/2 are optional Gateway transports and must be explicitly enabled.
 

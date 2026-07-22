@@ -21,7 +21,7 @@ The Graftcode Engine defines the boundary differently per runtime:
 - **Ruby:** statically parsed classes, methods, constructors, attributes, constants, and selected globals.
 
 Java and Ruby currently require particular care because discovery can include declared
-methods that are not public in source. Python analysis imports provider modules, while Ruby analysis
+methods that are not public in source. Python analysis imports Receiver modules, while Ruby analysis
 does not discover runtime metaprogramming. See [Callable surface](callable-surface.md) for the exact
 rules and caveats.
 
@@ -29,7 +29,7 @@ rules and caveats.
 
 Helpers, persistence code, transport adapters, secrets, and framework objects should remain non-public or non-exported. A small surface:
 
-- reduces the model that consumers depend on;
+- reduces the model that Callers depend on;
 - makes generated packages easier to understand;
 - limits type-mapping failures;
 - makes contract changes easier to classify.

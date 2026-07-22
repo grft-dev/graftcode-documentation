@@ -10,13 +10,13 @@ Distinct controls must not be conflated (see the canonical
 
 1. `--projectKey` / `GC_PROJECT_KEY` authenticates Gateway to portal/project metadata services.
 2. TLS/WSS protects transport when terminated by deployment infrastructure.
-3. Provider-call authentication and authorization (the **call credential**) must be explicitly
+3. Receiver-call authentication and authorization (the **call credential**) must be explicitly
    implemented and configured.
 
 The project key is not proof that runtime calls are authorized. Keep it in a secret store, rotate it
 through the portal process, and restart/redeploy Gateway as required to load the replacement.
 
-For provider calls, the portable Alpha baseline is to pass a token or API key as a supported method
+For Receiver calls, the portable Alpha baseline is to pass a token or API key as a supported method
 parameter and validate it before business effects. Generated packages also expose header helpers;
 `--useContext` exposes request context/headers to hosted code. Browser WebSocket handshakes cannot
 set arbitrary custom headers; use only the HTTP/2 configuration emitted by Vision when that workflow
@@ -59,7 +59,7 @@ GraftConfig.stateless = true
 ```
 ```
 
-Default deny at the provider boundary, log authorization decisions without credentials, and keep
+Default deny at the Receiver boundary, log authorization decisions without credentials, and keep
 policy logic independent from transport.
 
 **Gap:** a .NET JWT plugin exists in source/tests, but release packaging, configuration, and

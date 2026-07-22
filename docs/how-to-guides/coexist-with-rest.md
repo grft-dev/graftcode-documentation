@@ -12,7 +12,7 @@ Keep REST (or OpenAPI) when:
 
 - external clients require a public HTTP contract;
 - partners integrate via webhooks or fixed URLs;
-- consumers cannot install a generated Graft.
+- Callers cannot install a generated Graft.
 
 See [When to use Graftcode](../introduction/when-to-use-graftcode.md).
 
@@ -21,7 +21,7 @@ See [When to use Graftcode](../introduction/when-to-use-graftcode.md).
 Add Graftcode for **internal** or **controlled** callers that can install generated packages:
 
 - service-to-service method calls across languages;
-- sharing a provider library without hand-written HTTP clients;
+- sharing a Receiver library without hand-written HTTP clients;
 - flipping between in-memory and remote execution with configuration alone.
 
 ## Typical layout
@@ -30,17 +30,17 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 ┌─────────────────────────────────────┐
 │  Monolith or API host               │
 │  ├─ REST controllers (public)       │
-│  └─ Provider module (Graftcode)     │──► Gateway ──► remote consumers
+│  └─ Receiver module (Graftcode)     │──► Gateway ──► remote Callers
 └─────────────────────────────────────┘
 ```
 
 1. Extract callable business logic into a **plain module** (class library or package)—not controller
    types on the public Graft surface.
 2. Keep REST controllers as thin adapters that call the same module internally if needed.
-3. Host the module with Gateway for Graft consumers.
+3. Host the module with Gateway for Graft Callers.
 4. Do not expose database or HTTP framework types on the Graft contract.
 
-## Consumer example
+## Caller example
 
 After installing the Graft from Vision, configure remote execution before the first call. See
 [Configure invocation](configure-invocation.md).

@@ -1,6 +1,6 @@
 ---
 title: "Troubleshooting"
-description: "Start from a Graftcode symptom and follow evidence-based diagnostics without guessing registry coordinates or commands."
+description: "Start from a Graftcode symptom and follow data-based diagnostics without guessing registry coordinates or commands."
 keywords: "graftcode troubleshooting, gateway errors, package installation, module discovery, connection timeout"
 ---
 
@@ -25,12 +25,12 @@ version, runtime versions, and the first complete exception before changing conf
 - **Vision does not match Gateway output or generated code:**  
   [Vision and runtime disagree](vision-mismatch.md)
 
-## Capture this evidence first
+## Capture this data first
 
-1. The exact provider module path and runtime selected by Gateway.
+1. The exact Receiver module path and runtime selected by Gateway.
 2. Gateway startup output from process start through module analysis and publication.
 3. The package-manager command copied from that same running Gateway/Vision.
-4. Provider, Gateway, generated package, Hypertube dependency, and caller runtime versions.
+4. Receiver, Gateway, generated package, Hypertube dependency, and caller runtime versions.
 5. Resolved Graft host and execution mode: in-memory, WebSocket, HTTP/2, TCP, or plugin.
 6. Whether the failure occurs before publication, during installation, at the first call, or after a
    restart.

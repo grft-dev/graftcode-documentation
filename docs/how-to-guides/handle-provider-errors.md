@@ -1,18 +1,18 @@
 ---
-title: Handle provider and transport errors
+title: Handle Receiver and transport errors
 description: >-
-  Keep provider failures actionable and add retries only where repeat execution
+  Keep Receiver failures actionable and add retries only where repeat execution
   is safe.
-articleTitle: Handle provider and transport errors
+articleTitle: Handle Receiver and transport errors
 ---
-## Provider boundary
+## Receiver boundary
 
 Validate inputs and throw domain exceptions with safe messages—no secrets in exception text.
 
 ## Classify before retry
 
 - Domain errors: do not retry.
-- Transient upstream `5xx` inside provider: bounded retry if idempotent.
+- Transient upstream `5xx` inside Receiver: bounded retry if idempotent.
 - Transport failures: retry only idempotent operations; stateful identity may be lost.
 - Package `422`: fix the public contract.
 

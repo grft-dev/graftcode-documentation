@@ -8,7 +8,7 @@ keywords: "graftcode alpha, limitations, runtime support, type support, compatib
 
 This is the canonical limitations page for the current release. A runtime name in Gateway, a
 declaration in the analyzed surface, or a generated package by itself does not prove that the complete
-provider-to-consumer path works. Validate the exact runtime pair, generated package, transport, and
+Receiver-to-Caller path works. Validate the exact runtime pair, generated package, transport, and
 deployment you intend to operate.
 
 Status terms used below:
@@ -21,16 +21,16 @@ This page does not publish roadmap dates or links that have not been independent
 
 ## Runtime support
 
-### Six runtimes have complete workflow evidence; Perl does not
+### Six runtimes have a complete workflow; Perl does not
 
-- **Scenario:** Choose a provider or consumer runtime.
+- **Scenario:** Choose a Receiver or Caller runtime.
 - **Observed behavior:** .NET/CLR, Node.js/TypeScript, Java/JVM, Python 3, PHP, and Ruby have generation
-  engines and cross-runtime install/invoke evidence. Gateway advertises Perl hosting, but no Perl code
-  generation, package endpoint, caller coverage, or complete provider-to-publication path was found.
+  engines and cross-runtime install/invoke coverage. Gateway advertises Perl hosting, but no Perl code
+  generation, package endpoint, caller coverage, or complete Receiver-to-publication path was found.
 - **Workaround:** Use one of the six verified caller runtimes. Treat Perl as limited hosting only and do
   not infer a CPAN or generated-client workflow.
-- **Evidence/status:** **Verified** for the six workflows; **partial** for Perl. See
-  [Language support status](../language-guides/support-status.md).
+- **Status:** **Verified** for the six workflows; **partial** for Perl. See
+  [Supported runtimes and package managers](supported-runtimes-package-managers.md).
 
 ### A runtime's accepted versions are not a universal compatibility matrix
 
@@ -39,20 +39,20 @@ This page does not publish roadmap dates or links that have not been independent
   every patch version, runtime distribution, target framework, or JVM language.
 - **Workaround:** Match the runtime documented by the Gateway release, then publish, install, and invoke
   a smoke-test Graft in the target environment.
-- **Evidence/status:** **Partial**; Gateway runtime loading is implemented, exhaustive version coverage
+- **Status:** **Partial**; Gateway runtime loading is implemented, exhaustive version coverage
   is not.
 
 ## Direction support
 
 ### Support is directional and pair-specific
 
-- **Scenario:** A provider in one language is consumed from another.
-- **Observed behavior:** Provider analysis, target generation, package publication, installation, and
+- **Scenario:** A Receiver in one language is consumed from another.
+- **Observed behavior:** Receiver analysis, target generation, package publication, installation, and
   invocation are separate capabilities. Passing one stage does not prove the next, and support in one
   direction does not prove the reverse direction.
-- **Workaround:** Test every producer-to-consumer direction used by the application. Keep the generated
+- **Workaround:** Test every Receiver-to-Caller direction used by the application. Keep the generated
   package and Vision output from that run as the authority.
-- **Evidence/status:** **Verified design constraint**; the public and virtual repository suites cover
+- **Status:** **Verified design constraint**; the public and virtual repository suites cover
   many paths, not every type and direction combination.
 
 ## Types
@@ -65,7 +65,7 @@ This page does not publish roadmap dates or links that have not been independent
   as “Using complex types from framework in public interfaces is not supported yet.”
 - **Workaround:** Use primitives and explicitly modeled public types. Represent dates as ISO-8601
   strings and identifiers as strings unless the exact language pair is tested for a richer mapping.
-- **Evidence/status:** **Verified** by the Graftcode Engine's error handling and unsupported-type tests.
+- **Status:** **Verified** by the Graftcode Engine's error handling and unsupported-type tests.
   Discovery of a type is not proof that package generation accepts it.
 
 ### There is no universal supported-type matrix
@@ -76,7 +76,7 @@ This page does not publish roadmap dates or links that have not been independent
   Unknown values may degrade to `unknown` or `object`.
 - **Workaround:** Keep the contract to primitives, arrays of supported values, and plain modeled types;
   generate and smoke-test every target package.
-- **Evidence/status:** **Partial**. See [Type mapping](../core-concepts/type-mapping.md).
+- **Status:** **Partial**. See [Type mapping](../core-concepts/type-mapping.md).
 
 ## Generics
 
@@ -88,7 +88,7 @@ This page does not publish roadmap dates or links that have not been independent
   variance, overloads, or nested generic mappings.
 - **Workaround:** Expose a concrete facade with closed, simple contract types. Keep generic
   implementation details behind that facade.
-- **Evidence/status:** **Partial**; per-runtime support exists, universal generation and
+- **Status:** **Partial**; per-runtime support exists, universal generation and
   invocation compatibility does not.
 
 ## Inheritance
@@ -102,21 +102,21 @@ This page does not publish roadmap dates or links that have not been independent
   semantics for arbitrary hierarchies.
 - **Workaround:** Flatten the public contract into standalone facade types and delegate to inherited
   implementation types internally.
-- **Evidence/status:** **Partial/unknown** depending on the pair; validate generated output rather than
+- **Status:** **Partial/unknown** depending on the pair; validate generated output rather than
   relying on source-language inheritance.
 
 ## Constructors
 
 ### Constructors are supported selectively, not uniformly
 
-- **Scenario:** Consumers construct a remote instance, including overloaded or parameterized
+- **Scenario:** Callers construct a remote instance, including overloaded or parameterized
   constructors.
 - **Observed behavior:** For .NET and Node.js, the Graftcode Engine records and generates public constructors, and has
   constructor and overloaded-constructor coverage. This does not prove every overload shape or
   cross-runtime mapping.
 - **Workaround:** Prefer one unambiguous constructor with simple parameters, or expose a static factory
   returning an explicit domain identifier.
-- **Evidence/status:** **Partial**; constructor analysis/generation is verified, a universal matrix is
+- **Status:** **Partial**; constructor analysis/generation is verified, a universal matrix is
   not.
 
 ## Static and instance members
@@ -129,7 +129,7 @@ This page does not publish roadmap dates or links that have not been independent
   restarts, transports, or language pairs. Static does not itself guarantee stateless implementation.
 - **Workaround:** Prefer static operations for input-to-output services. Keep durable state behind
   explicit IDs instead of persisting remote object references.
-- **Evidence/status:** **Verified** representation; **unknown** durable lifetime. See
+- **Status:** **Verified** representation; **unknown** durable lifetime. See
   [Static and instance context](../core-concepts/static-and-instance-context.md).
 
 ## Async
@@ -139,11 +139,11 @@ This page does not publish roadmap dates or links that have not been independent
 - **Scenario:** Expose or consume `Task`, `Promise`, future, or awaitable methods.
 - **Observed behavior:** Node-generated methods and declarations include Promise/thenable paths. This
   contradicts a universal “no async” rule. It does not prove that source-level async wrappers are valid
-  in every provider runtime; in particular, a package can reject an unsupported framework wrapper.
+  in every Receiver runtime; in particular, a package can reject an unsupported framework wrapper.
 - **Workaround:** Follow the generated package's exact call shape. For a public contract that must span
   runtimes, prefer the simplest supported return type and move async implementation behind the public
   boundary when required.
-- **Evidence/status:** **Partial**; Node async generation is verified, universal async preservation is
+- **Status:** **Partial**; Node async generation is verified, universal async preservation is
   not.
 
 ## Callbacks and delegates
@@ -152,24 +152,24 @@ This page does not publish roadmap dates or links that have not been independent
 
 - **Scenario:** Pass a callback/delegate, subscribe to an event, or rely on reverse invocation.
 - **Observed behavior:** Graftcode contains delegate and callback-related handling, but no
-  complete provider/consumer/transport matrix establishes lifecycle, reconnect, error, or browser
+  complete Receiver/Caller/transport matrix establishes lifecycle, reconnect, error, or browser
   behavior.
 - **Workaround:** Use request/result methods for portable contracts. Introduce callbacks only after an
   end-to-end test for the exact runtimes and transport.
-- **Evidence/status:** **Partial/unknown**; implementation hooks exist, universal semantics are not
+- **Status:** **Partial/unknown**; implementation hooks exist, universal semantics are not
   established.
 
 ## Exceptions
 
 ### Native exception type and hierarchy preservation is not guaranteed
 
-- **Scenario:** Provider code throws a framework or custom exception.
+- **Scenario:** Receiver code throws a framework or custom exception.
 - **Observed behavior:** Runtime responses carry failures and generated clients wrap or rethrow them,
-  but the evidence does not prove that every source exception type, hierarchy, stack, and custom field
+  but this does not guarantee that every source exception type, hierarchy, stack, and custom field
   survives every cross-runtime path.
 - **Workaround:** Treat the stable error contract as explicit error codes/messages or result models;
-  log provider details locally and test caller-side exception handling.
-- **Evidence/status:** **Partial**; failure propagation exists, universal native-type equivalence does
+  log Receiver details locally and test caller-side exception handling.
+- **Status:** **Partial**; failure propagation exists, universal native-type equivalence does
   not.
 
 ## Package managers
@@ -182,19 +182,17 @@ This page does not publish roadmap dates or links that have not been independent
   project key can produce a different registry identity.
 - **Workaround:** Copy the complete command and generated import from the running Gateway/Vision. Never
   derive or reuse example coordinates.
-- **Evidence/status:** **Verified** package-generation constraint.
+- **Status:** **Verified** package-generation constraint.
 
 ### npm dependency behavior must be read from the generated package
 
 - **Scenario:** Install an npm Graft and its runtime dependency.
 - **Observed behavior:** Generated npm packages depend on
-  `hypertube-nodejs-sdk`, and generated package metadata can declare it as a dependency. Older
-  documentation contradicted itself by prescribing both `hypertube-nodejs-sdk` and
-  `javonet-nodejs-sdk`, and by claiming manual installation was always required.
+  `hypertube-nodejs-sdk`, and generated package metadata can declare it as a dependency.
 - **Workaround:** Run the registry-qualified npm command emitted for the Graft, keep the lockfile, and
-  inspect the installed package metadata if dependency resolution fails. Do not add a differently named
-  SDK from an old example.
-- **Evidence/status:** **Verified** current dependency name; whether a specific published artifact
+  inspect the installed package metadata if dependency resolution fails. Use only the exact dependency
+  name from the generated package.
+- **Status:** **Verified** current dependency name; whether a specific published artifact
   resolves it automatically is release/package specific.
 
 ## Operating systems
@@ -207,7 +205,7 @@ This page does not publish roadmap dates or links that have not been independent
   some runtime tests skip particular operating systems. This is not a complete release matrix.
 - **Workaround:** Build and run the smoke test on the deployment OS/architecture. Preserve generated
   install scripts and native assets; verify executable permissions and runtime availability.
-- **Evidence/status:** **Partial**; multi-OS code paths exist, exhaustive release coverage is unknown.
+- **Status:** **Partial**; multi-OS code paths exist, exhaustive release coverage is unknown.
 
 ## Transports
 
@@ -220,17 +218,17 @@ This page does not publish roadmap dates or links that have not been independent
 - **Workaround:** Start with a transport documented by the running Gateway, verify its listener and
   route, then test through the actual proxy/ingress. Terminate TLS using a configuration tested for that
   deployment.
-- **Evidence/status:** **Verified** parsing/listeners; **unknown** universal proxy and plugin
+- **Status:** **Verified** parsing/listeners; **unknown** universal proxy and plugin
   compatibility.
 
 ### In-memory and remote calls do not have identical failure modes
 
 - **Scenario:** Switch a Graft from `inmemory` to a network host.
 - **Observed behavior:** Remote execution adds connection failures, timeouts, authentication, routing,
-  latency, and partial failure. In-memory mode requires the provider module to be locally loadable.
+  latency, and partial failure. In-memory mode requires the Receiver module to be locally loadable.
 - **Workaround:** Test both modes separately and configure the host before the first call because
   generated runtime context is cached.
-- **Evidence/status:** **Verified** configuration behavior.
+- **Status:** **Verified** configuration behavior.
 
 ## Authentication
 
@@ -245,7 +243,7 @@ This page does not publish roadmap dates or links that have not been independent
 - **Workaround:** Use only an authentication mechanism documented and tested for the deployed runtime;
   otherwise pass explicit credentials/context and validate before business effects. Test rejection as
   well as success. Browser WebSocket handshakes cannot set arbitrary custom headers.
-- **Evidence/status:** **Verified** .NET JWT source/tests and generated header hooks; **unknown**
+- **Status:** **Verified** .NET JWT source/tests and generated header hooks; **unknown**
   distribution and cross-runtime parity.
 
 ## Observability
@@ -254,11 +252,11 @@ This page does not publish roadmap dates or links that have not been independent
 
 - **Scenario:** Expect a connected distributed trace and Gateway metrics.
 - **Observed behavior:** W3C `traceparent`/`tracestate` behavior is tested in .NET and Node paths, and an
-  OpenTelemetry demo exists. No evidence proves automatic end-to-end traces, backend export, logs,
+  OpenTelemetry demo exists. There is no guarantee of automatic end-to-end traces, backend export, logs,
   metrics, or identity correlation for every runtime and transport.
 - **Workaround:** Configure your own OpenTelemetry/logging stack, verify parent/child relationships in a
-  smoke test, and retain provider and Gateway logs.
-- **Evidence/status:** **Partial**; .NET/Node propagation is verified, universal observability is not.
+  smoke test, and retain Receiver and Gateway logs.
+- **Status:** **Partial**; .NET/Node propagation is verified, universal observability is not.
 
 ### Configuration has six precedence levels
 
@@ -269,7 +267,7 @@ This page does not publish roadmap dates or links that have not been independent
   context is cached after first initialization.
 - **Workaround:** Inspect higher-priority environment/file sources and set configuration before the
   first generated call.
-- **Evidence/status:** **Verified** for .NET and Node.js configuration resolution. See
+- **Status:** **Verified** for .NET and Node.js configuration resolution. See
   [Configuration resolution](../core-concepts/configuration-resolution.md).
 
 ## Deployment
@@ -283,7 +281,7 @@ This page does not publish roadmap dates or links that have not been independent
   exactly-once behavior. Retrying an invocation can repeat business effects.
 - **Workaround:** Add deployment-specific health checks and resilience at an owned layer. Retry only
   operations designed and tested as idempotent; use explicit operation IDs for deduplication.
-- **Evidence/status:** **Unknown** as a general guarantee; validate each topology.
+- **Status:** **Unknown** as a general guarantee; validate each topology.
 
 ### Default ports and runtime detection can fail operationally
 
@@ -292,20 +290,59 @@ This page does not publish roadmap dates or links that have not been independent
   and current-directory scanning can select unrelated files or the wrong runtime.
 - **Workaround:** Provide the exact module and runtime, use available deployment ports, and confirm
   discovery and publication before installing a Graft.
-- **Evidence/status:** **Verified** Gateway behavior and documented known issues.
+- **Status:** **Verified** Gateway behavior and documented known issues.
 
 ## Compatibility
 
 ### There is no universal backward-compatibility guarantee
 
-- **Scenario:** Upgrade Gateway, Hypertube, the Graftcode Engine, provider contract, or generated package.
+- **Scenario:** Upgrade Gateway, Hypertube, the Graftcode Engine, Receiver contract, or generated package.
 - **Observed behavior:** The implementation contains versions and package-query paths, but no complete
-  test suite proves wire, binary, source, or old-client/new-provider compatibility across releases and
+  test suite proves wire, binary, source, or old-client/new-Receiver compatibility across releases and
   ecosystems. Additive source changes can still alter generated names, overloads, exports, or mappings.
 - **Workaround:** Pin all participating versions, regenerate packages deliberately, compare the UGM and
-  generated API, then compile and smoke-test representative consumers before rollout.
-- **Evidence/status:** **Unknown** as a universal guarantee. See
+  generated API, then compile and smoke-test representative Callers before rollout.
+- **Status:** **Unknown** as a universal guarantee. See
   [Contract evolution](../core-concepts/contract-evolution.md).
+
+## Runtime-specific notes
+
+**.NET**
+
+- SDK-style projects compile all `.cs` files recursively. Keep Caller and test projects outside the
+  Receiver library directory so unintended code does not enter the callable surface.
+- Public methods must be synchronous; a public `async`/`Task<T>` is not a portable contract.
+
+**Node.js / TypeScript**
+
+- Build TypeScript first and ensure package metadata resolves to the emitted JavaScript.
+- In stateless mode, `await` the top-level generated call rather than each returned accessor.
+- Browser bundlers may need polyfills for Node built-ins used by the generated package.
+- Framework route handlers and server actions are adapters, not the callable surface.
+
+**Java / JVM**
+
+- Expose Kotlin companion methods as JVM-static (`@JvmStatic`) so they appear as static operations.
+- Keep custom exception types package-private so they do not enter the callable surface.
+
+**Python**
+
+- Import-based analysis can run module initialization code. Keep Receiver imports deterministic and
+  free of unsafe startup side effects.
+- Distribution names and import paths often differ; use the exact import emitted by Vision.
+
+**Ruby**
+
+- The package name and require name can use different normalization; use the emitted require name.
+- Prefer current Gateway output for generated module paths and report mismatches.
+
+**PHP**
+
+- Composer packages may run post-install steps; retain the generated package scripts.
+- Verify the generated autoload path rather than relying on autoloading alone in older packages.
+
+See [Supported runtimes and package managers](supported-runtimes-package-managers.md) and the
+[Type compatibility matrix](type-matrix.md) for role support and type behavior.
 
 ## Production readiness
 
@@ -315,14 +352,14 @@ This page does not publish roadmap dates or links that have not been independent
 - **Observed behavior:** Working E2E paths exist, but support matrices for advanced types, all runtime
   pairs, security distribution, upgrades, retries, high availability, observability, and every
   deployment platform are incomplete.
-- **Workaround:** Define and test a narrow supported profile: exact provider/consumer versions, simple
+- **Workaround:** Define and test a narrow supported profile: exact Receiver/Caller versions, simple
   contract, package lock, transport/TLS/auth setup, timeout behavior, failure handling, observability,
   restart behavior, capacity, rollback, and contract-upgrade procedure.
-- **Evidence/status:** **Partial**. Production suitability is workload- and deployment-specific.
+- **Status:** **Partial**. Production suitability is workload- and deployment-specific.
 
 ## Next steps
 
-1. Select the exact runtime direction in [Language support status](../language-guides/support-status.md).
+1. Select the exact runtime direction in [Supported runtimes and package managers](supported-runtimes-package-managers.md).
 2. Reduce the public contract using [Callable surface](../core-concepts/callable-surface.md) and
    [Type mapping](../core-concepts/type-mapping.md).
 3. Publish once, copy package coordinates from the running Gateway/Vision, and run local and remote

@@ -10,7 +10,7 @@ The **callable surface** is the set of declarations the Graftcode Engine selects
 ![Public or exported declarations pass through type and method filters and a supported-type check to produce the UGM consumed by package generation](../../assets/diagrams/callable-surface-to-ugm.svg)
 
 Discovery is language-specific. A declaration that is public in source is not necessarily discovered,
-and a discovered declaration is not necessarily portable to every consumer language.
+and a discovered declaration is not necessarily portable to every Caller language.
 
 ## .NET and CLR
 
@@ -50,7 +50,7 @@ variables can become global members. For classes, explicit `__init__`, ordinary 
 `@staticmethod` methods, public fields, and `@property` accessors are analyzed. Leading-underscore
 and dunder names are generally excluded.
 
-Import-based analysis can execute module initialization code. Keep provider imports deterministic
+Import-based analysis can execute module initialization code. Keep Receiver imports deterministic
 and free of unsafe startup side effects. When a type filter is active, Python global functions and
 variables are not included.
 
@@ -75,10 +75,10 @@ marked private or protected, so verify and filter the generated surface.
 ## Perl
 
 Gateway contains Perl runtime-hosting hooks, but the Graftcode Engine has no Perl analysis or
-generated-client pipeline equivalent to the six runtimes above. Do not assume a Perl provider can
+generated-client pipeline equivalent to the six runtimes above. Do not assume a Perl Receiver can
 produce a UGM or Graft package today.
 
-See [Language support status](../language-guides/support-status.md).
+See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md).
 
 ## Cross-language summary
 
@@ -89,11 +89,11 @@ See [Language support status](../language-guides/support-status.md).
 - Java and Ruby currently require extra review because non-public methods
   may enter the analyzed model.
 - Discovery is only the first gate; type mapping, package generation, installation, and runtime
-  invocation must also succeed for the chosen provider-consumer pair.
+  invocation must also succeed for the chosen Receiver-Caller pair.
 
 ## A practical rule
 
-Expose only declarations intended for consumers, then verify:
+Expose only declarations intended for Callers, then verify:
 
 1. the Graftcode Engine includes the intended members;
 2. package generation succeeds for the target ecosystem;

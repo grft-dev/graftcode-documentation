@@ -1,20 +1,20 @@
 ---
-title: "Scaling Gateway providers"
+title: "Scaling Gateway Receivers"
 description: "Scale stateless calls horizontally and preserve affinity for stateful calls."
 ---
 
-# Scaling Gateway providers
+# Scaling Gateway Receivers
 
-## Stateless providers
+## Stateless Receivers
 
-Static, stateless methods are the safest scaling unit. Run identical Gateway/provider instances
+Static, stateless methods are the safest scaling unit. Run identical Gateway/Receiver instances
 behind infrastructure that supports the selected transport. Route each independent call to any ready
 instance.
 
 Keep module, Gateway, generated-package, and configuration versions aligned across the pool. Remove an
 instance from readiness before stopping it.
 
-## Stateful providers
+## Stateful Receivers
 
 Instance methods and complex remote objects can retain identity on one receiver. Keep the connection
 and session on the same Gateway instance with WebSocket-aware affinity. Scale-in or restart can
@@ -22,7 +22,7 @@ invalidate that identity; callers must recreate state or fail clearly.
 
 ## Capacity
 
-Measure provider duration, concurrent connections, CPU, memory, dependency limits, and error rates.
+Measure Receiver duration, concurrent connections, CPU, memory, dependency limits, and error rates.
 Scale on observed saturation rather than assuming one call maps to one lightweight request.
 
 ## Publication identity

@@ -28,6 +28,6 @@ The exact Vision UI features depend on your Gateway release. The following are *
 - immediate UI refresh after contract changes;
 - security equivalence between Vision and runtime-call transports.
 
-If a release displays one of these features, treat that running release as evidence for the feature and copy values exactly. Do not generalize it to other versions without tests or release documentation.
+If a release displays one of these features, treat that running release as confirmation of the feature and copy values exactly. Do not generalize it to other versions without release documentation.
 
 The exact set of Vision features depends on your Gateway release. Treat the running Vision instance as authoritative, and copy values from it rather than assuming a feature exists in every version.

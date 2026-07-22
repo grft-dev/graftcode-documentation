@@ -8,16 +8,16 @@ keywords: "graftcode connection refused, timeout, websocket, authentication, JWT
 
 ## Symptoms
 
-- The first call tries to load a local provider module or reports file/module not found.
+- The first call tries to load a local Receiver module or reports file/module not found.
 - A remote call is refused, reset, closed, or times out.
 - WebSocket, TLS, proxy, CORS, or HTTP/2 negotiation fails.
-- The provider is reachable but returns an authentication/authorization failure.
+- The Receiver is reachable but returns an authentication/authorization failure.
 - A configuration change appears to have no effect.
 
 ## Diagnostics
 
 1. **Identify the resolved execution mode.** Generated packages default to in-memory unless overridden.
-   A local provider-module error often means the caller never switched to the remote host.
+   A local Receiver-module error often means the caller never switched to the remote host.
 2. **Check all six configuration priorities.** Highest first: runtime-specific environment, global
    environment, runtime-specific file, global file, user configuration, generated library default.
    A higher source can override code. There is no seventh precedence level.
@@ -38,7 +38,7 @@ keywords: "graftcode connection refused, timeout, websocket, authentication, JWT
    browser WebSocket handshakes cannot set arbitrary custom headers. Use only the browser transport and
    auth configuration emitted/documented for that release.
 9. **Classify the timeout.** Record whether it occurs during connect, TLS/handshake, authentication,
-   invocation, or provider execution. Check provider and Gateway logs at the same timestamp.
+   invocation, or Receiver execution. Check Receiver and Gateway logs at the same timestamp.
 
 `GG_DEBUG=1` is documented to log incoming and outgoing byte traffic. It can expose payload or
 credential material; use it only in a controlled environment, redact captured output, and disable it
@@ -86,15 +86,15 @@ GraftConfig.stateless = true
   issuer/audience/key/time settings, and that receiver validation runs before business effects.
 - **Browser custom-header failure:** use the emitted HTTP/2/context option when available for the
   release, or redesign auth so it does not depend on an unsupported WebSocket handshake header.
-- **Invocation timeout:** determine whether the operation completed at the provider before retrying.
+- **Invocation timeout:** determine whether the operation completed at the Receiver before retrying.
   Graftcode does not provide a universal retry/idempotency guarantee; retry only operations designed to
   tolerate duplicates.
 
-## Escalation evidence
+## Data to collect before reporting
 
 Provide redacted resolved configuration source, host scheme (without secrets), enabled Gateway
-listeners, proxy/ingress topology, connection-stage error, timestamps, caller/Gateway/provider logs,
-runtime versions, and whether the provider observed the invocation.
+listeners, proxy/ingress topology, connection-stage error, timestamps, caller/Gateway/Receiver logs,
+runtime versions, and whether the Receiver observed the invocation.
 
 ## Next steps
 

@@ -49,8 +49,8 @@ Quick start first for your stack; return here when you need to understand *why* 
 - [In-memory module path](how-to-guides/inmemory-module-path.md)
 - [Use Graftcode alongside REST](how-to-guides/coexist-with-rest.md)
 - [Debug Graft invocations](how-to-guides/debug-graft-invocations.md)
-- [Handle provider errors](how-to-guides/handle-provider-errors.md)
-- [Update a provider contract](how-to-guides/update-provider-contract.md)
+- [Handle Receiver errors](how-to-guides/handle-provider-errors.md)
+- [Update a Receiver contract](how-to-guides/update-provider-contract.md)
 - [Dependency injection facades](how-to-guides/dependency-injection.md)
 
 ### Authoring multi-runtime snippets
@@ -84,17 +84,6 @@ snippet (`.NET`, `JavaScript`, `Python`, `Java`, `PHP`, `Ruby`) instead of a pag
 
 Use a **folder per runtime** (`how-to-guides/<slug>/dotnet.md`, …) only when prose or steps
 materially differ by stack. Regenerate consolidated guides with `scripts/consolidate-howto-articles.py`.
-
-## Language guides
-
-1. [Language support overview](language-guides/index.md)
-2. [Support status](language-guides/support-status.md)
-3. [.NET](language-guides/dotnet.md)
-4. [Node.js and TypeScript](language-guides/nodejs-typescript.md)
-5. [Java and JVM](language-guides/java-jvm.md)
-6. [Python](language-guides/python.md)
-7. [Ruby](language-guides/ruby.md)
-8. [PHP](language-guides/php.md)
 
 ## Operations
 
@@ -249,45 +238,17 @@ categories:
       - title: "Debug Graft invocations"
         path: "how-to-guides/debug-graft-invocations.md"
         order: 14
-      - title: "Handle provider errors"
+      - title: "Handle Receiver errors"
         path: "how-to-guides/handle-provider-errors.md"
         order: 15
-      - title: "Update a provider contract"
+      - title: "Update a Receiver contract"
         path: "how-to-guides/update-provider-contract.md"
         order: 16
       - title: "Dependency injection facades"
         path: "how-to-guides/dependency-injection.md"
         order: 17
-  - name: "Language guides"
-    order: 4
-    path: "language-guides"
-    items:
-      - title: "Overview"
-        path: "language-guides/index.md"
-        order: 1
-      - title: "Support status"
-        path: "language-guides/support-status.md"
-        order: 2
-      - title: ".NET"
-        path: "language-guides/dotnet.md"
-        order: 3
-      - title: "Node.js and TypeScript"
-        path: "language-guides/nodejs-typescript.md"
-        order: 4
-      - title: "Java and JVM"
-        path: "language-guides/java-jvm.md"
-        order: 5
-      - title: "Python"
-        path: "language-guides/python.md"
-        order: 6
-      - title: "Ruby"
-        path: "language-guides/ruby.md"
-        order: 7
-      - title: "PHP"
-        path: "language-guides/php.md"
-        order: 8
   - name: "Operations"
-    order: 5
+    order: 4
     path: "operations"
     items:
       - title: "Operations and deployment model"
@@ -321,7 +282,7 @@ categories:
         path: "operations/version-compatibility-upgrades.md"
         order: 10
   - name: "Reference"
-    order: 6
+    order: 5
     path: "reference"
     items:
       - title: "Quick reference"
@@ -361,7 +322,7 @@ categories:
         path: "reference/known-limitations.md"
         order: 12
   - name: "Troubleshooting"
-    order: 7
+    order: 6
     path: "troubleshooting"
     items:
       - title: "Troubleshooting index"

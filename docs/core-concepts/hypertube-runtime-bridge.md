@@ -7,7 +7,7 @@ description: "The verified role of Hypertube in serializing, transporting, execu
 
 **Hypertube** is the runtime layer used by generated Grafts. It turns generated wrapper operations into commands, serializes them, selects an execution path from resolved connection data, and deserializes the response.
 
-![Hypertube is the bridge between the consumer's generated Graft and the Gateway-hosted provider, carrying the serialized call and the response](../../assets/diagrams/how-it-works-diagram.svg)
+![Hypertube is the bridge between the Caller's generated Graft and the Gateway-hosted Receiver, carrying the serialized call and the response](../../assets/diagrams/how-it-works-diagram.svg)
 
 ## Execution paths in the current implementation
 

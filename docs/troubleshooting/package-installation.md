@@ -16,10 +16,10 @@ keywords: "graft package install failure, NuGet, npm, Maven, pip, Composer, Ruby
 ## Diagnostics
 
 1. **Return to the Gateway that published this contract.** Confirm module discovery and model
-   publication succeeded before troubleshooting the consumer.
+   publication succeeded before troubleshooting the Caller.
 2. **Copy the complete emitted command again.** Compare registry URL, project/registry identifier,
    package name, version, scope/group, and source options character for character. Do not normalize
-   casing or construct a coordinate from the provider namespace.
+   casing or construct a coordinate from the Receiver namespace.
 3. **Confirm the package manager is running in the intended project/environment.** Check the active
    .NET project, Node working directory, Python virtual environment, Maven/Gradle project, Composer
    project, or Ruby bundle.
@@ -27,8 +27,8 @@ keywords: "graft package install failure, NuGet, npm, Maven, pip, Composer, Ruby
    registry commonly means the dynamic Graft registry was omitted. An authorization response means the
    configured source credentials/project access must be checked; it is not a runtime-call failure.
 5. **Inspect resolved package metadata and the lockfile.** Verify the generated package version and its
-   declared runtime dependency. Current Node generator/package-manager evidence uses
-   `hypertube-nodejs-sdk`; do not substitute `javonet-nodejs-sdk`.
+   declared runtime dependency. Generated npm packages depend on `hypertube-nodejs-sdk`; use only the
+   exact dependency name from the generated package.
 6. **Preserve ordinary public sources.** A generated feed may not mirror every unrelated dependency.
    Use the package manager's supported source mapping/order so normal packages still resolve from their
    normal registry.
@@ -51,7 +51,7 @@ keywords: "graft package install failure, NuGet, npm, Maven, pip, Composer, Ruby
 - **Native extraction/platform error:** verify OS and architecture compatibility and retain generated
   install scripts. Do not copy native binaries from another platform.
 
-## Escalation evidence
+## Data to collect before reporting
 
 Provide the redacted emitted install command, package-manager error, package manifest metadata, lockfile
 entry, Gateway publication output, OS/architecture, and runtime versions. Never include credentials or

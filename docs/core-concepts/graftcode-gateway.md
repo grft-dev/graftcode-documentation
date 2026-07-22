@@ -28,9 +28,9 @@ TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, 
 
 ## Where to run Gateway
 
-- **On a host or VM** — install `gg` and run it beside the provider module. See
+- **On a host or VM** — install `gg` and run it beside the Receiver module. See
   [Run Gateway locally](../how-to-guides/run-gateway-locally.md).
-- **In a container** — build an image that bundles your provider and `gg`. Graftcode does not publish a
+- **In a container** — build an image that bundles your Receiver and `gg`. Graftcode does not publish a
   ready-made image to pull; see [Deploy with Docker](../how-to-guides/deploy-with-docker.md).
 
 ## Analysis and registration

@@ -33,4 +33,4 @@ Treat an instance Graft as bound to runtime context. Do not persist it as a dura
 - Prefer instances when constructor inputs and a sequence of operations are part of the domain model.
 - Keep durable identity in explicit domain IDs when it must survive process or connection lifetime.
 
-See [Contract evolution](contract-evolution.md) before changing between static and instance forms; it changes generated consumer code.
+See [Contract evolution](contract-evolution.md) before changing between static and instance forms; it changes generated Caller code.

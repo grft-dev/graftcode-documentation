@@ -27,30 +27,30 @@ keywords: "graftcode vision stale, contract mismatch, gateway UI, generated pack
 4. **Compare the model, package, and runtime as separate artifacts.**
    - Gateway/Vision model: what was analyzed for that process.
    - Generated package: what was produced for a target ecosystem and version.
-   - Runtime provider: what the call host currently loaded.
+   - Runtime Receiver: what the call host currently loaded.
 5. **Check filters and artifact freshness.** Type/method filters or a stale built module can make Vision
    correctly display a surface different from the source tree.
 6. **Check routing through proxies and replicas.** Vision and runtime traffic can be routed to different
    Gateway instances. Without a proven deployment policy, do not assume replicas have identical loaded
    modules or registry identities.
 7. **Refresh only after verifying backend state.** A browser refresh cannot fix wrong process routing,
-   failed publication, stale provider artifacts, or an old installed package.
-8. **Treat UI snippets as release-scoped evidence.** Exact Vision install-command, execution, and live
+   failed publication, stale Receiver artifacts, or an old installed package.
+8. **Treat UI snippets as release-scoped.** Exact Vision install-command, execution, and live
    refresh behavior is not guaranteed for every release.
 
 ## Fixes
 
 - Point both Vision and runtime-call configuration at the intended Gateway deployment.
-- Restart/redeploy Gateway with the exact built provider artifact, runtime, and filters; wait for
+- Restart/redeploy Gateway with the exact built Receiver artifact, runtime, and filters; wait for
   successful analysis/publication.
 - In a multi-instance deployment, make module/version configuration consistent or route diagnostic
   traffic to one identified instance.
 - Copy a fresh install command from that process and verify the installed package version and generated
   declarations.
 - If Gateway output and its model are correct but Vision alone is wrong, capture the UI response and
-  report a Vision defect; do not mutate the provider contract to compensate for a stale UI.
+  report a Vision defect; do not mutate the Receiver contract to compensate for a stale UI.
 
-## Escalation evidence
+## Data to collect before reporting
 
 Provide Gateway instance identity, Vision URL/port, runtime-call host/port, startup output, loaded module
 and version, active filters, screenshots or exported UI text, emitted package coordinate, installed
@@ -60,4 +60,4 @@ package version, and proxy/replica routing details. Redact project keys and cred
 
 If the analyzed model is wrong, continue with
 [Module, method, or type is missing](module-discovery-missing-method-unsupported-type.md). If only the
-installed consumer remains old, continue with [Installed package is stale](stale-package.md).
+installed Caller remains old, continue with [Installed package is stale](stale-package.md).

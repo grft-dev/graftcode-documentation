@@ -7,7 +7,7 @@ description: "Capture Gateway logs and integrate verified trace propagation with
 
 ## Logging
 
-Capture Gateway standard output/error and provider logs with instance, release, module, and runtime
+Capture Gateway standard output/error and Receiver logs with instance, release, module, and runtime
 labels. Log startup discovery and publication separately from invocation failures.
 
 `GG_DEBUG=1` or `TRUE` logs incoming and outgoing byte traffic. Use it only for controlled diagnosis;
@@ -15,8 +15,8 @@ payload bytes can expose sensitive data and increase log volume.
 
 ## Tracing
 
-The .NET and Node.js Hypertube SDKs contain tested W3C `traceparent` propagation. Integrate provider
-and consumer applications with their normal OpenTelemetry setup and verify one remote call appears in
+The .NET and Node.js Hypertube SDKs contain tested W3C `traceparent` propagation. Integrate Receiver
+and Caller applications with their normal OpenTelemetry setup and verify one remote call appears in
 one trace.
 
 Do not claim equivalent propagation for every runtime without a test. Trace export is an application
@@ -24,7 +24,7 @@ or platform responsibility; Gateway does not provide a documented universal coll
 
 ## Metrics
 
-Record at the caller/provider boundary:
+Record at the caller/Receiver boundary:
 
 - call count and failures by stable operation name;
 - duration distributions;
@@ -39,6 +39,6 @@ Instrument applications and infrastructure until a release specifies one.
 
 ## Next steps
 
-- [Handle provider errors](../how-to-guides/handle-provider-errors.md)
+- [Handle Receiver errors](../how-to-guides/handle-provider-errors.md)
 - [Timeouts and retries](timeouts-retries.md)
 - [Environment variables](../reference/environment-variables.md)

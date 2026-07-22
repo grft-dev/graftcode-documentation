@@ -54,11 +54,11 @@ entrypoint execution is not unconditional.
 
 Dedicated DI walkthroughs for Node.js, Python, Java, PHP, and Ruby are not included here. Apply the
 same facade pattern: internal container, public static or module-level methods with portable types
-only. See the [language guides](../language-guides/index.md) for runtime-specific packaging notes.
+only. See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md) for runtime-specific packaging notes.
 
 ## Next steps
 
 - [Filter the callable surface](filter-callable-surface.md)
 - [Callable surface](../core-concepts/callable-surface.md)
 - [Type mapping](../core-concepts/type-mapping.md)
-- [.NET language guide](../language-guides/dotnet.md)
+- [Runtime-specific notes](../reference/known-limitations.md#runtime-specific-notes)

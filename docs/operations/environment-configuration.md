@@ -5,7 +5,7 @@ description: "Separate Gateway process settings from generated Graft invocation 
 
 # Environment and configuration
 
-Gateway CLI/environment settings and consumer `GraftConfig` are separate configuration domains.
+Gateway CLI/environment settings and Caller `GraftConfig` are separate configuration domains.
 
 ## Gateway process
 
@@ -21,7 +21,7 @@ contain sensitive invocation data.
 CLI controls module/runtime selection, listener ports, optional servers, Vision, type filtering,
 CORS, context, versioning, and plugin configuration. Use `gg --help` for the installed release.
 
-## Generated consumer package
+## Generated Caller package
 
 Generated packages resolve six configuration levels, from highest to lowest priority:
 

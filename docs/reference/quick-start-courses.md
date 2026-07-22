@@ -22,7 +22,7 @@ Call a hosted backend from a browser app.
 
 ## Expose a backend service
 
-Host a provider module with Gateway.
+Host a Receiver module with Gateway.
 
 | Runtime | Link |
 | --- | --- |
@@ -60,7 +60,7 @@ Install and call a remote module through your package manager.
 
 ## Expose MCP for AI
 
-Expose provider methods for MCP clients and agents.
+Expose Receiver methods for MCP clients and agents.
 
 | Runtime | Link |
 | --- | --- |
@@ -86,11 +86,11 @@ Change deployment topology with configuration, not rewrites.
 ## Gaps
 
 Quick start does not publish dedicated PHP or Ruby articles at the time of writing. Use the closest
-JVM or JavaScript course for workflow patterns, then follow the [PHP](../language-guides/php.md) or
-[Ruby](../language-guides/ruby.md) language guide for runtime-specific install and API shapes.
+JVM or JavaScript course for workflow patterns, then apply PHP or Ruby install and API shapes from
+Vision and the [runtime-specific notes](known-limitations.md#runtime-specific-notes).
 
 ## Next steps
 
 - [Choose a scenario](../introduction/when-to-use-graftcode.md)
-- [Language guides](../language-guides/index.md)
+- [Supported runtimes and package managers](supported-runtimes-package-managers.md)
 - [Quick reference](quick-reference.md)
