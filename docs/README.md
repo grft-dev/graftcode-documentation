@@ -17,22 +17,21 @@ Quick start first for your stack; return here when you need to understand *why* 
 
 ## Core concepts
 
-1. [Core concepts overview](core-concepts/index.md)
-2. [What is a Graft?](core-concepts/what-is-a-graft.md)
-3. [Callable surface](core-concepts/callable-surface.md)
-4. [Public interface vs business logic](core-concepts/public-interface-vs-business-logic.md)
-5. [Caller and receiver](core-concepts/caller-and-receiver.md)
-6. [Static and instance context](core-concepts/static-and-instance-context.md)
-7. [Graftcode Gateway](core-concepts/graftcode-gateway.md)
-8. [Hypertube runtime bridge](core-concepts/hypertube-runtime-bridge.md)
-9. [Graftcode Vision](core-concepts/graftcode-vision.md)
-10. [Invocation lifecycle](core-concepts/invocation-lifecycle.md)
-11. [Execution modes](core-concepts/execution-modes.md)
-12. [Configuration resolution](core-concepts/configuration-resolution.md)
-13. [Package generation](core-concepts/package-generation.md)
-14. [Type mapping](core-concepts/type-mapping.md)
-15. [Contract evolution](core-concepts/contract-evolution.md)
-16. [Glossary](core-concepts/glossary.md)
+1. [What is a Graft?](core-concepts/what-is-a-graft.md)
+2. [Callable surface](core-concepts/callable-surface.md)
+3. [Public interface vs business logic](core-concepts/public-interface-vs-business-logic.md)
+4. [Caller and receiver](core-concepts/caller-and-receiver.md)
+5. [Static and instance context](core-concepts/static-and-instance-context.md)
+6. [Graftcode Gateway](core-concepts/graftcode-gateway.md)
+7. [Hypertube runtime bridge](core-concepts/hypertube-runtime-bridge.md)
+8. [Graftcode Vision](core-concepts/graftcode-vision.md)
+9. [Invocation lifecycle](core-concepts/invocation-lifecycle.md)
+10. [Execution modes](core-concepts/execution-modes.md)
+11. [Configuration resolution](core-concepts/configuration-resolution.md)
+12. [Package generation](core-concepts/package-generation.md)
+13. [Type mapping](core-concepts/type-mapping.md)
+14. [Contract evolution](core-concepts/contract-evolution.md)
+15. [Glossary](core-concepts/glossary.md)
 
 ## How-to guides
 
@@ -159,54 +158,51 @@ categories:
     order: 2
     path: "core-concepts"
     items:
-      - title: "Overview"
-        path: "core-concepts/index.md"
-        order: 1
       - title: "What is a Graft?"
         path: "core-concepts/what-is-a-graft.md"
-        order: 2
+        order: 1
       - title: "Callable surface"
         path: "core-concepts/callable-surface.md"
-        order: 3
+        order: 2
       - title: "Public interface vs business logic"
         path: "core-concepts/public-interface-vs-business-logic.md"
-        order: 4
+        order: 3
       - title: "Caller and receiver"
         path: "core-concepts/caller-and-receiver.md"
-        order: 5
+        order: 4
       - title: "Static and instance context"
         path: "core-concepts/static-and-instance-context.md"
-        order: 6
+        order: 5
       - title: "Graftcode Gateway"
         path: "core-concepts/graftcode-gateway.md"
-        order: 7
+        order: 6
       - title: "Hypertube runtime bridge"
         path: "core-concepts/hypertube-runtime-bridge.md"
-        order: 8
+        order: 7
       - title: "Graftcode Vision"
         path: "core-concepts/graftcode-vision.md"
-        order: 9
+        order: 8
       - title: "Invocation lifecycle"
         path: "core-concepts/invocation-lifecycle.md"
-        order: 10
+        order: 9
       - title: "Execution modes"
         path: "core-concepts/execution-modes.md"
-        order: 11
+        order: 10
       - title: "Configuration resolution"
         path: "core-concepts/configuration-resolution.md"
-        order: 12
+        order: 11
       - title: "Package generation"
         path: "core-concepts/package-generation.md"
-        order: 13
+        order: 12
       - title: "Type mapping"
         path: "core-concepts/type-mapping.md"
-        order: 14
+        order: 13
       - title: "Contract evolution"
         path: "core-concepts/contract-evolution.md"
-        order: 15
+        order: 14
       - title: "Glossary"
         path: "core-concepts/glossary.md"
-        order: 16
+        order: 15
   - name: "How-to guides"
     order: 3
     path: "how-to-guides"
