@@ -50,6 +50,8 @@ transport for Graftcode.
 
 ## How they compare
 
+![Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization code that a REST or gRPC integration would require; the runtime still represents and transfers invocation data](../../assets/diagrams/performance-comparison.webp)
+
 REST and gRPC keep a protocol contract (URLs/operations, schemas, and a client) separate from your
 business code. With Graftcode the supported public method surface is the contract and the installed
 Graft is the client. Neither is universally faster; the right choice depends on who owns the contract,

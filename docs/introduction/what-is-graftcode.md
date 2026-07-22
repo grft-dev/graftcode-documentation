@@ -76,7 +76,7 @@ For the step-by-step build → host → install → call sequence, see
 
 ## How the pieces fit together
 
-![Caller Graft, Hypertube, Gateway, and Receiver business logic](../../assets/diagrams/how-it-works-diagram.svg)
+![Caller Graft, Hypertube, Gateway, and Receiver business logic](../../assets/diagrams/how-it-works-diagram.webp)
 
 The diagram uses product labels. The same picture in documentation terms:
 
@@ -105,7 +105,7 @@ Text version: `Caller code -> Graft -> Hypertube -> Gateway -> Receiver method -
 
 ## How this differs from REST and GraphQL
 
-![REST routes and payloads versus Graftcode callable surface and generated Graft](../../assets/diagrams/rest-vs-graftcode.svg)
+![REST routes and payloads versus Graftcode callable surface and generated Graft](../../assets/diagrams/rest-vs-graftcode.webp)
 
 With REST or GraphQL you maintain a **protocol contract** (URLs/operations, schemas, clients,
 serialization, versioning) separate from your business code. With Graftcode the supported **public

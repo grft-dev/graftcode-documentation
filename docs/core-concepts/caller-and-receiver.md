@@ -35,6 +35,6 @@ For remote execution, “looks like a method call” does not mean “has local 
 
 REST starts from manually designed resources, routes, HTTP verbs, and payloads. Graftcode starts from an analyzed callable surface and generated package. Both remote forms still cross a process or network boundary.
 
-![REST exposes routes and payloads while Graftcode generates calls from a callable surface](../../assets/diagrams/rest-vs-graftcode.svg)
+![REST exposes routes and payloads while Graftcode generates calls from a callable surface](../../assets/diagrams/rest-vs-graftcode.webp)
 
 Bidirectional callbacks and event guarantees are not claimed here; verify their supported scope for your runtime and transport pair before relying on them.

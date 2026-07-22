@@ -7,7 +7,7 @@ description: "What Hypertube does at runtime, where it sits between a Graft and 
 
 **Hypertube** is the runtime communication bridge between an installed [Graft](what-is-a-graft.md) and [Gateway](graftcode-gateway.md). When your Caller invokes a generated method, Hypertube carries that call to the Receiver and brings the result back.
 
-![Hypertube is the bridge between the Caller's generated Graft and the Gateway-hosted Receiver, carrying the call and the response](../../assets/diagrams/how-it-works-diagram.svg)
+![Hypertube is the bridge between the Caller's generated Graft and the Gateway-hosted Receiver, carrying the call and the response](../../assets/diagrams/how-it-works-diagram.webp)
 
 ## Where it sits
 

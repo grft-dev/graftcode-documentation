@@ -5,7 +5,7 @@ description: "The sequence from a generated wrapper call through configuration, 
 
 # Invocation lifecycle
 
-![Caller business logic calls the generated Graft; Hypertube carries the invocation through Graftcode Gateway to the Receiver's business logic and returns the result](../../assets/diagrams/how-it-works-diagram.svg)
+![Caller business logic calls the generated Graft; Hypertube carries the invocation through Graftcode Gateway to the Receiver's business logic and returns the result](../../assets/diagrams/how-it-works-diagram.webp)
 
 1. **Application code calls a generated member.** Static and instance members use different generated handlers.
 2. **The generated `GraftConfig` initializes once.** It loads known environment and file sources, registers the generated default, and initializes a named runtime context.

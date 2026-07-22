@@ -37,7 +37,7 @@ TCP and HTTP/2 require their enabling flags. Defaults are operational defaults, 
 
 Gateway captures the selected callable surface, and the Graftcode Engine uses that metadata to generate packages. Keep these build/package activities distinct from runtime invocation: a normal method call uses the installed Graft and resolved runtime connection; it does not regenerate the package.
 
-![Callable-surface capture and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.svg)
+![Callable-surface capture and package generation happen before installed Grafts make runtime calls](../../assets/diagrams/build-vs-runtime.webp)
 
 ## What the Gateway is not
 
@@ -48,6 +48,8 @@ It is not the generated Graft and it is not the user module. It does expose netw
 Receiver business logic remains in the Receiver-controlled environment. During a normal invocation,
 runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver.
 They do not pass through Graftcode Engine unless a separately documented feature explicitly requires it.
+
+![Development-time and production artifacts — business logic, generated Grafts, CI/CD, config, Gateway, monitoring, secrets, and infrastructure — stay in your environment, while Graftcode Engine stores only public method signatures and creates Grafts from public interfaces](../../assets/diagrams/what-goes-to-engine.webp)
 
 This table is the canonical description of where each category of data goes:
 
