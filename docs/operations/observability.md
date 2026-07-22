@@ -15,12 +15,33 @@ payload bytes can expose sensitive data and increase log volume.
 
 ## Tracing
 
-The .NET and Node.js Hypertube SDKs contain tested W3C `traceparent` propagation. Integrate Receiver
-and Caller applications with their normal OpenTelemetry setup and verify one remote call appears in
-one trace.
+Graftcode propagates W3C Trace Context (`traceparent`) across a Graft call on **.NET and Node.js**, so
+a single remote call joins the Caller's trace instead of starting a new one. Other runtimes are not
+guaranteed to propagate context; verify before relying on it.
 
-Do not claim equivalent propagation for every runtime without a test. Trace export is an application
-or platform responsibility; Gateway does not provide a documented universal collector configuration.
+Trace export is an application or platform responsibility. Instrument the Caller and Receiver with
+their normal OpenTelemetry setup and exporter; Gateway does not provide a built-in collector.
+
+### End-to-end trace example (.NET or Node.js)
+
+1. **Configure OpenTelemetry in the Caller** with your exporter (for example OTLP to your backend), and
+   start a span around the operation that calls the Graft.
+2. **Call the Graft normally.** The generated call runs inside the active span; Graftcode adds
+   `traceparent` to the outgoing invocation.
+3. **Configure OpenTelemetry in the Receiver** with the same trace-context propagator and an exporter.
+   The Receiver continues the same trace rather than starting a new one.
+4. **Export to one backend.** In the trace you should see the Caller span, the runtime hop, and the
+   Receiver span (plus any nested Graft calls) under one trace ID:
+
+```text
+trace 4bf92f3577b34da6...
+  └─ Caller span: CalculateMonthlyBill (client)
+       └─ Receiver span: BillingService.CalculateMonthlyBill (server)
+            └─ Receiver span: repository.load (internal)
+```
+
+Record errors on the active span in the Receiver so failures appear on the same trace. Nested Graft
+calls from the Receiver continue propagating context on the supported runtimes.
 
 ## Metrics
 

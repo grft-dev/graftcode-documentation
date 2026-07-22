@@ -48,6 +48,19 @@ After installing the Graft from Vision, configure remote execution before the fi
 REST traffic and Graft traffic use separate paths: HTTP routes for REST, generated Graft + Gateway
 transport for Graftcode.
 
+## How they compare
+
+REST and gRPC keep a protocol contract (URLs/operations, schemas, and a client) separate from your
+business code. With Graftcode the supported public method surface is the contract and the installed
+Graft is the client. Neither is universally faster; the right choice depends on who owns the contract,
+who the Callers are, and your interoperability, streaming, and browser needs.
+
+Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization
+code for controlled Callers. Its runtime still represents and transfers invocation data, so the
+resulting performance depends on the runtime pair, execution mode, payload, transport, topology, and
+workload. This documentation does not publish comparative performance numbers without a documented,
+reproducible benchmark.
+
 ## Next steps
 
 - [Expose code](expose-code.md)

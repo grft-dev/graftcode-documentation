@@ -20,6 +20,22 @@ description: "The verified sequence from generated wrapper call through configur
 
 Failures can occur before execution (missing package or invalid configuration), during connection/transport, during dispatch, in user implementation code, or while mapping a response. Remote calls therefore require normal distributed-systems handling even though the call site resembles ordinary code.
 
+## Async, cancellation, and timeouts
+
+Keep these four things distinct:
+
+- **Receiver internals** can use async code freely — it is an implementation detail behind the public
+  method.
+- **The public method contract** must use portable shapes. For .NET, public methods must be
+  **synchronous**: `Task`/`Task<T>` and cancellation tokens are not accepted on the public surface.
+  Other runtimes vary; use the simplest supported return type for a cross-runtime contract.
+- **The generated Caller API** may be synchronous or asynchronous by runtime. For example, a generated
+  Node.js/TypeScript call can return `Promise<T>` (you `await` it) even when the .NET Receiver method
+  is synchronous. Follow the exact call shape in the installed package and Vision.
+- **Cancellation and timeouts** are a Caller/deployment concern. There is no built-in cross-runtime
+  cancellation; apply timeouts, retries, and cancellation in Caller code and infrastructure. See
+  [Timeouts and retries](../operations/timeouts-retries.md).
+
 ## What does not happen per call
 
 The module is not re-analyzed and the Graft package is not regenerated during an ordinary invocation. Those belong to the package/build path.

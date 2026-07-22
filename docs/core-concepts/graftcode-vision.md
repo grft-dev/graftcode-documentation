@@ -7,11 +7,11 @@ description: "What is verified about the Gateway-hosted Vision interface, with u
 
 **Graftcode Vision** is a web UI that the Gateway can host for inspecting loaded modules. The Gateway README describes it as a web UI and a graph view for loaded modules.
 
-## Verified behavior
+## What Vision provides
 
 - Vision hosting is enabled by the Gateway `--GV` option, on by default.
 - The Vision HTTP port defaults to `81` and can be changed with `--httpPort`.
-- Vision is associated with the modules loaded by that Gateway process.
+- Vision reflects the callable surface of the modules loaded by that Gateway process.
 
 ## Use the running Gateway as the source
 
@@ -29,5 +29,3 @@ The exact Vision UI features depend on your Gateway release. The following are *
 - security equivalence between Vision and runtime-call transports.
 
 If a release displays one of these features, treat that running release as confirmation of the feature and copy values exactly. Do not generalize it to other versions without release documentation.
-
-The exact set of Vision features depends on your Gateway release. Treat the running Vision instance as authoritative, and copy values from it rather than assuming a feature exists in every version.

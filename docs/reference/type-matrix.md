@@ -25,8 +25,24 @@ description: "Portable public types, verified target mappings, and unsupported f
 The Graftcode Engine explicitly rejects complex framework types. Discovery does not prove
 generation or runtime compatibility.
 
-Generated target mappings include numeric collapsing in TypeScript and narrower primitive mapping in
-.NET; therefore support belongs to the complete Receiver-to-Caller path.
+## Directional caveats (Receiver to Caller)
+
+Type behavior depends on the **Receiver → Caller** pair, not just the source type. Verify these with a
+generated-package smoke test:
+
+- **.NET `long` / 64-bit integer → JavaScript/TypeScript Caller:** JavaScript `number` cannot safely
+  represent every 64-bit value. Use `int` or a decimal string unless the exact pair is tested.
+- **.NET `decimal` → JavaScript/TypeScript Caller:** no direct equivalent; represent as a string for
+  exactness.
+- **Framework date/time or ID types (any Receiver → any Caller):** not portable; use ISO-8601 strings
+  and string identifiers.
+- **`Task`/`Task<T>` on a .NET Receiver's public method:** rejected; keep public methods synchronous.
+  The generated Caller API may still be asynchronous (see
+  [Async, cancellation, and timeouts](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts)).
+- **Nullable, enums, inheritance, generics:** behavior varies by pair; generate and smoke-test.
+
+For the safest cross-runtime contract, use primitives, strings, and plain models, and always test the
+exact Receiver/Caller pair before depending on richer types.
 
 ## Next steps
 

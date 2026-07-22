@@ -66,6 +66,9 @@ Start Gateway with:
 gg <module> --corsConfig ./cors.config
 ```
 
+List explicit origins. Do not use a wildcard (`*`) origin in production, and keep
+`allowCredentials=false` unless a specific origin requires credentials.
+
 ## 4. Verify
 
 Confirm types in Vision, exercise an MCP client against the Gateway HTTP surface, and treat

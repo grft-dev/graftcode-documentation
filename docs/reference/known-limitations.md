@@ -137,12 +137,14 @@ This page does not publish roadmap dates or links that have not been independent
 ### Async behavior is runtime-specific
 
 - **Scenario:** Expose or consume `Task`, `Promise`, future, or awaitable methods.
-- **Observed behavior:** Node-generated methods and declarations include Promise/thenable paths. This
-  contradicts a universal “no async” rule. It does not prove that source-level async wrappers are valid
-  in every Receiver runtime; in particular, a package can reject an unsupported framework wrapper.
+- **Observed behavior:** The generated Caller API can be synchronous or asynchronous by runtime — for
+  example, a Node.js/TypeScript call can return `Promise<T>`. The public method contract is separate:
+  .NET public methods must be synchronous (no `Task`/`Task<T>` or cancellation tokens on the public
+  surface), and other runtimes can reject unsupported async wrappers. Receiver internals may still use
+  async freely. See [Async, cancellation, and timeouts](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 - **Workaround:** Follow the generated package's exact call shape. For a public contract that must span
   runtimes, prefer the simplest supported return type and move async implementation behind the public
-  boundary when required.
+  boundary. Apply cancellation and timeouts in Caller code.
 - **Status:** **Partial**; Node async generation is verified, universal async preservation is
   not.
 
