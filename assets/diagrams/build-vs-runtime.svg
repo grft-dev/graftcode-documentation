@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 320" role="img" aria-labelledby="title desc">
   <title id="title">Build and package time versus runtime</title>
-  <desc id="desc">At build and package time, a module is analyzed to a UGM and a Graft package is generated. At runtime, an installed Graft resolves configuration and invokes a hosted implementation without regenerating the package.</desc>
+  <desc id="desc">At build and package time, a module is analyzed to a callable-surface metadata and a Graft package is generated. At runtime, an installed Graft resolves configuration and invokes a hosted implementation without regenerating the package.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700;font-size:16px}
@@ -25,7 +25,7 @@
   <line class="divider" x1="390" y1="64" x2="390" y2="298"/>
 
   <g filter="url(#s)"><rect class="card" x="40" y="84" width="150" height="64" rx="12"/></g><text class="h" x="115" y="121" text-anchor="middle">Module</text>
-  <g filter="url(#s)"><rect class="card" x="230" y="84" width="140" height="64" rx="12"/></g><text class="h" x="300" y="121" text-anchor="middle">UGM</text>
+  <g filter="url(#s)"><rect class="card" x="230" y="84" width="140" height="64" rx="12"/></g><text class="h" x="300" y="121" text-anchor="middle">Callable surface</text>
   <g filter="url(#g)"><rect x="140" y="204" width="170" height="70" rx="14" fill="url(#brand)"/></g>
   <text class="gh" x="225" y="234" text-anchor="middle">Generated</text><text class="gh" x="225" y="256" text-anchor="middle">Graft package</text>
   <path class="flow" marker-end="url(#a)" d="M190 116h40M300 148l-58 56"/>

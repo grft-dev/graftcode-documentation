@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 300" role="img" aria-labelledby="title desc">
   <title id="title">Project Key, registry URL, runtime host, and call credential are four different things</title>
-  <desc id="desc">Project Key registers the Gateway in a project at startup. The registry URL is used by the consumer package manager to install the Graft. The runtime host, set on GraftConfig, executes methods. The call credential, passed as a header or parameter, authorizes a specific call.</desc>
+  <desc id="desc">Project Key registers the Gateway in a project at startup. The registry URL is used by the Caller package manager to install the Graft. The runtime host, set on GraftConfig, executes methods. The call credential, passed as a header or parameter, authorizes a specific call.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700;font-size:16px}
@@ -34,7 +34,7 @@
   <g filter="url(#s)"><rect class="card" x="282" y="112" width="226" height="150" rx="14"/></g>
   <circle cx="306" cy="140" r="6" fill="#2764A8"/><text class="h" x="322" y="145">Registry URL</text>
   <text class="lbl" x="302" y="176">USED BY</text>
-  <text class="small" x="302" y="194">Consumer package manager</text>
+  <text class="small" x="302" y="194">Caller package manager</text>
   <text class="mono" x="302" y="212">https://grft.dev</text>
   <text class="lbl" x="302" y="238">PURPOSE</text>
   <text class="small" x="302" y="256">Installs the Graft</text>
@@ -44,7 +44,7 @@
   <circle cx="556" cy="140" r="6" fill="#39734A"/><text class="h" x="572" y="145">Runtime host</text>
   <text class="lbl" x="552" y="176">SET ON</text>
   <text class="small" x="552" y="194">GraftConfig host</text>
-  <text class="mono" x="552" y="212">ws://host/ws · inmemory</text>
+  <text class="mono" x="552" y="212">ws://host/ws ï¿½ inmemory</text>
   <text class="lbl" x="552" y="238">PURPOSE</text>
   <text class="small" x="552" y="256">Executes the methods</text>
 

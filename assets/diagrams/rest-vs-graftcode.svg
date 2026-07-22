@@ -30,8 +30,8 @@
   <g filter="url(#s)"><rect class="card" x="120" y="200" width="160" height="64" rx="12"/></g><text class="h" x="200" y="226" text-anchor="middle">Server handler</text><text class="small" x="200" y="246" text-anchor="middle">implementation</text>
   <path class="flow" marker-end="url(#a)" d="M190 112h20M285 142l-62 58"/>
 
-  <g filter="url(#s)"><rect class="card" x="400" y="82" width="150" height="60" rx="12"/></g><text class="h" x="475" y="108" text-anchor="middle">Callable surface</text><text class="small" x="475" y="128" text-anchor="middle">analyzed to UGM</text>
-  <g filter="url(#g)"><rect x="575" y="82" width="150" height="60" rx="12" fill="url(#brand)"/></g><text class="gh" x="650" y="108" text-anchor="middle">Generated Graft</text><text class="gsub" x="650" y="128" text-anchor="middle">consumer package</text>
+  <g filter="url(#s)"><rect class="card" x="400" y="82" width="150" height="60" rx="12"/></g><text class="h" x="475" y="108" text-anchor="middle">Callable surface</text><text class="small" x="475" y="128" text-anchor="middle">captured as metadata</text>
+  <g filter="url(#g)"><rect x="575" y="82" width="150" height="60" rx="12" fill="url(#brand)"/></g><text class="gh" x="650" y="108" text-anchor="middle">Generated Graft</text><text class="gsub" x="650" y="128" text-anchor="middle">Caller package</text>
   <g filter="url(#s)"><rect class="card" x="490" y="200" width="170" height="64" rx="12"/></g><text class="h" x="575" y="226" text-anchor="middle">Runtime bridge</text><text class="small" x="575" y="246" text-anchor="middle">hosted implementation</text>
   <path class="flow" marker-end="url(#a)" d="M550 112h25M650 142l-62 58"/>
 

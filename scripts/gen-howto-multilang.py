@@ -736,12 +736,12 @@ See [Timeouts and retries](../operations/timeouts-retries.md) and
 [Errors reference](../reference/errors-status.md).
 """
 
-    write_code_only_guide("handle-provider-errors", ERRORS)
+    write_code_only_guide("handle-receiver-errors", ERRORS)
 
     UPDATE = """---
-title: "Update a provider contract"
-description: "Change a public surface, regenerate packages, and upgrade consumers safely."
-articleTitle: "Update a provider contract"
+title: "Update a Receiver contract"
+description: "Change a public surface, regenerate packages, and upgrade Callers safely."
+articleTitle: "Update a Receiver contract"
 ---
 
 1. Classify breaking vs additive changes ([Contract evolution](../core-concepts/contract-evolution.md)).
@@ -749,13 +749,13 @@ articleTitle: "Update a provider contract"
 
 {host_multi}
 
-3. Regenerate every consumer package from Vision.
-4. Upgrade consumers with the new install command before removing old compatibility.
+3. Regenerate every Caller package from Vision.
+4. Upgrade Callers with the new install command before removing old compatibility.
 
 See [Version compatibility](../operations/version-compatibility-upgrades.md).
 """
 
-    write_code_only_guide("update-provider-contract", UPDATE)
+    write_code_only_guide("update-receiver-contract", UPDATE)
 
     DI_DOTNET = Path(__file__).resolve().parents[1] / "docs" / "how-to-guides" / "dependency-injection-dotnet.md"
     di_body = ""

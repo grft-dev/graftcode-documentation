@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 320" role="img" aria-labelledby="title desc">
   <title id="title">Graftcode one-picture overview</title>
-  <desc id="desc">A user-written module is analyzed into a UGM, which generates a Graft package. A user-written consumer calls the Graft, whose configuration selects in-memory or Gateway-hosted execution.</desc>
+  <desc id="desc">A user-written module is analyzed into a callable-surface metadata, which generates a Graft package. A user-written Caller calls the Graft, whose configuration selects in-memory or Gateway-hosted execution.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700}
@@ -26,7 +26,7 @@
   <text class="cap" x="108" y="114" text-anchor="middle">USER-WRITTEN</text>
 
   <g filter="url(#s)"><rect class="card" x="212" y="56" width="120" height="76" rx="14"/></g>
-  <text class="h" x="272" y="90" text-anchor="middle">UGM</text>
+  <text class="h" x="272" y="90" text-anchor="middle">Callable surface</text>
   <text class="small" x="272" y="112" text-anchor="middle">analyzed model</text>
 
   <g filter="url(#g)"><rect x="364" y="56" width="160" height="76" rx="14" fill="url(#brand)"/></g>
@@ -35,7 +35,7 @@
 
   <g filter="url(#s)"><rect class="card" x="560" y="56" width="160" height="76" rx="14"/></g>
   <rect x="560" y="56" width="6" height="76" rx="3" fill="#39734A"/>
-  <text class="h" x="644" y="90" text-anchor="middle">Consumer</text>
+  <text class="h" x="644" y="90" text-anchor="middle">Caller</text>
   <text class="cap" x="644" y="114" text-anchor="middle">USER-WRITTEN</text>
 
   <path class="flow" marker-end="url(#a)" d="M180 94h32M332 94h32M524 94h36"/>

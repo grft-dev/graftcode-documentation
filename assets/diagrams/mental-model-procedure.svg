@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 250" role="img" aria-labelledby="title desc">
   <title id="title">The Graftcode procedure: setup once, then call at runtime</title>
-  <desc id="desc">Setup happens once: a provider module is analyzed so Gateway discovers its public surface, the package service generates a Graft, and the consumer installs it. At runtime, each consumer call is invoked on the provider through Gateway and a result or error returns.</desc>
+  <desc id="desc">Setup happens once: a Receiver module is analyzed so Gateway discovers its public surface, the package service generates a Graft, and the Caller installs it. At runtime, each Caller call is invoked on the Receiver through Gateway and a result or error returns.</desc>
   <style>
     text{font:15px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700;font-size:15px}
@@ -32,10 +32,10 @@
   <text class="phase" x="1080" y="42" text-anchor="middle">RUNTIME &#183; PER CALL</text>
   <line class="divider" x1="960" y1="60" x2="960" y2="196"/>
 
-  <!-- 1 provider module -->
+  <!-- 1 Receiver module -->
   <g filter="url(#s)"><rect class="card" x="32" y="78" width="176" height="88" rx="14"/></g>
   <rect x="32" y="78" width="6" height="88" rx="3" fill="#39734A"/>
-  <text class="h" x="120" y="116" text-anchor="middle">Provider module</text>
+  <text class="h" x="120" y="116" text-anchor="middle">Receiver module</text>
   <text class="cap" x="120" y="140" text-anchor="middle">USER-WRITTEN</text>
 
   <!-- 2 discover -->
@@ -51,14 +51,14 @@
   <!-- 4 install & call -->
   <g filter="url(#s)"><rect class="card" x="752" y="78" width="176" height="88" rx="14"/></g>
   <rect x="752" y="78" width="6" height="88" rx="3" fill="#39734A"/>
-  <text class="h" x="840" y="110" text-anchor="middle">Consumer installs</text>
+  <text class="h" x="840" y="110" text-anchor="middle">Caller installs</text>
   <text class="h" x="840" y="130" text-anchor="middle">&amp; calls the Graft</text>
   <text class="cap" x="840" y="151" text-anchor="middle">USER-WRITTEN</text>
 
   <!-- 5 invoke -->
   <g filter="url(#s)"><rect class="card" x="992" y="78" width="176" height="88" rx="14"/></g>
   <text class="h" x="1080" y="116" text-anchor="middle">Gateway invokes</text>
-  <text class="small" x="1080" y="138" text-anchor="middle">the provider</text>
+  <text class="small" x="1080" y="138" text-anchor="middle">the Receiver</text>
 
   <path class="flow" marker-end="url(#a)" d="M208 122H272"/>
   <path class="gen" marker-end="url(#m)" d="M448 122H512"/>

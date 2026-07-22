@@ -20,7 +20,7 @@
   <rect x="8" y="8" width="744" height="284" rx="20" fill="#FAF9FA"/>
 
   <g filter="url(#g)"><rect x="40" y="44" width="680" height="82" rx="16" fill="url(#brand)"/></g>
-  <text class="gh" x="380" y="80" text-anchor="middle">Callable surface — represented in UGM</text>
+  <text class="gh" x="380" y="80" text-anchor="middle">Callable surface — exposed through Gateway</text>
   <text class="gsub" x="380" y="104" text-anchor="middle">selected public / exported types, constructors, methods, fields, and properties</text>
 
   <path class="flow" marker-end="url(#a)" d="M380 126v40"/>

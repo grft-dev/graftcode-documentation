@@ -48,7 +48,7 @@
   <text class="course" x="430" y="305">Switch between monolith and microservices</text>
 
   <g filter="url(#s)"><rect class="card" x="410" y="332" width="454" height="60" rx="12"/></g>
-  <text class="h" x="430" y="358">Expose a new provider</text>
+  <text class="h" x="430" y="358">Expose a new Receiver</text>
   <text class="course" x="430" y="379">Expose a backend service</text>
 
   <g filter="url(#s)"><rect class="card" x="410" y="406" width="454" height="60" rx="12"/></g>

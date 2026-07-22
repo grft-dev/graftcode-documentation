@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 270" role="img" aria-labelledby="title desc">
-  <title id="title">From public declarations to the Unified Graft Model</title>
-  <desc id="desc">A language-specific analyzer takes public or exported declarations, applies type and method filters, validates supported types, and produces the Unified Graft Model, which package generation later consumes.</desc>
+  <title id="title">From public declarations to the callable-surface metadata</title>
+  <desc id="desc">A language-specific analyzer takes public or exported declarations, applies type and method filters, validates supported types, and produces the callable-surface metadata, which package generation later consumes.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700;font-size:16px}
@@ -43,7 +43,7 @@
   <text class="small" x="736" y="160" text-anchor="middle">per target generator</text>
 
   <g filter="url(#g)"><rect x="864" y="78" width="152" height="96" rx="14" fill="url(#brand)"/></g>
-  <text class="ugmText" x="940" y="120" text-anchor="middle">UGM</text>
+  <text class="ugmText" x="940" y="120" text-anchor="middle">Callable surface</text>
   <text class="ugmSub" x="940" y="142" text-anchor="middle">callable model</text>
   <text class="ugmSub" x="940" y="160" text-anchor="middle">language-neutral</text>
 

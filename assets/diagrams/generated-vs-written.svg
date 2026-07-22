@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title desc">
   <title id="title">Generated and user-written boundaries</title>
-  <desc id="desc">User-written producer code is analyzed into a generated Graft package, which is imported by user-written consumer code. Deployment configuration is also user-controlled.</desc>
+  <desc id="desc">User-written producer code is analyzed into a generated Graft package, which is imported by user-written Caller code. Deployment configuration is also user-controlled.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700}
@@ -30,11 +30,11 @@
   <g filter="url(#g)"><rect x="280" y="56" width="200" height="90" rx="14" fill="url(#brand)"/></g>
   <text class="gh" x="380" y="88" text-anchor="middle">Graft package</text>
   <text class="gsub" x="380" y="110" text-anchor="middle">wrappers + GraftConfig</text>
-  <text class="gsub" x="380" y="129" text-anchor="middle">generated from UGM</text>
+  <text class="gsub" x="380" y="129" text-anchor="middle">generated from the callable surface</text>
 
   <g filter="url(#s)"><rect class="card" x="524" y="56" width="200" height="90" rx="14"/></g>
   <rect x="524" y="56" width="6" height="90" rx="3" fill="#39734A"/>
-  <text class="h" x="628" y="92" text-anchor="middle">Consumer app</text>
+  <text class="h" x="628" y="92" text-anchor="middle">Caller app</text>
   <text class="cap" x="628" y="118" text-anchor="middle">USER-WRITTEN</text>
 
   <path class="flow" marker-end="url(#a)" d="M236 101h44M480 101h44"/>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 310" role="img" aria-labelledby="title desc">
-  <title id="title">Type mapping across the provider, UGM, and target generator</title>
-  <desc id="desc">A provider public type becomes a UGM type category, which the target code generator maps to a consumer type. Support is a property of the whole path: framework complex types can be rejected during package generation.</desc>
+  <title id="title">Type mapping across the Receiver, callable-surface metadata, and target generator</title>
+  <desc id="desc">A Receiver public type becomes a callable-surface metadata type category, which the target code generator maps to a Caller type. Support is a property of the whole path: framework complex types can be rejected during package generation.</desc>
   <style>
     text{font:16px system-ui,sans-serif;fill:#171317}
     .h{font-weight:700;font-size:16px}
@@ -24,22 +24,22 @@
   <rect x="8" y="8" width="1024" height="294" rx="20" fill="#FAF9FA"/>
 
   <g filter="url(#s)"><rect class="card" x="36" y="70" width="196" height="96" rx="14"/></g>
-  <text class="h" x="134" y="102" text-anchor="middle">Provider type</text>
+  <text class="h" x="134" y="102" text-anchor="middle">Receiver type</text>
   <text class="mono" x="134" y="128" text-anchor="middle">long</text>
   <text class="small" x="134" y="150" text-anchor="middle">public signature</text>
 
   <g filter="url(#g)"><rect x="288" y="70" width="196" height="96" rx="14" fill="url(#brand)"/></g>
-  <text class="ugmH" x="386" y="102" text-anchor="middle">UGM category</text>
+  <text class="ugmH" x="386" y="102" text-anchor="middle">Interface metadata</text>
   <text class="ugmMono" x="386" y="128" text-anchor="middle">64-bit integer</text>
   <text class="ugmH" x="386" y="150" text-anchor="middle" font-size="12" opacity=".9">language-neutral</text>
 
   <g filter="url(#s)"><rect class="card" x="540" y="70" width="196" height="96" rx="14"/></g>
   <text class="h" x="638" y="106" text-anchor="middle">Target generator</text>
-  <text class="small" x="638" y="130" text-anchor="middle">per consumer</text>
+  <text class="small" x="638" y="130" text-anchor="middle">per Caller</text>
   <text class="small" x="638" y="148" text-anchor="middle">ecosystem</text>
 
   <g filter="url(#s)"><rect class="card" x="792" y="70" width="212" height="96" rx="14"/></g>
-  <text class="h" x="898" y="102" text-anchor="middle">Consumer type</text>
+  <text class="h" x="898" y="102" text-anchor="middle">Caller type</text>
   <text class="mono" x="898" y="128" text-anchor="middle">number</text>
   <text class="small" x="898" y="150" text-anchor="middle">precision caveat</text>
 
@@ -52,7 +52,7 @@
   <path class="stopFlow" marker-end="url(#w)" d="M638 166v46"/>
 
   <text class="h" x="230" y="230" text-anchor="middle" font-size="15">Support depends on the whole</text>
-  <text class="h" x="230" y="250" text-anchor="middle" font-size="15">provider &#8594; UGM &#8594; generator path,</text>
+  <text class="h" x="230" y="250" text-anchor="middle" font-size="15">Receiver &#8594; callable-surface metadata &#8594; generator path,</text>
   <text class="h" x="230" y="270" text-anchor="middle" font-size="15">not the source language alone.</text>
 
   <text class="h" x="400" y="46" font-size="19">One type crosses three stages — every stage must support it</text>

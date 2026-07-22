@@ -31,7 +31,7 @@
   <circle cx="270" cy="100" r="15" fill="url(#brand)"/><text class="badgeText" x="270" y="105" text-anchor="middle">2</text>
   <text class="h" x="328" y="140" text-anchor="middle">Generated Graft</text>
   <text class="small" x="328" y="165" text-anchor="middle">typed package for</text>
-  <text class="small" x="328" y="183" text-anchor="middle">the consumer</text>
+  <text class="small" x="328" y="183" text-anchor="middle">the Caller</text>
   <circle cx="256" cy="204" r="5" fill="#C51E78"/><text class="cap" x="270" y="208" fill="#C51E78">GENERATED</text>
 
   <g filter="url(#s)"><rect class="card" x="444" y="70" width="176" height="150" rx="16"/></g>
