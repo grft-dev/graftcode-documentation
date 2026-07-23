@@ -47,7 +47,7 @@ Graft. Normal calls use the installed Graft and Hypertube — they do not regene
    **Gateway** (`gg`): it loads the module, serves Vision, and publishes the model used to generate
    packages — see [Gateway and hosted modules](../core-concepts/graftcode-gateway.md). To consume a
    capability someone else published, install a Graft from the
-   [public repository](../how-to-guides/obtain-install-graft.md#install-a-public-graft) without
+   [public repository](../how-to-guides/obtain-install-graft.md) without
    running your own Gateway.
 4. **Configuration selects monolith or microservice.** The same installed Graft can run
    **in-memory** in the Caller process (modular monolith) or **remotely** against a Gateway
