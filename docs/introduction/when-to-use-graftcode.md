@@ -26,7 +26,7 @@ below:
 
 Less common goals: [switch between monolith and microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices) · [expose methods as AI tools](https://docs.graftcode.com/quick-start/expose-mcp).
 
-![Routing from an integration goal to one of six Quick start courses](../../assets/diagrams/integration-scenarios.webp)
+![Routing from an integration goal to one of six Quick start courses](../../assets/diagrams/integration-scenarios.png)
 
 The sections below add the runtime-specific links and the concepts to read for each goal.
 

@@ -32,7 +32,7 @@ Package generation and invocation are separate:
 - **Application build time:** restore the package and type-check or compile calls.
 - **Runtime:** resolve the Graft configuration, initialize a runtime context, transport the command, execute the module, and return a result or error.
 
-![Build and package activities separated from runtime invocation](../../assets/diagrams/build-vs-runtime.webp)
+![Build and package activities separated from runtime invocation](../../assets/diagrams/build-vs-runtime.png)
 
 ## Scope
 

@@ -13,7 +13,7 @@ Four security concerns are separate and must not be conflated (see the canonical
 3. **Registry/package access** — who can install a generated Graft.
 4. **Callable-surface execution control** — which methods Gateway will accept at all.
 
-![Caller and Graft in the Caller environment; TLS/WSS terminating at ingress; Gateway and Receiver business logic in the Receiver environment; registry and Graftcode Engine on a separate control plane](../../assets/diagrams/security-boundaries.webp)
+![Caller and Graft in the Caller environment; TLS/WSS terminating at ingress; Gateway and Receiver business logic in the Receiver environment; registry and Graftcode Engine on a separate control plane](../../assets/diagrams/security-boundaries.png)
 
 Receiver business logic remains in the Receiver-controlled environment. During a normal invocation,
 runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver;

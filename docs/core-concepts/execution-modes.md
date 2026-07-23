@@ -5,7 +5,18 @@ description: "Precise execution-mode terminology and the host formats recognized
 
 # In-memory, same-machine, and remote execution
 
-![The same generated Graft and call site resolve to in-memory, same-machine, or remote execution depending on the host configuration — only configuration changes, not your code](../../assets/diagrams/local-vs-remote.webp)
+**Execution mode** is where the Receiver runs relative to your Caller. The generated Graft and your
+call site stay the same — [Hypertube](hypertube-runtime-bridge.md) reads the resolved `host` from
+[GraftConfig](configuration-resolution.md) and dispatches each invocation in memory, over a
+localhost listener, or to a remote Gateway.
+
+This page defines three terms that are often conflated in conversation and logs: **in memory**,
+**same machine**, and **remote**. Use them precisely in architecture and troubleshooting
+documentation. To change mode, set `host` before the first generated call — see
+[Configure Graft invocation](../how-to-guides/configure-invocation.md). For host formats and
+Gateway listeners, see [Ports and protocols](../reference/ports-protocols.md).
+
+![Transport selection matrix: decision flow from same-process in-memory through WebSocket, TCP, HTTP/2, and plugin transports](../../assets/diagrams/transport-selection-matrix.png)
 
 ## In memory
 
@@ -28,6 +39,9 @@ Use the precise term in architecture and troubleshooting documentation.
 Remote configuration points at another process or machine. Current resolvers recognize WebSocket (`ws://`, `wss://`), HTTP/2 (HTTP(S) host values ending in `h2`), TCP (`tcp://host:port` or `host:port`), and plugin connection data.
 
 Remote execution adds transport availability, latency, authentication, routing, and partial-failure concerns. Generated typing does not remove those concerns.
+![Transport-agnostic execution: the same application call passes through traffic management infrastructure to backend receivers without changing business code](../../assets/diagrams/transport-agnostic-execution.png)
+
+
 
 ## Same package, different configuration
 

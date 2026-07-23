@@ -17,7 +17,7 @@ The local route is `/ws`; do not extrapolate routes for other transports.
 
 ## Transport support
 
-![The same business code can run over in-memory, WebSocket, TCP, or HTTP/2 transports by changing only the runtime host, with message-queue and broker transports available through plugins](../../assets/diagrams/transport-selection-matrix.webp)
+![The same business code can run over in-memory, WebSocket, TCP, or HTTP/2 transports by changing only the runtime host, with message-queue and broker transports available through plugins](../../assets/diagrams/transport-selection-matrix.png)
 
 "Transport agnostic" means business code is decoupled from a selected transport, not that every
 transport has identical semantics. Choose the runtime host accordingly (see

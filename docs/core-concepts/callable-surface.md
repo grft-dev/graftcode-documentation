@@ -7,7 +7,7 @@ description: "How Graftcode selects which public types and methods are exposed a
 
 The **callable surface** is the set of public types and methods intentionally exposed through Gateway. It is the input to Graft generation, not a promise that every target ecosystem supports every exposed type.
 
-![Public or exported declarations pass through type and method filters and a supported-type check to produce the callable-surface metadata used for Graft generation](../../assets/diagrams/callable-surface-selection.webp)
+![Public or exported declarations pass through type and method filters and a supported-type check to produce the callable-surface metadata used for Graft generation](../../assets/diagrams/callable-surface-selection.png)
 
 ## Design it intentionally
 

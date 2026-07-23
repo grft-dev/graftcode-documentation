@@ -7,7 +7,7 @@ description: "How Graftcode distinguishes type-level calls from object-bound cal
 
 The callable surface and generated Grafts distinguish **static** operations from **instance** operations.
 
-![Side-by-side comparison: a static call executes at type level with no object, while an instance call constructs an object whose runtime context is retained but is not durable across restarts](../../assets/diagrams/static-vs-instance.webp)
+![Side-by-side comparison: a static call executes at type level with no object, while an instance call constructs an object whose runtime context is retained but is not durable across restarts](../../assets/diagrams/static-vs-instance.png)
 
 ## Static operations
 
