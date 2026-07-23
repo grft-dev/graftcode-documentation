@@ -10,8 +10,7 @@ course and the documentation that explains the design behind it. Graftcode is be
 behavior with an intentional programming interface; it is not a universal replacement for every
 protocol or data movement pattern.
 
-> **Hands-on first:** Quick start has step-by-step tutorials. Return here and to the reference
-> pages when you need concepts, constraints, or operations detail. See the full course index in
+> **Hands-on first:** Quick start has step-by-step tutorials. Return here and to the reference pages when you need concepts, constraints, or operations detail. See the full course index in
 > [Quick start courses](../reference/quick-start-courses.md).
 
 ## Start with your goal
