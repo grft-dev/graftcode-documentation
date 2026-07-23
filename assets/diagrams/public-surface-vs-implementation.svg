@@ -1,32 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-labelledby="title desc">
-  <title id="title">Public callable surface and private implementation</title>
-  <desc id="desc">Consumers depend on the analyzer-selected public callable surface. The surface delegates to private helpers, storage, frameworks, and other implementation details that are not represented as the public contract.</desc>
-  <style>
-    text{font:16px system-ui,sans-serif;fill:#171317}
-    .h{font-weight:700}
-    .small{font-size:13px;fill:#706A70}
-    .card{fill:#ffffff;stroke:#E6E2E6;stroke-width:1.5}
-    .flow{stroke:#171317;stroke-width:2.2;fill:none}
-    .gh{fill:#ffffff;font-weight:700;font-size:17px}
-    .gsub{fill:#ffffff;opacity:.92;font-size:13px}
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" role="img" aria-labelledby="title desc">
+  <title id="title">Public surface vs implementation boundary</title>
+  <desc id="desc">Implementation stays in your environment; Graftcode Engine stores public method signatures and creates Grafts from public interfaces.</desc>
   <defs>
-    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DA1A60"/><stop offset="1" stop-color="#A8228D"/></linearGradient>
-    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0l9 4.5-9 4.5z" fill="#171317"/></marker>
-    <filter id="s" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#171317" flood-opacity="0.10"/></filter>
-    <filter id="g" x="-15%" y="-40%" width="130%" height="190%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#A8228D" flood-opacity="0.26"/></filter>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#FFFFFF"/>
+    </marker>
+    <marker id="arrowMuted" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 Z" fill="#9BB0C4"/>
+    </marker>
   </defs>
+  <rect width="800" height="280" fill="#0B1B2E"/>
+  <style>
+    .title { font: 700 22px Georgia, "Times New Roman", serif; fill: #FFFFFF; letter-spacing: 0.04em; }
+    .h { font: 600 15px Consolas, "Courier New", monospace; fill: #FFFFFF; }
+    .small { font: 12px Consolas, "Courier New", monospace; fill: #9BB0C4; }
+    .cap { font: 700 11px Consolas, "Courier New", monospace; fill: #9BB0C4; letter-spacing: 0.08em; }
+    .mono { font: 600 13px Consolas, "Courier New", monospace; fill: #FFFFFF; }
+    .edge { font: 11px Consolas, "Courier New", monospace; fill: #9BB0C4; }
+    .box { fill: none; stroke: #FFFFFF; stroke-width: 1.6; }
+    .boxMuted { fill: none; stroke: #9BB0C4; stroke-width: 1.2; stroke-dasharray: 5 4; }
+    .flow { fill: none; stroke: #FFFFFF; stroke-width: 1.6; marker-end: url(#arrow); }
+    .flowMuted { fill: none; stroke: #9BB0C4; stroke-width: 1.4; stroke-dasharray: 6 5; marker-end: url(#arrowMuted); }
+    .track { fill: none; stroke: #9BB0C4; stroke-width: 2; }
+  </style>
+  
+  <text class="title" x="400" y="34" text-anchor="middle">Public surface vs implementation</text>
+  <text class="cap" x="200" y="70" text-anchor="middle">YOUR ENVIRONMENT</text>
+  <text class="cap" x="620" y="70" text-anchor="middle">GRAFTCODE ENGINE</text>
+  <rect class="box" x="40" y="90" width="320" height="150" rx="12"/><text class="h" x="200" y="130" text-anchor="middle">Business logic · Gateway · secrets</text><text class="small" x="200" y="152" text-anchor="middle">CI/CD · tests · infrastructure</text>
+  <rect class="box" x="440" y="90" width="320" height="150" rx="12"/><text class="h" x="600" y="124" text-anchor="middle">Stores public method signatures</text><text class="small" x="600" y="146" text-anchor="middle">Creates Grafts from interfaces</text>
+  <path class="flow" d="M360 165 H440"/><text class="edge" x="400" y="156">publish public interface</text>
+  <path class="flowMuted" d="M440 190 H360"/><text class="edge" x="400" y="206">use generated Grafts</text>
 
-  <rect x="8" y="8" width="744" height="284" rx="20" fill="#FAF9FA"/>
-
-  <g filter="url(#g)"><rect x="40" y="44" width="680" height="82" rx="16" fill="url(#brand)"/></g>
-  <text class="gh" x="380" y="80" text-anchor="middle">Callable surface — exposed through Gateway</text>
-  <text class="gsub" x="380" y="104" text-anchor="middle">selected public / exported types, constructors, methods, fields, and properties</text>
-
-  <path class="flow" marker-end="url(#a)" d="M380 126v40"/>
-
-  <g filter="url(#s)"><rect class="card" x="40" y="170" width="680" height="100" rx="16"/></g>
-  <text class="h" x="380" y="204" text-anchor="middle">Implementation — not the generated contract</text>
-  <text class="small" x="380" y="230" text-anchor="middle">private helpers · persistence · frameworks · secrets · transport adapters</text>
-  <text class="small" x="380" y="252" text-anchor="middle">authorization and business behavior execute here</text>
 </svg>

@@ -12,7 +12,7 @@ In Graftcode, **Caller** and **Receiver** name the two **services** in an integr
 
 Both sides are **user-written**. You own the service business logic on each side. Graftcode does not generate your domain code, database access, or deployment. It removes the **integration layer** you would otherwise maintain between those services — HTTP clients, route handlers, hand-designed DTOs, and custom SDKs.
 
-![Generated Graft between user-written Caller and Receiver services](../../assets/diagrams/generated-vs-written.svg)
+![Generated Graft between user-written Caller and Receiver services](../../assets/diagrams/generated-vs-written.png)
 
 ## What you write vs what is generated
 

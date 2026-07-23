@@ -40,7 +40,7 @@ Graft. Normal calls use the installed Graft and Hypertube — they do not regene
 
 ## Five things to remember
 
-![Five-step mental model: your module, generated Graft, Gateway hosting or public package install, configuration selecting monolith or microservice, and a call that can still fail like any distributed system](../../assets/diagrams/graftcode-mental-model.svg)
+![Five-step mental model: your module, generated Graft, Gateway hosting or public package install, configuration selecting monolith or microservice, and a call that can still fail like any distributed system](../../assets/diagrams/graftcode-mental-model.png)
 
 1. **The module is your code.** A Receiver is an ordinary class library or module. Its intentional,
    supported public methods form the [callable surface](../core-concepts/callable-surface.md).
@@ -61,7 +61,7 @@ Graft. Normal calls use the installed Graft and Hypertube — they do not regene
 5. **A method call is still distributed.** Serialization, routing, failures, compatibility,
    security, retries, and observability still matter when `host` points at a remote Gateway.
 
-![Setup happens once — analyze the Receiver, discover its public surface, generate a Graft, and install it; at runtime each Caller call is invoked on the Receiver and a result or error returns](../../assets/diagrams/mental-model-procedure.svg)
+![Setup happens once — analyze the Receiver, discover its public surface, generate a Graft, and install it; at runtime each Caller call is invoked on the Receiver and a result or error returns](../../assets/diagrams/mental-model-procedure.png)
 
 ## Build time versus call time
 

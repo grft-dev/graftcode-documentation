@@ -9,7 +9,7 @@ The **Graftcode Engine** turns metadata from the Receiver's selected
 [callable surface](callable-surface.md) into a package for the Caller's ecosystem. It is a
 package/build activity, not part of each runtime call.
 
-![User-written modules provide callable-surface metadata, and generated packages supply Caller wrappers](../../assets/diagrams/generated-vs-written.svg)
+![User-written modules provide callable-surface metadata, and generated packages supply Caller wrappers](../../assets/diagrams/generated-vs-written.png)
 
 ## Flow
 

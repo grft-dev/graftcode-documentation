@@ -7,7 +7,7 @@ description: "A precise introduction to generated Grafts, hosted modules, config
 
 A **Graft** is a generated package for calling a module through Graftcode. It presents types and members derived from the module's analyzed callable surface. Application code imports the package and uses generated classes and methods; the generated code initializes the Hypertube runtime bridge and sends the invocation to the configured execution context.
 
-![Overview of user-written modules, generated Grafts, configuration, and runtime calls](../../assets/diagrams/one-picture-overview.svg)
+![Overview of user-written modules, generated Grafts, configuration, and runtime calls](../../assets/diagrams/one-picture-overview.png)
 
 ## The four parts
 
@@ -18,7 +18,6 @@ A **Graft** is a generated package for calling a module through Graftcode. It pr
 
 The module implementation and the consuming application are user-written. The wrapper, configuration class, and invocation plumbing inside a Graft are generated.
 
-![Generated Graft code between user-written Receiver and Caller code](../../assets/diagrams/generated-vs-written.svg)
 
 ## What a Graft is not
 
