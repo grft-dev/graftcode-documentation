@@ -5,10 +5,12 @@ description: "The How it works diagram, component roles, and the core mental mod
 
 # How Graftcode works
 
-Graftcode connects a **Caller** to a **Receiver** through a generated **Graft** and **Hypertube**.
-You write service business logic on both sides; Graftcode analyzes the **public interface** and
-generates the Graft. Calls reach the Receiver through your **Gateway**, a **public package** install,
-or **in-memory** execution — depending on how you publish and configure the Graft.
+A **Caller** invokes a **Receiver** through a generated **Graft**. **Hypertube** — the
+communication channel inside the Graft — carries the programmer's intent: the method call, its
+arguments, and the result. The same call site can run **in-memory** or **remotely**; only
+`GraftConfig` changes, not your business code. For remote execution, **Gateway** (`gg`), a
+**C++** runtime server, hosts the Receiver and mediates the connection — built for substantially
+lower overhead than typical integration-server stacks in this role.
 
 ![How it works: Caller service business logic and Graft connect through Hypertube to Gateway and Receiver service business logic; Graftcode Engine reads each public interface to generate the Graft](../../assets/diagrams/how-it-works-diagram.png)
 
@@ -19,11 +21,12 @@ or **in-memory** execution — depending on how you publish and configure the Gr
 **Graft** — The generated package the Caller installs and imports (`npm install @graft/...` — copy
 the command from **Vision**). See [What is a Graft?](../core-concepts/what-is-a-graft.md).
 
-**Hypertube** — The runtime bridge inside the Graft. It carries each invocation to **Gateway** (or
-runs in-memory when configured). See [Hypertube runtime bridge](../core-concepts/hypertube-runtime-bridge.md).
+**Hypertube** — The communication channel inside the Graft. It carries the programmer's intent to
+the Receiver — in-memory when configured, or through **Gateway** for remote calls. See
+[Hypertube runtime bridge](../core-concepts/hypertube-runtime-bridge.md).
 
-**Gateway** — Hosts the Receiver module and receives remote calls. Install and run `gg` — see
-[Gateway and hosted modules](../core-concepts/graftcode-gateway.md).
+**Gateway** — A **C++** runtime server (`gg`) that hosts the Receiver module and mediates remote
+connections. Install and run it — see [Gateway and hosted modules](../core-concepts/graftcode-gateway.md).
 
 **Receiver** — The module Gateway hosts. **Service business logic** runs here.
 
