@@ -55,7 +55,7 @@ remain synchronous.
 
 ## Runtime support and per-runtime notes
 
-- [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md) — which runtimes host Receiver code and act as Caller.
+- [Supported runtimes and package managers](../reference/supported-runtimes-and-package-managers.md) — which runtimes host Receiver code and act as Caller.
 - [Runtime-specific notes](../reference/known-limitations.md#runtime-specific-notes) — per-runtime type and contract caveats.
 
 Perl and Python 2.7 have no generated-package or type-mapping path.

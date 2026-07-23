@@ -68,5 +68,5 @@ guarantee across releases.
 
 ## Next steps
 
-- [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md)
-- [Update a Receiver contract](../how-to-guides/update-receiver-contract.md)
+- [Obtain and install a Graft](../how-to-guides/obtain-and-install-a-graft.md)
+- [Update a Receiver contract](../how-to-guides/update-a-receiver-contract.md)

@@ -3,6 +3,8 @@ title: "Debug Graft invocations"
 description: "Use GG_DEBUG, Vision, and structured checks to diagnose Gateway and Graft failures."
 articleTitle: "Debug Graft invocations"
 ---
+# Debug Graft invocations
+
 ## 1. Enable byte-level Gateway logging
 
 ```bash
@@ -34,7 +36,7 @@ gg <module>
 | Connection timeout | wrong host, proxy, or TLS termination |
 | Missing method | filters, stale package, or discovery gap |
 
-See [Troubleshooting index](../troubleshooting/index.md).
+See [Troubleshooting index](../troubleshooting/troubleshooting.md).
 
 ## Receiver example
 
@@ -66,6 +68,6 @@ gg ./lib/
 
 ## Next steps
 
-- [Vision mismatch](../troubleshooting/vision-mismatch.md)
-- [Connection and auth failures](../troubleshooting/connection-timeouts-auth.md)
-- [Observability](../operations/observability.md)
+- [Vision mismatch](../troubleshooting/vision-and-runtime-disagree.md)
+- [Connection and auth failures](../troubleshooting/connection-timeout-or-authentication-failure.md)
+- [Observability](../operations/logging-metrics-and-tracing.md)

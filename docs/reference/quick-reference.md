@@ -3,7 +3,7 @@ title: "Quick Reference"
 description: "Gateway, package installation, invocation, ports, and troubleshooting shortcuts."
 ---
 
-# Quick reference
+# Quick Reference
 
 ## Receiver
 
@@ -18,13 +18,13 @@ gg <path-to-built-module>
 ```
 
 Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are listed in
-[Gateway CLI](gateway-cli.md). Confirm discovery and successful publication before installation.
+[Gateway CLI](gateway-cli-reference.md). Confirm discovery and successful publication before installation.
 
 ## Install a Graft
 
 **Public packages:** install from the Graftcode registry at `https://grft.dev` (Maven:
 `https://grft.dev/maven2/`, pip: `https://grft.dev/simple/`) using documented package coordinates.
-See [Obtain and install a Graft](../how-to-guides/obtain-install-graft.md#install-a-public-graft) for
+See [Obtain and install a Graft](../how-to-guides/obtain-and-install-a-graft.md#install-a-public-graft) for
 sample packages and commands.
 
 **Your own Receiver:** open the running Gateway's Vision UI, choose the Caller package manager, and
@@ -60,7 +60,7 @@ Generated packages expose `host` and `stateless` configuration (field names, cas
 by runtime). Copy the exact API from Vision and set it **before** the first generated call. The default
 is `inmemory`, which requires the Receiver module to be locally loadable. The `host` is the runtime
 endpoint, **not** the registry URL — see
-[Project Key, registry, host, and credentials](identifiers-and-auth.md).
+[Project Key, registry, host, and credentials](project-key-registry-host-and-credentials.md).
 
 ```multi
 ```dotnet
@@ -90,7 +90,7 @@ GraftConfig.stateless = true
 ```
 
 Use `ws://` or `wss://` for remote Gateway WebSocket endpoints. See
-[Configure invocation](../how-to-guides/configure-invocation.md) for imports and file/env sources.
+[Configure invocation](../how-to-guides/configure-graft-invocation.md) for imports and file/env sources.
 
 ## Ports
 
@@ -134,23 +134,23 @@ names in the installed package:
 
 ## Detailed references
 
-- [Gateway CLI](gateway-cli.md)
-- [Configuration keys and precedence](configuration-keys-precedence.md)
-- [Environment variables](environment-variables.md)
-- [Supported runtimes and package managers](supported-runtimes-package-managers.md)
-- [Type matrix](type-matrix.md)
-- [Errors and status](errors-status.md)
+- [Gateway CLI](gateway-cli-reference.md)
+- [Configuration keys and precedence](configuration-keys-and-precedence.md)
+- [Environment variables](environment-variable-reference.md)
+- [Supported runtimes and package managers](supported-runtimes-and-package-managers.md)
+- [Type matrix](type-compatibility-matrix.md)
+- [Errors and status](errors-and-status-reference.md)
 - [Generated package structure](generated-package-structure.md)
-- [Ports and protocols](ports-protocols.md)
+- [Ports and protocols](ports-and-protocols-reference.md)
 - [Known limitations](known-limitations.md)
 
 ## Next steps
 
-- [Expose code](../how-to-guides/expose-code.md)
+- [Expose code](../how-to-guides/expose-code-as-a-graftcode-receiver.md)
 - [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
-- [Use a project key](../how-to-guides/project-key.md)
-- [Gateway versioning](../how-to-guides/gateway-no-versioning.md)
-- [Filter callable surface](../how-to-guides/filter-callable-surface.md)
+- [Use a project key](../how-to-guides/use-a-portal-project-key.md)
+- [Gateway versioning](../how-to-guides/gateway-module-versioning-and-noversioning.md)
+- [Filter callable surface](../how-to-guides/filter-the-callable-surface.md)
 - [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls.md)
 - [Debug invocations](../how-to-guides/debug-graft-invocations.md)
-- [Operations and deployment model](../operations/index.md)
+- [Operations and deployment model](../operations/operations-and-deployment-model.md)

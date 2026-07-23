@@ -22,7 +22,7 @@ Always confirm the actual surface in [Graftcode Vision](graftcode-vision.md) rat
 
 ## Control exposure with filters
 
-Type and method filters are available for every supported runtime. Use them to expose only intentional operations and to keep implementation details off the contract. Filter syntax and matching rules differ per runtime — copy the exact form from the current Gateway/Vision output. See [Filter the callable surface](../how-to-guides/filter-callable-surface.md).
+Type and method filters are available for every supported runtime. Use them to expose only intentional operations and to keep implementation details off the contract. Filter syntax and matching rules differ per runtime — copy the exact form from the current Gateway/Vision output. See [Filter the callable surface](../how-to-guides/filter-the-callable-surface.md).
 
 ## Runtime-specific behavior to watch (current Alpha)
 
@@ -34,11 +34,11 @@ Discovery differs by language. The consequences that affect your contract:
 - **Python:** Only classes and functions defined by the analyzed module are exposed; imported symbols are not, and leading-underscore/dunder names are generally excluded. Importing the module can run module-level initialization, so keep Receiver imports deterministic and free of unsafe startup side effects.
 - **PHP:** Public methods, constructors, constants, and properties of discovered classes, interfaces, traits, and enums are exposed; magic methods and non-public members are not.
 - **Ruby:** Dynamically generated methods (for example via `define_method` or `method_missing`) may not appear in the callable surface, and non-public methods are not consistently excluded. Prefer explicit public methods for anything that must be exposed, and verify the result in Vision.
-- **Perl:** Gateway can host Perl code, but there is no current Graft-generation path for a Perl Receiver. Do not plan to publish a Graft from a Perl Receiver today. See [Supported runtimes and package managers](../reference/supported-runtimes-package-managers.md).
+- **Perl:** Gateway can host Perl code, but there is no current Graft-generation path for a Perl Receiver. Do not plan to publish a Graft from a Perl Receiver today. See [Supported runtimes and package managers](../reference/supported-runtimes-and-package-managers.md).
 
 ## Security implications
 
-The callable surface is an exposure boundary, not an authorization boundary. Filtering keeps unintended methods off the contract, but it does not authenticate or authorize a caller. Combine intentional surface design with invocation authentication and authorization — see [Authentication and authorization](../operations/authentication-authorization.md).
+The callable surface is an exposure boundary, not an authorization boundary. Filtering keeps unintended methods off the contract, but it does not authenticate or authorize a caller. Combine intentional surface design with invocation authentication and authorization — see [Authentication and authorization](../operations/authentication-and-authorization-operations.md).
 
 ## A practical rule
 
@@ -49,4 +49,4 @@ Expose only declarations intended for Callers, then verify:
 3. the generated package has the expected names and types;
 4. a runtime smoke test reaches the intended Receiver code.
 
-See [Public surface vs implementation](public-interface-vs-business-logic.md) and [Type mapping](type-mapping.md).
+See [Public surface vs implementation](public-surface-vs-implementation.md) and [Type mapping](type-mapping.md).

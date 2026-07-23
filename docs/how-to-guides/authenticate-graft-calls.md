@@ -3,9 +3,12 @@ title: Authenticate Graft calls
 description: Pass tokens to remote Receivers using headers or supported method parameters.
 articleTitle: Authenticate Graft calls
 ---
+
+# Authenticate Graft calls
+
 Gateway `--projectKey` authenticates **publication**, not each invocation. A **call credential**
 authorizes one specific call and is validated inside Receiver methods or through generated header
-APIs. See [Project Key, registry, host, and credentials](../reference/identifiers-and-auth.md) for how
+APIs. See [Project Key, registry, host, and credentials](../reference/project-key-registry-host-and-credentials.md) for how
 this differs from the Project Key, registry URL, and runtime host.
 
 ## Option 1: token as a method parameter
@@ -81,5 +84,5 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 
 ## Next steps
 
-- [Authentication operations](../operations/authentication-authorization.md)
-- [Configure invocation](configure-invocation.md)
+- [Authentication operations](../operations/authentication-and-authorization-operations.md)
+- [Configure invocation](configure-graft-invocation.md)

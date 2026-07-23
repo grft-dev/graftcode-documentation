@@ -34,7 +34,7 @@ and Node.js; other pairs require validation*).
 | Inheritance and polymorphism | Requires validation | Constructor, member, dispatch, and serialization semantics are not portable for arbitrary hierarchies. | Flatten the public contract into standalone facade types; delegate internally. |
 | 64-bit integers and `decimal` to a JavaScript Caller | Requires validation | JavaScript `number` cannot safely represent every 64-bit or exact-decimal value. | Use `int` or a string for exact values unless the exact pair is tested. |
 
-See [Type compatibility matrix](type-matrix.md) and [Type mapping](../core-concepts/type-mapping.md).
+See [Type compatibility matrix](type-compatibility-matrix.md) and [Type mapping](../core-concepts/type-mapping.md).
 
 ## Runtime support
 
@@ -44,7 +44,7 @@ See [Type compatibility matrix](type-matrix.md) and [Type mapping](../core-conce
 | Perl as a Receiver that produces a Graft | Unsupported | Gateway can host Perl code, but there is no Graft-generation path for a Perl Receiver. | Do not plan to publish a Graft from a Perl Receiver. |
 | Specific framework/interpreter versions | Available for documented versions | Not every patch version, distribution, target framework, or JVM language is guaranteed. | Match the version the Gateway release documents, then smoke-test in the target environment. |
 
-See [Supported runtimes and package managers](supported-runtimes-package-managers.md).
+See [Supported runtimes and package managers](supported-runtimes-and-package-managers.md).
 
 ## Invocation and async
 
@@ -83,20 +83,20 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 | Message-queue / broker transports | Preview (plugin-based) | Availability depends on a specific transport plugin; not built in. | Do not assume a broker is supported because it appears in a diagram; verify the plugin. |
 | Proxy, ingress, certificate, keepalive behavior | Requires validation | Deployment-specific. | Terminate TLS with a configuration tested for that deployment. |
 
-See [Ports and protocols](ports-protocols.md).
+See [Ports and protocols](ports-and-protocols-reference.md).
 
 ## Security
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| Invocation authentication and authorization | Alpha | Not automatic; if nothing is configured, no invocation authentication occurs. The Project Key is not runtime-call authorization. | Pass and validate credentials before business effects; test rejection as well as success. See [Authentication and authorization](../operations/authentication-authorization.md). |
+| Invocation authentication and authorization | Alpha | Not automatic; if nothing is configured, no invocation authentication occurs. The Project Key is not runtime-call authorization. | Pass and validate credentials before business effects; test rejection as well as success. See [Authentication and authorization](../operations/authentication-and-authorization-operations.md). |
 | Browser custom headers on the WebSocket handshake | Unsupported | Browser WebSocket handshakes cannot set arbitrary custom headers. | Pass credentials as a supported method parameter, or use the HTTP/2 configuration emitted by Vision. |
 
 ## Observability
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| W3C Trace Context propagation | Available for .NET and Node.js; other runtimes require validation | No guarantee of automatic end-to-end traces on every runtime/transport. | Instrument Caller and Receiver with OpenTelemetry; verify parent/child spans in a smoke test. See [Observability](../operations/observability.md). |
+| W3C Trace Context propagation | Available for .NET and Node.js; other runtimes require validation | No guarantee of automatic end-to-end traces on every runtime/transport. | Instrument Caller and Receiver with OpenTelemetry; verify parent/child spans in a smoke test. See [Observability](../operations/logging-metrics-and-tracing.md). |
 | Built-in metrics / log collector | Unsupported | Gateway does not provide a built-in collector. | Export telemetry with your own OpenTelemetry/logging stack. |
 
 ## Configuration
@@ -124,7 +124,7 @@ See [Ports and protocols](ports-protocols.md).
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| Expose a callable surface over MCP | Available | Scope depends on the runtime and configuration. | Follow the [MCP Quick Start](https://docs.graftcode.com/quick-start/expose-mcp) for the end-to-end flow; see [Expose methods over MCP](../how-to-guides/expose-mcp.md). |
+| Expose a callable surface over MCP | Available | Scope depends on the runtime and configuration. | Follow the [MCP Quick Start](https://docs.graftcode.com/quick-start/expose-mcp) for the end-to-end flow; see [Expose methods over MCP](../how-to-guides/expose-receiver-methods-for-mcp.md). |
 
 ## Compatibility
 
@@ -169,14 +169,14 @@ See [Ports and protocols](ports-protocols.md).
 - Composer packages may run post-install steps; retain the generated package scripts.
 - Verify the generated autoload path rather than relying on autoloading alone in older packages.
 
-See [Supported runtimes and package managers](supported-runtimes-package-managers.md) and the
-[Type compatibility matrix](type-matrix.md) for role support and type behavior.
+See [Supported runtimes and package managers](supported-runtimes-and-package-managers.md) and the
+[Type compatibility matrix](type-compatibility-matrix.md) for role support and type behavior.
 
 ## Next steps
 
-1. Select the exact runtime direction in [Supported runtimes and package managers](supported-runtimes-package-managers.md).
+1. Select the exact runtime direction in [Supported runtimes and package managers](supported-runtimes-and-package-managers.md).
 2. Reduce the public contract using [Callable surface](../core-concepts/callable-surface.md) and
    [Type mapping](../core-concepts/type-mapping.md).
 3. Publish once, copy package coordinates from the running Gateway/Vision, and run local and remote
    smoke tests.
-4. Use the [Troubleshooting index](../troubleshooting/index.md) for symptom-based diagnostics.
+4. Use the [Troubleshooting index](../troubleshooting/troubleshooting.md) for symptom-based diagnostics.

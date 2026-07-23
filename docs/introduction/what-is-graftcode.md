@@ -10,7 +10,7 @@ Graftcode turns a Receiver module's **public interface** into an installable **G
 **Gateway**, which hosts the Receiver's **service business logic**.
 
 For how Caller, Graft, Hypertube, Gateway, Receiver, Vision, and Graftcode Engine fit together, see
-[How Graftcode works](what-problem-does-graftcode-solve.md).
+[How Graftcode works](how-graftcode-works.md).
 
 > **New here?** Run a hands-on course in [Quick start](https://docs.graftcode.com/quick-start)
 > first. This documentation explains concepts, procedures, and reference material—it does not replace
@@ -63,7 +63,7 @@ system (hosts, auth, failures, observability); Graftcode removes the repetitive 
 callers that can install generated packages.
 
 For a public HTTP API aimed at arbitrary third parties, REST or GraphQL may remain the better
-boundary—see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
+boundary—see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
 ## How this differs from REST, GraphQL, gRPC, and tRPC
 
@@ -83,7 +83,7 @@ installed **Graft** is the client for callers that can install generated package
 Graftcode does not replace every protocol. REST, GraphQL, gRPC, and tRPC remain the better fit for
 public HTTP boundaries, arbitrary browser clients, partner integrations, and ecosystems where those
 tools are already standard. Many products use Graftcode for internal calls and keep REST or GraphQL for
-external APIs — see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
+external APIs — see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
 A Graft call is still distributed: auth, failures, timeouts, and observability still matter.
 
@@ -94,12 +94,12 @@ A Graft call is still distributed: auth, failures, timeouts, and observability s
 - Flipping the same code between in-memory and remote execution by configuration.
 - Exposing Receiver methods as MCP tools.
 
-Pick your goal and runtime in [Choose a scenario](when-to-use-graftcode.md), and review
-[current status and limitations](where-graftcode-fits.md) before production.
+Pick your goal and runtime in [Choose a scenario](choose-your-scenario.md), and review
+[current status and limitations](where-does-graftcode-fit.md) before production.
 
 ## Next steps
 
 1. [Quick start](https://docs.graftcode.com/quick-start) — first working call for your stack.
-2. [How Graftcode works](what-problem-does-graftcode-solve.md) — the How it works diagram and mental model.
-3. [Choose a scenario](when-to-use-graftcode.md) — pick your goal, then your runtime.
+2. [How Graftcode works](how-graftcode-works.md) — the How it works diagram and mental model.
+3. [Choose a scenario](choose-your-scenario.md) — pick your goal, then your runtime.
 4. [Quick reference](../reference/quick-reference.md) — keep open while coding.

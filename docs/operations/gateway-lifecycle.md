@@ -52,5 +52,5 @@ release and Receiver runtime.
 ## Next steps
 
 - [Health checks](health-checks.md)
-- [Scaling](scaling.md)
-- [Version compatibility and upgrades](version-compatibility-upgrades.md)
+- [Scaling](scaling-gateway-receivers.md)
+- [Version compatibility and upgrades](version-compatibility-and-upgrades.md)

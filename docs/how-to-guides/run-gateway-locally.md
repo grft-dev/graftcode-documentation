@@ -5,6 +5,8 @@ description: >-
   publication.
 articleTitle: Run Gateway locally
 ---
+# Run Gateway locally
+
 ## 1. Install Gateway
 
 **Graftcode Gateway** is the native host process; its CLI command is **`gg`** (`gg.exe` on Windows).
@@ -29,7 +31,7 @@ Verify the install:
 gg --help
 ```
 
-To host Gateway in a container without a local install, [build your own image](deploy-with-docker.md).
+To host Gateway in a container without a local install, [build your own image](deploy-gateway-with-docker.md).
 There is no official pre-built Gateway image to pull.
 
 ## 2. Build and host
@@ -74,5 +76,5 @@ Check logs for enabled types and successful publication, then open Vision.
 
 ## Next steps
 
-- [Obtain and install a Graft](obtain-install-graft.md)
-- [Gateway CLI](../reference/gateway-cli.md)
+- [Obtain and install a Graft](obtain-and-install-a-graft.md)
+- [Gateway CLI](../reference/gateway-cli-reference.md)

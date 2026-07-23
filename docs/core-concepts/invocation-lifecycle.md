@@ -34,7 +34,7 @@ Keep these four things distinct:
   is synchronous. Follow the exact call shape in the installed package and Vision.
 - **Cancellation and timeouts** are a Caller/deployment concern. There is no built-in cross-runtime
   cancellation; apply timeouts, retries, and cancellation in Caller code and infrastructure. See
-  [Timeouts and retries](../operations/timeouts-retries.md).
+  [Timeouts and retries](../operations/timeouts-and-retries.md).
 
 ## What does not happen per call
 

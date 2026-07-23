@@ -26,6 +26,9 @@ MARKETING_PHRASES = (
 )
 LINK_PATTERN = re.compile(r"!?\[[^\]]*]\(([^)]+)\)")
 NAV_PATH_PATTERN = re.compile(r'\bpath:\s*"([^"]+\.md)"')
+NAV_TITLE_PATTERN = re.compile(
+    r'title:\s*"([^"]+)"\s*\n\s*path:\s*"([^"]+\.md)"'
+)
 TITLE_PATTERN = re.compile(r'^title:\s*["\']?(.*?)["\']?\s*$', re.MULTILINE)
 FENCE_PATTERN = re.compile(r"^```(.*)$", re.MULTILINE)
 
@@ -72,6 +75,58 @@ def validate_fences(path: Path, text: str, warnings: list[str]) -> None:
             )
 
 
+def split_frontmatter(text: str) -> tuple[str | None, str]:
+    if not text.startswith("---"):
+        return None, text
+    parts = text.split("---", 2)
+    if len(parts) < 3:
+        return None, text
+    return parts[1], parts[2]
+
+
+def document_h1(body: str) -> str | None:
+    lines = body.splitlines()
+    h2_index = next((i for i, line in enumerate(lines) if line.startswith("## ")), len(lines))
+    for index in range(h2_index):
+        line = lines[index]
+        if line.startswith("# ") and not line.startswith("## "):
+            return line[2:].strip()
+    return None
+
+
+def validate_titles(files: list[Path], errors: list[str]) -> None:
+    readme = README.read_text(encoding="utf-8")
+    nav_titles = {
+        path: title for title, path in NAV_TITLE_PATTERN.findall(readme)
+    }
+
+    for path in files:
+        if path == README:
+            continue
+        text = path.read_text(encoding="utf-8")
+        frontmatter, body = split_frontmatter(text)
+        if frontmatter is None:
+            continue
+        match = TITLE_PATTERN.search(frontmatter)
+        if not match:
+            continue
+        title = match.group(1).strip("\"'")
+        rel = path.relative_to(DOCS).as_posix()
+        h1 = document_h1(body)
+        if h1 is None:
+            errors.append(f"{path.relative_to(ROOT)}: missing H1 before first section heading")
+        elif h1 != title:
+            errors.append(
+                f"{path.relative_to(ROOT)}: H1 {h1!r} does not match frontmatter title {title!r}"
+            )
+        nav_title = nav_titles.get(rel)
+        if nav_title and nav_title != title:
+            errors.append(
+                f"docs/README.md: nav title {nav_title!r} does not match "
+                f"{rel} frontmatter title {title!r}"
+            )
+
+
 def validate_navigation(files: list[Path], errors: list[str]) -> None:
     text = README.read_text(encoding="utf-8")
     listed = set(NAV_PATH_PATTERN.findall(text))
@@ -108,6 +163,7 @@ def main() -> int:
                 )
 
     validate_navigation(files, errors)
+    validate_titles(files, errors)
 
     for paths in titles.values():
         if len(paths) > 1:

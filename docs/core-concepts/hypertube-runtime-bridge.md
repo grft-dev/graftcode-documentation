@@ -5,7 +5,7 @@ description: "What Hypertube does at runtime, where it sits between a Graft and 
 
 # Hypertube runtime bridge
 
-**Hypertube** is the runtime communication bridge between an installed [Graft](what-is-a-graft.md) and [Gateway](graftcode-gateway.md). When your Caller invokes a generated method, Hypertube carries that call to the Receiver and brings the result back.
+**Hypertube** is the runtime communication bridge between an installed [Graft](what-is-a-graft.md) and [Gateway](gateway-and-hosted-modules.md). When your Caller invokes a generated method, Hypertube carries that call to the Receiver and brings the result back.
 
 ![Hypertube is the bridge between the Caller's generated Graft and the Gateway-hosted Receiver, carrying the call and the response](../../assets/diagrams/how-it-works-diagram.png)
 
@@ -19,12 +19,12 @@ The generated Graft exposes methods that look like local calls. Hypertube is the
 
 ## Execution modes
 
-Hypertube uses the [runtime host](../reference/identifiers-and-auth.md) from resolved configuration to decide how a call executes:
+Hypertube uses the [runtime host](../reference/project-key-registry-host-and-credentials.md) from resolved configuration to decide how a call executes:
 
 - **In-memory** — the Receiver runs in the same process; no network hop.
 - **Network transports** — WebSocket (default), and optionally TCP or HTTP/2, reach a Gateway over the network.
 
-You select the mode by configuring the runtime host, not by changing business code. See [Execution modes](execution-modes.md) and [Ports and protocols](../reference/ports-protocols.md).
+You select the mode by configuring the runtime host, not by changing business code. See [Execution modes](in-memory-same-machine-and-remote-execution.md) and [Ports and protocols](../reference/ports-and-protocols-reference.md).
 
 ## Connection setup
 
@@ -37,8 +37,8 @@ A remote Graft call looks like a local method call, but it is a remote call. The
 - **Latency** — a network hop is not free.
 - **Serialization** — arguments and results are represented and transferred; only supported types cross the boundary (see [Type mapping](type-mapping.md)).
 - **Partial failure** — the connection or Receiver can fail independently of the Caller.
-- **Timeouts and retries** — apply them in Caller code and infrastructure (see [Timeouts and retries](../operations/timeouts-retries.md)).
-- **Security** — encrypt the transport and authenticate/authorize invocations (see [Authentication and authorization](../operations/authentication-authorization.md)).
+- **Timeouts and retries** — apply them in Caller code and infrastructure (see [Timeouts and retries](../operations/timeouts-and-retries.md)).
+- **Security** — encrypt the transport and authenticate/authorize invocations (see [Authentication and authorization](../operations/authentication-and-authorization-operations.md)).
 
 ## How failures surface
 

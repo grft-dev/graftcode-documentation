@@ -95,12 +95,12 @@ Log rich Receiver-side detail locally; return only the stable contract to the Ca
 - Retry only operations you have designed and tested as **idempotent**.
 - Retrying a non-idempotent call can repeat business effects (double charge, duplicate record).
 - Use bounded retries with backoff, and use explicit operation IDs for deduplication where possible.
-- See [Timeouts and retries](../operations/timeouts-retries.md).
+- See [Timeouts and retries](../operations/timeouts-and-retries.md).
 
 ## Logging guidance
 
 - Never log complete credentials or tokens, and never place them in an exception message.
-- Log the failure category, operation, and a correlation/trace ID (see [Observability](../operations/observability.md)).
+- Log the failure category, operation, and a correlation/trace ID (see [Observability](../operations/logging-metrics-and-tracing.md)).
 - Keep Receiver-internal detail on the Receiver side.
 
 ## Expected output
@@ -111,6 +111,6 @@ Log rich Receiver-side detail locally; return only the stable contract to the Ca
 
 ## Troubleshooting
 
-- [Errors and status reference](../reference/errors-status.md)
-- [Connection, timeout, and auth failures](../troubleshooting/connection-timeouts-auth.md)
-- [Update a Receiver contract](update-receiver-contract.md)
+- [Errors and status reference](../reference/errors-and-status-reference.md)
+- [Connection, timeout, and auth failures](../troubleshooting/connection-timeout-or-authentication-failure.md)
+- [Update a Receiver contract](update-a-receiver-contract.md)

@@ -91,6 +91,6 @@ Vision and the [runtime-specific notes](known-limitations.md#runtime-specific-no
 
 ## Next steps
 
-- [Choose a scenario](../introduction/when-to-use-graftcode.md)
-- [Supported runtimes and package managers](supported-runtimes-package-managers.md)
+- [Choose a scenario](../introduction/choose-your-scenario.md)
+- [Supported runtimes and package managers](supported-runtimes-and-package-managers.md)
 - [Quick reference](quick-reference.md)

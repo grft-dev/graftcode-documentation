@@ -70,7 +70,7 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 
 - [Expose code](../expose-code)
 - [Dependency injection facade](../dependency-injection)
-- [Gateway CLI reference](../reference/gateway-cli.md)
+- [Gateway CLI reference](../reference/gateway-cli-reference.md)
 """
 
 MCP_GUIDE = """---
@@ -125,12 +125,12 @@ authorization as explicit application work.
 
 **Gap:** no verified end-to-end MCP tutorial is maintained in this documentation set. See
 [Known limitations](../reference/known-limitations.md) and
-[When to use Graftcode](../introduction/when-to-use-graftcode.md).
+[When to use Graftcode](../introduction/choose-your-scenario.md).
 
 ## Next steps
 
-- [Filter the callable surface](filter-callable-surface.md)
-- [Networking and ports](../operations/networking-ports.md)
+- [Filter the callable surface](filter-the-callable-surface.md)
+- [Networking and ports](../operations/networking-and-ports.md)
 """
 
 COEXIST_GUIDE = """---
@@ -150,7 +150,7 @@ Keep REST (or OpenAPI) when:
 - partners integrate via webhooks or fixed URLs;
 - consumers cannot install a generated Graft.
 
-See [When to use Graftcode](../../introduction/when-to-use-graftcode.md).
+See [When to use Graftcode](../../introduction/choose-your-scenario.md).
 
 ## When to add Graftcode
 
@@ -188,7 +188,7 @@ transport for Graftcode.
 
 - [Expose code](../expose-code)
 - [Caller and receiver](../../core-concepts/caller-and-receiver.md)
-- [Authentication operations](../../operations/authentication-authorization.md)
+- [Authentication operations](../../operations/authentication-and-authorization-operations.md)
 """
 
 LANG_LABEL = {
@@ -244,9 +244,9 @@ def write_guide(folder: str, template: str, **fmt):
 
 
 if __name__ == "__main__":
-    write_code_only_guide("filter-callable-surface", FILTER_GUIDE)
+    write_code_only_guide("filter-the-callable-surface", FILTER_GUIDE)
     write_code_only_guide("expose-mcp", MCP_GUIDE)
-    write_guide("coexist-with-rest", COEXIST_GUIDE)
+    write_guide("use-graftcode-alongside-an-existing-rest-api", COEXIST_GUIDE)
 
     AUTH = {
         "dotnet": """```csharp
@@ -332,7 +332,7 @@ Default deny: reject missing or invalid tokens with a clear domain exception. Do
 
 ## Next steps
 
-- [Authentication operations](../operations/authentication-authorization.md)
+- [Authentication operations](../operations/authentication-and-authorization-operations.md)
 - [Configure invocation](configure-invocation)
 """
 
@@ -416,7 +416,7 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 ## Next steps
 
 - [Configure invocation](configure-invocation)
-- [Scaling](../operations/scaling.md)
+- [Scaling](../operations/scaling-gateway-receivers.md)
 """
 
     write_code_only_guide(
@@ -484,12 +484,12 @@ artifact locally.
 {inmem_multi}
 
 If you see `FileNotFound` for the provider module, the client remained in `inmemory` without a
-resolvable module path. See [Errors reference](../reference/errors-status.md).
+resolvable module path. See [Errors reference](../reference/errors-and-status-reference.md).
 
 ## Next steps
 
 - [Configure invocation](configure-invocation)
-- [Execution modes](../core-concepts/execution-modes.md)
+- [Execution modes](../core-concepts/in-memory-same-machine-and-remote-execution.md)
 """
 
     write_code_only_guide(
@@ -535,7 +535,7 @@ gg <module>
 | Connection timeout | wrong host, proxy, or TLS termination |
 | Missing method | filters, stale package, or analyzer gap |
 
-See [Troubleshooting index](../../troubleshooting/index.md).
+See [Troubleshooting index](../../troubleshooting/troubleshooting.md).
 
 ## Provider example ({lang_label})
 
@@ -545,9 +545,9 @@ See [Troubleshooting index](../../troubleshooting/index.md).
 
 ## Next steps
 
-- [Vision mismatch](../../troubleshooting/vision-mismatch.md)
-- [Connection and auth failures](../../troubleshooting/connection-timeouts-auth.md)
-- [Observability](../../operations/observability.md)
+- [Vision mismatch](../../troubleshooting/vision-and-runtime-disagree.md)
+- [Connection and auth failures](../../troubleshooting/connection-timeout-or-authentication-failure.md)
+- [Observability](../../operations/logging-metrics-and-tracing.md)
 """
 
     for lang in LANGS:
@@ -645,7 +645,7 @@ Check logs for enabled types and successful publication, then open Vision.
 ## Next steps
 
 - [Obtain and install a Graft](obtain-install-graft)
-- [Gateway CLI](../reference/gateway-cli.md)
+- [Gateway CLI](../reference/gateway-cli-reference.md)
 """
 
     write_code_only_guide("run-gateway-locally", RUN_GW)
@@ -732,8 +732,8 @@ Validate inputs and throw domain exceptions with safe messages—no secrets in e
 
 {host_multi}
 
-See [Timeouts and retries](../operations/timeouts-retries.md) and
-[Errors reference](../reference/errors-status.md).
+See [Timeouts and retries](../operations/timeouts-and-retries.md) and
+[Errors reference](../reference/errors-and-status-reference.md).
 """
 
     write_code_only_guide("handle-receiver-errors", ERRORS)
@@ -752,7 +752,7 @@ articleTitle: "Update a Receiver contract"
 3. Regenerate every Caller package from Vision.
 4. Upgrade Callers with the new install command before removing old compatibility.
 
-See [Version compatibility](../operations/version-compatibility-upgrades.md).
+See [Version compatibility](../operations/version-compatibility-and-upgrades.md).
 """
 
     write_code_only_guide("update-receiver-contract", UPDATE)

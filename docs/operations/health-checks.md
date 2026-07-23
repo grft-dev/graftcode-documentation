@@ -50,5 +50,5 @@ Do not invent other routes.
 ## Next steps
 
 - [Gateway lifecycle](gateway-lifecycle.md)
-- [Timeouts and retries](timeouts-retries.md)
-- [Logging, metrics, and tracing](observability.md)
+- [Timeouts and retries](timeouts-and-retries.md)
+- [Logging, metrics, and tracing](logging-metrics-and-tracing.md)

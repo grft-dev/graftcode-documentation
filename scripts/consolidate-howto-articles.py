@@ -160,7 +160,7 @@ copy install commands from the **currently running** Gateway or Vision—not fro
 
 The project key does **not** authenticate individual Graft invocations. See
 [Authenticate Graft calls](authenticate-graft-calls.md) and
-[Authentication operations](../operations/authentication-authorization.md).
+[Authentication operations](../operations/authentication-and-authorization-operations.md).
 
 ## Obtain a project key
 
@@ -186,22 +186,22 @@ Or pass on the command line (avoid in shared shells and images):
 {multi_fence({lang: with_project_key_cli(lang) for lang in LANGS})}
 
 For Docker, inject `GC_PROJECT_KEY` through the platform secret store—never bake it into the image.
-See [Deploy with Docker](deploy-with-docker.md).
+See [Deploy with Docker](deploy-gateway-with-docker.md).
 
 ## Versioning interaction
 
 With a project key, Gateway uses project-backed publication semantics. In standalone mode without a
 key, versioning is disabled by default unless `--keepVersioning` is set. See
-[Gateway versioning](gateway-no-versioning.md).
+[Gateway versioning](gateway-module-versioning-and-noversioning.md).
 
 ## Next steps
 
-- [Obtain and install a Graft](obtain-install-graft.md)
-- [Environment variables](../reference/environment-variables.md)
-- [Core-concepts glossary — Project key](../core-concepts/glossary.md#project-key)
+- [Obtain and install a Graft](obtain-and-install-a-graft.md)
+- [Environment variables](../reference/environment-variable-reference.md)
+- [Core-concepts glossary — Project key](../core-concepts/core-concepts-glossary.md#project-key)
 """
     write_article(
-        "project-key",
+        "use-a-portal-project-key",
         body,
         title="Use a portal project key",
         description="Obtain a project key from the portal, configure Gateway, and understand how it differs from a registry URL.",
@@ -225,7 +225,7 @@ version.
 
 {multi_fence({lang: INSTALL[lang] for lang in LANGS})}
 
-Never derive registry URLs from the provider assembly or module name. Use a [project key](project-key.md)
+Never derive registry URLs from the provider assembly or module name. Use a [project key](use-a-portal-project-key.md)
 when stable publication identity is required.
 
 ## 4. Verify exports
@@ -234,11 +234,11 @@ Inspect generated namespaces, imports, and method names in the installed package
 
 ## Next steps
 
-- [Configure invocation](configure-invocation.md)
+- [Configure invocation](configure-graft-invocation.md)
 - [Generated package structure](../reference/generated-package-structure.md)
 """
     write_article(
-        "obtain-install-graft",
+        "obtain-and-install-a-graft",
         body,
         title="Obtain and install a Graft",
         description="Use Gateway or Vision output to install the generated package without guessing registry details.",
@@ -277,13 +277,13 @@ settings, then library defaults). Earlier levels win in the inspected resolver.
 
 ## Next steps
 
-- [Stateless vs stateful](stateless-vs-stateful.md)
-- [Configuration keys and precedence](../reference/configuration-keys-precedence.md)
-- [Networking and ports](../operations/networking-ports.md)
-- [Scale Gateway instances](../operations/scaling.md)
+- [Stateless vs stateful](stateless-vs-stateful-graft-calls.md)
+- [Configuration keys and precedence](../reference/configuration-keys-and-precedence.md)
+- [Networking and ports](../operations/networking-and-ports.md)
+- [Scale Gateway instances](../operations/scaling-gateway-receivers.md)
 """
     write_article(
-        "configure-invocation",
+        "configure-graft-invocation",
         body,
         title="Configure Graft invocation",
         description="Select in-memory or remote execution and configure generated GraftConfig before first use.",
@@ -303,7 +303,7 @@ Keep REST (or OpenAPI) when:
 - partners integrate via webhooks or fixed URLs;
 - consumers cannot install a generated Graft.
 
-See [When to use Graftcode](../introduction/when-to-use-graftcode.md).
+See [When to use Graftcode](../introduction/choose-your-scenario.md).
 
 ## When to add Graftcode
 
@@ -332,19 +332,19 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 ## Consumer example
 
 After installing the Graft from Vision, configure remote execution before the first call. See
-[Configure invocation](configure-invocation.md).
+[Configure invocation](configure-graft-invocation.md).
 
 REST traffic and Graft traffic use separate paths: HTTP routes for REST, generated Graft + Gateway
 transport for Graftcode.
 
 ## Next steps
 
-- [Expose code](expose-code.md)
+- [Expose code](expose-code-as-a-graftcode-receiver.md)
 - [Caller and receiver](../core-concepts/caller-and-receiver.md)
-- [Authentication operations](../operations/authentication-authorization.md)
+- [Authentication operations](../operations/authentication-and-authorization-operations.md)
 """
     write_article(
-        "coexist-with-rest",
+        "use-graftcode-alongside-an-existing-rest-api",
         body,
         title="Use Graftcode alongside an existing REST API",
         description="Keep HTTP endpoints for external clients while adding Graftcode for typed internal integration.",
@@ -384,7 +384,7 @@ gg <module>
 | Connection timeout | wrong host, proxy, or TLS termination |
 | Missing method | filters, stale package, or analyzer gap |
 
-See [Troubleshooting index](../troubleshooting/index.md).
+See [Troubleshooting index](../troubleshooting/troubleshooting.md).
 
 ## Provider example
 
@@ -392,9 +392,9 @@ See [Troubleshooting index](../troubleshooting/index.md).
 
 ## Next steps
 
-- [Vision mismatch](../troubleshooting/vision-mismatch.md)
-- [Connection and auth failures](../troubleshooting/connection-timeouts-auth.md)
-- [Observability](../operations/observability.md)
+- [Vision mismatch](../troubleshooting/vision-and-runtime-disagree.md)
+- [Connection and auth failures](../troubleshooting/connection-timeout-or-authentication-failure.md)
+- [Observability](../operations/logging-metrics-and-tracing.md)
 """
     write_article(
         "debug-graft-invocations",
@@ -432,14 +432,14 @@ After CLI and environment parsing:
 - `--keepVersioning` (default `true`) can re-enable versioning even without a project key.
 - `--noVersioning` **explicitly disables** versioning regardless of project key.
 
-A [portal project key](project-key.md) ties publication to stable project metadata and is the normal
+A [portal project key](use-a-portal-project-key.md) ties publication to stable project metadata and is the normal
 production path.
 
 ## When to bump consumer package versions
 
 Bump the generated package version shown in Vision when the **callable surface** changes in a way
 that affects consumers: renamed members, signature changes, removed types, or unsupported type
-introduction. See [Update a Receiver contract](update-receiver-contract.md) and
+introduction. See [Update a Receiver contract](update-a-receiver-contract.md) and
 [Contract evolution](../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always
@@ -484,12 +484,12 @@ the inspected implementation.
 
 ## Next steps
 
-- [Use a project key](project-key.md)
-- [Gateway CLI reference](../reference/gateway-cli.md)
-- [Version compatibility and upgrades](../operations/version-compatibility-upgrades.md)
+- [Use a project key](use-a-portal-project-key.md)
+- [Gateway CLI reference](../reference/gateway-cli-reference.md)
+- [Version compatibility and upgrades](../operations/version-compatibility-and-upgrades.md)
 """
     write_article(
-        "gateway-no-versioning",
+        "gateway-module-versioning-and-noversioning",
         body,
         title="Gateway module versioning and --noVersioning",
         description="Understand hosted-module versioning, when to bump package versions, and how to control versioning with Gateway flags.",
@@ -535,11 +535,11 @@ language pair that uses types beyond the portable baseline.
 ## Next steps
 
 - [Run Gateway locally](run-gateway-locally.md)
-- [Obtain and install a Graft](obtain-install-graft.md)
-- [Type compatibility matrix](../reference/type-matrix.md)
+- [Obtain and install a Graft](obtain-and-install-a-graft.md)
+- [Type compatibility matrix](../reference/type-compatibility-matrix.md)
 """
     write_article(
-        "expose-code",
+        "expose-code-as-a-graftcode-receiver",
         body,
         title="Expose code as a Graftcode provider",
         description="Prepare a small public contract and verify that Gateway discovers it.",
@@ -592,11 +592,11 @@ set.
 ## Next steps
 
 - [Run Gateway locally](run-gateway-locally.md)
-- [Use a project key](project-key.md)
-- [Networking and ports](../operations/networking-ports.md)
+- [Use a project key](use-a-portal-project-key.md)
+- [Networking and ports](../operations/networking-and-ports.md)
 """
     write_article(
-        "deploy-with-docker",
+        "deploy-gateway-with-docker",
         body,
         title="Deploy Gateway with Docker",
         description="Build a provider and Gateway into a container.",
@@ -615,14 +615,14 @@ def main() -> None:
     deploy_with_docker()
 
     for slug in [
-        "project-key",
-        "obtain-install-graft",
-        "configure-invocation",
-        "coexist-with-rest",
+        "use-a-portal-project-key",
+        "obtain-and-install-a-graft",
+        "configure-graft-invocation",
+        "use-graftcode-alongside-an-existing-rest-api",
         "debug-graft-invocations",
-        "gateway-no-versioning",
-        "expose-code",
-        "deploy-with-docker",
+        "gateway-module-versioning-and-noversioning",
+        "expose-code-as-a-graftcode-receiver",
+        "deploy-gateway-with-docker",
     ]:
         remove_folder(slug)
 
