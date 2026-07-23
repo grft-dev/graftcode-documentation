@@ -33,14 +33,6 @@ You do not need a big-bang migration. **Graftcode Gateway (`gg`)** can host exis
 workloads while also exposing a Graftcode Receiver surface from the same deployment. External clients
 keep calling REST routes; controlled Callers install generated Grafts when you are ready.
 
-```text
-┌─────────────────────────────────────┐
-│  Monolith or API host               │
-│  ├─ REST controllers (public)       │
-│  └─ Receiver module (Graftcode)     │──► Gateway ──► remote Callers
-└─────────────────────────────────────┘
-```
-
 REST integration starts from manually designed resources, routes, HTTP verbs, and payloads.
 Graftcode integration starts from an analyzed callable surface and a generated Graft. Both cross a
 boundary; the difference is **who maintains the integration layer** and **which clients use which
