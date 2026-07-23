@@ -33,7 +33,6 @@ workflows). See [Graftcode Vision](../core-concepts/graftcode-vision.md).
 public interface; the Engine [generates](../core-concepts/package-generation.md) the installable
 Graft. Normal calls use the installed Graft and Hypertube — they do not regenerate the package.
 
-**Runtime flow:** `Caller → Graft → Hypertube → Gateway → Receiver → result`
 
 ## Five things to remember
 

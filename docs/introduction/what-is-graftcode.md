@@ -1,6 +1,6 @@
 ---
 title: "What is Graftcode?"
-description: "What Graftcode is, a before/after example, and where teams use it."
+description: "What Graftcode is, a before/after example, protocol comparison, and where teams use it."
 ---
 
 # What is Graftcode?
@@ -65,16 +65,27 @@ callers that can install generated packages.
 For a public HTTP API aimed at arbitrary third parties, REST or GraphQL may remain the better
 boundary—see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
 
-## How this differs from REST and GraphQL
+## How this differs from REST, GraphQL, gRPC, and tRPC
 
-![REST routes and payloads versus Graftcode callable surface and generated Graft](../../assets/diagrams/rest-vs-graftcode.png)
+REST, GraphQL, gRPC, and tRPC each keep a **protocol contract**—routes, schemas, `.proto` files, or
+shared TypeScript types—separate from your business code. You maintain that contract layer and the
+clients that speak it. With Graftcode the supported **public method surface** is the contract and the
+installed **Graft** is the client for callers that can install generated packages.
 
-With REST or GraphQL you maintain a **protocol contract** (URLs/operations, schemas, clients,
-serialization, versioning) separate from your business code. With Graftcode the supported **public
-method surface** is the contract and the installed Graft is the client, so that scaffolding
-disappears for callers that can install generated packages. It is still a distributed call — auth,
-failures, timeouts, and observability still matter. REST and GraphQL remain the better fit for public,
-browser, and partner APIs; many products use both.
+| | REST | GraphQL | gRPC | tRPC | Graftcode |
+| --- | --- | --- | --- | --- | --- |
+| **Contract** | URLs, HTTP methods, request/response shapes (often OpenAPI) | Graph schema, queries, mutations | `.proto` service and message definitions | TypeScript router procedures and shared types | Public methods on the Receiver module |
+| **Caller experience** | HTTP client, URLs, serialization | GraphQL client and query documents | Generated stubs from protobuf | Typed client in a TypeScript codebase | Generated Graft — call like local code |
+| **Cross-language** | Yes | Yes | Strong (protobuf) | Primarily TypeScript monorepos / full-stack TS | Yes — verify the exact Receiver/Caller pair |
+| **Typical fit** | Public HTTP APIs, browsers, partners | Flexible reads, BFFs, varied clients | Service-to-service RPC, polyglot backends | Full-stack TypeScript apps | Internal or controlled callers across languages |
+| **What you maintain on change** | Routes, DTOs, clients, versioning rules | Schema, resolvers mapping, clients | `.proto`, generated stubs, compatibility rules | Router types and client wiring | Public surface; reinstall or republish Graft when the contract changes |
+
+Graftcode does not replace every protocol. REST, GraphQL, gRPC, and tRPC remain the better fit for
+public HTTP boundaries, arbitrary browser clients, partner integrations, and ecosystems where those
+tools are already standard. Many products use Graftcode for internal calls and keep REST or GraphQL for
+external APIs — see [Use Graftcode alongside REST](../how-to-guides/coexist-with-rest.md).
+
+A Graft call is still distributed: auth, failures, timeouts, and observability still matter.
 
 ## Where teams use Graftcode
 
