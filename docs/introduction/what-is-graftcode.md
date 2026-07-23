@@ -5,9 +5,11 @@ description: "What Graftcode is, a before/after example, protocol comparison, an
 
 # What is Graftcode?
 
-Graftcode turns a Receiver module's **public interface** into an installable **Graft** package. A
-**Caller** installs that Graft and calls it like local code. **Hypertube** carries the invocation to
-**Gateway**, which hosts the Receiver's **service business logic**.
+Graftcode connects two **services you write** — a **Caller** (calling) and a **Receiver** (called) —
+through a generated **Graft** that replaces hand-written integration layers. The Receiver's **public
+interface** becomes an installable package; the Caller installs it and calls it like local code.
+**Hypertube** carries the invocation to **Gateway**, which hosts the Receiver's **service business
+logic** when execution is remote.
 
 For how Caller, Graft, Hypertube, Gateway, Receiver, Vision, and Graftcode Engine fit together, see
 [How Graftcode works](how-graftcode-works.md).

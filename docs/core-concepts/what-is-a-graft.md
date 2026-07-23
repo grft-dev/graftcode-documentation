@@ -11,7 +11,7 @@ A **Graft** is a generated package for calling a module through Graftcode. It pr
 
 ## The four parts
 
-1. A Receiver writes a module.
+1. You expose a **Receiver** module with an intentional public surface.
 2. Gateway captures the selected [callable surface](callable-surface.md).
 3. The Graftcode Engine uses that callable-surface metadata to build a Graft for a target package ecosystem.
 4. At runtime, the installed Graft resolves configuration and invokes the hosted or in-memory module.

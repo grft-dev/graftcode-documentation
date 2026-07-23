@@ -6,7 +6,8 @@ articleTitle: "Use Graftcode alongside an existing REST API"
 # Use Graftcode alongside an existing REST API
 
 Graftcode and REST solve different integration problems. They can coexist in one product when each
-boundary has a clear owner.
+boundary has a clear owner. You do **not** have to move every client to generated Grafts before you
+adopt Graftcode.
 
 ## When to keep REST
 
@@ -28,6 +29,10 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 
 ## Typical layout
 
+You do not need a big-bang migration. **Graftcode Gateway (`gg`)** can host existing HTTP/REST
+workloads while also exposing a Graftcode Receiver surface from the same deployment. External clients
+keep calling REST routes; controlled Callers install generated Grafts when you are ready.
+
 ```text
 ┌─────────────────────────────────────┐
 │  Monolith or API host               │
@@ -36,19 +41,38 @@ Add Graftcode for **internal** or **controlled** callers that can install genera
 └─────────────────────────────────────┘
 ```
 
+REST integration starts from manually designed resources, routes, HTTP verbs, and payloads.
+Graftcode integration starts from an analyzed callable surface and a generated Graft. Both cross a
+boundary; the difference is **who maintains the integration layer** and **which clients use which
+path**.
+
+![REST exposes routes and payloads while Graftcode generates calls from a callable surface](../../assets/diagrams/rest-vs-graftcode.png)
+
+### Steps
+
 1. Extract callable business logic into a **plain module** (class library or package)—not controller
    types on the public Graft surface.
 2. Keep REST controllers as thin adapters that call the same module internally if needed.
 3. Host the module with Gateway for Graft Callers.
 4. Do not expose database or HTTP framework types on the Graft contract.
 
-## Caller example
+### Host REST through Gateway
 
-After installing the Graft from Vision, configure remote execution before the first call. See
+For a **published ASP.NET Web API** on the same host:
+
+1. Publish the Web API to a folder (for example `dotnet publish`).
+2. Set `ASPNETCORE_CONTENTROOT` to that publish folder and the other `ASPNETCORE_*` variables your app
+   expects (application name, environment, hosting startup).
+3. Start Gateway with `--runApp` so the Web API entry point runs and REST routes stay available.
+4. Expose the plain business module as the Graftcode Receiver surface so Gateway can generate Grafts
+   for controlled Callers.
+
+REST requests and Graft invocations use separate paths on the same host. See
+[Gateway CLI reference](../reference/gateway-cli-reference.md) for `--runApp`, ports, and runtime
+options.
+
+After installing a Graft from Vision, configure remote execution before the first call. See
 [Configure invocation](configure-graft-invocation.md).
-
-REST traffic and Graft traffic use separate paths: HTTP routes for REST, generated Graft + Gateway
-transport for Graftcode.
 
 ## How they compare
 
