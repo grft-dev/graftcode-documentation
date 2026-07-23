@@ -69,25 +69,65 @@ boundary—see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alo
 
 ## How this differs from REST, GraphQL, gRPC, and tRPC
 
-REST, GraphQL, gRPC, and tRPC each keep a **protocol contract**—routes, schemas, `.proto` files, or
-shared TypeScript types—separate from your business code. You maintain that contract layer and the
-clients that speak it. With Graftcode the supported **public method surface** is the contract and the
-installed **Graft** is the client for callers that can install generated packages.
+Most integration stacks start with a **protocol contract** you design and maintain separately from your
+business code — OpenAPI routes, GraphQL schemas, `.proto` files, or shared TypeScript router types.
+Graftcode starts from **public methods you already write** on a Receiver module. The **Graft** is the
+client; callers install it and invoke those methods like local code.
+
+For teams connecting services that can install a package, **Graftcode is significantly better to use**
+than protocol-first stacks in day-to-day work. You write and call methods—not routes, GraphQL
+documents, `.proto` definitions, or tRPC router wiring. The generated Graft carries transport and
+serialization; the same call site works in-memory or remotely when you change `GraftConfig`. Less
+boilerplate, fewer artifacts to keep in sync, and a shorter path from a changed public method to a
+working cross-language call.
+
+### Protocol-first vs method-first
+
+| | REST · GraphQL · gRPC · tRPC | Graftcode |
+| --- | --- | --- |
+| **What you design first** | Routes, schemas, operations, or shared API types | Public methods on your module |
+| **What the Caller installs** | HTTP/GraphQL client, protobuf stubs, or tRPC client | Generated **Graft** from Vision or registry |
+| **What changes when the API evolves** | Routes, DTOs, clients, compatibility rules | Public surface; regenerate or reinstall the Graft |
+| **Best when** | Public HTTP APIs, browsers, partners, or a stack already built on that protocol | Controlled callers can install a package and you care about **performance**, **less integration code**, **readable call sites**, **maintainability**, and **developer experience** |
+
+REST, GraphQL, gRPC, and tRPC are strong choices for **public boundaries** and ecosystems where those
+tools are already standard. Graftcode fits **service-to-service** and **controlled internal** callers
+that should not maintain a hand-written integration layer.
+
+### At a glance
 
 | | REST | GraphQL | gRPC | tRPC | Graftcode |
 | --- | --- | --- | --- | --- | --- |
-| **Contract** | URLs, HTTP methods, request/response shapes (often OpenAPI) | Graph schema, queries, mutations | `.proto` service and message definitions | TypeScript router procedures and shared types | Public methods on the Receiver module |
-| **Caller experience** | HTTP client, URLs, serialization | GraphQL client and query documents | Generated stubs from protobuf | Typed client in a TypeScript codebase | Generated Graft — call like local code |
-| **Cross-language** | Yes | Yes | Strong (protobuf) | Primarily TypeScript monorepos / full-stack TS | Yes — verify the exact Receiver/Caller pair |
-| **Typical fit** | Public HTTP APIs, browsers, partners | Flexible reads, BFFs, varied clients | Service-to-service RPC, polyglot backends | Full-stack TypeScript apps | Internal or controlled callers across languages |
-| **What you maintain on change** | Routes, DTOs, clients, versioning rules | Schema, resolvers mapping, clients | `.proto`, generated stubs, compatibility rules | Router types and client wiring | Public surface; reinstall or republish Graft when the contract changes |
+| **Contract** | URLs, verbs, request/response shapes | Graph schema, queries, mutations | `.proto` services and messages | TS router procedures and shared types | Public methods on the Receiver |
+| **Caller experience** | HTTP client and serialization | GraphQL client and documents | Generated stubs | Typed client in TypeScript | Generated Graft — call like local code |
+| **Cross-language** | Yes | Yes | Strong (protobuf) | Mainly TypeScript full-stack | Yes — verify the Receiver/Caller pair |
+| **Typical fit** | Public HTTP, browsers, partners | Flexible reads, BFFs | Polyglot service RPC | Full-stack TypeScript apps | Service-to-service and controlled cross-language calls where **performance**, **lower boilerplate**, **code readability**, **maintainability**, and **developer experience** are priorities |
 
-Graftcode does not replace every protocol. REST, GraphQL, gRPC, and tRPC remain the better fit for
-public HTTP boundaries, arbitrary browser clients, partner integrations, and ecosystems where those
-tools are already standard. Many products use Graftcode for internal calls and keep REST or GraphQL for
-external APIs — see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
+You can keep REST or GraphQL for external clients and add Graftcode for internal integration —
+see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
 A Graft call is still distributed: auth, failures, timeouts, and observability still matter.
+
+### How they compare
+
+For **developer experience and integration speed**, Graftcode is the stronger default when Callers can
+install generated packages: you skip the protocol layer that REST, GraphQL, gRPC, and tRPC require you
+to design, version, and maintain alongside your business code.
+
+![Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization code that a REST or gRPC integration would require; the runtime still represents and transfers invocation data](../../assets/diagrams/performance-comparison.png)
+
+REST and gRPC keep a protocol contract (URLs/operations, schemas, and a client) separate from your
+business code. With Graftcode the supported public method surface is the contract and the installed
+Graft is the client. For raw throughput, neither approach is universally faster; the right choice
+still depends on who owns the contract, who the Callers are, and your interoperability, streaming,
+and browser needs. For **how much code you write and how fast you ship internal integration**,
+Graftcode is typically the better fit.
+
+Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization
+code for controlled Callers. Its runtime still represents and transfers invocation data, so the
+resulting performance depends on the runtime pair, execution mode, payload, transport, topology, and
+workload. This documentation does not publish comparative performance numbers without a documented,
+reproducible benchmark.
 
 ## Where teams use Graftcode
 
