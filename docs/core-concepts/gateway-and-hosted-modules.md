@@ -45,13 +45,14 @@ It is not the generated Graft and it is not the user module. It does expose netw
 
 ## Data boundary
 
-Receiver business logic remains in the Receiver-controlled environment. During a normal invocation,
-runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver.
+Receiver business logic remains in the Receiver-controlled environment during normal invocation.
+Runtime payloads travel from the Caller through the configured transport to Gateway and the Receiver.
 They do not pass through Graftcode Engine unless a separately documented feature explicitly requires it.
 
-![Development-time and production artifacts — business logic, generated Grafts, CI/CD, config, Gateway, monitoring, secrets, and infrastructure — stay in your environment, while Graftcode Engine stores only public method signatures and creates Grafts from public interfaces](../../assets/diagrams/what-goes-to-engine.png)
+For the overview diagram and development-vs-production breakdown, see
+[Public surface vs implementation](public-surface-vs-implementation.md).
 
-This table is the canonical description of where each category of data goes:
+This table is the canonical category-by-category reference for where each kind of data goes:
 
 | Data category | Destination | Purpose | Runtime path | Notes |
 | --- | --- | --- | --- | --- |
