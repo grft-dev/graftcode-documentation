@@ -6,8 +6,9 @@ description: "The How it works diagram, component roles, and the core mental mod
 # How Graftcode works
 
 Graftcode connects a **Caller** to a **Receiver** through a generated **Graft** and **Hypertube**.
-You write service business logic on both sides; Graftcode analyzes the **public interface**,
-generates the Graft, and routes runtime calls through **Gateway**.
+You write service business logic on both sides; Graftcode analyzes the **public interface** and
+generates the Graft. Calls reach the Receiver through your **Gateway**, a **public package** install,
+or **in-memory** execution — depending on how you publish and configure the Graft.
 
 ![How it works: Caller service business logic and Graft connect through Hypertube to Gateway and Receiver service business logic; Graftcode Engine reads each public interface to generate the Graft](../../assets/diagrams/how-it-works-diagram.png)
 
@@ -36,21 +37,26 @@ Graft. Normal calls use the installed Graft and Hypertube — they do not regene
 
 ## Five things to remember
 
-![The five-step Graftcode mental model: your module, the generated Graft, Gateway hosting and analysis, configuration selecting execution, and a still-distributed call](../../assets/diagrams/graftcode-mental-model.svg)
+![Five-step mental model: your module, generated Graft, Gateway hosting or public package install, configuration selecting monolith or microservice, and a call that can still fail like any distributed system](../../assets/diagrams/graftcode-mental-model.svg)
 
 1. **The module is your code.** A Receiver is an ordinary class library or module. Its intentional,
    supported public methods form the [callable surface](../core-concepts/callable-surface.md).
 2. **The Graft is generated code.** It is a package for the Caller's package manager and language.
    It mirrors the Receiver surface; it is not the Receiver implementation.
-3. **Gateway hosts and analyzes modules.** It loads the Receiver, exposes runtime transports, serves
-   Vision, and publishes the model used to generate packages. Install `gg` from
-   [Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) or
-   [build a container image](../how-to-guides/deploy-with-docker.md).
-4. **Configuration selects execution.** A generated client can resolve in-memory or remote
-   execution. Remote calls must [configure the Gateway host](../how-to-guides/configure-invocation.md)
-   before the first invocation.
+3. **Host the module or install from the public repository.** To expose your own Receiver, run
+   **Gateway** (`gg`): it loads the module, serves Vision, and publishes the model used to generate
+   packages — see [Gateway and hosted modules](../core-concepts/graftcode-gateway.md). To consume a
+   capability someone else published, install a Graft from the
+   [public repository](../how-to-guides/obtain-install-graft.md#install-a-public-graft) without
+   running your own Gateway.
+4. **Configuration selects monolith or microservice.** The same installed Graft can run
+   **in-memory** in the Caller process (modular monolith) or **remotely** against a Gateway
+   `host` (microservices). Set `GraftConfig` before the first call — see
+   [Configure invocation](../how-to-guides/configure-invocation.md),
+   [Execution modes](../core-concepts/execution-modes.md), and
+   [Switch between monolith and microservices](https://docs.graftcode.com/quick-start/switch-between-monolith-and-microservices).
 5. **A method call is still distributed.** Serialization, routing, failures, compatibility,
-   security, retries, and observability still matter.
+   security, retries, and observability still matter when `host` points at a remote Gateway.
 
 ![Setup happens once — analyze the Receiver, discover its public surface, generate a Graft, and install it; at runtime each Caller call is invoked on the Receiver and a result or error returns](../../assets/diagrams/mental-model-procedure.svg)
 
