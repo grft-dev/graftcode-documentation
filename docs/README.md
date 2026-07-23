@@ -9,8 +9,8 @@ Quick start first for your stack; return here when you need to understand *why* 
 ## Start here
 
 1. **[Quick start](https://docs.graftcode.com/quick-start)** — first working call (hands-on).
-2. [How Graftcode works](introduction/what-problem-does-graftcode-solve.md) — the core mental model.
-3. [What is Graftcode?](introduction/what-is-graftcode.md) — definition, before/after, and use cases.
+2. [What is Graftcode?](introduction/what-is-graftcode.md) — definition, before/after, and use cases.
+3. [How Graftcode works](introduction/what-problem-does-graftcode-solve.md) — the How it works diagram and mental model.
 4. [Choose a scenario](introduction/when-to-use-graftcode.md) — pick your goal, then your runtime.
 5. [Quick reference](reference/quick-reference.md) — bookmark while coding.
 6. [Current status and limitations](introduction/where-graftcode-fits.md).
@@ -131,11 +131,11 @@ categories:
     order: 1
     path: "introduction"
     items:
-      - title: "How Graftcode works"
-        path: "introduction/what-problem-does-graftcode-solve.md"
-        order: 1
       - title: "What is Graftcode?"
         path: "introduction/what-is-graftcode.md"
+        order: 1
+      - title: "How Graftcode works"
+        path: "introduction/what-problem-does-graftcode-solve.md"
         order: 2
       - title: "Choose a scenario"
         path: "introduction/when-to-use-graftcode.md"
