@@ -1,166 +1,86 @@
 ---
-title: "Caller and Receiver"
-description: "Learn how Graftcode models communication using callers and receivers instead of traditional client–server roles, enabling symmetric, runtime-level interaction between systems."
-keywords: "caller receiver model, distributed systems communication, graftcode concepts, service interaction model"
+title: "Caller and receiver"
+description: "The calling and called services you write, how generated Grafts replace hand-written integration layers, and what each side owns."
 ---
 
-In traditional distributed systems, communication is usually described in terms of **clients** and **servers**.
+# Caller and receiver
 
-One side sends requests.  
-The other side responds.
+In Graftcode, **Caller** and **Receiver** name the two **services** in an integration:
 
-This model works, but it also introduces assumptions that are not always helpful—especially once systems become more dynamic, stateful, or symmetric.
+- the **Caller** is the **calling service** — your application that needs to invoke behavior elsewhere;
+- the **Receiver** is the **called service** — your module whose public methods are the contract.
 
-Graftcode uses a different mental model: **caller** and **receiver**.
+Both sides are **user-written**. You own the service business logic on each side. Graftcode does not generate your domain code, database access, or deployment. It removes the **integration layer** you would otherwise maintain between those services — HTTP clients, route handlers, hand-designed DTOs, and custom SDKs.
 
----
+![Generated Graft between user-written Caller and Receiver services](../../assets/diagrams/generated-vs-written.png)
 
-## Why not client and server?
+## What you write vs what is generated
 
-The client–server distinction is rooted in networking, not in programming.
+| | Caller (calling service) | Between the services | Receiver (called service) |
+| --- | --- | --- | --- |
+| **You write** | Application or service business logic; when to call; retries, auth policy, and operational handling | — | Module or class library with an intentional public surface |
+| **Generated for you** | — | **Graft** — typed package that mirrors the Receiver's callable surface | — |
+| **Operated / hosted** | Your runtime and deployment | Hypertube inside the Graft; Gateway when configured for remote execution | Your module, loaded in-process or hosted by Gateway |
 
-It implies:
-- fixed roles
-- directional dependency
-- a request–response mindset
+The Graft is the only integration artifact the Caller installs. It is produced from the Receiver's **public interface**, not from your private implementation.
 
-In practice, modern systems rarely fit this cleanly:
-- services call each other
-- roles switch depending on context
-- communication becomes bidirectional
+## Caller — the calling service
 
-Graftcode avoids this framing and instead describes communication in terms of **who is calling** and **who is receiving** at a given moment.
+The Caller is not the Graft itself. It is **your service** that:
 
-These roles are temporary, not structural.
+- decides *when* and *with what arguments* to invoke the Receiver;
+- installs the generated Graft from Vision or the public registry;
+- sets `GraftConfig` (for example `host` and `stateless`) before the first call;
+- handles latency, failures, retries, and authorization appropriate to the deployment.
 
----
+At the call site your code looks like a normal method invocation on generated types. Under that surface, the Graft initializes Hypertube, serializes the command, and routes it to the configured execution path — in-memory or through Gateway. You do not hand-write that plumbing.
 
-## The caller
+## Receiver — the called service
 
-A **caller** is any piece of code that invokes a method exposed by a public interface.
+The Receiver is not Gateway and not the Graft. It is **your module** — typically a plain class library or package — whose supported public methods form the [callable surface](callable-surface.md).
 
-From the caller’s perspective:
-- it holds a Graft
-- it calls methods on it
-- it receives return values or exceptions
+You write the implementation. Gateway **hosts** the module for remote execution (or the same module loads in-process for in-memory mode). Callers never receive your source code; they receive a Graft generated from the public surface.
 
-The caller does not know:
-- where the code runs
-- how the call is transported
-- whether the receiver is local, remote, or in memory
+Keep transport types, ORM models, secrets, and framework handles off the public surface. See [Public surface vs implementation](public-surface-vs-implementation.md).
 
-It simply calls code.
+## Integration layers Graftcode replaces
 
----
+Without Graftcode, connecting two services usually means designing and maintaining integration code on at least one side:
 
-## The receiver
+| Hand-written integration | With Graftcode |
+| --- | --- |
+| REST or OpenAPI client, URLs, and HTTP verbs | Generated Graft method call |
+| Request and response DTOs separate from domain models | Types derived from the Receiver surface |
+| Custom SDK or fetch wrapper per consumer language | Package manager install from Vision or registry |
+| Different client code for local vs remote | Same call site; `GraftConfig` selects execution mode |
 
-A **receiver** is the runtime that hosts the actual implementation of the public interface.
+Graftcode **cuts out** that middle layer. The Caller service stays focused on business logic; the Graft carries the contract.
 
-From the receiver’s perspective:
-- it exposes selected classes and methods
-- it executes business logic
-- it returns results or throws exceptions
+When some clients must stay on REST, see [Use Graftcode alongside an existing REST API](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
-The receiver does not know:
-- who the caller is
-- which language the caller uses
-- whether the call originated locally or remotely
+## One service, two roles
 
-It simply runs code.
+Caller and Receiver describe **one invocation direction**, not fixed product roles. The same codebase can:
 
----
+- act as a **Receiver** when it exposes a module through Gateway;
+- act as a **Caller** when it installs another team's Graft.
 
-## A symmetric relationship
+A modular monolith can host multiple Receivers in one process while one component Calls another through an in-memory Graft — still the same Caller / Receiver / Graft model.
 
-The important part is that **caller and receiver are symmetric roles**.
+## Under the hood
 
-The same application can:
-- be a caller in one interaction
-- be a receiver in another
-- sometimes be both at the same time
+For readers who need runtime detail:
 
-There is no permanent “client” or “server” identity.
+**Caller side (inside the Graft):** resolve configuration, obtain a runtime context, build a command for the target member, deserialize the result or surface an error.
 
-This symmetry becomes especially important when:
-- services call each other in cycles
-- systems are composed of many small modules
-- responsibilities shift over time
+**Receiver side:** accept the command on the enabled execution path, dispatch to the hosted member, return the serialized response.
 
----
+Remote execution still crosses a process or network boundary. "Looks like a method call" does not mean local failure semantics — plan for timeouts, partial failures, and version skew like any distributed call.
 
-## Calls, not messages
+## Continue
 
-In the caller–receiver model, interaction is expressed as **method calls**, not messages.
-
-This has several consequences:
-- arguments are passed as values
-- results are returned directly
-- errors are raised as exceptions
-
-The interaction follows the same rules developers expect from local code.
-
-The runtime is responsible for translating this interaction into an appropriate execution strategy.
-
----
-
-## State and lifecycle
-
-The caller–receiver model also makes state explicit.
-
-If the public interface:
-- exposes only static methods  
-  → calls are stateless and independent
-
-If the public interface:
-- exposes objects
-- maintains subscriptions
-- reacts to events  
-  → calls are stateful and tied to a lifecycle
-
-The model does not hide state—it makes it visible in code.
-
-This allows developers to reason about behavior before thinking about deployment or transport.
-
----
-
-## Bidirectional and duplex communication
-
-Because roles are not fixed, communication does not have to be one-way.
-
-A receiver can:
-- call back into the caller
-- emit events
-- participate in long-lived, duplex interactions
-
-From the programming perspective, this still looks like calling methods and handling events—not managing connections or sessions explicitly.
-
----
-
-## Why this matters
-
-By replacing client–server thinking with caller–receiver thinking, Graftcode:
-- removes protocol-driven assumptions
-- aligns communication with programming concepts
-- supports richer interaction patterns naturally
-
-It becomes easier to design systems where:
-- responsibilities are shared
-- components evolve independently
-- communication patterns change over time
-
----
-
-## In short
-
-In Graftcode:
-- **caller** means “the code that invokes”
-- **receiver** means “the code that executes”
-- roles are dynamic and symmetric
-- communication is expressed as method calls
-
-This shift in perspective prepares the ground for runtime-level integration—where *how* calls are executed becomes a configuration detail, not a design constraint.
-
----
-
-See also: [Graftcode Gateway](graftcode-gateway.md)
+- [What is a Graft?](what-is-a-graft.md) — generated package details
+- [How Graftcode works](../introduction/how-graftcode-works.md) — full diagram and mental model
+- [Expose code as a Graftcode Receiver](../how-to-guides/expose-code-as-a-graftcode-receiver.md) — shape the called service
+- [Obtain and install a Graft](../how-to-guides/obtain-and-install-a-graft.md) — wire the calling service
+- [Use Graftcode alongside an existing REST API](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md) — keep REST while adding Grafts

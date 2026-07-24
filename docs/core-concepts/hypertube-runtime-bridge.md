@@ -1,201 +1,55 @@
 ---
-title: "Hypertube™ runtime bridge"
-description: "Hypertube™ is a runtime-level bridge that connects different runtimes and languages, executing strongly typed calls in memory or over the network using a unified binary protocol."
-keywords: "hypertube runtime bridge, runtime integration, distributed systems execution, binary protocol, graftcode performance"
+title: "Hypertube runtime bridge"
+description: "What Hypertube does at runtime, where it sits between a Graft and Gateway, and what it does and does not guarantee."
 ---
 
-**Hypertube™** is the runtime-level bridge that connects callers and receivers in Graftcode.
+# Hypertube runtime bridge
 
-It is responsible for executing strongly typed calls:
-- within a single process
-- across multiple runtimes
-- or over the network
+**Hypertube** is the runtime communication bridge between an installed [Graft](what-is-a-graft.md) and [Gateway](gateway-and-hosted-modules.md). When your Caller invokes a generated method, Hypertube carries that call to the Receiver and brings the result back.
 
-Hypertube operates **below application code** and **above infrastructure**, allowing distributed execution to behave like local execution.
+![Hypertube is the bridge between the Caller's generated Graft and the Gateway-hosted Receiver, carrying the call and the response](../../assets/diagrams/how-it-works-diagram.png)
 
----
+## Where it sits
 
-## Runtime-level integration
+```text
+Caller → Graft → Hypertube → Gateway → Receiver
+```
 
-Most integration technologies operate at the protocol level.
+The generated Graft exposes methods that look like local calls. Hypertube is the layer beneath those methods that connects to Gateway, transfers the invocation, and returns the response to your code.
 
-They define:
-- how messages are formatted
-- how requests are sent
-- how responses are returned
+## Execution modes
 
-Hypertube operates at a different level.
+Hypertube uses the [runtime host](../reference/project-key-registry-host-and-credentials.md) from resolved configuration to decide how a call executes:
 
-It connects **runtimes**, not endpoints.
+- **In-memory** — the Receiver runs in the same process; no network hop.
+- **Network transports** — WebSocket (default), and optionally TCP or HTTP/2, reach a Gateway over the network.
 
-Instead of translating code into requests, Hypertube executes **programming intent** directly inside the target runtime.
+You select the mode by configuring the runtime host, not by changing business code. See [Execution modes](in-memory-same-machine-and-remote-execution.md) and [Ports and protocols](../reference/ports-and-protocols-reference.md).
 
-From the perspective of application code, there is no protocol—only method calls.
+## Connection setup
 
----
+For a network host, Hypertube establishes a connection to Gateway on first use and reuses it for subsequent calls. Copy the exact host string (including scheme and path) from Vision; do not hand-construct routes.
 
-## One execution model, multiple deployment modes
+## What still applies (distributed-system properties)
 
-Hypertube supports the same execution semantics in different environments.
+A remote Graft call looks like a local method call, but it is a remote call. The following remain true and must be handled by your application and deployment:
 
-A call can be executed:
-- **in memory**, within a single process
-- **locally**, across multiple runtimes on the same machine
-- **remotely**, across machines using TCP/IP or WebSocket
+- **Latency** — a network hop is not free.
+- **Serialization** — arguments and results are represented and transferred; only supported types cross the boundary (see [Type mapping](type-mapping.md)).
+- **Partial failure** — the connection or Receiver can fail independently of the Caller.
+- **Timeouts and retries** — apply them in Caller code and infrastructure (see [Timeouts and retries](../operations/timeouts-and-retries.md)).
+- **Security** — encrypt the transport and authenticate/authorize invocations (see [Authentication and authorization](../operations/authentication-and-authorization-operations.md)).
 
-The important part is that the *programming model does not change*.
+## How failures surface
 
-The same public interface, the same Graft, and the same call semantics apply in all cases.
+When a call cannot complete — the Receiver is unavailable, the transport drops, or the Receiver raises an error — the failure surfaces to the Caller through the generated call (as an exception or error result, by runtime). Treat remote calls as fallible and handle errors explicitly. See [Handle Receiver errors](../how-to-guides/handle-receiver-errors.md).
 
-Deployment decisions are configuration choices, not design constraints.
+## What Hypertube does not guarantee
 
----
+- It does **not** make remote and in-memory calls behaviorally identical; network calls have latency and failure modes that in-memory calls do not.
+- It does **not** provide cross-runtime cancellation, distributed transactions, or automatic idempotency.
+- Transports do **not** all have identical failure or header semantics; choose the transport deliberately.
 
-## In-memory execution
+There is no published, versioned public wire specification you should depend on; treat the transfer format as an internal detail and rely on the generated Graft's method contract instead.
 
-When calls are executed in memory:
-- runtimes are loaded into a single process
-- calls are dispatched directly
-- overhead is effectively zero
-
-There is no serialization, no networking, and no context switching beyond what the runtime itself requires.
-
-In this mode, Graftcode behaves like a polyglot, multi-runtime application running inside one process.
-
----
-
-## Remote execution
-
-When calls are executed remotely:
-- Hypertube uses a binary protocol
-- messages are compact and efficient
-- execution is dominated by network latency
-
-There is no JSON parsing, no text-based encoding, and no middleware pipeline.
-
-This is why remote execution through Hypertube is significantly faster and more resource-efficient than REST or gRPC-based approaches.
-
----
-
-## Intention Invocation Protocol (IIP)
-
-Hypertube communicates using a binary format called the  
-**Intention Invocation Protocol (IIP)**.
-
-IIP is designed to represent **programming intent**, not network messages.
-
-An IIP message can describe:
-- a single method invocation
-- nested method calls
-- complex execution graphs, similar to lambda expressions
-
-This allows Hypertube to transmit *what should happen*, not just data.
-
-The same protocol is used:
-- in memory
-- across processes
-- across the network
-
-This consistency is essential for runtime virtualization.
-
----
-
-## Unified Graft Model (UGM)
-
-IIP also defines the format of the **Unified Graft Model (UGM)**.
-
-UGM is a language-agnostic description of:
-- public interfaces
-- methods and signatures
-- argument and return types
-- supported interaction patterns
-
-Hypertube uses UGM to:
-- validate calls
-- route execution
-- enforce compatibility
-
-Graftcode Vision uses the same model to visualize and document interfaces.
-
-Both IIP and UGM are designed to be **open and extensible**, enabling third-party tooling such as debuggers, inspectors, and monitoring tools.
-
----
-
-## Synchronous and asynchronous virtualization
-
-Hypertube virtualizes execution semantics.
-
-This means it adapts how a call is executed based on:
-- how the caller invokes it
-- what the underlying transport supports
-
-Examples:
-- a synchronous call over an asynchronous channel
-- an asynchronous call over a stateful, duplex connection
-- event subscriptions mapped onto callback invocations
-
-From the developer’s point of view, the call behaves exactly as requested.
-
-Hypertube absorbs the mismatch between programming intent and transport capabilities.
-
----
-
-## Full-duplex communication
-
-Hypertube connections are **full duplex**.
-
-Once a session is established:
-- calls can flow in both directions
-- events can be emitted from receiver to caller
-- callbacks and delegates can be invoked remotely
-
-This enables interaction patterns similar to:
-- in-memory objects
-- observer patterns
-- real-time communication systems
-
-All of this happens without exposing connection management in application code.
-
----
-
-## Performance characteristics
-
-Hypertube is designed to minimize overhead.
-
-Key characteristics include:
-- binary message format
-- no text serialization
-- no reflection-based dispatch loops
-- no middleware pipelines
-
-In-memory execution is effectively free.
-
-Remote execution adds only network latency, which is why Hypertube-based calls are often significantly faster than REST or gRPC, and require less CPU and memory.
-
----
-
-## Why Hypertube exists
-
-Hypertube exists to solve a fundamental problem:
-
-> **Programming languages already know how to express intent.  
-> Networks do not.**
-
-Instead of forcing intent into network-friendly shapes, Hypertube carries intent directly between runtimes.
-
-This is what allows Graftcode to treat local and remote execution as variations of the same thing.
-
----
-
-## In short
-
-Hypertube™ is:
-- a runtime-level execution bridge
-- a carrier of programming intent
-- a unifier of in-memory and remote execution
-
-It is the component that makes strongly typed, protocol-free communication possible across runtimes and languages.
-
----
-
-See also: [Graftcode Vision](graftcode-vision.md)
+See [Invocation lifecycle](invocation-lifecycle.md) for the end-to-end sequence.

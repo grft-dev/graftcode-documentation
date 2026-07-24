@@ -1,258 +1,349 @@
-# Graftcode Documentation
+# Graftcode documentation
 
-## Table of Contents
+**Documentation** (this site) explains concepts, procedures, reference material, operations, and
+troubleshooting. **[Quick start](https://docs.graftcode.com/quick-start)** on the same site contains
+hands-on tutorials (expose a backend, connect a frontend, connect microservices, and more). Run
+Quick start first for your stack; return here when you need to understand *why* something works or
+*what* to do in production.
 
-This file defines the documentation structure and ordering. Categories can be nested to any depth.
+## Start here
 
-### Structure Format
+1. **[Quick start](https://docs.graftcode.com/quick-start)** — first working call (hands-on).
+2. [What is Graftcode?](introduction/what-is-graftcode.md) — definition, before/after, and use cases.
+3. [How Graftcode works](introduction/how-graftcode-works.md) — the How it works diagram and mental model.
+4. [Choose your scenario](introduction/choose-your-scenario.md) — pick your goal, then your runtime.
+5. [Quick Reference](reference/quick-reference.md) — bookmark while coding.
+6. [Where does Graftcode fit?](introduction/where-does-graftcode-fit.md).
 
-Each category entry follows this format:
-- `### N. Category Name` - Top-level category (N = category order)
-- `#### N.M. Subcategory Name` - Nested subcategory (M = subcategory order within parent)
-- `N.M.P. [Title](path/to/file.md)` - Article (P = article order within subcategory)
+## Core concepts
 
-### Documentation Tree
+1. [What is a Graft?](core-concepts/what-is-a-graft.md)
+2. [Callable surface](core-concepts/callable-surface.md)
+3. [Public surface vs implementation](core-concepts/public-surface-vs-implementation.md)
+4. [Caller and receiver](core-concepts/caller-and-receiver.md)
+5. [Static and instance context](core-concepts/static-and-instance-context.md)
+6. [Gateway and hosted modules](core-concepts/gateway-and-hosted-modules.md)
+7. [Hypertube runtime bridge](core-concepts/hypertube-runtime-bridge.md)
+8. [Graftcode Vision](core-concepts/graftcode-vision.md)
+9. [Invocation lifecycle](core-concepts/invocation-lifecycle.md)
+10. [In-memory, same-machine, and remote execution](core-concepts/in-memory-same-machine-and-remote-execution.md)
+11. [Configuration resolution](core-concepts/configuration-resolution.md)
+12. [Package generation](core-concepts/package-generation.md)
+13. [Type mapping](core-concepts/type-mapping.md)
+14. [Contract evolution](core-concepts/contract-evolution.md)
+15. [Core-concepts glossary](core-concepts/core-concepts-glossary.md)
 
-### Introduction
-1. [What is Graftcode](introduction/what-is-graftcode.md)
-2. [What problem does Graftcode solve](introduction/what-problem-does-graftcode-solve.md)
-3. [Where Graftcode fits](introduction/where-graftcode-fits.md)
-4. [When to use Graftcode](introduction/when-to-use-graftcode.md)
+## How-to guides
 
-### Core-Concepts
+- [Expose code as a Graftcode Receiver](how-to-guides/expose-code-as-a-graftcode-receiver.md)
+- [Obtain and install a Graft](how-to-guides/obtain-and-install-a-graft.md)
+- [Configure Graft invocation](how-to-guides/configure-graft-invocation.md)
+- [Run Gateway locally](how-to-guides/run-gateway-locally.md)
+- [Deploy Gateway with Docker](how-to-guides/deploy-gateway-with-docker.md)
+- [Use a portal project key](how-to-guides/use-a-portal-project-key.md)
+- [Gateway module versioning and --noVersioning](how-to-guides/gateway-module-versioning-and-noversioning.md)
+- [Filter the callable surface](how-to-guides/filter-the-callable-surface.md)
+- [Expose Receiver methods for MCP](how-to-guides/expose-receiver-methods-for-mcp.md)
+- [Authenticate Graft calls](how-to-guides/authenticate-graft-calls.md)
+- [Stateless vs stateful Graft calls](how-to-guides/stateless-vs-stateful-graft-calls.md)
+- [Set the module path for in-memory execution](how-to-guides/set-the-module-path-for-in-memory-execution.md)
+- [Use Graftcode alongside an existing REST API](how-to-guides/use-graftcode-alongside-an-existing-rest-api.md)
+- [Debug Graft invocations](how-to-guides/debug-graft-invocations.md)
+- [Handle Receiver errors](how-to-guides/handle-receiver-errors.md)
+- [Update a Receiver contract](how-to-guides/update-a-receiver-contract.md)
+- [Dependency injection with stateless facades](how-to-guides/dependency-injection-with-stateless-facades.md)
 
-1. [What is a Graft](core-concepts/what-is-a-graft.md)
-2. [Public Interface vs Business Logic](core-concepts/public-interface-vs-business-logic.md)
-3. [Caller and Receiver](core-concepts/caller-and-receiver.md)
-4. [Graftcode Gateway](core-concepts/graftcode-gateway.md)
-5. [Hypertube Runtime Bridge](core-concepts/hypertube-runtime-bridge.md)
-6. [Graftcode Vision](core-concepts/graftcode-vision.md)
+### Authoring multi-runtime snippets
 
-### How Graftcode Works
-1. [Development-time vs production-time behavior](how-graftcode-works/development-time-vs-production-time.md)
-2. [What goes to Graftcode Cloud](how-graftcode-works/what-goes-to-graftcode-cloud.md)
-3. [How Grafts are generated](how-graftcode-works/how-grafts-are-generated.md)
-4. [Runtime call execution](how-graftcode-works/runtime-call-execution.md)
-5. [Local, remote, and in-memory execution](how-graftcode-works/local-remote-and-in-memory-execution.md)
-6. [Observability, tracing, and context propagation](how-graftcode-works/observability-tracing-and-context-propagation.md)
-7. [Scaling, load balancers, and proxies](how-graftcode-works/scaling-load-balancers-and-proxies.md)
-8. [What happens when interfaces change](how-graftcode-works/what-happens-when-interfaces-change.md)
-9. [Alpha limitations and known constraints](how-graftcode-works/alpha-limitations-and-known-constraints.md)
+Use **one file with `multi` code fences** when only code differs by runtime (how-to guides,
+reference shortcuts, operations, troubleshooting). The portal renders a tab picker inside each
+snippet (`.NET`, `JavaScript`, `Python`, `Java`, `PHP`, `Ruby`) instead of a page-level stack picker:
 
-### Integration Patterns
-1. [Service-to-Service Integration](integration-patterns/service-to-service-integration.md)
-2. [Edge Clients Without APIs](integration-patterns/edge-clients-without-apis.md)
-3. [Internal Business APIs](integration-patterns/internal-business-apis.md)
-4. [MCP Hosting and AI Tools](integration-patterns/mcp-hosting-and-ai-tools.md)
-5. [Modular Monoliths](integration-patterns/modular-monoliths.md)
-6. [Microservices Without Contracts](integration-patterns/microservices-without-contracts.md)
-7. [Event-Driven Communication (Preview)](integration-patterns/event-driven-communication-preview.md)
+````markdown
+```multi
+```dotnet
+// .NET example
+```
+```javascript
+// Node example
+```
+```python
+# Python example
+```
+```java
+// Java example
+```
+```php
+// PHP example
+```
+```ruby
+# Ruby example
+```
+```
+````
 
-### Security and Trust
-1. [Security Model Overview](security-and-trust/security-model-overview.md)
-2. [Authentication and Authorization](security-and-trust/authentication-and-authorization.md)
-3. [Graftcode Context Libraries](security-and-trust/graftcode-context.md)
-4. [Security Plugins](security-and-trust/security-plugins.md)
-5. [Transport Security TLS/WSS](security-and-trust/transport-security-tls-wss.md)
-6. [Network Boundaries and Isolation](security-and-trust/network-boundaries-and-isolation.md)
-7. [Enterprise Self-Hosted Engine](security-and-trust/enterprise-self-hosted-engine.md)
+Use a **folder per runtime** (`how-to-guides/<slug>/dotnet.md`, …) only when prose or steps
+materially differ by stack. Regenerate consolidated guides with `scripts/consolidate-howto-articles.py`.
 
-### Performance and Efficiency
-1. [Compare Performance](performance-and-efficiency/compare-performance.md)
-2. [Why Runtime-Level Integration is Faster](performance-and-efficiency/why-runtime-level-integration-is-faster.md)
-3. [REST vs gRPC vs Graftcode](performance-and-efficiency/rest-vs-grpc-vs-graftcode.md)
-4. [CPU, Memory, and Network Usage](performance-and-efficiency/cpu-memory-and-network-usage.md)
-5. [Cloud Cost Implications](performance-and-efficiency/cloud-cost-implications.md)
-6. [When Performance Gains Matter](performance-and-efficiency/when-performance-gains-matter.md)
+## Operations
 
-### Architecture and Patterns
-#### Dependency Injection
-1. [Dependency Injection in C#/.NET with Stateless Facades](architecture-and-patterns/dependency-injection/csharp-netcore.md)
+- [Operations and deployment model](operations/operations-and-deployment-model.md)
+- [Gateway lifecycle](operations/gateway-lifecycle.md)
+- [Environment and configuration](operations/environment-and-configuration.md)
+- [Authentication and authorization operations](operations/authentication-and-authorization-operations.md)
+- [Networking and ports](operations/networking-and-ports.md)
+- [Health checks](operations/health-checks.md)
+- [Logging, metrics, and tracing](operations/logging-metrics-and-tracing.md)
+- [Timeouts and retries](operations/timeouts-and-retries.md)
+- [Scaling Gateway Receivers](operations/scaling-gateway-receivers.md)
+- [Version compatibility and upgrades](operations/version-compatibility-and-upgrades.md)
 
-### Use Cases
-1. [Zero-Boilerplate Microservices Fabric](use-cases/zero-boilerplate-microservices-fabric.md)
-2. [MCP Server Without MCP Boilerplate](use-cases/mcp-server-without-mcp-boilerplate.md)
+## Reference
 
-### Reference
-1. [Quick Reference](reference/quick-reference.md)
+- [Quick Reference](reference/quick-reference.md)
+- [Quick start courses](reference/quick-start-courses.md)
+- [Project Key, registry, host, and credentials](reference/project-key-registry-host-and-credentials.md)
+- [Gateway CLI reference](reference/gateway-cli-reference.md)
+- [Configuration keys and precedence](reference/configuration-keys-and-precedence.md)
+- [Environment variable reference](reference/environment-variable-reference.md)
+- [Supported runtimes and package managers](reference/supported-runtimes-and-package-managers.md)
+- [Type compatibility matrix](reference/type-compatibility-matrix.md)
+- [Errors and status reference](reference/errors-and-status-reference.md)
+- [Generated package structure](reference/generated-package-structure.md)
+- [Ports and protocols reference](reference/ports-and-protocols-reference.md)
+- [Known limitations](reference/known-limitations.md)
 
----
+## Troubleshooting
 
-## Machine-Readable Structure (YAML)
+- [Troubleshooting](troubleshooting/troubleshooting.md)
+- [Package installation fails](troubleshooting/package-installation-fails.md)
+- [Module, method, or type is missing](troubleshooting/module-method-or-type-is-missing.md)
+- [Connection, timeout, or authentication failure](troubleshooting/connection-timeout-or-authentication-failure.md)
+- [Installed package is stale](troubleshooting/installed-package-is-stale.md)
+- [Gateway or runtime exits](troubleshooting/gateway-or-runtime-exits.md)
+- [Vision and runtime disagree](troubleshooting/vision-and-runtime-disagree.md)
+
+## Machine-readable navigation
 
 ```yaml
 categories:
-  - name: "Introduction"
+  - name: "Start here"
     order: 1
     path: "introduction"
     items:
-      - title: "What is Graftcode"
+      - title: "What is Graftcode?"
         path: "introduction/what-is-graftcode.md"
         order: 1
-      - title: "What problem does Graftcode solve"
-        path: "introduction/what-problem-does-graftcode-solve.md"
+      - title: "How Graftcode works"
+        path: "introduction/how-graftcode-works.md"
         order: 2
-      - title: "Where Graftcode fits"
-        path: "introduction/where-graftcode-fits.md"
+      - title: "Choose your scenario"
+        path: "introduction/choose-your-scenario.md"
         order: 3
-      - title: "When to use Graftcode"
-        path: "introduction/when-to-use-graftcode.md"
+      - title: "Where does Graftcode fit?"
+        path: "introduction/where-does-graftcode-fit.md"
         order: 4
-
-  - name: "Core Concepts"
+  - name: "Core concepts"
     order: 2
     path: "core-concepts"
     items:
-      - title: "What is a Graft"
+      - title: "What is a Graft?"
         path: "core-concepts/what-is-a-graft.md"
         order: 1
-      - title: "Public Interface vs Business Logic"
-        path: "core-concepts/public-interface-vs-business-logic.md"
+      - title: "Callable surface"
+        path: "core-concepts/callable-surface.md"
         order: 2
-      - title: "Caller and Receiver"
-        path: "core-concepts/caller-and-receiver.md"
+      - title: "Public surface vs implementation"
+        path: "core-concepts/public-surface-vs-implementation.md"
         order: 3
-      - title: "Graftcode Gateway"
-        path: "core-concepts/graftcode-gateway.md"
+      - title: "Caller and receiver"
+        path: "core-concepts/caller-and-receiver.md"
         order: 4
-      - title: "Hypertube Runtime Bridge"
-        path: "core-concepts/hypertube-runtime-bridge.md"
+      - title: "Static and instance context"
+        path: "core-concepts/static-and-instance-context.md"
         order: 5
+      - title: "Gateway and hosted modules"
+        path: "core-concepts/gateway-and-hosted-modules.md"
+        order: 6
+      - title: "Hypertube runtime bridge"
+        path: "core-concepts/hypertube-runtime-bridge.md"
+        order: 7
       - title: "Graftcode Vision"
         path: "core-concepts/graftcode-vision.md"
-        order: 6
-
-  - name: "How Graftcode Works"
-    order: 3
-    path: "how-graftcode-works"
-    items:
-      - title: "Development-time vs production-time behavior"
-        path: "how-graftcode-works/development-time-vs-production-time.md"
-        order: 1
-      - title: "What goes to Graftcode Cloud"
-        path: "how-graftcode-works/what-goes-to-graftcode-cloud.md"
-        order: 2
-      - title: "How Grafts are generated"
-        path: "how-graftcode-works/how-grafts-are-generated.md"
-        order: 3
-      - title: "Runtime call execution"
-        path: "how-graftcode-works/runtime-call-execution.md"
-        order: 4
-      - title: "Local, remote, and in-memory execution"
-        path: "how-graftcode-works/local-remote-and-in-memory-execution.md"
-        order: 5
-      - title: "Observability, tracing, and context propagation"
-        path: "how-graftcode-works/observability-tracing-and-context-propagation.md"
-        order: 6
-      - title: "Scaling, load balancers, and proxies"
-        path: "how-graftcode-works/scaling-load-balancers-and-proxies.md"
-        order: 7
-      - title: "What happens when interfaces change"
-        path: "how-graftcode-works/what-happens-when-interfaces-change.md"
         order: 8
-      - title: "Alpha limitations and known constraints"
-        path: "how-graftcode-works/alpha-limitations-and-known-constraints.md"
+      - title: "Invocation lifecycle"
+        path: "core-concepts/invocation-lifecycle.md"
         order: 9
-
-  - name: "Integration Patterns"
+      - title: "In-memory, same-machine, and remote execution"
+        path: "core-concepts/in-memory-same-machine-and-remote-execution.md"
+        order: 10
+      - title: "Configuration resolution"
+        path: "core-concepts/configuration-resolution.md"
+        order: 11
+      - title: "Package generation"
+        path: "core-concepts/package-generation.md"
+        order: 12
+      - title: "Type mapping"
+        path: "core-concepts/type-mapping.md"
+        order: 13
+      - title: "Contract evolution"
+        path: "core-concepts/contract-evolution.md"
+        order: 14
+      - title: "Core-concepts glossary"
+        path: "core-concepts/core-concepts-glossary.md"
+        order: 15
+  - name: "How-to guides"
+    order: 3
+    path: "how-to-guides"
+    items:
+      - title: "Expose code as a Graftcode Receiver"
+        path: "how-to-guides/expose-code-as-a-graftcode-receiver.md"
+        order: 1
+      - title: "Obtain and install a Graft"
+        path: "how-to-guides/obtain-and-install-a-graft.md"
+        order: 2
+      - title: "Configure Graft invocation"
+        path: "how-to-guides/configure-graft-invocation.md"
+        order: 3
+      - title: "Run Gateway locally"
+        path: "how-to-guides/run-gateway-locally.md"
+        order: 4
+      - title: "Deploy Gateway with Docker"
+        path: "how-to-guides/deploy-gateway-with-docker.md"
+        order: 5
+      - title: "Use a portal project key"
+        path: "how-to-guides/use-a-portal-project-key.md"
+        order: 6
+      - title: "Gateway module versioning and --noVersioning"
+        path: "how-to-guides/gateway-module-versioning-and-noversioning.md"
+        order: 7
+      - title: "Filter the callable surface"
+        path: "how-to-guides/filter-the-callable-surface.md"
+        order: 8
+      - title: "Expose Receiver methods for MCP"
+        path: "how-to-guides/expose-receiver-methods-for-mcp.md"
+        order: 9
+      - title: "Authenticate Graft calls"
+        path: "how-to-guides/authenticate-graft-calls.md"
+        order: 10
+      - title: "Stateless vs stateful Graft calls"
+        path: "how-to-guides/stateless-vs-stateful-graft-calls.md"
+        order: 11
+      - title: "Set the module path for in-memory execution"
+        path: "how-to-guides/set-the-module-path-for-in-memory-execution.md"
+        order: 12
+      - title: "Use Graftcode alongside an existing REST API"
+        path: "how-to-guides/use-graftcode-alongside-an-existing-rest-api.md"
+        order: 13
+      - title: "Debug Graft invocations"
+        path: "how-to-guides/debug-graft-invocations.md"
+        order: 14
+      - title: "Handle Receiver errors"
+        path: "how-to-guides/handle-receiver-errors.md"
+        order: 15
+      - title: "Update a Receiver contract"
+        path: "how-to-guides/update-a-receiver-contract.md"
+        order: 16
+      - title: "Dependency injection with stateless facades"
+        path: "how-to-guides/dependency-injection-with-stateless-facades.md"
+        order: 17
+  - name: "Operations"
     order: 4
-    path: "integration-patterns"
+    path: "operations"
     items:
-      - title: "Service-to-Service Integration"
-        path: "integration-patterns/service-to-service-integration.md"
+      - title: "Operations and deployment model"
+        path: "operations/operations-and-deployment-model.md"
         order: 1
-      - title: "Edge Clients Without APIs"
-        path: "integration-patterns/edge-clients-without-apis.md"
+      - title: "Gateway lifecycle"
+        path: "operations/gateway-lifecycle.md"
         order: 2
-      - title: "Internal Business APIs"
-        path: "integration-patterns/internal-business-apis.md"
+      - title: "Environment and configuration"
+        path: "operations/environment-and-configuration.md"
         order: 3
-      - title: "MCP Hosting and AI Tools"
-        path: "integration-patterns/mcp-hosting-and-ai-tools.md"
+      - title: "Authentication and authorization operations"
+        path: "operations/authentication-and-authorization-operations.md"
         order: 4
-      - title: "Modular Monoliths"
-        path: "integration-patterns/modular-monoliths.md"
+      - title: "Networking and ports"
+        path: "operations/networking-and-ports.md"
         order: 5
-      - title: "Microservices Without Contracts"
-        path: "integration-patterns/microservices-without-contracts.md"
+      - title: "Health checks"
+        path: "operations/health-checks.md"
         order: 6
-      - title: "Event-Driven Communication (Preview)"
-        path: "integration-patterns/event-driven-communication-preview.md"
+      - title: "Logging, metrics, and tracing"
+        path: "operations/logging-metrics-and-tracing.md"
         order: 7
-
-  - name: "Security and Trust"
-    order: 5
-    path: "security-and-trust"
-    items:
-      - title: "Security Model Overview"
-        path: "security-and-trust/security-model-overview.md"
-        order: 1
-      - title: "Authentication and Authorization"
-        path: "security-and-trust/authentication-and-authorization.md"
-        order: 2
-      - title: "Graftcode Context Libraries"
-        path: "security-and-trust/graftcode-context.md"
-        order: 3
-      - title: "Security Plugins"
-        path: "security-and-trust/security-plugins.md"
-        order: 4
-      - title: "Transport Security TLS/WSS"
-        path: "security-and-trust/transport-security-tls-wss.md"
-        order: 5
-      - title: "Network Boundaries and Isolation"
-        path: "security-and-trust/network-boundaries-and-isolation.md"
-        order: 6
-      - title: "Enterprise Self-Hosted Engine"
-        path: "security-and-trust/enterprise-self-hosted-engine.md"
-        order: 7
-
-  - name: "Performance and Efficiency"
-    order: 6
-    path: "performance-and-efficiency"
-    items:
-      - title: "Compare Performance"
-        path: "performance-and-efficiency/compare-performance.md"
-        order: 1
-      - title: "Why Runtime-Level Integration is Faster"
-        path: "performance-and-efficiency/why-runtime-level-integration-is-faster.md"
-        order: 2
-      - title: "REST vs gRPC vs Graftcode"
-        path: "performance-and-efficiency/rest-vs-grpc-vs-graftcode.md"
-        order: 3
-      - title: "CPU, Memory, and Network Usage"
-        path: "performance-and-efficiency/cpu-memory-and-network-usage.md"
-        order: 4
-      - title: "Cloud Cost Implications"
-        path: "performance-and-efficiency/cloud-cost-implications.md"
-        order: 5
-      - title: "When Performance Gains Matter"
-        path: "performance-and-efficiency/when-performance-gains-matter.md"
-        order: 6
-
-  - name: "Architecture and Patterns"
-    order: 7
-    path: "architecture-and-patterns"
-    items:
-      - title: "Dependency Injection in C#/.NET with Stateless Facades"
-        path: "architecture-and-patterns/dependency-injection/csharp-netcore.md"
-        order: 1
-
-  - name: "Use Cases"
-    order: 8
-    path: "use-cases"
-    items:
-      - title: "Zero-Boilerplate Microservices Fabric"
-        path: "use-cases/zero-boilerplate-microservices-fabric.md"
-        order: 1
-      - title: "MCP Server Without MCP Boilerplate"
-        path: "use-cases/mcp-server-without-mcp-boilerplate.md"
-        order: 2
-
+      - title: "Timeouts and retries"
+        path: "operations/timeouts-and-retries.md"
+        order: 8
+      - title: "Scaling Gateway Receivers"
+        path: "operations/scaling-gateway-receivers.md"
+        order: 9
+      - title: "Version compatibility and upgrades"
+        path: "operations/version-compatibility-and-upgrades.md"
+        order: 10
   - name: "Reference"
-    order: 9
+    order: 5
     path: "reference"
     items:
       - title: "Quick Reference"
         path: "reference/quick-reference.md"
         order: 1
+      - title: "Quick start courses"
+        path: "reference/quick-start-courses.md"
+        order: 2
+      - title: "Project Key, registry, host, and credentials"
+        path: "reference/project-key-registry-host-and-credentials.md"
+        order: 3
+      - title: "Gateway CLI reference"
+        path: "reference/gateway-cli-reference.md"
+        order: 4
+      - title: "Configuration keys and precedence"
+        path: "reference/configuration-keys-and-precedence.md"
+        order: 5
+      - title: "Environment variable reference"
+        path: "reference/environment-variable-reference.md"
+        order: 6
+      - title: "Supported runtimes and package managers"
+        path: "reference/supported-runtimes-and-package-managers.md"
+        order: 7
+      - title: "Type compatibility matrix"
+        path: "reference/type-compatibility-matrix.md"
+        order: 8
+      - title: "Errors and status reference"
+        path: "reference/errors-and-status-reference.md"
+        order: 9
+      - title: "Generated package structure"
+        path: "reference/generated-package-structure.md"
+        order: 10
+      - title: "Ports and protocols reference"
+        path: "reference/ports-and-protocols-reference.md"
+        order: 11
+      - title: "Known limitations"
+        path: "reference/known-limitations.md"
+        order: 12
+  - name: "Troubleshooting"
+    order: 6
+    path: "troubleshooting"
+    items:
+      - title: "Troubleshooting"
+        path: "troubleshooting/troubleshooting.md"
+        order: 1
+      - title: "Package installation fails"
+        path: "troubleshooting/package-installation-fails.md"
+        order: 2
+      - title: "Module, method, or type is missing"
+        path: "troubleshooting/module-method-or-type-is-missing.md"
+        order: 3
+      - title: "Connection, timeout, or authentication failure"
+        path: "troubleshooting/connection-timeout-or-authentication-failure.md"
+        order: 4
+      - title: "Installed package is stale"
+        path: "troubleshooting/installed-package-is-stale.md"
+        order: 5
+      - title: "Gateway or runtime exits"
+        path: "troubleshooting/gateway-or-runtime-exits.md"
+        order: 6
+      - title: "Vision and runtime disagree"
+        path: "troubleshooting/vision-and-runtime-disagree.md"
+        order: 7
 ```

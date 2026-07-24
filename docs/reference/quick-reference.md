@@ -1,116 +1,156 @@
 ---
 title: "Quick Reference"
-description: "Quick reference guide with common commands, configuration snippets, and troubleshooting tips for Graftcode."
+description: "Gateway, package installation, invocation, ports, and troubleshooting shortcuts."
 ---
 
-## Installation
+# Quick Reference
+
+## Receiver
+
+Install **Graftcode Gateway** (`gg`) from
+[Gateway releases](https://github.com/grft-dev/graftcode-gateway/releases) before hosting a module.
+See [Run Gateway locally](../how-to-guides/run-gateway-locally.md#1-install-gateway).
+
+Build a plain module, then host the actual artifact:
 
 ```bash
-# Run Graftcode Gateway
-gg.exe --runtime <your_runtime> --modules <your_backend_library>
-
-# Install a Graft (command from Graftcode Vision)
-npm install @graft/nuget-EnergyPrice --registry=http://grft.dev/<project-id>__graftcode
+gg <path-to-built-module>
 ```
 
-## Basic Usage
+Use `gg.exe` on Windows. Supported CLI runtime names and version baselines are listed in
+[Gateway CLI](gateway-cli-reference.md). Confirm discovery and successful publication before installation.
 
-```typescript
-import { EnergyService } from "@graft/nuget-EnergyPrice";
+## Install a Graft
 
-const energy = new EnergyService();
+**Public packages:** install from the Graftcode registry at `https://grft.dev` (Maven:
+`https://grft.dev/maven2/`, pip: `https://grft.dev/simple/`) using documented package coordinates.
+See [Obtain and install a Graft](../how-to-guides/obtain-and-install-a-graft.md#install-a-public-graft) for
+sample packages and commands.
 
-const price = await energy.getCurrentPrice("DE");
+**Your own Receiver:** open the running Gateway's Vision UI, choose the Caller package manager, and
+copy the entire install command. Never guess or reuse an example registry URL, identifier, package
+name, import, or version.
+
+Example shapes by runtime (copy the **complete** command from Vision, not these placeholders):
+
+```multi
+```dotnet
+dotnet add package <package-id> --version <version> -s <registry-from-vision>
+```
+```javascript
+npm install <package> --registry <registry-from-vision>
+```
+```python
+python -m pip install <package> --extra-index-url <url-from-vision>
+```
+```java
+# Copy the Maven or Gradle dependency block from Vision
+```
+```php
+composer require <vendor/package>:<version> --repository <repo-from-vision>
+```
+```ruby
+gem install <name> --source <source-from-vision>
+```
 ```
 
-## Configuration
+## Configure a remote call
 
-### GraftConfig (code)
+Generated packages expose `host` and `stateless` configuration (field names, casing, and access differ
+by runtime). Copy the exact API from Vision and set it **before** the first generated call. The default
+is `inmemory`, which requires the Receiver module to be locally loadable. The `host` is the runtime
+endpoint, **not** the registry URL — see
+[Project Key, registry, host, and credentials](project-key-registry-host-and-credentials.md).
 
-```typescript
-import { GraftConfig } from "@graft/nuget-EnergyPrice";
-
-GraftConfig.host = "tcp://energy-service:9000";
+```multi
+```dotnet
+GraftConfig.Host = "ws://localhost/ws";
+GraftConfig.Stateless = true;
+```
+```javascript
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```python
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = True
+```
+```java
+GraftConfig.host = "ws://localhost/ws";
+GraftConfig.stateless = true;
+```
+```php
+GraftConfig::$host = 'ws://localhost/ws';
+GraftConfig::$stateless = true;
+```
+```ruby
+GraftConfig.host = "ws://localhost/ws"
+GraftConfig.stateless = true
+```
 ```
 
-### Graft Connection String
+Use `ws://` or `wss://` for remote Gateway WebSocket endpoints. See
+[Configure invocation](../how-to-guides/configure-graft-invocation.md) for imports and file/env sources.
 
-```typescript
-GraftConfig.setConfig("name=@graft/nuget-EnergyPrice;runtime=netcore;host=ws://localhost:8004/ws");
-```
+## Ports
 
-### Environment Variables
+- `80`: WebSocket calls, enabled by default;
+- `81`: Vision HTTP, enabled by default;
+- `82`: TCP, only with `--tcpServer`;
+- `83`: HTTP/2, only with `--http2Server`.
 
-Configuration can also be supplied via environment variables or config files, applied per Graft or globally. See [Configuring a Graft](../core-concepts/what-is-a-graft.md#configuring-a-graft) for details.
+All ports are configurable.
 
-## Integration Scenarios
+## Configuration priority
 
-### Frontend <-> Backend
+Generated packages resolve configuration in this order (highest wins first). .NET and
+Node.js are fully covered; other runtimes follow the same conceptual levels—confirm field
+names in the installed package:
 
-```typescript
-import { BackendService } from "@graft/nuget-Backend";
+1. graft-specific environment;
+2. global environment;
+3. graft-specific file;
+4. global file;
+5. programmatic user configuration;
+6. generated library default.
 
-const backend = new BackendService();
-const data = await backend.getData();
-```
+## Frequent failures
 
-### AI <-> Backend (MCP)
+- Receiver `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
+- No types: pass the built module path explicitly; verify public/exported members.
+- Install `404`: repeat the exact registry-qualified command from the current Vision instance.
+- Package generation `422`: remove the named framework complex type from every public signature and
+  public model member.
+- State lost after restart/scale-in: recreate the remote object or redesign as static/stateless.
 
-Services hosted on Graftcode Gateway can be exposed as MCP tools for AI clients without rewriting APIs. See [MCP Hosting and AI Tools](../integration-patterns/mcp-hosting-and-ai-tools.md).
+## Operations
 
-### Monolith <-> Microservice
+- Store `GC_PROJECT_KEY` as a secret; it overrides `--projectKey`.
+- Use `GG_DEBUG` only for controlled diagnosis because it logs byte traffic.
+- Gateway provides `GET /status` for liveness. It does not provide a dedicated readiness or metrics
+  endpoint unless a newer product version explicitly adds one.
+- Pin and test Gateway plus generated packages together; Alpha has no cross-major compatibility
+  guarantee.
 
-Switching between in-memory and remote execution is a configuration change, not a code change. Point `GraftConfig.host` at a remote Gateway or leave it unset for in-memory execution.
+## Detailed references
 
-## Error Handling
+- [Gateway CLI](gateway-cli-reference.md)
+- [Configuration keys and precedence](configuration-keys-and-precedence.md)
+- [Environment variables](environment-variable-reference.md)
+- [Supported runtimes and package managers](supported-runtimes-and-package-managers.md)
+- [Type matrix](type-compatibility-matrix.md)
+- [Errors and status](errors-and-status-reference.md)
+- [Generated package structure](generated-package-structure.md)
+- [Ports and protocols](ports-and-protocols-reference.md)
+- [Known limitations](known-limitations.md)
 
-```typescript
-try {
-  const result = await service.method(params);
-} catch (error) {
-  // Exceptions from the target runtime are propagated
-  // as strongly typed errors in the calling language
-}
-```
+## Next steps
 
-## Testing
-
-### Unit Test
-
-```typescript
-const service = new EnergyService();
-const price = await service.getCurrentPrice("DE");
-expect(price).toBeDefined();
-```
-
-### Mock Service
-
-```typescript
-jest.mock("@graft/nuget-EnergyPrice", () => ({
-  EnergyService: jest.fn().mockImplementation(() => ({
-    getCurrentPrice: jest.fn().mockResolvedValue(0.32),
-  })),
-}));
-```
-
-## Common Commands
-
-```bash
-# Start Graftcode Gateway
-gg.exe --runtime <your_runtime> --modules <your_backend_library>
-```
-
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Gateway won't start | Check port availability and runtime path |
-| Connection failed | Verify `GraftConfig.host` value |
-| Type errors | Regenerate Graft package |
-| Method not found | Check that the method is public |
-
-## Links
-
-- **Graftcode Vision**: hosted by the running Gateway (default: `http://localhost:<port>/vision`)
-- **Graftcode Portal**: [https://graftcode.com](https://graftcode.com)
-- **Graftcode Performance Lab**: [Performance Lab](https://gc-d-ca-polc-demo-perf-lab-01.blackgrass-d2c29aae.polandcentral.azurecontainerapps.io/)
+- [Expose code](../how-to-guides/expose-code-as-a-graftcode-receiver.md)
+- [Run Gateway locally](../how-to-guides/run-gateway-locally.md)
+- [Use a project key](../how-to-guides/use-a-portal-project-key.md)
+- [Gateway versioning](../how-to-guides/gateway-module-versioning-and-noversioning.md)
+- [Filter callable surface](../how-to-guides/filter-the-callable-surface.md)
+- [Authenticate Graft calls](../how-to-guides/authenticate-graft-calls.md)
+- [Debug invocations](../how-to-guides/debug-graft-invocations.md)
+- [Operations and deployment model](../operations/operations-and-deployment-model.md)

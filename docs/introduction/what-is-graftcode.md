@@ -1,123 +1,137 @@
 ---
 title: "What is Graftcode?"
-description: "Graftcode is a runtime-level integration platform that lets software systems communicate through strongly typed method calls, without requiring traditional APIs or RPC layers."
-keywords: "graftcode, runtime integration, api alternative, grpc alternative, service communication, strongly typed calls"
+description: "What Graftcode is, a before/after example, protocol comparison, and where teams use it."
 ---
 
-Graftcode is a **runtime-level integration platform** that allows software systems to communicate using **strongly typed method calls**, even when those systems run in different processes, on different machines, or in different programming languages.
+# What is Graftcode?
 
-Instead of designing endpoints, defining schemas, and generating clients, you expose a **programming interface**—classes, methods, and types—and Graftcode makes that interface callable from other applications as if it were local code.
+Graftcode connects two **services you write** — a **Caller** (calling) and a **Receiver** (called) —
+through a generated **Graft** that replaces hand-written integration layers. The Receiver's **public
+interface** becomes an installable package; the Caller installs it and calls it like local code.
+**Hypertube** carries the invocation to **Gateway**, which hosts the Receiver's **service business
+logic** when execution is remote.
 
-From a developer’s point of view, a remote service becomes just another dependency in the project.
+For how Caller, Graft, Hypertube, Gateway, Receiver, Vision, and Graftcode Engine fit together, see
+[How Graftcode works](how-graftcode-works.md).
 
----
+> **New here?** Run a hands-on course in [Quick start](https://docs.graftcode.com/quick-start)
+> first. This documentation explains concepts, procedures, and reference material—it does not replace
+> those step-by-step tutorials.
 
-## A familiar problem, repeated everywhere
+## Example: calling a billing method across services
 
-When two pieces of code live in the same application, they can call each other directly.  
-When they don’t, we usually introduce an API.
+**The problem:** a Node.js application needs `calculateMonthlyBill(unitPrice, units)`, which lives in
+a .NET service owned by another team.
 
-That API then grows a surrounding ecosystem:
-- endpoints and routes
-- request and response models
-- client libraries
-- versioning rules
-- compatibility concerns
+### Without Graftcode (typical REST or GraphQL integration)
 
-Over time, a significant part of the system exists not to implement business behavior, but to *translate* between systems.
+A separate integration layer usually appears between business code and the remote capability:
 
-This pattern has repeated itself for decades—from early distributed systems, through SOAP and REST, to modern gRPC. Each generation improved performance or ergonomics, but the underlying idea remained the same: **communication lives outside the code**.
+1. Agree an HTTP or GraphQL contract (OpenAPI, schema, versioning rules).
+2. Generate or hand-write a client, DTOs, and error mapping.
+3. Build URLs or queries, serialize payloads, and parse responses on every call.
+4. Maintain that layer when the contract changes.
 
-Graftcode challenges that assumption.
+```javascript
+// Illustrative REST-style Caller code — not Graftcode
+const response = await fetch("https://billing.example/api/v1/monthly-bill", {
+  method: "POST",
+  headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+  body: JSON.stringify({ unitPrice: 10, units: 5 }),
+});
+if (!response.ok) throw new Error(`HTTP ${response.status}`);
+const { total } = await response.json();
+```
 
----
+### With Graftcode
 
-## A different way to think about communication
+1. The .NET team exposes a plain public method on a class library (the **Receiver**).
+2. **Gateway** hosts that built module, discovers the [callable surface](../core-concepts/callable-surface.md),
+   and publishes it for [package generation](../core-concepts/package-generation.md).
+3. The Node team installs the generated **Graft** and calls it like local code.
 
-Graftcode treats communication as a **programming concern**, not a networking one.
+```javascript
+// Illustrative Graftcode Caller — copy package name and host from Vision
+import { BillingService } from "<package-from-vision>";
+import { GraftConfig } from "<package-from-vision>/config.js";
 
-If one piece of software needs to call another, you define *what* can be called—methods, arguments, return types—and let the runtime handle *how* that call happens.
+GraftConfig.host = "ws://billing.example/ws"; // before the first call
+const total = BillingService.calculateMonthlyBill(10, 5);
+```
 
-The result feels closer to using a shared library than consuming an external service:
-- you work with real types, not schemas
-- you call methods, not URLs
-- incompatibilities show up early, not at runtime
+No hand-written HTTP client, route map, or JSON DTO layer for this internal call—the public method
+signature is the contract, and the installed Graft is the client. You still operate a distributed
+system (hosts, auth, failures, observability); Graftcode removes the repetitive protocol glue for
+callers that can install generated packages.
 
-Under the hood, the call may cross process boundaries or machines, but that detail stays out of your application code.
+For a public HTTP API aimed at arbitrary third parties, REST or GraphQL may remain the better
+boundary—see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
----
+## How this differs from REST, GraphQL, gRPC, and tRPC
 
-## What Graftcode actually provides
+Most integration stacks start with a **protocol contract** you design and maintain separately from your
+business code — OpenAPI routes, GraphQL schemas, `.proto` files, or shared TypeScript router types.
+Graftcode starts from **public methods you already write** on a Receiver module. The **Graft** is the
+client; callers install it and invoke those methods like local code.
 
-Graftcode introduces a small set of core building blocks that work together:
+For teams connecting services that can install a package, **Graftcode is significantly better to use**
+than protocol-first stacks in day-to-day work. You write and call methods—not routes, GraphQL
+documents, `.proto` definitions, or tRPC router wiring. The generated Graft carries transport and
+serialization; the same call site works in-memory or remotely when you change `GraftConfig`. Less
+boilerplate, fewer artifacts to keep in sync, and a shorter path from a changed public method to a
+working cross-language call.
 
-- **Grafts** – strongly typed clients generated from public method signatures
-- **Graftcode Gateway** – a runtime host that exposes those signatures and executes calls
-- **Hypertube™** – a runtime-level bridge that connects different runtimes efficiently
-- **Graftcode Vision** – live, always-up-to-date documentation derived from real code
+### Protocol-first vs method-first
 
-Together, they form a system where interfaces are discovered, clients are generated, and calls are executed automatically—without asking developers to design or maintain a separate communication layer.
+![Protocol-vs-method](../../assets/diagrams/protcol-vs-method.png)
 
----
+REST, GraphQL, gRPC, and tRPC are strong choices for **public boundaries** and ecosystems where those
+tools are already standard. Graftcode fits **service-to-service** and **controlled internal** callers
+that should not maintain a hand-written integration layer.
 
-## What Graftcode replaces—and what it doesn’t
+### At a glance
 
-It’s important to be precise here.
+![Graftcode at glance](../../assets/diagrams/graftcode-at-glance.png)
 
-Graftcode can **replace**:
-- REST-based service APIs
-- gRPC-based service communication
-- custom client libraries built around messaging or RPC
+You can keep REST or GraphQL for external clients and add Graftcode for internal integration —
+see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
 
-Graftcode does **not** replace:
-- your infrastructure
-- your security model
-- your monitoring and observability tools
-- your deployment strategy
+A Graft call is still distributed: auth, failures, timeouts, and observability still matter.
 
-It works with existing load balancers, proxies, logging systems, and tracing tools. Communication happens over standard, well-understood transports, and all execution remains under your control.
+### How they compare
 
----
+For **developer experience and integration speed**, Graftcode is the stronger default when Callers can
+install generated packages: you skip the protocol layer that REST, GraphQL, gRPC, and tRPC require you
+to design, version, and maintain alongside your business code.
 
-## How Graftcode fits into an architecture
+![Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization code that a REST or gRPC integration would require; the runtime still represents and transfers invocation data](../../assets/diagrams/performance-comparison.png)
 
-Graftcode sits between **business logic** and **infrastructure**, removing the need to explicitly design how services talk to each other.
+REST and gRPC keep a protocol contract (URLs/operations, schemas, and a client) separate from your
+business code. With Graftcode the supported public method surface is the contract and the installed
+Graft is the client. For raw throughput, neither approach is universally faster; the right choice
+still depends on who owns the contract, who the Callers are, and your interoperability, streaming,
+and browser needs. For **how much code you write and how fast you ship internal integration**,
+Graftcode is typically the better fit.
 
-During development:
-- public method signatures are analyzed
-- typed clients are generated on demand
-- those clients are distributed through standard package managers
+Graftcode removes application-authored controllers, DTO mapping, transport clients, and serialization
+code for controlled Callers. Its runtime still represents and transfers invocation data, so the
+resulting performance depends on the runtime pair, execution mode, payload, transport, topology, and
+workload. This documentation does not publish comparative performance numbers without a documented,
+reproducible benchmark.
 
-At runtime:
-- calls are executed directly between runtimes
-- execution can happen in memory, over TCP/IP, or via WebSocket
-- routing, security, and transport are configured outside the code
+## Where teams use Graftcode
 
-This separation allows teams to evolve architecture independently of application logic.
+- Service-to-service calls across languages, without hand-written HTTP clients.
+- Sharing a Receiver library with internal or controlled Callers.
+- Flipping the same code between in-memory and remote execution by configuration.
+- Exposing Receiver methods as MCP tools.
 
----
+Pick your goal and runtime in [Choose a scenario](choose-your-scenario.md), and review
+[current status and limitations](where-does-graftcode-fit.md) before production.
 
-## When Graftcode is a good fit
+## Next steps
 
-Graftcode works particularly well when:
-
-- systems are composed of multiple services or modules
-- teams want strong typing across service boundaries
-- communication patterns change over time
-- integration code has become a maintenance burden
-
-It can be introduced gradually. Existing APIs can continue to operate alongside Grafts, and adoption can start with a single service or use case.
-
----
-
-## The core idea
-
-At its heart, Graftcode is based on a simple observation:
-
-> **If code already knows how to talk to other code, it shouldn’t need to relearn that through an API.**
-
-By moving communication closer to the runtime, Graftcode lets developers focus on what software *does*, not how it negotiates with its neighbors.
-
----
-
-See also: [What is a Graft](../core-concepts/what-is-a-graft.md)
+1. [Quick start](https://docs.graftcode.com/quick-start) — first working call for your stack.
+2. [How Graftcode works](how-graftcode-works.md) — the How it works diagram and mental model.
+3. [Choose a scenario](choose-your-scenario.md) — pick your goal, then your runtime.
+4. [Quick reference](../reference/quick-reference.md) — keep open while coding.
