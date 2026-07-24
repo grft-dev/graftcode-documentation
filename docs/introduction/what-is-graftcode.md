@@ -83,7 +83,7 @@ working cross-language call.
 
 ### Protocol-first vs method-first
 
-[Protocol-vs-method](../../assets/diagrams/protcol-vs-method.png)
+![Protocol-vs-method](../../assets/diagrams/protcol-vs-method.png)
 
 REST, GraphQL, gRPC, and tRPC are strong choices for **public boundaries** and ecosystems where those
 tools are already standard. Graftcode fits **service-to-service** and **controlled internal** callers
@@ -91,7 +91,7 @@ that should not maintain a hand-written integration layer.
 
 ### At a glance
 
-[Graftcode at glance](../../assets/diagrams/graftcode-at-glance.png)
+![Graftcode at glance](../../assets/diagrams/graftcode-at-glance.png)
 
 You can keep REST or GraphQL for external clients and add Graftcode for internal integration —
 see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
