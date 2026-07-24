@@ -7,7 +7,7 @@ description: "How Receiver types appear to the Caller across supported languages
 
 Type mapping occurs as Graftcode captures the Receiver's callable surface and generates the Caller package. Support is a property of that complete Receiver-to-Caller path—not just the source language.
 
-![A Receiver type is captured as callable-surface metadata and mapped to a Caller type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.svg)
+![A Receiver type is captured as callable-surface metadata and mapped to a Caller type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.png)
 
 ## Detailed mappings by target language
 

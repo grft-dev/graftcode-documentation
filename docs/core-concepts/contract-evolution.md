@@ -7,7 +7,7 @@ description: "How changes to the callable surface affect the generated public AP
 
 A Graft contract is the exposed callable surface plus its type information. Changing that surface can require a new generated package and Caller changes.
 
-![Seven-stage safe workflow: change the surface, compare the generated public API, generate packages, compile Callers, smoke test, publish a new version, and keep the old version side by side](../../assets/diagrams/contract-evolution-timeline.svg)
+![Seven-stage safe workflow: change the surface, compare the generated public API, generate packages, compile Callers, smoke test, publish a new version, and keep the old version side by side](../../assets/diagrams/contract-evolution-timeline.png)
 
 ## Usually additive
 

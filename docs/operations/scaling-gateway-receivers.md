@@ -5,7 +5,7 @@ description: "Scale stateless calls horizontally and preserve affinity for state
 
 # Scaling Gateway Receivers
 
-![A Caller sends TLS/WSS runtime calls through ingress to a load balancer, which spreads stateless calls across identical Gateway plus Receiver replicas and pins stateful calls to one replica; the registry and Graftcode Engine sit on a separate control plane](../../assets/diagrams/production-deployment.svg)
+![A Caller sends TLS/WSS runtime calls through ingress to a load balancer, which spreads stateless calls across identical Gateway plus Receiver replicas and pins stateful calls to one replica; the registry and Graftcode Engine sit on a separate control plane](../../assets/diagrams/production-deployment.png)
 
 *Production topology: stateless calls fan out across replicas; stateful calls stay pinned by
 connection affinity. The registry and Graftcode Engine are control-plane services, not part of the
