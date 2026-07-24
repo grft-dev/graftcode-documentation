@@ -83,12 +83,7 @@ working cross-language call.
 
 ### Protocol-first vs method-first
 
-| | REST · GraphQL · gRPC · tRPC | Graftcode |
-| --- | --- | --- |
-| **What you design first** | Routes, schemas, operations, or shared API types | Public methods on your module |
-| **What the Caller installs** | HTTP/GraphQL client, protobuf stubs, or tRPC client | Generated **Graft** from Vision or registry |
-| **What changes when the API evolves** | Routes, DTOs, clients, compatibility rules | Public surface; regenerate or reinstall the Graft |
-| **Best when** | Public HTTP APIs, browsers, partners, or a stack already built on that protocol | Controlled callers can install a package and you care about **performance**, **less integration code**, **readable call sites**, **maintainability**, and **developer experience** |
+[Protocol-vs-method](../../assets/diagrams/protcol-vs-method.png)
 
 REST, GraphQL, gRPC, and tRPC are strong choices for **public boundaries** and ecosystems where those
 tools are already standard. Graftcode fits **service-to-service** and **controlled internal** callers
@@ -96,12 +91,7 @@ that should not maintain a hand-written integration layer.
 
 ### At a glance
 
-| | REST | GraphQL | gRPC | tRPC | Graftcode |
-| --- | --- | --- | --- | --- | --- |
-| **Contract** | URLs, verbs, request/response shapes | Graph schema, queries, mutations | `.proto` services and messages | TS router procedures and shared types | Public methods on the Receiver |
-| **Caller experience** | HTTP client and serialization | GraphQL client and documents | Generated stubs | Typed client in TypeScript | Generated Graft — call like local code |
-| **Cross-language** | Yes | Yes | Strong (protobuf) | Mainly TypeScript full-stack | Yes — verify the Receiver/Caller pair |
-| **Typical fit** | Public HTTP, browsers, partners | Flexible reads, BFFs | Polyglot service RPC | Full-stack TypeScript apps | Service-to-service and controlled cross-language calls where **performance**, **lower boilerplate**, **code readability**, **maintainability**, and **developer experience** are priorities |
+[Graftcode at glance](../../assets/diagrams/graftcode-at-glance.png)
 
 You can keep REST or GraphQL for external clients and add Graftcode for internal integration —
 see [Use Graftcode alongside REST](../how-to-guides/use-graftcode-alongside-an-existing-rest-api.md).
