@@ -10,7 +10,7 @@ Four Graftcode concepts are easy to confuse. They are **separate** and serve dif
 > **Project Key** registers the Gateway in a project. The **registry URL** installs the Graft. The
 > **runtime host** executes methods. The **call credential** authorizes a specific call.
 
-![Project Key registers the Gateway, the registry URL installs the Graft, the runtime host executes methods, and the call credential authorizes a specific call](../../assets/diagrams/identifiers-and-auth.svg)
+![Project Key registers the Gateway, the registry URL installs the Graft, the runtime host executes methods, and the call credential authorizes a specific call](../../assets/diagrams/identifiers-and-auth.png)
 
 ## The canonical table
 
