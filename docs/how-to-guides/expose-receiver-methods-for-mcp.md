@@ -20,19 +20,19 @@ npm ci && npm run build
 gg ./dist/index.js --types PriceService --methods calculate
 ```
 ```python
-gg ./pricing/
+gg ./pricing/ --types PriceService --methods calculate
 ```
 ```java
 mvn package
-gg ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar --types com.example.PriceService --methods calculate
 ```
 ```php
 composer install
-gg ./src/
+gg ./src/ --types PriceService --methods calculate
 ```
 ```ruby
 bundle install
-gg ./lib/
+gg ./lib/ --types PriceService --methods calculate
 ```
 ```
 

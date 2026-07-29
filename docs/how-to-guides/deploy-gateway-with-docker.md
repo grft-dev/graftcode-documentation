@@ -35,7 +35,7 @@ RUN dotnet publish -c Release -o /app
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 # Pin the Gateway release you deploy. Set a checksum when the release publishes one.
-ARG GRAFTCODE_GATEWAY_VERSION=1.2.12
+ARG GRAFTCODE_GATEWAY_VERSION=1.3.8
 # ARG GRAFTCODE_GATEWAY_SHA256=<sha256-from-release-if-published>
 
 RUN apt-get update && apt-get install -y --no-install-recommends wget curl \
@@ -62,7 +62,7 @@ CMD ["gg", "Receiver.dll"]
 ```
 
 ```bash
-docker build --build-arg GRAFTCODE_GATEWAY_VERSION=1.2.12 -t receiver:1.0.0 .
+docker build --build-arg GRAFTCODE_GATEWAY_VERSION=1.3.8 -t receiver:1.0.0 .
 docker run -d -p 80:80 -p 81:81 -e GC_PROJECT_KEY="$GC_PROJECT_KEY" --name receiver receiver:1.0.0
 ```
 
