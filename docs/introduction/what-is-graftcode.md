@@ -32,7 +32,6 @@ same model covers:
 - **Mix modules in memory** — run modules from different technologies in one process.
 - **Expose methods for AI** — every exposed method is also callable as an MCP tool.
 
-![Five graftcode scenarious](../../assets/diagrams/5-graftcode-scenarious.png)
 It applies the same way to **stateless, stateful, streaming, bi-directional (duplex), and unary**
 interactions. In every case the model is the same:
 

@@ -26,7 +26,7 @@ The Graft is the only integration artifact the Caller installs. It is produced f
 
 ## Caller — the calling service
 
-The Caller is not the Graft itself. It is **your service** that:
+The Caller is **your service** that:
 
 - decides *when* and *with what arguments* to invoke the Receiver;
 - installs the generated Graft from Vision or the public registry;
@@ -37,7 +37,7 @@ At the call site your code looks like a normal method invocation on generated ty
 
 ## Receiver — the called service
 
-The Receiver is not Gateway and not the Graft. It is **your module** — typically a plain class library or package — whose supported public methods form the [callable surface](callable-surface.md).
+The Receiver is **your module** — typically a plain class library or package — whose supported public methods form the [callable surface](callable-surface.md).
 
 You write the implementation. Gateway **hosts** the module for remote execution (or the same module loads in-process for in-memory mode). Callers never receive your source code; they receive a Graft generated from the public surface.
 
