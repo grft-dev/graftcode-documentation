@@ -5,13 +5,15 @@ description: "What Graftcode is, a before/after example, protocol comparison, an
 
 # What is Graftcode?
 
-Graftcode connects two pieces of software you write — a **Caller** (calling) and a **Receiver** (called) —
-through a generated **Graft** that replaces hand-written integration layers. The Receiver's **public
-interface** becomes an installable package; the Caller installs it and calls it like local code.
-**Hypertube** carries the invocation to **Gateway**, which hosts the Receiver's **service business
-logic** when execution is remote.
+Graftcode makes public methods callable across languages, processes, and machines —
+as if they lived in the same codebase. You write plain business code on one side;
+the other side installs a generated package and calls those methods like local
+functions. No hand-written REST clients, controllers, or DTOs for the integration.
 
-For how Caller, Graft, Hypertube, Gateway, Receiver, Vision, and Graftcode Engine fit together, see
+Two roles matter: the **Receiver** exposes the public methods, and the **Caller**
+consumes them through a generated **Graft**. Transport and hosting (including when
+execution is remote) are configuration, not code you write by hand. For how Graft,
+Gateway, Hypertube, Vision, and Graftcode Engine fit together, see
 [How Graftcode works](how-graftcode-works.md).
 
 > **New here?** Run a hands-on course in [Quick start](https://docs.graftcode.com/quick-start)
@@ -30,6 +32,7 @@ same model covers:
 - **Mix modules in memory** — run modules from different technologies in one process.
 - **Expose methods for AI** — every exposed method is also callable as an MCP tool.
 
+![Five graftcode scenarious](../../assets/diagrams/5-graftcode-scenarious.png)
 It applies the same way to **stateless, stateful, streaming, bi-directional (duplex), and unary**
 interactions. In every case the model is the same:
 
