@@ -34,6 +34,26 @@ public decimal CalculateWithTax(decimal basePrice, decimal discountPercent, deci
 // Existing: calculate(...). New, additive:
 export function calculateWithTax(basePrice, discountPercent, taxPercent) { /* ... */ }
 ```
+```python
+# Existing: calculate(...). New, additive:
+@staticmethod
+def calculate_with_tax(base_price, discount_percent, tax_percent):
+    ...
+```
+```java
+// Existing: calculate(...). New, additive:
+public static double calculateWithTax(double basePrice, double discountPercent, double taxPercent) { /* ... */ }
+```
+```php
+// Existing: calculate(...). New, additive:
+public static function calculateWithTax(float $basePrice, float $discountPercent, float $taxPercent): float { /* ... */ }
+```
+```ruby
+# Existing: calculate(...). New, additive:
+def self.calculate_with_tax(base_price, discount_percent, tax_percent)
+  # ...
+end
+```
 ```
 
 ## Breaking change example
@@ -55,19 +75,19 @@ npm ci && npm run build
 gg ./dist/index.js --types PriceService --methods calculate
 ```
 ```python
-gg ./pricing/
+gg ./pricing/ --types PriceService --methods calculate
 ```
 ```java
 mvn package
-gg ./target/pricing-1.0.0.jar
+gg ./target/pricing-1.0.0.jar --types com.example.PriceService --methods calculate
 ```
 ```php
 composer install
-gg ./src/
+gg ./src/ --types PriceService --methods calculate
 ```
 ```ruby
 bundle install
-gg ./lib/
+gg ./lib/ --types PriceService --methods calculate
 ```
 ```
 
