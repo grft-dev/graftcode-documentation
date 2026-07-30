@@ -30,18 +30,26 @@ artifact locally.
 
 ```multi
 ```dotnet
+using <generated_namespace>;
+
 GraftConfig.Host = "inmemory";
 GraftConfig.Module = "Pricing.dll"; // copy exact module id from generated package / Vision
 ```
 ```javascript
+import { GraftConfig } from "<package-copied-from-vision>";
+
 GraftConfig.host = "inmemory";
-// Ensure the Receiver JS module is resolvable on disk; copy module path from Vision.
+GraftConfig.module = "<module-path-from-generated-package>"
 ```
 ```python
+from <generated_package_path>.graft_config import GraftConfig
+
 GraftConfig.host = "inmemory"
 GraftConfig.module = "<module-path-from-generated-package>"
 ```
 ```java
+import <generated_package>.GraftConfig;
+
 GraftConfig.host = "inmemory";
 GraftConfig.module = "<module-path-from-generated-package>";
 ```

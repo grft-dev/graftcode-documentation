@@ -16,7 +16,7 @@ types, the runtime listener, the Vision URL, and the publication result. Represe
 are environment-specific — copy the real coordinates from your own Gateway or Vision):
 
 ```text
-Graftcode Gateway (gg) 1.2.12
+Graftcode Gateway (gg) 1.3.8
 Runtime detected: .NET 9.0
 Loading module: Pricing.dll
 Type enabled: Pricing.PriceService

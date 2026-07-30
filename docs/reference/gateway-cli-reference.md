@@ -33,6 +33,7 @@ options below are optional.
 | `--GV` | Host Vision; default on |
 | `--types` | Comma-separated hosted type names |
 | `--methods` | Comma-separated hosted method names |
+| `--graftOnly` | Publish the callable surface without starting runtime listeners (Gateway 1.3.x+) |
 | `--runApp` | Run the application entry point |
 | `--mcpBaseClass` | Declaring type FQN for MCP `tools/call` resolution |
 | `--corsAllowedOrigins` | Comma-separated CORS origins or `*` |
