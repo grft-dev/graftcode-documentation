@@ -49,6 +49,35 @@ export function calculate(basePrice, discountPercent) {
   return basePrice * (1 - discountPercent / 100);
 }
 ```
+```python
+@staticmethod
+def calculate(base_price, discount_percent):
+    if discount_percent < 0 or discount_percent > 100:
+        raise ValueError("discountPercent must be between 0 and 100.")
+    return base_price * (1 - discount_percent / 100)
+```
+```java
+public static double calculate(double basePrice, double discountPercent) {
+    if (discountPercent < 0 || discountPercent > 100) {
+        throw new IllegalArgumentException("discountPercent must be between 0 and 100.");
+    }
+    return basePrice * (1 - discountPercent / 100);
+}
+```
+```php
+public static function calculate(float $basePrice, float $discountPercent): float {
+    if ($discountPercent < 0 || $discountPercent > 100) {
+        throw new InvalidArgumentException('discountPercent must be between 0 and 100.');
+    }
+    return $basePrice * (1 - $discountPercent / 100);
+}
+```
+```ruby
+def self.calculate(base_price, discount_percent)
+  raise ArgumentError, "discountPercent must be between 0 and 100." if discount_percent < 0 || discount_percent > 100
+  base_price * (1 - discount_percent / 100.0)
+end
+```
 ```
 
 ## Caller-side handling example
@@ -77,6 +106,41 @@ try {
   logger.warn({ err }, "pricing call failed");
   throw err;
 }
+```
+```python
+try:
+    price = pricing.calculate(base_price, discount_percent)
+except Exception as err:
+    # Log locally; the error shape may differ from the Receiver's native type.
+    logger.warning("pricing call failed: %s", err)
+    raise
+```
+```java
+try {
+    double price = pricing.calculate(basePrice, discountPercent);
+} catch (Exception ex) {
+    // Log locally; the error shape may differ from the Receiver's native type.
+    logger.warn("Pricing call failed", ex);
+    throw ex;
+}
+```
+```php
+try {
+    $price = $pricing->calculate($basePrice, $discountPercent);
+} catch (Throwable $err) {
+    // Log locally; the error shape may differ from the Receiver's native type.
+    error_log('pricing call failed');
+    throw $err;
+}
+```
+```ruby
+begin
+  price = pricing.calculate(base_price, discount_percent)
+rescue StandardError => err
+  # Log locally; the error shape may differ from the Receiver's native type.
+  warn "pricing call failed: #{err}"
+  raise
+end
 ```
 ```
 

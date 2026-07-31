@@ -40,26 +40,32 @@ Prefer environment variables in deployment; they override CLI flags:
 
 ```multi
 ```dotnet
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ndotnet build ./Pricing/Pricing.csproj
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+dotnet build ./Pricing/Pricing.csproj
 gg ./Pricing/bin/Debug/net9.0/Pricing.dll
 ```
 ```javascript
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nnpm ci && npm run build
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+npm ci && npm run build
 gg ./dist/index.js
 ```
 ```python
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ngg ./pricing/
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+gg ./pricing/
 ```
 ```java
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nmvn package
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+mvn package
 gg ./target/pricing-1.0.0.jar
 ```
 ```php
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\ncomposer install
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+composer install
 gg ./src/
 ```
 ```ruby
-export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"\nbundle install
+export GC_PROJECT_KEY="dev:<jwt-copied-from-portal>"
+bundle install
 gg ./lib/
 ```
 ```
