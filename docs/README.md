@@ -32,6 +32,7 @@ Quick start first for your stack; return here when you need to understand *why* 
 13. [Type mapping](core-concepts/type-mapping.md)
 14. [Contract evolution](core-concepts/contract-evolution.md)
 15. [Core-concepts glossary](core-concepts/core-concepts-glossary.md)
+16. [Graftcode context](core-concepts/graftcode-context.md)
 
 ## How-to guides
 
@@ -192,6 +193,9 @@ categories:
       - title: "Core-concepts glossary"
         path: "core-concepts/core-concepts-glossary.md"
         order: 15
+      - title: "Graftcode Context library"
+        path: "core-concepts/graftcode-context.md"
+        order: 16
   - name: "How-to guides"
     order: 3
     path: "how-to-guides"
