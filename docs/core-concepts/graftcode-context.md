@@ -33,8 +33,7 @@ Sets headers only for a specific function invocation. The headers are scoped to 
 
 ### Examples by Technology
 
-#### Node.js
-
+```multi
 ```typescript
 import { GraftConfig, MyService } from '@graft/nuget-MyService';
 
@@ -50,9 +49,6 @@ const result = GraftConfig.invokeWithHeaders(
   { 'Authorization': 'Bearer different-token' }
 );
 ```
-
-#### .NET
-
 ```csharp
 using graft.nuget.MyService;
 
@@ -75,9 +71,6 @@ var asyncResult = await GraftConfig.InvokeWithHeadersAsync(
     new Dictionary<string, string> { { "Authorization", "Bearer different-token" } }
 );
 ```
-
-#### Java
-
 ```java
 import graft.nuget.GraftConfig;
 import graft.nuget.MyService;
@@ -96,9 +89,6 @@ var result = GraftConfig.invokeWithHeaders(
     Map.of("Authorization", "Bearer different-token")
 );
 ```
-
-#### Python
-
 ```python
 from graft_nuget_myservice import GraftConfig, MyService
 
@@ -120,9 +110,6 @@ result = await GraftConfig.invoke_with_headers_async(
     {'Authorization': 'Bearer different-token'}
 )
 ```
-
-#### PHP
-
 ```php
 <?php
 
@@ -141,9 +128,6 @@ $result = GraftConfig::invokeWithHeaders(
     ['Authorization' => 'Bearer different-token']
 );
 ```
-
-#### Ruby
-
 ```ruby
 require 'graft_nuget_mypackage'
 
@@ -159,7 +143,7 @@ result = GraftConfig.invoke_with_headers(
   { 'Authorization' => 'Bearer different-token' }
 )
 ```
-
+```
 ---
 
 ## Available Libraries
