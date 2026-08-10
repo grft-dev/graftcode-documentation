@@ -159,18 +159,68 @@ result = GraftConfig.invoke_with_headers(
 
 ---
 
-## Node.js / TypeScript
+## Installation
 
-### Installation
+Install the library for your Receiver runtime from the public package registry:
 
-```bash
+```multi
+```typescript
 npm install graftcode-context
 ```
+```csharp
+dotnet add package Graftcode.Context
 
-**Requirements:** Node.js >= 22.0.0
+# Package Manager Console:
+# Install-Package Graftcode.Context
+```
+```java
+<!-- Maven — add to pom.xml -->
+<dependency>
+    <groupId>com.graftcode</groupId>
+    <artifactId>graftcode-context</artifactId>
+    <version>1.0.0</version>
+</dependency>
 
-### Usage
+// Gradle
+implementation 'com.graftcode:graftcode-context:1.0.0'
+```
+```python
+pip install graftcode-context
+```
+```php
+composer require graftcode/graftcode-context
+```
+```ruby
+# Gemfile
+gem 'graftcode-context'
 
+# Then:
+bundle install
+
+# Or install directly:
+gem install graftcode-context
+```
+```
+
+### Requirements
+
+| Technology | Package | Minimum runtime |
+| --- | --- | --- |
+| Node.js / TypeScript | `graftcode-context` | Node.js >= 22.0.0 |
+| .NET | `Graftcode.Context` | .NET Standard 2.1 or .NET 8.0 |
+| Java / JVM | `com.graftcode:graftcode-context` | Java 8+ |
+| Python | `graftcode-context` | Python >= 3.9 |
+| PHP | `graftcode/graftcode-context` | PHP >= 7.4 or >= 8.0 |
+| Ruby | `graftcode-context` | Ruby >= 3.1.0 |
+
+---
+
+## Usage
+
+Read headers and metadata from the current request context anywhere in your Receiver code during a
+Graftcode invocation:
+
+```multi
 ```typescript
 import { RequestContext } from 'graftcode-context';
 
@@ -180,27 +230,6 @@ const authToken = headers['Authorization'];
 const correlationId = headers['X-Correlation-Id'];
 const tenantId = headers['X-Tenant-Id'];
 ```
-
----
-
-## .NET
-
-### Installation
-
-```bash
-dotnet add package Graftcode.Context
-```
-
-Or via Package Manager Console:
-
-```powershell
-Install-Package Graftcode.Context
-```
-
-**Target Frameworks:** .NET Standard 2.1, .NET 8.0
-
-### Usage
-
 ```csharp
 using Graftcode.Context;
 
@@ -210,35 +239,6 @@ var authToken = headers["Authorization"];
 var correlationId = headers["X-Correlation-Id"];
 var tenantId = headers["X-Tenant-Id"];
 ```
-
-> **Note:** The `RequestContext.Current` property uses `[ThreadStatic]` attribute to ensure thread safety in multi-threaded applications.
-
----
-
-## Java / JVM
-
-### Installation (Maven)
-
-Add to your `pom.xml`:
-
-```xml
-<dependency>
-    <groupId>com.graftcode</groupId>
-    <artifactId>graftcode-context</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
-
-### Installation (Gradle)
-
-```groovy
-implementation 'com.graftcode:graftcode-context:1.0.0'
-```
-
-**Requirements:** Java 8+
-
-### Usage
-
 ```java
 import com.graftcode.context.RequestContext;
 import java.util.Map;
@@ -249,23 +249,6 @@ String authToken = headers.get("Authorization");
 String correlationId = headers.get("X-Correlation-Id");
 String tenantId = headers.get("X-Tenant-Id");
 ```
-
-> **Note:** The implementation uses `ThreadLocal` to ensure thread safety.
-
----
-
-## Python
-
-### Installation
-
-```bash
-pip install graftcode-context
-```
-
-**Requirements:** Python >= 3.9
-
-### Usage
-
 ```python
 from graftcode.context import RequestContext
 
@@ -275,23 +258,6 @@ auth_token = headers.get('Authorization')
 correlation_id = headers.get('X-Correlation-Id')
 tenant_id = headers.get('X-Tenant-Id')
 ```
-
-> **Note:** The Python implementation uses `contextvars.ContextVar` for async-safe context propagation, making it compatible with asyncio and other async frameworks.
-
----
-
-## PHP
-
-### Installation
-
-```bash
-composer require graftcode/graftcode-context
-```
-
-**Requirements:** PHP >= 7.4 or PHP >= 8.0
-
-### Usage
-
 ```php
 <?php
 
@@ -303,35 +269,6 @@ $authToken = $headers['Authorization'] ?? null;
 $correlationId = $headers['X-Correlation-Id'] ?? null;
 $tenantId = $headers['X-Tenant-Id'] ?? null;
 ```
-
----
-
-## Ruby
-
-### Installation
-
-Add to your `Gemfile`:
-
-```ruby
-gem 'graftcode-context'
-```
-
-Then run:
-
-```bash
-bundle install
-```
-
-Or install directly:
-
-```bash
-gem install graftcode-context
-```
-
-**Requirements:** Ruby >= 3.1.0
-
-### Usage
-
 ```ruby
 require 'graftcode/context'
 
@@ -341,4 +278,15 @@ auth_token = headers['Authorization']
 correlation_id = headers['X-Correlation-Id']
 tenant_id = headers['X-Tenant-Id']
 ```
+```
+
+### Thread and async safety
+
+| Technology | Mechanism |
+| --- | --- |
+| .NET | `[ThreadStatic]` on `RequestContext.Current` |
+| Java / JVM | `ThreadLocal` |
+| Python | `contextvars.ContextVar` (async-safe with asyncio) |
+| Node.js, PHP, Ruby | Context-aware singleton for the active request |
+
 ---
