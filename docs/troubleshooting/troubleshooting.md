@@ -24,6 +24,9 @@ version, runtime versions, and the first complete exception before changing conf
   [Gateway or runtime exits](gateway-or-runtime-exits.md)
 - **Vision does not match Gateway output or generated code:**  
   [Vision and runtime disagree](vision-and-runtime-disagree.md)
+- **In-memory execution fails with `FileNotFound`, launcher errors, missing embedded runtime, or wrapped
+  Receiver exceptions:**  
+  [In-memory execution and Hypertube exceptions](in-memory-hypertube-exceptions.md)
 
 ## Capture this data first
 

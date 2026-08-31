@@ -123,6 +123,7 @@ materially differ by stack. Regenerate consolidated guides with `scripts/consoli
 - [Installed package is stale](troubleshooting/installed-package-is-stale.md)
 - [Gateway or runtime exits](troubleshooting/gateway-or-runtime-exits.md)
 - [Vision and runtime disagree](troubleshooting/vision-and-runtime-disagree.md)
+- [In-memory execution and Hypertube exceptions](troubleshooting/in-memory-hypertube-exceptions.md)
 
 ## Machine-readable navigation
 
@@ -350,4 +351,7 @@ categories:
       - title: "Vision and runtime disagree"
         path: "troubleshooting/vision-and-runtime-disagree.md"
         order: 7
+      - title: "In-memory execution and Hypertube exceptions"
+        path: "troubleshooting/in-memory-hypertube-exceptions.md"
+        order: 8
 ```

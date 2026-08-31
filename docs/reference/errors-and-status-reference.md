@@ -33,4 +33,6 @@ surface native/runtime errors through Hypertube, so test error handling for each
 ## Next steps
 
 - [Handle Receiver errors](../how-to-guides/handle-receiver-errors.md)
+- [In-memory execution and Hypertube exceptions](../troubleshooting/in-memory-hypertube-exceptions.md) — embedded
+  runtime paths, activation, and Hypertube exception catalog
 - [Timeouts and retries](../operations/timeouts-and-retries.md)
