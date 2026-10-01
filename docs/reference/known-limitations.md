@@ -14,9 +14,9 @@ deployment you intend to operate.
 
 Statuses used on this page:
 
-- **Available** — supported in the current release.
+- **Available** — supported in the current release. `(plugin)` means the supported path is a named plugin.
 - **Alpha** — usable but not hardened; expect gaps and validate before depending on it.
-- **Preview** — early, incomplete, or plugin-based; not guaranteed.
+- **Preview** — early or incomplete; not guaranteed.
 - **Planned** — not available yet.
 - **Unsupported** — not supported; do not depend on it.
 
@@ -28,9 +28,14 @@ and Node.js; other pairs require validation*).
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Primitive and string contracts | Available | — | Prefer primitives, strings, arrays of supported values, and plain models. |
-| Framework complex types on the public surface (for example `DateTime`) | Unsupported | Package generation rejects them ("complex types from framework in public interfaces is not supported"). | Use ISO-8601 strings for dates and string identifiers; model your own plain types. |
-| Rich shapes (nested models, nullability, enums, unions, maps, sets) | Available for .NET and Node.js; other pairs require validation | Behavior differs across runtimes; unknown values can degrade. | Generate and smoke-test every target package; keep contracts simple. |
-| Generics | Available for .NET; other pairs require validation | Constraints, variance, overloads, and nested generics are not portable across all pairs. | Expose a concrete facade with closed, simple types; keep generics behind it. |
+| C# classes and records as plain models | Available for .NET | Every public member must itself be a supported type. | Use either a class or a record. Both are plain models. |
+| Arrays of complex types (`T[]` of a class or record, including a page DTO with `Items: T[]`) | Available for .NET | Other runtime pairs require validation. | Prefer `T[]` over `List<T>` of a complex type. |
+| `List<T>` of a complex type | Requires validation | Not the preferred shape for class or record elements. | Prefer `T[]` of the class or record. |
+| Typed graft method contracts (.NET to .NET) | Available | — | Prefer typed parameters and return values over JSON carried in a string. |
+| Framework complex types on the public surface (`DateTime`, `Guid`, streams) | Unsupported | Package generation rejects them ("complex types from framework in public interfaces is not supported"). | Use ISO-8601 strings for dates and string identifiers; keep streams internal and return primitive or model results. |
+| Rich shapes (nested models, nullability, enums, unions) | Available for .NET and Node.js; other pairs require validation | Behavior differs across runtimes; unknown values can degrade. | Generate and smoke-test every target package; keep contracts simple. |
+| Maps, dictionaries, and sets | Requires validation | Not a portable baseline. | Use explicit plain models or arrays. |
+| Generics | Requires validation | Constraints, variance, overloads, and nested generics are not portable across all pairs. | Expose a concrete facade with closed, simple types; keep generics behind it. |
 | Inheritance and polymorphism | Requires validation | Constructor, member, dispatch, and serialization semantics are not portable for arbitrary hierarchies. | Flatten the public contract into standalone facade types; delegate internally. |
 | 64-bit integers and `decimal` to a JavaScript Caller | Requires validation | JavaScript `number` cannot safely represent every 64-bit or exact-decimal value. | Use `int` or a string for exact values unless the exact pair is tested. |
 
@@ -72,15 +77,17 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 | --- | --- | --- | --- |
 | Registry coordinates and install commands | Available | Names, versions, registry paths, namespaces, and imports depend on the active Gateway/project; a restart without a stable Project Key can change the registry identity. | Copy the complete command and generated import from the running Gateway/Vision; never reuse example coordinates. |
 | npm runtime dependency | Available | Generated npm packages depend on a runtime SDK; automatic resolution is package-specific. | Run the exact npm command emitted for the Graft, keep the lockfile, and inspect installed metadata if resolution fails. |
+| Generated .NET NuGet clients | Available | — | Call the installed package as a local typed API. It is not a RuntimeBridge. |
 | OS / architecture coverage | Requires validation | Native and plugin paths are OS/architecture specific; there is no exhaustive release matrix. | Build and smoke-test on the deployment OS/architecture; verify executable permissions and native assets. |
 
 ## Transports
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| In-memory and WebSocket (`ws://`, `wss://`) | Available | — | Use `wss://` for network calls; copy the exact host and path from Vision. |
+| In-memory and WebSocket (`ws://`, `wss://`) | Available | — | Use `wss://` for network calls; copy the exact host and path from Vision. A generated .NET NuGet client uses that transport as a local typed API. |
 | TCP and HTTP/2 listeners | Available (opt-in) | Require their enabling options; do not have identical failure/header semantics. | Enable the listener explicitly and verify the route through your proxy/ingress. |
-| Message-queue / broker transports | Preview (plugin-based) | Availability depends on a specific transport plugin; not built in. | Do not assume a broker is supported because it appears in a diagram; verify the plugin. |
+| RabbitMQ via the Graftcode RabbitmqPlugin | Available (plugin) | Requires the Graftcode RabbitmqPlugin. RabbitMQ is not a built-in Gateway listener. | Configure the Graftcode RabbitmqPlugin and smoke-test the deployment. |
+| Other message-queue / broker transports | Preview (plugin-based) | Kafka, NATS, SQS, service bus, and similar brokers depend on a specific plugin and are not guaranteed. | Verify that plugin before depending on the broker. |
 | Proxy, ingress, certificate, keepalive behavior | Requires validation | Deployment-specific. | Terminate TLS with a configuration tested for that deployment. |
 
 See [Ports and protocols](ports-and-protocols-reference.md).
@@ -131,7 +138,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Backward compatibility across releases | Version-dependent | No universal wire, binary, source, or old-Caller/new-Receiver guarantee. Additive source changes can still change generated names, overloads, exports, or mappings. | Pin all participating versions, regenerate deliberately, compare the generated public API, then compile and smoke-test representative Callers before rollout. See [Contract evolution](../core-concepts/contract-evolution.md). |
-| Production readiness | Alpha | Support for advanced types, all pairs, security distribution, upgrades, HA, and every platform is incomplete. | Define and test a narrow supported profile (exact versions, simple contract, locked packages, TLS/auth, timeouts, failure handling, restart, rollback, upgrade). |
+| Production readiness | Alpha | Support for maps, inheritance, generics, every runtime pair, security distribution, upgrades, HA, and every platform is incomplete. | Define and test a narrow supported profile (exact versions, simple contract, locked packages, TLS/auth, timeouts, failure handling, restart, rollback, upgrade). |
 
 ## Runtime-specific notes
 
@@ -140,6 +147,10 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 - SDK-style projects compile all `.cs` files recursively. Keep Caller and test projects outside the
   Receiver library directory so unintended code does not enter the callable surface.
 - Public methods must be synchronous; a public `async`/`Task<T>` is not a portable contract.
+- Classes and records both work as plain models. For an array of those models, including a page DTO
+  with `Items: T[]`, prefer `T[]` over `List<T>`.
+- For .NET-to-.NET calls, prefer a typed graft method contract over JSON carried in a string.
+- The generated NuGet client is a local typed API. Call that API directly over in-memory or WebSocket.
 
 **Node.js / TypeScript**
 
