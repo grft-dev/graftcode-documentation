@@ -78,6 +78,9 @@ separate `HYPERTUBE_*_RUNTIME_PATH` variables in the native launchers.
 | `HYPERTUBE_DEBUG_MODE` | Hypertube native launchers | `true` enables native launcher debug logging |
 | `HYPERTUBE_LOGGING_LEVEL` | Hypertube native | `off`, `runtimeinfo` (default), `all` — overrides `loggingLevel` in config when set |
 | `HYPERTUBE_INSTRUMENTATION_KEY` | Hypertube telemetry | Application Insights instrumentation key; optional |
+| `HYPERTUBE_TELEMETRY_AUTO_INJECT` | .NET `Hypertube.Instrumentation` | `false` or `0` stops writing `traceparent` onto Graft calls. Unset means on. Read once, so set it before the first span |
+| `HYPERTUBE_TELEMETRY_CAPTURE_BODIES` | .NET `Hypertube.Instrumentation` | `true` records request and response bodies on the span. Unset means off. Values are redacted |
+| `HYPERTUBE_TELEMETRY_BODY_MAX_CHARS` | .NET `Hypertube.Instrumentation` | Maximum body length when capture is on. Default `8192`, clamped to `256`–`32768` |
 
 `GG_DEBUG` (Gateway / protocol layer) and `HYPERTUBE_DEBUG` (Hypertube SDK) are independent. Enable
 diagnostic variables only in controlled environments; captured logs may contain payload or credential
@@ -216,6 +219,8 @@ GraftConfig.stateless = true
 | Any Caller → .NET graft | `HYPERTUBE_NETCORE_RUNTIME_VERSION`; `HT_NET_RUNTIME_CONFIG_PATH` if needed |
 | PHP graft with custom extensions | `PHP_HOME` |
 | Diagnose protocol / launcher issues | `GG_DEBUG`, `HYPERTUBE_DEBUG`, `HYPERTUBE_DEBUG_MODE`, `HYPERTUBE_LOGGING_LEVEL` |
+| .NET Graft traces without propagating `traceparent` | `HYPERTUBE_TELEMETRY_AUTO_INJECT=false` |
+| .NET Graft span bodies | `HYPERTUBE_TELEMETRY_CAPTURE_BODIES` and optionally `HYPERTUBE_TELEMETRY_BODY_MAX_CHARS` |
 | Gateway publication to portal | `GC_PROJECT_KEY` |
 
 ## Next steps
