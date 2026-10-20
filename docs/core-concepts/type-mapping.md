@@ -62,7 +62,10 @@ Perl and Python 2.7 have no generated-package or type-mapping path.
 
 ## Supported surface is stricter than discovery
 
-The Graftcode Engine rejects framework complex types in public interfaces (`System.DateTime` is a typical example). Therefore, a type appearing in the discovered surface does not prove that package generation will accept it.
+Graftcode rejects **library and framework types** on the public surface you expose—for example
+`DateTime` on .NET, `java.time` types on Java, `datetime` or `bytes` on Python, or `List<T>` instead
+of an array. Requesting the Caller package then fails with HTTP `422`. A type listed in Vision or
+Gateway therefore does not guarantee that callers can install or use a generated package.
 
 Use simple primitives and explicitly modeled public types. Prefer ISO-8601 strings and string identifiers for cross-language contracts unless the exact Receiver/Caller pair has generation and runtime tests for richer types.
 

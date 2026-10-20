@@ -28,9 +28,11 @@ and Node.js; other pairs require validation*).
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Primitive and string contracts | Available | — | Prefer primitives, strings, arrays of supported values, and plain models. |
-| Framework complex types on the public surface (for example `DateTime`) | Unsupported | Package generation rejects them ("complex types from framework in public interfaces is not supported"). | Use ISO-8601 strings for dates and string identifiers; model your own plain types. |
-| Rich shapes (nested models, nullability, enums, unions, maps, sets) | Available for .NET and Node.js; other pairs require validation | Behavior differs across runtimes; unknown values can degrade. | Generate and smoke-test every target package; keep contracts simple. |
-| Generics | Available for .NET; other pairs require validation | Constraints, variance, overloads, and nested generics are not portable across all pairs. | Expose a concrete facade with closed, simple types; keep generics behind it. |
+| Language or framework types on the public surface (for example `DateTime` / `Guid` on .NET, `java.time` on Java, `datetime` on Python, `DateTime` on PHP) | Unsupported | Installing or generating the Caller package fails with HTTP `422` and a message that a framework type is not supported. The rule applies to types from **your Receiver's** runtime libraries, not only .NET. | Use ISO-8601 strings for dates, string identifiers for IDs, and your own plain model types. See [Errors and status](errors-and-status-reference.md). |
+| Nested models, nullability, enums, and primitive arrays | Available | Supported across the documented runtimes when every member stays portable. Edge cases still differ by Receiver→Caller direction. | Design shallow models; generate a Caller package and run your own integration test for each direction you use. |
+| Maps, sets, framework collections (`List<T>`, `Dictionary<,>`, …), and rich unions | Requires validation | Not in the portable baseline; mapping varies by language pair. | Prefer plain models and language arrays; test the exact pair before shipping. |
+| Generics | Requires validation | May work for your pair, but constraints, variance, overloads, and nested generics are not guaranteed across runtimes. | Expose a concrete facade with fixed types on the public surface. |
+| Binary data (`byte[]`, `bytes`, and similar) on the public surface | Unsupported | Package generation rejects binary types the same way as other non-portable library types. | Encode as a Base64 `string`, or split into portable fields on a plain model. |
 | Inheritance and polymorphism | Requires validation | Constructor, member, dispatch, and serialization semantics are not portable for arbitrary hierarchies. | Flatten the public contract into standalone facade types; delegate internally. |
 | 64-bit integers and `decimal` to a JavaScript Caller | Requires validation | JavaScript `number` cannot safely represent every 64-bit or exact-decimal value. | Use `int` or a string for exact values unless the exact pair is tested. |
 
@@ -103,7 +105,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| Six-level configuration precedence | Available for .NET and Node.js | Runtime context is cached after first initialization; at equal name and priority, first registration wins. | Set configuration before the first generated call; inspect higher-priority sources when a setting seems ignored. See [Configuration resolution](../core-concepts/configuration-resolution.md). |
+| Six-level configuration precedence | Available | Each generated Caller package loads configuration in the same priority order (environment, files, programmatic defaults). Settings are applied once at first use; at equal priority, the first registered value wins. | Set host, modules, and other options before the first call; copy field names from Vision or your installed package. See [Configuration resolution](../core-concepts/configuration-resolution.md). |
 
 ## Operations
 

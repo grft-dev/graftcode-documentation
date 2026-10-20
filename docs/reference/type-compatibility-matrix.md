@@ -6,9 +6,17 @@ description: "Portable baseline types, pair-specific types, types that require v
 # Type compatibility matrix
 
 Type support is a property of the whole **Receiver → Caller** path, not just the source type. Use the
-groups below to design a contract, then generate and smoke-test the exact pair before depending on
-richer types. The Graftcode Engine rejects complex framework types on the public surface; discovery of
-a type does not prove generation or runtime compatibility.
+groups below to design a contract, then install the generated Caller package and test the calls you
+plan to make before relying on richer types.
+
+Graftcode validates the **public** methods and models you expose on the Receiver. Types that belong
+to your language or framework (standard library dates, IDs, collections, binary buffers, and similar)
+are rejected when you request a Caller package—a type visible in Gateway or Vision does not mean
+generation or cross-runtime calls will succeed. See [Errors and status](errors-and-status-reference.md).
+
+Nested plain models and arrays of portable values are the usual starting point for any supported
+runtime pair. Maps, sets, framework collection types, and binary payloads are not part of that
+baseline.
 
 ## Portable baseline
 
@@ -21,7 +29,7 @@ contract.
 | `bool` / `boolean` | Supported. |
 | 32-bit integer (`int`) | Within the safe range of the target's number type. |
 | floating point (`double`) | Test precision-sensitive uses. |
-| homogeneous arrays / lists of supported values | Prefer over framework collections. |
+| homogeneous arrays of supported values | Prefer language arrays over framework collection interfaces (for example `List<T>`, `Dictionary<,>` on .NET). |
 | plain objects / models of supported values | Every public member must itself be portable. |
 
 ## Pair-specific
@@ -51,10 +59,12 @@ these.
 
 | Type | Why | Instead |
 | --- | --- | --- |
-| framework date/time and ID types (`DateTime`, `Guid`, …) | Rejected / not portable. | ISO-8601 strings and string identifiers. |
+| language or framework date, time, and ID types (`DateTime`, `Guid`, `java.time.*`, `datetime`, …) | Package generation fails (`422`). | ISO-8601 strings and string identifiers. |
+| framework collection types (`List<T>`, `Dictionary<,>`, `IEnumerable<T>`, …) | Package generation fails when they appear on the public surface. | Language arrays and explicit plain models. |
+| binary (`byte[]`, `bytes`, …) on the public surface | Package generation fails. | Base64 `string` or a plain model with portable fields. |
 | `Task` / `Task<T>` on a .NET public method | Rejected on the public surface. | Keep public methods synchronous; the generated Caller API may still be async. |
 | streams, files, HTTP request/response objects | Not a transferable contract. | Keep internal; expose primitive/model results. |
-| callbacks, delegates, events | No portable lifecycle across pairs/transports. | Redesign as explicit request/result calls. |
+| callbacks, delegates, events | Preview | Lifecycle and errors differ by runtime and transport. | Prefer explicit request/result methods; use callbacks only after you validate your exact pair. |
 | remote object references as durable state | No durable lifetime guarantee. | Keep state behind explicit IDs. |
 
 ## Directional pairs to verify
