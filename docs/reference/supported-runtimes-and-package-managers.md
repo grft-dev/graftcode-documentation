@@ -24,8 +24,9 @@ the full Caller/Receiver path is available. Use this matrix for role support; us
 | Python 2.7 | Listed by CLI | Not documented | Not documented | Not documented | — | 2.7 | Unsupported | Present as a CLI runtime name only |
 | Perl | Listed by CLI | No | Not documented | None | — | — | Unsupported | Gateway lists `perl`, but no Graft generation or Caller path exists |
 
-Status labels: **Available** (reachable through a public path and behaves as documented),
-**Alpha/Preview** (incomplete or unstable), **Planned** (partial foundations), **Unsupported**.
+Status labels: **Available** (reachable through a documented public path), **Unsupported** (no Graft
+generation or Caller path). Pair-specific behavior still requires smoke tests; see
+[Known limitations](known-limitations.md).
 
 "Host Receiver code" and "Act as Caller" are separate capabilities. Runtime availability also depends
 on the host image or machine and its native dependencies.

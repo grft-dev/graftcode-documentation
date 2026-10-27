@@ -1,24 +1,25 @@
 ---
 title: "Known limitations"
 description: "Current limitations for Graftcode runtimes, contracts, packages, security, operations, and compatibility."
-keywords: "graftcode alpha, limitations, runtime support, type support, compatibility, troubleshooting"
+keywords: "graftcode limitations, runtime support, type support, compatibility, troubleshooting"
 ---
 
 # Known limitations
 
-This page describes the current limitations of Graftcode for external developers. Graftcode is in
-**Alpha**: many paths work end to end, but support is directional and pair-specific. A runtime name in
-Gateway, a method in the callable surface, or a generated package by itself does not mean the complete
-Receiver-to-Caller path works. Validate the exact runtime pair, generated package, transport, and
-deployment you intend to operate.
+This page describes the current limitations of Graftcode for external developers. Many paths work end
+to end, but support is **directional and pair-specific**. A runtime name in Gateway, a method in the
+callable surface, or a generated package by itself does not mean the complete Receiver-to-Caller path
+works. Validate the exact runtime pair, generated package, transport, and deployment you intend to
+operate.
 
 Statuses used on this page:
 
-- **Available** — supported in the current release.
-- **Alpha** — usable but not hardened; expect gaps and validate before depending on it.
-- **Preview** — early, incomplete, or plugin-based; not guaranteed.
-- **Planned** — not available yet.
+- **Available** — documented path exists and is used in supported scenarios.
+- **Requires validation** — may work for your pair; smoke-test before you depend on it.
 - **Unsupported** — not supported; do not depend on it.
+- **Application-defined** — you implement the behavior (for example readiness checks).
+- **Version-dependent** — behavior depends on pinned Gateway, protocol, and package versions.
+- **Plugin-based** — requires an optional Gateway transport plugin; verify the plugin and config.
 
 Where support depends on the runtime pair, that is stated directly (for example, *Available for .NET
 and Node.js; other pairs require validation*).
@@ -57,7 +58,7 @@ See [Supported runtimes and package managers](supported-runtimes-and-package-man
 | Async completion on the Receiver (`Task`/`Task<T>`, `ValueTask`, `Promise`, `async def`, …) | Requires validation | Results are completed on the Receiver; handles are not sent over the wire. UGM `METHOD_COMPLETION` drives the generated Caller wrapper. | Follow Vision and the installed package; see [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts). |
 | Asynchronous generated Caller API | Available (runtime-specific) | Deferred returns and `execute_async`/`ExecuteAsync` appear in .NET, Node.js, Python, Ruby, PHP, JVM, and others depending on metadata and pair. | Follow the exact call shape in the installed package and Vision. |
 | Cross-runtime cancellation and timeouts | Unsupported (built-in) | There is no built-in cross-runtime cancellation. | Apply timeouts, retries, and cancellation in Caller code and infrastructure. |
-| Callbacks, delegates, and events | Preview | Lifecycle, reconnect, error, and browser behavior are not established across pairs. | Use request/result methods; add callbacks only after an end-to-end test for the exact pair and transport. |
+| Callbacks, delegates, and events | Requires validation | Lifecycle, reconnect, error, and browser behavior are not established across pairs. | Use request/result methods; add callbacks only after an end-to-end test for the exact pair and transport. |
 
 See [Async, cancellation, and timeouts](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 
@@ -66,7 +67,7 @@ See [Async, cancellation, and timeouts](../core-concepts/invocation-lifecycle.md
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Static (stateless) operations | Available | A static facade is not automatically stateless if it holds shared state. | Prefer static input-to-output operations; keep them free of shared mutable state. |
-| Instance / remote object references | Alpha | No durable lifetime guarantee across reconnects, retries, Gateway restarts, transports, or pairs. | Keep durable state behind explicit IDs rather than persisting remote object references. |
+| Instance / remote object references | Requires validation | No durable lifetime guarantee across reconnects, retries, Gateway restarts, transports, or pairs. | Keep durable state behind explicit IDs rather than persisting remote object references. |
 
 See [Static and instance context](../core-concepts/static-and-instance-context.md).
 
@@ -84,7 +85,7 @@ See [Static and instance context](../core-concepts/static-and-instance-context.m
 | --- | --- | --- | --- |
 | In-memory and WebSocket (`ws://`, `wss://`) | Available | — | Use `wss://` for network calls; copy the exact host and path from Vision. |
 | TCP and HTTP/2 listeners | Available (opt-in) | Require their enabling options; do not have identical failure/header semantics. | Enable the listener explicitly and verify the route through your proxy/ingress. |
-| Message-queue / broker transports | Preview (plugin-based) | Availability depends on a specific transport plugin; not built in. | Do not assume a broker is supported because it appears in a diagram; verify the plugin. |
+| Message-queue / broker transports | Plugin-based | Availability depends on a specific transport plugin; not built in. | Do not assume a broker is supported because it appears in a diagram; verify the plugin. |
 | Proxy, ingress, certificate, keepalive behavior | Requires validation | Deployment-specific. | Terminate TLS with a configuration tested for that deployment. |
 
 See [Ports and protocols](ports-and-protocols-reference.md).
@@ -93,7 +94,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| Invocation authentication and authorization | Alpha | Not automatic; if nothing is configured, no invocation authentication occurs. The Project Key is not runtime-call authorization. | Pass and validate credentials before business effects; test rejection as well as success. See [Authentication and authorization](../operations/authentication-and-authorization-operations.md). |
+| Invocation authentication and authorization | Requires validation | Not automatic; if nothing is configured, no invocation authentication occurs. The Project Key is not runtime-call authorization. | Pass and validate credentials before business effects; test rejection as well as success. See [Authentication and authorization](../operations/authentication-and-authorization-operations.md). |
 | Browser custom headers on the WebSocket handshake | Unsupported | Browser WebSocket handshakes cannot set arbitrary custom headers. | Pass credentials as a supported method parameter, or use the HTTP/2 configuration emitted by Vision. |
 
 ## Observability
@@ -135,7 +136,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Backward compatibility across releases | Version-dependent | No universal wire, binary, source, or old-Caller/new-Receiver guarantee. Additive source changes can still change generated names, overloads, exports, or mappings. | Pin all participating versions, regenerate deliberately, compare the generated public API, then compile and smoke-test representative Callers before rollout. See [Contract evolution](../core-concepts/contract-evolution.md). |
-| Production readiness | Alpha | Support for advanced types, all pairs, security distribution, upgrades, HA, and every platform is incomplete. | Define and test a narrow supported profile (exact versions, simple contract, locked packages, TLS/auth, timeouts, failure handling, restart, rollback, upgrade). |
+| Operating at production scale | Requires validation | Advanced types, every pair, security distribution, upgrades, HA, and every platform need explicit design and testing. | Define and test a narrow supported profile (exact versions, simple contract, locked packages, TLS/auth, timeouts, failure handling, restart, rollback, upgrade). |
 
 ## Runtime-specific notes
 

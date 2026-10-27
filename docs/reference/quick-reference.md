@@ -129,8 +129,8 @@ names in the installed package:
 - Use `GG_DEBUG` only for controlled diagnosis because it logs byte traffic.
 - Gateway provides `GET /status` for liveness. It does not provide a dedicated readiness or metrics
   endpoint unless a newer product version explicitly adds one.
-- Pin and test Gateway plus generated packages together; Alpha has no cross-major compatibility
-  guarantee.
+- Pin and test Gateway plus generated packages together; there is no universal cross-major
+  compatibility guarantee without explicit testing.
 
 ## Detailed references
 

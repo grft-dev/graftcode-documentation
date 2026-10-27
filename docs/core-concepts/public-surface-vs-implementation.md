@@ -92,7 +92,7 @@ Java and Ruby require particular care because discovery can include members you 
 
 ## Public does not mean supported
 
-Discovery and package generation are separate checks. The Engine can describe a public member whose signature later fails package generation — for example when unsupported framework complex types appear on the surface.
+Discovery and package generation are separate checks. The Engine can describe a public member whose signature later fails package generation — for example when non-parsable framework types appear on the surface.
 
 Use [Type mapping](type-mapping.md) before publishing. Narrow the hosted surface with Gateway `--types` and method filters when needed — see [Filter the callable surface](../how-to-guides/filter-the-callable-surface.md).
 

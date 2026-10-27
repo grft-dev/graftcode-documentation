@@ -9,10 +9,12 @@ Type support is a property of the whole **Receiver → Caller** path, not just t
 groups below to design a contract, then install the generated Caller package and test the calls you
 plan to make before relying on richer types.
 
-Graftcode validates the **public** methods and models you expose on the Receiver. Types that belong
-to your language or framework (standard library dates, IDs, collection interfaces, streams, and similar)
-are rejected when you request a Caller package—a type visible in Gateway or Vision does not mean
-generation or cross-runtime calls will succeed. See [Errors and status](errors-and-status-reference.md).
+Graftcode validates the **public** methods and models you expose on the Receiver. **Non-parsable**
+framework types (collection interfaces, streams, arbitrary BCL classes, and similar) cause Caller
+package generation to fail with HTTP `422`. [Parsable framework types](#parsable-framework-types)
+(such as `System.DateTime` and `System.Guid`) follow a separate mapping path. A type visible in
+Gateway or Vision does not mean generation or cross-runtime calls will succeed. See
+[Errors and status](errors-and-status-reference.md).
 
 Nested plain models and arrays of portable values are the usual starting point for any supported
 runtime pair. Maps, sets, and framework collection interfaces (`List<T>`, `Dictionary<,>`, …) are not
@@ -86,7 +88,7 @@ default for calendar contracts across all pairs.
 | `CancellationToken` and similar cancellation parameters | Not a portable public contract. | Caller-side timeouts; keep cancellation internal. |
 | `Task` / `Promise` as **parameters** or live handles | Not transferred over the graft wire. | Pass completed values; use request/result methods. |
 | streams, files, HTTP request/response objects | Not a transferable contract. | Keep internal; expose primitive/model results. |
-| callbacks, delegates, events | Preview | Lifecycle and errors differ by runtime and transport. | Prefer explicit request/result methods; use callbacks only after you validate your exact pair. |
+| callbacks, delegates, events | Requires validation | Lifecycle and errors differ by runtime and transport. | Prefer explicit request/result methods; use callbacks only after you validate your exact pair. |
 | remote object references as durable state | No durable lifetime guarantee. | Keep state behind explicit IDs. |
 
 `Task` / `Task<T>` / `async` on a .NET Receiver **return type** are handled per [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts), not as unsupported opaque framework types.

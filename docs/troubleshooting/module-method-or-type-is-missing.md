@@ -35,7 +35,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
    fix visibility, exports, module selection, or filters. If it is present but absent from one target
    package, the target generator/mapping is the failing stage.
 7. **For HTTP 422, locate the named type.** Inspect parameters, return types, public properties, generic
-   arguments, base types, and constructor parameters. Framework complex types can be rejected even when
+   arguments, base types, and constructor parameters. Non-parsable framework types can be rejected even when
    they were discovered.
 
 ## Fixes

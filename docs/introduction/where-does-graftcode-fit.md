@@ -17,8 +17,8 @@ a quick capability summary and the key limits to check. For the exhaustive list,
 | Node.js / TypeScript | Yes | Yes |
 | Java / JVM | Yes | Yes |
 | Python | Yes | Yes |
-| PHP | Yes | Yes (Alpha) |
-| Ruby | Yes | Yes (Alpha) |
+| PHP | Yes | Yes |
+| Ruby | Yes | Yes |
 
 See [Supported runtimes and package managers](../reference/supported-runtimes-and-package-managers.md) for
 versions, package ecosystems, and status. Generated Gateway/Vision output is the source of truth for

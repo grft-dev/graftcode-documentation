@@ -28,7 +28,7 @@ and concepts to read next.
 
 ## Before production
 
-Review [current status and limitations](where-does-graftcode-fit.md),
+Review [where Graftcode fits](where-does-graftcode-fit.md) and [known limitations](../reference/known-limitations.md),
 [supported runtimes and package managers](../reference/supported-runtimes-and-package-managers.md),
 [authentication and authorization](../operations/authentication-and-authorization-operations.md), and
 [scaling](../operations/scaling-gateway-receivers.md).

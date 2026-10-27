@@ -5,7 +5,7 @@ description: "Upgrade Gateway, Receivers, and generated packages as one tested c
 
 # Version compatibility and upgrades
 
-Graftcode Alpha does not guarantee backward compatibility across major Gateway, protocol, SDK, and
+Graftcode does not guarantee backward compatibility across major Gateway, protocol, SDK, and
 generated-package releases.
 
 ## Inventory

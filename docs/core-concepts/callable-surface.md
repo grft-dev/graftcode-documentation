@@ -24,7 +24,7 @@ Always confirm the actual surface in [Graftcode Vision](graftcode-vision.md) rat
 
 Type and method filters are available for every supported runtime. Use them to expose only intentional operations and to keep implementation details off the contract. Filter syntax and matching rules differ per runtime — copy the exact form from the current Gateway/Vision output. See [Filter the callable surface](../how-to-guides/filter-the-callable-surface.md).
 
-## Runtime-specific behavior to watch (current Alpha)
+## Runtime-specific behavior to watch
 
 Discovery differs by language. The consequences that affect your contract:
 
