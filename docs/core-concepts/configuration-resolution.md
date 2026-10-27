@@ -74,4 +74,5 @@ GraftConfig.stateless = true
 
 Copy imports, property casing, and helper names from the installed package or Vision.
 
-.NET and Node.js are fully covered; other generated runtimes follow the same conceptual model — confirm behavior in the installed package.
+Every supported Caller runtime uses this precedence order. Property names and helper methods differ by
+language—copy them from Vision or from the package you installed.

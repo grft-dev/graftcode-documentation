@@ -45,4 +45,4 @@ Remote execution adds transport availability, latency, authentication, routing, 
 
 ## Same package, different configuration
 
-Generated Graft templates default `Host`/`host` to `inmemory`, and runtime-specific or global configuration can select another path. Whether a specific generated package contains the hosted module needed for in-memory execution is package- and ecosystem-dependent; verify the installed package contents and smoke test.
+Generated Graft templates default `Host`/`host` to `inmemory`, and runtime-specific or global configuration can select another path. Whether a specific generated package bundles the hosted module for in-memory execution is package- and ecosystem-dependent; confirm the layout in Vision and the installed package metadata.

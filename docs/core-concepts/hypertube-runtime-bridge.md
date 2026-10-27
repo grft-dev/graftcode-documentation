@@ -44,6 +44,14 @@ A remote Graft call looks like a local method call, but it is a remote call. The
 
 When a call cannot complete — the Receiver is unavailable, the transport drops, or the Receiver raises an error — the failure surfaces to the Caller through the generated call (as an exception or error result, by runtime). Treat remote calls as fallible and handle errors explicitly. See [Handle Receiver errors](../how-to-guides/handle-receiver-errors.md).
 
+## Async behavior at the bridge
+
+Each graft invocation is a **single completed request/response**. The Receiver finishes async work
+(`Task`, `Promise`, coroutines) before serializing the result. On the Caller side, generated code
+uses Hypertube `execute()` or `execute_async()` / `ExecuteAsync()` for synchronous or parallel RPC;
+that is separate from whether the Receiver method was declared `async`. Live async handles are not
+passed as arguments or returned as ongoing tokens. See [Invocation lifecycle](invocation-lifecycle.md#async-cancellation-and-timeouts).
+
 ## What Hypertube does not guarantee
 
 - It does **not** make remote and in-memory calls behaviorally identical; network calls have latency and failure modes that in-memory calls do not.

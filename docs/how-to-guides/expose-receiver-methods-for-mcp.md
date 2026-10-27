@@ -6,7 +6,7 @@ articleTitle: Expose Receiver methods for MCP
 # Expose Receiver methods for MCP
 
 Gateway can participate in MCP workflows when the deployment enables the relevant HTTP surfaces and
-CORS settings. This is an **Alpha** area—verify behavior on your Gateway release.
+CORS settings. Verify behavior on your Gateway release and test MCP clients against your deployment.
 
 ## 1. Host the Receiver
 

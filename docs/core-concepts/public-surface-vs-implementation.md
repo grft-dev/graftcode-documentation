@@ -65,7 +65,7 @@ Publication can still reveal **names** in the callable surface you expose. Desig
 | --- | --- | --- |
 | **Definition** | Types and methods intentionally exposed through Gateway | Everything that executes behind those methods |
 | **Who sees it** | Graftcode Engine (for UGM), Vision (for review), Callers (via generated Grafts) | Your Receiver process only |
-| **Typical contents** | Small synchronous methods, primitive or plain-model parameters and returns | Persistence, HTTP clients, ORM, secrets, framework adapters |
+| **Typical contents** | Small intentional methods, primitive or plain-model parameters and returns (async/parsable types when tested) | Persistence, HTTP clients, ORM, secrets, framework adapters |
 | **Design goal** | Stable, portable contract across Caller languages | Freedom to refactor without breaking consumers |
 
 Helpers, transport adapters, and framework objects belong in implementation. A small surface:
@@ -92,7 +92,7 @@ Java and Ruby require particular care because discovery can include members you 
 
 ## Public does not mean supported
 
-Discovery and package generation are separate checks. The Engine can describe a public member whose signature later fails package generation — for example when unsupported framework complex types appear on the surface.
+Discovery and package generation are separate checks. The Engine can describe a public member whose signature later fails package generation — for example when non-parsable framework types appear on the surface.
 
 Use [Type mapping](type-mapping.md) before publishing. Narrow the hosted surface with Gateway `--types` and method filters when needed — see [Filter the callable surface](../how-to-guides/filter-the-callable-surface.md).
 
@@ -104,11 +104,11 @@ Before you publish or share a Receiver surface:
 2. **Package generation** succeeds for every target Caller ecosystem.
 3. **No secrets or implementation types** appear on the public surface.
 4. **Business logic** remains in private or non-exported code paths.
-5. A **runtime smoke test** reaches the intended Receiver method through an installed Graft.
+5. An **end-to-end call** through an installed Graft reaches the intended Receiver method.
 
 ## Next steps
 
 - [Callable surface](callable-surface.md) — how Gateway selects exposed members
 - [Expose code as a Graftcode Receiver](../how-to-guides/expose-code-as-a-graftcode-receiver.md) — shape a small public contract
-- [Type mapping](type-mapping.md) — verify cross-language portability
+- [Type mapping](type-mapping.md) — cross-language type rules
 - [Gateway and hosted modules](gateway-and-hosted-modules.md) — where Gateway fits in your environment
