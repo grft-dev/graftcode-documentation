@@ -19,7 +19,7 @@ payload bytes can expose sensitive data and increase log volume.
 
 Graftcode can propagate W3C Trace Context (`traceparent`) across a Graft call so a single remote call
 joins the Caller's trace instead of starting a new one. **.NET Callers** are the primary documented
-path; other runtimes depend on your Gateway and generated package versions—verify before relying on it.
+path; other runtimes depend on your Gateway and generated package versions (see [Known limitations](../reference/known-limitations.md#observability)).
 
 Trace export is an application or platform responsibility. Instrument the Caller and Receiver with
 their normal OpenTelemetry setup and exporter; Gateway does not provide a built-in collector.

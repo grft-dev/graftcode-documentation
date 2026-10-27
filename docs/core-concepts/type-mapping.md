@@ -37,17 +37,18 @@ Unknown values can degrade to `unknown` in TypeScript or `object` in .NET, excep
 
 ## Portable baselines for all generated Callers
 
-Graftcode also supports Java/JVM, Python, PHP, and Ruby, with cross-runtime smoke coverage. Their
-conservative public-contract baselines are:
+Graftcode also supports Java/JVM, Python, PHP, and Ruby. Their conservative public-contract baselines
+are:
 
 - **Java/JVM:** `String`, primitive numbers, `boolean`, plain Java objects, and homogeneous arrays.
 - **Python:** `str`, `int`, `float`, `bool`, simply typed classes, and homogeneous `list[T]` values.
 - **PHP:** `string`, `int`, `float`, `bool`, typed plain classes, and homogeneous sequential arrays.
 - **Ruby:** `String`, `Integer`, `Float`, booleans, small value objects, and homogeneous `Array` values.
 
-These are interoperability baselines, not exhaustive mappings. Boxed and nullable values, unions,
-enums, records, generics, maps, framework collection **interfaces**, arbitrary framework classes,
-and inheritance require verification for the exact Receiver-Caller pair.
+These are interoperability baselines, not exhaustive mappings. Framework collection **interfaces**,
+arbitrary non-parsable framework classes, and arbitrary inheritance hierarchies are not supported on
+the public surface. Boxed and nullable values, unions, enums, records, generics, and maps follow
+[pair-specific rules](../reference/type-compatibility-matrix.md#pair-specific).
 
 ## Parsable framework types
 
@@ -57,8 +58,8 @@ Graftcode protocol). Examples include `System.DateTime`, `System.Guid`, `System.
 framework `422` rule as types such as `System.Type` or `List<T>` on a .NET public signature.
 
 ISO-8601 **strings** are still the safest default when you need one contract for every Caller.
-When you use parsable types, generate the Caller package and run a smoke test for each
-Receiver→Caller direction. See [Parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types).
+When you use parsable types, generate the Caller package for each Receiver→Caller direction you ship
+and follow the emitted types in Vision. See [Parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types).
 
 ## Async and deferred returns
 
@@ -81,11 +82,11 @@ Graftcode rejects many **non-parsable library and framework types** on the publi
 then fails with HTTP `422`. A type listed in Vision or Gateway therefore does not guarantee that
 Callers can install or use a generated package.
 
-Use simple primitives, plain models, language arrays, parsable types (when tested), or string
-encodings for dates and IDs.
+Use simple primitives, plain models, language arrays, parsable types, or string encodings for dates
+and IDs.
 
 ## Collections, generics, callbacks, and nullability
 
-Graftcode handles arrays (including `byte[]` / `bytes` buffers), generics, delegates, nested types, and nullable metadata, but support varies by language pair. Verify each intended language pair with a generated-package smoke test.
-
-This is not a complete compatibility matrix. Confirm richer types for the exact Receiver/Caller pair before relying on them.
+Graftcode handles arrays (including `byte[]` / `bytes` buffers), nested types, and nullable metadata
+across documented pairs. Generics, delegates, and callbacks follow [pair-specific or unsupported
+rules](../reference/type-compatibility-matrix.md). See the matrix for the full breakdown.

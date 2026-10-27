@@ -42,11 +42,11 @@ The callable surface is an exposure boundary, not an authorization boundary. Fil
 
 ## A practical rule
 
-Expose only declarations intended for Callers, then verify:
+Expose only declarations intended for Callers, then confirm:
 
 1. Vision shows the intended members and nothing else;
 2. package generation succeeds for the target ecosystem;
 3. the generated package has the expected names and types;
-4. a runtime smoke test reaches the intended Receiver code.
+4. an end-to-end call through an installed Graft reaches the intended Receiver code.
 
 See [Public surface vs implementation](public-surface-vs-implementation.md) and [Type mapping](type-mapping.md).

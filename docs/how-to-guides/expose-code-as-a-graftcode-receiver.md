@@ -65,7 +65,7 @@ end
 ```
 
 Use primitives and plain models. For the safest cross-runtime contracts, use ISO-8601 strings for
-dates and string identifiers for IDs. You can also use [parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types) such as `System.DateTime` or `System.Guid` after you smoke-test each Caller direction. The engine rejects **non-parsable** framework types (for example `List<T>`, `Stream`, `System.Type`) with HTTP `422`.
+dates and string identifiers for IDs. You can also use [parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types) such as `System.DateTime` or `System.Guid`; generate the Caller package for each Caller runtime you use. The engine rejects **non-parsable** framework types (for example `List<T>`, `Stream`, `System.Type`) with HTTP `422`.
 
 ## 2. Build the Receiver
 
@@ -121,13 +121,13 @@ gg ./lib/
 Adjust paths and runtime versions to the project. Do not copy package IDs, registry URLs, or project
 keys from examples.
 
-## 4. Verify discovery
+## 4. Confirm discovery in Vision
 
 Check Gateway output and Graftcode Vision for the expected type and methods. Treat the discovered
 surface as a review gate: remove accidental public members before Callers install a Graft.
 
-There is no universal type matrix. Generate and smoke-test every Receiver/Caller language pair that
-uses types beyond the portable baseline.
+For types beyond the [portable baseline](../reference/type-compatibility-matrix.md#portable-baseline),
+generate a Caller package per Receiver→Caller direction and follow the emitted API.
 
 ## Next steps
 

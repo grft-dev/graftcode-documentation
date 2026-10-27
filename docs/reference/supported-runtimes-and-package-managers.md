@@ -25,8 +25,8 @@ the full Caller/Receiver path is available. Use this matrix for role support; us
 | Perl | Listed by CLI | No | Not documented | None | — | — | Unsupported | Gateway lists `perl`, but no Graft generation or Caller path exists |
 
 Status labels: **Available** (reachable through a documented public path), **Unsupported** (no Graft
-generation or Caller path). Pair-specific behavior still requires smoke tests; see
-[Known limitations](known-limitations.md).
+generation or Caller path). Type and precision rules are pair-specific; see
+[Type compatibility matrix](type-compatibility-matrix.md) and [Known limitations](known-limitations.md).
 
 "Host Receiver code" and "Act as Caller" are separate capabilities. Runtime availability also depends
 on the host image or machine and its native dependencies.

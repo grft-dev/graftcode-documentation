@@ -24,7 +24,7 @@ the documented package name and version.
 | Maven / Gradle | `https://grft.dev/maven2/` |
 | pip | `https://grft.dev/simple/` |
 
-Maintained cross-runtime **sample** packages (useful for smoke-testing installs):
+Maintained cross-runtime **sample** packages (useful for trying installs):
 
 | Package | Example package versions |
 | --- | --- |

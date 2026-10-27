@@ -33,7 +33,7 @@ Never infer compatibility from a matching public method signature alone; the Gra
 protocols also participate.
 
 There is no exhaustive compatibility table or automatic contract-drift rejection. Treat Vision and
-smoke tests from the deployed version as authoritative.
+calls exercised on the deployed version as authoritative.
 
 ## Next steps
 

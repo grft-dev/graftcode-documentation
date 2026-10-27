@@ -33,8 +33,8 @@ same model covers:
 - **Expose methods for AI** — every exposed method is also callable as an MCP tool.
 
 The core model is **unary request/response** method calls (stateless or stateful instance context).
-Streaming, duplex, and long-lived interactions are not universal across pairs—validate them for your
-Receiver, Caller, and Gateway version. In every supported unary case the model is the same:
+Streaming, duplex, and long-lived interactions are not universal across pairs. In every supported
+unary case the model is the same:
 
 - **On the Receiver (server) side**, integration code is reduced to **plain public methods** — no
   controllers, routes, DTOs, or transport clients.

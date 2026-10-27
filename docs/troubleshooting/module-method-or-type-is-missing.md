@@ -57,7 +57,7 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
   static factory with explicit IDs.
 
 Do not treat successful discovery as final success. The corrected contract must complete analysis,
-publication, target package generation, Caller compilation, and an invocation smoke test.
+publication, target package generation, Caller compilation, and an end-to-end invocation.
 
 ## Data to collect before reporting
 

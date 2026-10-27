@@ -27,8 +27,8 @@ the package, imports, configuration, and call surface of your running version.
 ## Key limits to check
 
 - **Contract types:** prefer primitives, strings, and plain models; non-parsable framework types are
-  rejected at generation (`422`). Parsable types (dates, UUIDs, URIs) and async completion metadata
-  require pair-specific smoke tests. See [type mapping](../core-concepts/type-mapping.md) and
+  rejected at generation (`422`). Parsable types (dates, UUIDs, URIs) and async completion on the
+  Receiver are supported with pair-specific mapping rules where noted. See [type mapping](../core-concepts/type-mapping.md) and
   [invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 - **Execution:** clients default to in-memory; set the remote host before the first call. Static,
   stateless methods scale best; instance identity needs affinity and can break on restart.
@@ -43,8 +43,8 @@ Full detail lives in [Known limitations](../reference/known-limitations.md),
 
 ## Before production
 
-Generate the real Graft and smoke-test every operation for your language pair; test upgrades,
-restart, scale-out, and failure paths; configure transport security, identity, and authorization; add
+Generate the real Graft for each Receiver→Caller direction you ship; exercise upgrades, restart,
+scale-out, and failure paths; configure transport security, identity, and authorization; add
 telemetry at both boundaries; and pin versions. See the full checklist in
 [Known limitations](../reference/known-limitations.md).
 

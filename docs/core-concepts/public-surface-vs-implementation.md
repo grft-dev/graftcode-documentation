@@ -104,11 +104,11 @@ Before you publish or share a Receiver surface:
 2. **Package generation** succeeds for every target Caller ecosystem.
 3. **No secrets or implementation types** appear on the public surface.
 4. **Business logic** remains in private or non-exported code paths.
-5. A **runtime smoke test** reaches the intended Receiver method through an installed Graft.
+5. An **end-to-end call** through an installed Graft reaches the intended Receiver method.
 
 ## Next steps
 
 - [Callable surface](callable-surface.md) — how Gateway selects exposed members
 - [Expose code as a Graftcode Receiver](../how-to-guides/expose-code-as-a-graftcode-receiver.md) — shape a small public contract
-- [Type mapping](type-mapping.md) — verify cross-language portability
+- [Type mapping](type-mapping.md) — cross-language type rules
 - [Gateway and hosted modules](gateway-and-hosted-modules.md) — where Gateway fits in your environment

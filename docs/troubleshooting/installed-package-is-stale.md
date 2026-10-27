@@ -42,7 +42,7 @@ keywords: "stale graft package, old contract, package cache, gateway restart, co
 - Restart the caller, test runner, dev server, or bundler after replacement.
 - If an old Caller must remain live, keep the old hosted contract/version available only after
   proving side-by-side behavior in the deployment. Side-by-side compatibility is not universal.
-- For a breaking change, publish and roll out a deliberately versioned facade and compile/smoke-test
+- For a breaking change, publish and roll out a deliberately versioned facade and compile Callers against
   each Caller before switching traffic.
 
 Do not rely on automatic breaking-change detection, silent package refresh, old-package retention, or
