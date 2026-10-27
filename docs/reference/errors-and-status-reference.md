@@ -11,10 +11,12 @@ description: "Package-generation status behavior and operational failure categor
 | --- | --- | --- |
 | HTTP `422 Unprocessable Entity` | Package generation understood the request but the public contract uses an unsupported feature | Fix the Receiver surface, republish, and request the package again |
 | `[GRAFT:FRAMEWORK_TYPE_IN_PUBLIC_API]` | A framework complex type appears in a public API | Replace the named type in signatures and public model members |
-| `Using complex types from framework in public interfaces is not supported yet. Type used <type>` | Framework-type error message | Use primitives/plain models; regenerate |
+| `Using complex types from framework in public interfaces is not supported yet. Type used <type>` | Non-parsable framework-type error message | Use primitives/plain models, language arrays, or [parsable types](type-compatibility-matrix.md#parsable-framework-types); regenerate |
 
-Treat `422` as the signal that a public type is unsupported for package generation. Do not generalize
-it into a complete HTTP status contract for every package-manager route.
+Treat `422` as the signal that a public type is unsupported for package generation. **Parsable**
+catalog types (for example `System.DateTime`, `System.Guid`) are handled separately and typically
+do not trigger this message. Do not generalize `422` into a complete HTTP status contract for every
+package-manager route.
 
 ## Gateway and invocation
 

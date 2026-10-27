@@ -14,7 +14,7 @@ the full Caller/Receiver path is available. Use this matrix for role support; us
 
 | Runtime | Host Receiver code | Act as Caller | In-memory | Package ecosystem | Recommended version | Legacy minimum | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| .NET (Core / .NET) | Yes | Yes | Yes | NuGet | .NET 8+ | Core 3.1 / .NET 5 | Available | Public methods must be synchronous |
+| .NET (Core / .NET) | Yes | Yes | Yes | NuGet | .NET 8+ | Core 3.1 / .NET 5 | Available | Prefer arrays over `List<T>` on public signatures; see [type matrix](type-compatibility-matrix.md) |
 | .NET Framework (CLR) | Yes | Yes | Yes | NuGet | 4.8 | 4.7.2 | Available | Uses the .NET generation path |
 | Java / JVM | Yes | Yes | Yes | Maven | Java 17+ | Java 8 | Available | `java` and `jvm` runtime names accepted; Kotlin/Groovy via JVM bytecode |
 | Node.js / TypeScript | Yes | Yes | Yes | npm | Node.js 22+ | Node.js 22 | Available | TypeScript hosted as compiled JavaScript + declarations |

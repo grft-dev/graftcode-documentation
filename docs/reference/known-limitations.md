@@ -28,11 +28,12 @@ and Node.js; other pairs require validation*).
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
 | Primitive and string contracts | Available | — | Prefer primitives, strings, arrays of supported values, and plain models. |
-| Language or framework types on the public surface (for example `DateTime` / `Guid` on .NET, `java.time` on Java, `datetime` on Python, `DateTime` on PHP) | Unsupported | Installing or generating the Caller package fails with HTTP `422` and a message that a framework type is not supported. The rule applies to types from **your Receiver's** runtime libraries, not only .NET. | Use ISO-8601 strings for dates, string identifiers for IDs, and your own plain model types. See [Errors and status](errors-and-status-reference.md). |
+| Non-parsable framework types on the public surface (for example `System.Type`, `List<T>`, `Stream`, most BCL types not in the parsable catalog) | Unsupported | Installing or generating the Caller package fails with HTTP `422` and a message that a framework type is not supported. The rule applies to types from **your Receiver's** runtime libraries, not only .NET. | Use primitives, plain models, language arrays, [parsable types](type-compatibility-matrix.md#parsable-framework-types), or ISO-8601 strings for maximum portability. See [Errors and status](errors-and-status-reference.md). |
+| Parsable framework types (`System.DateTime`, `System.Guid`, selected `java.time.*`, `datetime.datetime`, …) | Requires validation | Listed in the cross-runtime **parsable types** catalog; package generation does not treat them like opaque framework models. Mapping and timezone semantics vary by Receiver→Caller pair. | Prefer ISO-8601 strings for the safest cross-runtime contract, or smoke-test the exact pair. See [Parsable framework types](type-compatibility-matrix.md#parsable-framework-types). |
 | Nested models, nullability, enums, and primitive arrays | Available | Supported across the documented runtimes when every member stays portable. Edge cases still differ by Receiver→Caller direction. | Design shallow models; generate a Caller package and run your own integration test for each direction you use. |
 | Maps, sets, framework collections (`List<T>`, `Dictionary<,>`, …), and rich unions | Requires validation | Not in the portable baseline; mapping varies by language pair. | Prefer plain models and language arrays; test the exact pair before shipping. |
 | Generics | Requires validation | May work for your pair, but constraints, variance, overloads, and nested generics are not guaranteed across runtimes. | Expose a concrete facade with fixed types on the public surface. |
-| Binary data (`byte[]`, `bytes`, and similar) on the public surface | Unsupported | Package generation rejects binary types the same way as other non-portable library types. | Encode as a Base64 `string`, or split into portable fields on a plain model. |
+| Binary buffers (`byte[]`, `bytes`, `Uint8Array`, …) on the public surface | Available | Mapped as primitive byte arrays over Hypertube, not as opaque framework types. | Smoke-test each Receiver→Caller pair; very large payloads still need operational limits (timeouts, size). |
 | Inheritance and polymorphism | Requires validation | Constructor, member, dispatch, and serialization semantics are not portable for arbitrary hierarchies. | Flatten the public contract into standalone facade types; delegate internally. |
 | 64-bit integers and `decimal` to a JavaScript Caller | Requires validation | JavaScript `number` cannot safely represent every 64-bit or exact-decimal value. | Use `int` or a string for exact values unless the exact pair is tested. |
 
@@ -52,8 +53,9 @@ See [Supported runtimes and package managers](supported-runtimes-and-package-man
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| Async on a .NET Receiver's public method | Unsupported | `Task`/`Task<T>` and cancellation tokens are not accepted on the public surface. | Keep public methods synchronous; use async internally. |
-| Asynchronous generated Caller API | Available for Node.js/TypeScript | The generated call may return a `Promise<T>` even when the Receiver method is synchronous. | Follow the exact call shape in the installed package and Vision. |
+| `CancellationToken` and similar on a public method | Unsupported | Not a portable cross-runtime contract. | Keep cancellation internal; use Caller-side timeouts. |
+| Async completion on the Receiver (`Task`/`Task<T>`, `ValueTask`, `Promise`, `async def`, …) | Requires validation | Results are completed on the Receiver; handles are not sent over the wire. UGM `METHOD_COMPLETION` drives the generated Caller wrapper. | Follow Vision and the installed package; see [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts). |
+| Asynchronous generated Caller API | Available (runtime-specific) | Deferred returns and `execute_async`/`ExecuteAsync` appear in .NET, Node.js, Python, Ruby, PHP, JVM, and others depending on metadata and pair. | Follow the exact call shape in the installed package and Vision. |
 | Cross-runtime cancellation and timeouts | Unsupported (built-in) | There is no built-in cross-runtime cancellation. | Apply timeouts, retries, and cancellation in Caller code and infrastructure. |
 | Callbacks, delegates, and events | Preview | Lifecycle, reconnect, error, and browser behavior are not established across pairs. | Use request/result methods; add callbacks only after an end-to-end test for the exact pair and transport. |
 
@@ -98,7 +100,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| W3C Trace Context propagation | Available for .NET and Node.js; other runtimes require validation | No guarantee of automatic end-to-end traces on every runtime/transport. | Instrument Caller and Receiver with OpenTelemetry; verify parent/child spans in a smoke test. See [Observability](../operations/logging-metrics-and-tracing.md). |
+| W3C Trace Context propagation | Requires validation | .NET Callers are the primary documented path; other runtimes depend on Gateway/SDK version. No guarantee on every transport. | Instrument Caller and Receiver with OpenTelemetry; verify parent/child spans in a smoke test. See [Observability](../operations/logging-metrics-and-tracing.md). |
 | Built-in metrics / log collector | Unsupported | Gateway does not provide a built-in collector. | Export telemetry with your own OpenTelemetry/logging stack. |
 
 ## Configuration
@@ -141,7 +143,7 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 - SDK-style projects compile all `.cs` files recursively. Keep Caller and test projects outside the
   Receiver library directory so unintended code does not enter the callable surface.
-- Public methods must be synchronous; a public `async`/`Task<T>` is not a portable contract.
+- Public `async`/`Task<T>`/`ValueTask` are supported as **completed-result** contracts; `CancellationToken` on the public surface is not. Prefer language arrays over `List<T>` on signatures. See [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 
 **Node.js / TypeScript**
 

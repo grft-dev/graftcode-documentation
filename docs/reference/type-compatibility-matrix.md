@@ -10,13 +10,14 @@ groups below to design a contract, then install the generated Caller package and
 plan to make before relying on richer types.
 
 Graftcode validates the **public** methods and models you expose on the Receiver. Types that belong
-to your language or framework (standard library dates, IDs, collections, binary buffers, and similar)
+to your language or framework (standard library dates, IDs, collection interfaces, streams, and similar)
 are rejected when you request a Caller package—a type visible in Gateway or Vision does not mean
 generation or cross-runtime calls will succeed. See [Errors and status](errors-and-status-reference.md).
 
 Nested plain models and arrays of portable values are the usual starting point for any supported
-runtime pair. Maps, sets, framework collection types, and binary payloads are not part of that
-baseline.
+runtime pair. Maps, sets, and framework collection interfaces (`List<T>`, `Dictionary<,>`, …) are not
+part of that baseline. A subset of **framework types** are
+[parsable](#parsable-framework-types) and can pass package generation with pair-specific mapping.
 
 ## Portable baseline
 
@@ -29,7 +30,7 @@ contract.
 | `bool` / `boolean` | Supported. |
 | 32-bit integer (`int`) | Within the safe range of the target's number type. |
 | floating point (`double`) | Test precision-sensitive uses. |
-| homogeneous arrays of supported values | Prefer language arrays over framework collection interfaces (for example `List<T>`, `Dictionary<,>` on .NET). |
+| homogeneous arrays of supported values | Prefer language arrays over framework collection interfaces (for example `List<T>`, `Dictionary<,>` on .NET). Includes `byte[]` / `bytes` / `Uint8Array` as primitive byte buffers. |
 | plain objects / models of supported values | Every public member must itself be portable. |
 
 ## Pair-specific
@@ -55,17 +56,40 @@ these.
 | inheritance / polymorphism | Constructor, dispatch, and serialization semantics vary. | Flatten to standalone facade types. |
 | generics | Constraints, variance, and nesting are not universal. | Expose a concrete facade with closed types. |
 
+## Parsable framework types
+
+Graftcode maintains a **parsable types** catalog (shared protocol): framework types with a stable
+wire/string representation. Package generation **does not** apply the opaque “framework complex type”
+`422` rule to these names; the code generator maps them to idiomatic Caller types (for example
+`System.DateTime` → `DateTimeImmutable` on PHP Callers).
+
+Representative entries (not exhaustive—verify generation for your pair):
+
+| Semantic group | Examples on Receiver surfaces |
+| --- | --- |
+| Date/time instant | `System.DateTime`, `java.time.Instant`, `datetime.datetime` |
+| Offset date/time | `System.DateTimeOffset`, `java.time.OffsetDateTime` |
+| Time / duration | `System.TimeOnly`, `System.TimeSpan`, `java.time.Duration`, `datetime.timedelta` |
+| UUID | `System.Guid`, `java.util.UUID`, `uuid.UUID` |
+| URI | `System.Uri`, `java.net.URI` |
+
+Types **not** in the catalog (for example many `DateOnly` scenarios or ad hoc framework classes) still
+trigger `422` when they appear as opaque framework models. ISO-8601 **strings** remain the safest
+default for calendar contracts across all pairs.
+
 ## Unsupported (keep off the public surface)
 
 | Type | Why | Instead |
 | --- | --- | --- |
-| language or framework date, time, and ID types (`DateTime`, `Guid`, `java.time.*`, `datetime`, …) | Package generation fails (`422`). | ISO-8601 strings and string identifiers. |
-| framework collection types (`List<T>`, `Dictionary<,>`, `IEnumerable<T>`, …) | Package generation fails when they appear on the public surface. | Language arrays and explicit plain models. |
-| binary (`byte[]`, `bytes`, …) on the public surface | Package generation fails. | Base64 `string` or a plain model with portable fields. |
-| `Task` / `Task<T>` on a .NET public method | Rejected on the public surface. | Keep public methods synchronous; the generated Caller API may still be async. |
+| Non-parsable framework models (`System.Type`, arbitrary BCL classes, …) | Package generation fails (`422`). | Plain models built from primitives and parsable types. |
+| framework collection interfaces (`List<T>`, `Dictionary<,>`, `IEnumerable<T>`, …) | Treated as non-portable framework generics in dependency analysis. | Language arrays (`T[]`, `string[]`, …) and explicit plain models. |
+| `CancellationToken` and similar cancellation parameters | Not a portable public contract. | Caller-side timeouts; keep cancellation internal. |
+| `Task` / `Promise` as **parameters** or live handles | Not transferred over the graft wire. | Pass completed values; use request/result methods. |
 | streams, files, HTTP request/response objects | Not a transferable contract. | Keep internal; expose primitive/model results. |
 | callbacks, delegates, events | Preview | Lifecycle and errors differ by runtime and transport. | Prefer explicit request/result methods; use callbacks only after you validate your exact pair. |
 | remote object references as durable state | No durable lifetime guarantee. | Keep state behind explicit IDs. |
+
+`Task` / `Task<T>` / `async` on a .NET Receiver **return type** are handled per [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts), not as unsupported opaque framework types.
 
 ## Directional pairs to verify
 
@@ -73,8 +97,8 @@ Behavior can differ by direction. Confirm each pair your application uses with a
 smoke test:
 
 - **.NET Receiver → Node Caller:** `long` and `decimal` are unsafe as JavaScript `number`; use `int`
-  or strings. `Task<T>` is rejected on the .NET public surface; the generated Node call may still
-  return a `Promise<T>`.
+  or strings. Deferred/async shapes follow UGM completion metadata (`Promise<T>`, `executeAsync`, …)—see
+  [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 - **Node Receiver → .NET Caller:** confirm numeric width and nullability mapping; a JS `number` maps to
   a floating-point type unless modeled otherwise.
 - **Java Receiver → Node Caller:** confirm `long` handling (JavaScript cannot safely hold all 64-bit

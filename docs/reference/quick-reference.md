@@ -119,8 +119,8 @@ names in the installed package:
 - Receiver `FileNotFound`: remote host was not configured; `inmemory` tried to load the module.
 - No types: pass the built module path explicitly; verify public/exported members.
 - Install `404`: repeat the exact registry-qualified command from the current Vision instance.
-- Package generation `422`: remove the named framework complex type from every public signature and
-  public model member.
+- Package generation `422`: remove or replace the named **non-parsable** framework type (use plain
+  models, language arrays, or [parsable types](type-compatibility-matrix.md#parsable-framework-types)).
 - State lost after restart/scale-in: recreate the remote object or redesign as static/stateless.
 
 ## Operations

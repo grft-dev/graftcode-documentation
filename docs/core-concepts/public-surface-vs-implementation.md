@@ -65,7 +65,7 @@ Publication can still reveal **names** in the callable surface you expose. Desig
 | --- | --- | --- |
 | **Definition** | Types and methods intentionally exposed through Gateway | Everything that executes behind those methods |
 | **Who sees it** | Graftcode Engine (for UGM), Vision (for review), Callers (via generated Grafts) | Your Receiver process only |
-| **Typical contents** | Small synchronous methods, primitive or plain-model parameters and returns | Persistence, HTTP clients, ORM, secrets, framework adapters |
+| **Typical contents** | Small intentional methods, primitive or plain-model parameters and returns (async/parsable types when tested) | Persistence, HTTP clients, ORM, secrets, framework adapters |
 | **Design goal** | Stable, portable contract across Caller languages | Freedom to refactor without breaking consumers |
 
 Helpers, transport adapters, and framework objects belong in implementation. A small surface:

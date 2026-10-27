@@ -47,8 +47,10 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
   public/export mechanism, then republish.
 - **Filter excludes member:** correct or remove the active filter and confirm the new model before
   reinstalling.
-- **Unsupported framework type:** replace it with primitives or an explicitly modeled public type.
-  Common portable representations are ISO-8601 strings for dates/times and strings for identifiers.
+- **Unsupported framework type:** replace it with primitives, language arrays, or an explicitly modeled
+  public type. If the message names a type in the [parsable catalog](../reference/type-compatibility-matrix.md#parsable-framework-types),
+  verify the Receiver→Caller pair instead of assuming a blanket ban. Otherwise use ISO-8601 strings for
+  dates/times and strings for identifiers.
 - **Generic/inheritance/callback shape fails:** expose a concrete, flattened request/result facade and
   keep the advanced source-language shape internal.
 - **Constructor mismatch:** use a single unambiguous constructor with supported parameter types or a

@@ -14,7 +14,9 @@ or transport types on the public surface.
 Expose only intentional public classes and methods. Keep database clients, HTTP objects, streams,
 framework models, and implementation helpers internal.
 
-Use a plain module with a small synchronous or async-free public API (per runtime rules):
+Use a plain module with a small, intentional public API. Prefer primitives, plain models, and
+language arrays. Async return types (`Task`, `Promise`, `async def`, …) are allowed on many
+Receivers when you need them—results complete on the Receiver; see [Invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts). Avoid `CancellationToken`, framework collection interfaces, and non-parsable BCL types on the public surface.
 
 ```multi
 ```dotnet
@@ -62,8 +64,8 @@ end
 ```
 ```
 
-Use primitives and plain models. For cross-runtime contracts, represent dates and identifiers as
-strings. For .NET, the Graftcode Engine rejects framework complex types on the public surface.
+Use primitives and plain models. For the safest cross-runtime contracts, use ISO-8601 strings for
+dates and string identifiers for IDs. You can also use [parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types) such as `System.DateTime` or `System.Guid` after you smoke-test each Caller direction. The engine rejects **non-parsable** framework types (for example `List<T>`, `Stream`, `System.Type`) with HTTP `422`.
 
 ## 2. Build the Receiver
 

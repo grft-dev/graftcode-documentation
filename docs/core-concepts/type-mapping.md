@@ -46,12 +46,26 @@ conservative public-contract baselines are:
 - **Ruby:** `String`, `Integer`, `Float`, booleans, small value objects, and homogeneous `Array` values.
 
 These are interoperability baselines, not exhaustive mappings. Boxed and nullable values, unions,
-enums, records, generics, maps, framework collections, date/time classes, arbitrary object values,
+enums, records, generics, maps, framework collection **interfaces**, arbitrary framework classes,
 and inheritance require verification for the exact Receiver-Caller pair.
 
-Caller-side asynchronous syntax also does not change the Receiver contract automatically. For
-example, a generated Node.js call can return `Promise<T>` even when the .NET Receiver method must
-remain synchronous.
+## Parsable framework types
+
+Some framework types are **parsable**: they have a defined cross-runtime mapping (catalog in the
+Graftcode protocol). Examples include `System.DateTime`, `System.Guid`, `System.Uri`, selected
+`java.time.*` types, and `datetime.datetime`. They are **not** subject to the same opaque
+framework `422` rule as types such as `System.Type` or `List<T>` on a .NET public signature.
+
+ISO-8601 **strings** are still the safest default when you need one contract for every Caller.
+When you use parsable types, generate the Caller package and run a smoke test for each
+Receiver→Caller direction. See [Parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types).
+
+## Async and deferred returns
+
+Generated Caller methods may be synchronous, `async`, or return deferred types (`Task`, `Promise`,
+coroutines) based on Receiver signatures and UGM completion metadata—not only on whether the
+Receiver method was written with `async`. Parallel Hypertube invocation uses `execute_async()` /
+`ExecuteAsync()` where emitted. See [Invocation lifecycle](invocation-lifecycle.md#async-cancellation-and-timeouts).
 
 ## Runtime support and per-runtime notes
 
@@ -62,15 +76,16 @@ Perl and Python 2.7 have no generated-package or type-mapping path.
 
 ## Supported surface is stricter than discovery
 
-Graftcode rejects **library and framework types** on the public surface you expose—for example
-`DateTime` on .NET, `java.time` types on Java, `datetime` or `bytes` on Python, or `List<T>` instead
-of an array. Requesting the Caller package then fails with HTTP `422`. A type listed in Vision or
-Gateway therefore does not guarantee that callers can install or use a generated package.
+Graftcode rejects many **non-parsable library and framework types** on the public surface—for example
+`List<T>` instead of an array, `Stream`, or arbitrary BCL classes. Requesting the Caller package
+then fails with HTTP `422`. A type listed in Vision or Gateway therefore does not guarantee that
+Callers can install or use a generated package.
 
-Use simple primitives and explicitly modeled public types. Prefer ISO-8601 strings and string identifiers for cross-language contracts unless the exact Receiver/Caller pair has generation and runtime tests for richer types.
+Use simple primitives, plain models, language arrays, parsable types (when tested), or string
+encodings for dates and IDs.
 
 ## Collections, generics, callbacks, and nullability
 
-Graftcode handles arrays, generics, delegates, nested types, and nullable metadata, but support varies by language pair. Verify each intended language pair with a generated-package smoke test.
+Graftcode handles arrays (including `byte[]` / `bytes` buffers), generics, delegates, nested types, and nullable metadata, but support varies by language pair. Verify each intended language pair with a generated-package smoke test.
 
 This is not a complete compatibility matrix. Confirm richer types for the exact Receiver/Caller pair before relying on them.

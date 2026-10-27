@@ -17,8 +17,8 @@ a quick capability summary and the key limits to check. For the exhaustive list,
 | Node.js / TypeScript | Yes | Yes |
 | Java / JVM | Yes | Yes |
 | Python | Yes | Yes |
-| PHP | Yes | In development |
-| Ruby | Yes | In development |
+| PHP | Yes | Yes (Alpha) |
+| Ruby | Yes | Yes (Alpha) |
 
 See [Supported runtimes and package managers](../reference/supported-runtimes-and-package-managers.md) for
 versions, package ecosystems, and status. Generated Gateway/Vision output is the source of truth for
@@ -26,9 +26,10 @@ the package, imports, configuration, and call surface of your running version.
 
 ## Key limits to check
 
-- **Contract types:** prefer primitives, strings, and plain models; framework complex types are
-  rejected at generation. Verify advanced types (nullability, unions, enums, generics, collections)
-  for your exact Receiver/Caller pair.
+- **Contract types:** prefer primitives, strings, and plain models; non-parsable framework types are
+  rejected at generation (`422`). Parsable types (dates, UUIDs, URIs) and async completion metadata
+  require pair-specific smoke tests. See [type mapping](../core-concepts/type-mapping.md) and
+  [invocation lifecycle](../core-concepts/invocation-lifecycle.md#async-cancellation-and-timeouts).
 - **Execution:** clients default to in-memory; set the remote host before the first call. Static,
   stateless methods scale best; instance identity needs affinity and can break on restart.
 - **Packages:** a free standalone Gateway's registry ID can change on restart. Copy the emitted
