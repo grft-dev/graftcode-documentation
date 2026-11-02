@@ -32,7 +32,7 @@ and Node.js; JavaScript Callers need pair-specific numeric rules*).
 | Non-parsable framework types on the public surface (for example `System.Type`, `List<T>`, `Stream`, most BCL types not in the parsable catalog) | Unsupported | Installing or generating the Caller package fails with HTTP `422` and a message that a framework type is not supported. The rule applies to types from **your Receiver's** runtime libraries, not only .NET. | Use primitives, plain models, language arrays, [parsable types](type-compatibility-matrix.md#parsable-framework-types), or ISO-8601 strings for maximum portability. See [Errors and status](errors-and-status-reference.md). |
 | Parsable framework types (`System.DateTime`, `System.Guid`, selected `java.time.*`, `datetime.datetime`, …) | Available (pair-specific) | Listed in the cross-runtime **parsable types** catalog; package generation does not treat them like opaque framework models. Mapping and timezone semantics vary by Receiver→Caller pair. | Prefer ISO-8601 strings when one contract must serve every Caller; otherwise use parsable types and follow Vision or the generated Caller API. See [Parsable framework types](type-compatibility-matrix.md#parsable-framework-types). |
 | Nested models, nullability, enums, and primitive arrays | Available | Supported across the documented runtimes when every member stays portable. Edge cases still differ by Receiver→Caller direction. | Design shallow models; generate a Caller package for each direction you use. |
-| Maps, sets, framework collections (`List<T>`, `Dictionary<,>`, …), and rich unions | Unsupported on the public surface | Framework collection interfaces and most non-parsable collection shapes are not in the portable baseline; `List<T>`-style signatures fail generation (`422`). | Prefer plain models and language arrays. |
+| Maps, sets, framework collections (`List<T>`, `Dictionary<,>`, …), and rich unions | Unsupported on the public surface | Framework collection interfaces and most non-parsable collection shapes are not in the portable baseline; `List<T>`-style signatures fail generation (`422`). On **Python Receivers**, public `dict` and `tuple` type hints on the callable surface are treated the same way and also fail generation (`422`). | Prefer plain models and language arrays. |
 | Generics | Pair-specific | Constraints, variance, overloads, and nested generics are not portable across every runtime pair. | Expose a concrete facade with fixed types on the public surface. |
 | Binary buffers (`byte[]`, `bytes`, `Uint8Array`, …) on the public surface | Available | Mapped as primitive byte arrays over Hypertube, not as opaque framework types. | Respect operational limits (timeouts, payload size) for very large buffers. |
 | Inheritance and polymorphism | Unsupported (arbitrary hierarchies) | Constructor, member, dispatch, and serialization semantics are not portable for arbitrary class hierarchies on the graft surface. | Flatten the public contract into standalone facade types; delegate internally. |
@@ -162,6 +162,8 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 - Importing the module can run module initialization code. Keep Receiver imports deterministic and
   free of unsafe startup side effects.
+- Public `dict` and `tuple` annotations on the callable surface fail package generation (`422`), same
+  as non-parsable framework collections; use plain models and language arrays on the public API.
 - Distribution names and import paths often differ; use the exact import shown in Vision.
 
 **Ruby**
