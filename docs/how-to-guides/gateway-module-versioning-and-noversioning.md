@@ -28,7 +28,7 @@ introduction. See [Update a Receiver contract](update-a-receiver-contract.md) an
 [Contract evolution](../core-concepts/contract-evolution.md).
 
 Additive methods are safer but are not guaranteed compatible in every target language. Always
-regenerate, reinstall, and smoke-test each Caller ecosystem.
+regenerate and reinstall each Caller ecosystem.
 
 ## When to use --noVersioning
 

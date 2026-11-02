@@ -99,7 +99,7 @@ gg ./lib/ --types PriceService --methods calculate
 5. **Rollout order:** for a breaking change, deploy the new Receiver first (able to serve both the old
    and new contract if possible), then upgrade Callers.
 6. **Canary:** upgrade a small subset of Callers to the new Graft first and verify.
-7. **Verify:** compile and smoke-test representative Callers against the new version.
+7. **Check:** compile representative Callers against the new version and call the updated operations.
 8. **Rollback:** if the canary fails, revert Callers to the pinned previous Graft version. Because the
    old package version is still published, rollback does not require regenerating anything.
 

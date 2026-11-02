@@ -64,7 +64,7 @@ Analyzer-level method filters also exist for some runtimes (wildcard patterns). 
 1. Start with the smallest public API in code (internal helpers stay non-public).
 2. Add `--types` / `--methods` when Gateway would otherwise discover too much.
 3. Open Vision and confirm only intended members appear.
-4. Generate and smoke-test the consumer package.
+4. Generate and install the consumer package.
 
 ## Next steps
 
@@ -80,7 +80,7 @@ articleTitle: "Expose provider methods for MCP"
 ---
 
 Gateway can participate in MCP workflows when the deployment enables the relevant HTTP surfaces and
-CORS settings. This is an **Alpha** area—verify behavior on your Gateway release.
+CORS settings. Verify behavior on your Gateway release and test MCP clients against your deployment.
 
 ## 1. Host the provider
 

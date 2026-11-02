@@ -55,7 +55,7 @@ GraftConfig.stateless = false
 - generated namespace/import path;
 - source-to-target method casing;
 - exact file layout;
-- whether runtime dependencies are transitive in the current Alpha.
+- whether runtime dependencies are transitive for your Gateway and package version.
 
 Read these values from current Gateway/Vision output and the installed artifact. Do not edit generated
 files as the source of truth; change the Receiver contract and regenerate.

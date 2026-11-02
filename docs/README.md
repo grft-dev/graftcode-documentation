@@ -194,7 +194,7 @@ categories:
       - title: "Core-concepts glossary"
         path: "core-concepts/core-concepts-glossary.md"
         order: 15
-      - title: "Graftcode Context library"
+      - title: "Graftcode Context Libraries"
         path: "core-concepts/graftcode-context.md"
         order: 16
   - name: "How-to guides"

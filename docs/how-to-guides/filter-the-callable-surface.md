@@ -57,7 +57,7 @@ Additional method filters also exist for some runtimes (wildcard patterns). See
 1. Start with the smallest public API in code (internal helpers stay non-public).
 2. Add `--types` / `--methods` when Gateway would otherwise discover too much.
 3. Open Vision and confirm only intended members appear.
-4. Generate and smoke-test the Caller package.
+4. Generate and install the Caller package.
 
 ## Next steps
 

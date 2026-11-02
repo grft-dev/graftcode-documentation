@@ -14,7 +14,7 @@ the full Caller/Receiver path is available. Use this matrix for role support; us
 
 | Runtime | Host Receiver code | Act as Caller | In-memory | Package ecosystem | Recommended version | Legacy minimum | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| .NET (Core / .NET) | Yes | Yes | Yes | NuGet | .NET 8+ | Core 3.1 / .NET 5 | Available | Public methods must be synchronous |
+| .NET (Core / .NET) | Yes | Yes | Yes | NuGet | .NET 8+ | Core 3.1 / .NET 5 | Available | Prefer arrays over `List<T>` on public signatures; see [type matrix](type-compatibility-matrix.md) |
 | .NET Framework (CLR) | Yes | Yes | Yes | NuGet | 4.8 | 4.7.2 | Available | Uses the .NET generation path |
 | Java / JVM | Yes | Yes | Yes | Maven | Java 17+ | Java 8 | Available | `java` and `jvm` runtime names accepted; Kotlin/Groovy via JVM bytecode |
 | Node.js / TypeScript | Yes | Yes | Yes | npm | Node.js 22+ | Node.js 22 | Available | TypeScript hosted as compiled JavaScript + declarations |
@@ -24,8 +24,9 @@ the full Caller/Receiver path is available. Use this matrix for role support; us
 | Python 2.7 | Listed by CLI | Not documented | Not documented | Not documented | — | 2.7 | Unsupported | Present as a CLI runtime name only |
 | Perl | Listed by CLI | No | Not documented | None | — | — | Unsupported | Gateway lists `perl`, but no Graft generation or Caller path exists |
 
-Status labels: **Available** (reachable through a public path and behaves as documented),
-**Alpha/Preview** (incomplete or unstable), **Planned** (partial foundations), **Unsupported**.
+Status labels: **Available** (reachable through a documented public path), **Unsupported** (no Graft
+generation or Caller path). Type and precision rules are pair-specific; see
+[Type compatibility matrix](type-compatibility-matrix.md) and [Known limitations](known-limitations.md).
 
 "Host Receiver code" and "Act as Caller" are separate capabilities. Runtime availability also depends
 on the host image or machine and its native dependencies.

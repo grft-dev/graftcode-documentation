@@ -92,8 +92,8 @@ cannot set arbitrary custom headers; use only the HTTP/2 configuration emitted b
 header-based workflow is required in the browser.
 
 **Status:** Passing a token as a method parameter is **Available** in every runtime. A JWT security
-plugin is **Alpha/Preview**; its packaging, configuration, and cross-runtime support are not yet a
-generally available feature, and automatic credential propagation must not be assumed.
+plugin depends on optional Gateway packaging and configuration; verify it for your release and do not
+assume automatic credential propagation across pairs.
 
 ## Next steps
 

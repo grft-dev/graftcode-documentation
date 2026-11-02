@@ -7,7 +7,7 @@ description: "How Receiver types appear to the Caller across supported languages
 
 Type mapping occurs as Graftcode captures the Receiver's callable surface and generates the Caller package. Support is a property of that complete Receiver-to-Caller path—not just the source language.
 
-![A Receiver type is captured as callable-surface metadata and mapped to a Caller type; unsupported framework complex types are rejected during package generation](../../assets/diagrams/type-mapping-path.png)
+![A Receiver type is captured as callable-surface metadata and mapped to a Caller type; non-parsable framework types fail package generation while parsable types and primitives map to Caller types](../../assets/diagrams/type-mapping-path.png)
 
 ## Detailed mappings by target language
 
@@ -37,21 +37,36 @@ Unknown values can degrade to `unknown` in TypeScript or `object` in .NET, excep
 
 ## Portable baselines for all generated Callers
 
-Graftcode also supports Java/JVM, Python, PHP, and Ruby, with cross-runtime smoke coverage. Their
-conservative public-contract baselines are:
+Graftcode also supports Java/JVM, Python, PHP, and Ruby. Their conservative public-contract baselines
+are:
 
 - **Java/JVM:** `String`, primitive numbers, `boolean`, plain Java objects, and homogeneous arrays.
 - **Python:** `str`, `int`, `float`, `bool`, simply typed classes, and homogeneous `list[T]` values.
 - **PHP:** `string`, `int`, `float`, `bool`, typed plain classes, and homogeneous sequential arrays.
 - **Ruby:** `String`, `Integer`, `Float`, booleans, small value objects, and homogeneous `Array` values.
 
-These are interoperability baselines, not exhaustive mappings. Boxed and nullable values, unions,
-enums, records, generics, maps, framework collections, date/time classes, arbitrary object values,
-and inheritance require verification for the exact Receiver-Caller pair.
+These are interoperability baselines, not exhaustive mappings. Framework collection **interfaces**,
+arbitrary non-parsable framework classes, and arbitrary inheritance hierarchies are not supported on
+the public surface. Boxed and nullable values, unions, enums, records, generics, and maps follow
+[pair-specific rules](../reference/type-compatibility-matrix.md#pair-specific).
 
-Caller-side asynchronous syntax also does not change the Receiver contract automatically. For
-example, a generated Node.js call can return `Promise<T>` even when the .NET Receiver method must
-remain synchronous.
+## Parsable framework types
+
+Some framework types are **parsable**: they have a defined cross-runtime mapping (catalog in the
+Graftcode protocol). Examples include `System.DateTime`, `System.Guid`, `System.Uri`, selected
+`java.time.*` types, and `datetime.datetime`. They are **not** subject to the same opaque
+framework `422` rule as types such as `System.Type` or `List<T>` on a .NET public signature.
+
+ISO-8601 **strings** are still the safest default when you need one contract for every Caller.
+When you use parsable types, generate the Caller package for each Receiver→Caller direction you ship
+and follow the emitted types in Vision. See [Parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types).
+
+## Async and deferred returns
+
+Generated Caller methods may be synchronous, `async`, or return deferred types (`Task`, `Promise`,
+coroutines) based on Receiver signatures and UGM completion metadata—not only on whether the
+Receiver method was written with `async`. Parallel Hypertube invocation uses `execute_async()` /
+`ExecuteAsync()` where emitted. See [Invocation lifecycle](invocation-lifecycle.md#async-cancellation-and-timeouts).
 
 ## Runtime support and per-runtime notes
 
@@ -62,12 +77,16 @@ Perl and Python 2.7 have no generated-package or type-mapping path.
 
 ## Supported surface is stricter than discovery
 
-The Graftcode Engine rejects framework complex types in public interfaces (`System.DateTime` is a typical example). Therefore, a type appearing in the discovered surface does not prove that package generation will accept it.
+Graftcode rejects many **non-parsable library and framework types** on the public surface—for example
+`List<T>` instead of an array, `Stream`, or arbitrary BCL classes. Requesting the Caller package
+then fails with HTTP `422`. A type listed in Vision or Gateway therefore does not guarantee that
+Callers can install or use a generated package.
 
-Use simple primitives and explicitly modeled public types. Prefer ISO-8601 strings and string identifiers for cross-language contracts unless the exact Receiver/Caller pair has generation and runtime tests for richer types.
+Use simple primitives, plain models, language arrays, parsable types, or string encodings for dates
+and IDs.
 
 ## Collections, generics, callbacks, and nullability
 
-Graftcode handles arrays, generics, delegates, nested types, and nullable metadata, but support varies by language pair. Verify each intended language pair with a generated-package smoke test.
-
-This is not a complete compatibility matrix. Confirm richer types for the exact Receiver/Caller pair before relying on them.
+Graftcode handles arrays (including `byte[]` / `bytes` buffers), nested types, and nullable metadata
+across documented pairs. Generics, delegates, and callbacks follow [pair-specific or unsupported
+rules](../reference/type-compatibility-matrix.md). See the matrix for the full breakdown.
