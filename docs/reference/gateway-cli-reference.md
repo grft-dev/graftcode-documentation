@@ -26,8 +26,8 @@ options below are optional.
 | `--runtime` | `auto`, `clr`, `netcore`, `java`, `jvm`, `python`, `python27`, `ruby`, `nodejs`, `php`, `perl` |
 | `--projectKey` | Portal project JWT; overridden by `GC_PROJECT_KEY` |
 | `--endpoint` | Graftcode Engine endpoint; default `https://grft.dev`, overridden by the legacy `GSMU_ENDPOINT` variable |
-| `--port` | WebSocket port; default `80` |
-| `--httpPort` | Vision HTTP port; default `81` |
+| `--port` | TCP port for the primary listener: WebSocket runtime traffic (e.g. `/ws`) **and** HTTP routes such as `/GV`, `/mcp`, and `GET /status`; default `80` |
+| `--httpPort` | Second HTTP listener (e.g. Drogon) for Vision and `/status`; default `81`. Vision is also served on `--port`; you do not have to expose `httpPort` locally if you use `http://host:<port>/GV` with the same value as `--port` |
 | `--tcpServer` / `--tcpPort` | Enable TCP; default port `82` |
 | `--http2Server` / `--http2Port` | Enable HTTP/2; default port `83` |
 | `--GV` | Host Vision; default on |

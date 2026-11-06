@@ -7,13 +7,15 @@ description: "Gateway listener defaults, enabling flags, and deployment caveats.
 
 | Default port | Surface | Enabled by default | Configuration |
 | --- | --- | --- | --- |
-| `80` | WebSocket runtime calls | Yes | `--port` |
-| `81` | HTTP server for Graftcode Vision | Yes (`--GV`) | `--httpPort` |
+| `80` | WebSocket runtime calls **and** HTTP routes on the same listener (including `/GV`, `/mcp`, `GET /status`) | Yes | `--port` |
+| `81` | Additional HTTP server for Graftcode Vision (and `/status`) | Yes (`--GV`) | `--httpPort` |
 | `82` | TCP runtime calls | No | `--tcpServer --tcpPort <port>` |
 | `83` | HTTP/2 runtime calls | No | `--http2Server --http2Port <port>` |
 
 For generated WebSocket clients, copy the full `ws://` or `wss://` host, including path, from Vision.
 The local route is `/ws`; do not extrapolate routes for other transports.
+
+**Vision in the browser:** With `--GV` enabled, open Graftcode Vision at `http://host:<websocket-port>/GV` (the same port as `--port`) or at `http://host:<httpPort>/GV`. Mini tutorials often map only `<websocket-port>` in Docker; that is enough for Vision and MCP on the uWS listener. The `<httpPort>` listener is a second HTTP entry point to the same surfaces when you expose it.
 
 ## Transport support
 
