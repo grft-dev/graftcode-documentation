@@ -47,7 +47,7 @@ Supported for selected Receiver–Caller combinations with documented mapping ru
 | 64-bit integer (`long`) | Target number type may not represent every value (especially JavaScript Callers). | Use `int` or a string for exact values. |
 | `decimal` | No exact equivalent in some Callers. | Represent as a string for exactness. |
 | maps / dictionaries / sets | Not a portable baseline; behavior varies when exposed. | Use explicit plain models or arrays on the public surface. |
-| inheritance / polymorphism | Not portable for arbitrary hierarchies on the graft surface. | Flatten to standalone facade types. |
+| inheritance / polymorphism | Supported when each type in the hierarchy is a portable public model; abstract members, interfaces, and overrides map with pair-specific rules. Deep graphs, mixins, and language-specific dispatch are not universal. | Keep hierarchies shallow; prefer concrete types at boundaries; test each Receiver→Caller direction. |
 | generics | Constraints, variance, and nesting are not universal. | Expose a concrete facade with closed types. |
 
 ## Parsable framework types

@@ -51,8 +51,11 @@ keywords: "graftcode module not discovered, missing method, unsupported type, HT
   public type. If the message names a type in the [parsable catalog](../reference/type-compatibility-matrix.md#parsable-framework-types),
   verify the Receiver→Caller pair instead of assuming a blanket ban. Otherwise use ISO-8601 strings for
   dates/times and strings for identifiers.
-- **Generic/inheritance/callback shape fails:** expose a concrete, flattened request/result facade and
-  keep the advanced source-language shape internal.
+- **Generic or callback shape fails:** expose a concrete, flattened request/result facade and keep the
+  advanced source-language shape internal.
+- **Inheritance shape fails:** ensure every type in the hierarchy uses only portable members; remove
+  non-parsable bases; prefer exposing concrete leaf types; retest after regenerating the Caller package
+  for that Receiver→Caller pair.
 - **Constructor mismatch:** use a single unambiguous constructor with supported parameter types or a
   static factory with explicit IDs.
 

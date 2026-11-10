@@ -45,10 +45,12 @@ are:
 - **PHP:** `string`, `int`, `float`, `bool`, typed plain classes, and homogeneous sequential arrays.
 - **Ruby:** `String`, `Integer`, `Float`, booleans, small value objects, and homogeneous `Array` values.
 
-These are interoperability baselines, not exhaustive mappings. Framework collection **interfaces**,
-arbitrary non-parsable framework classes, and arbitrary inheritance hierarchies are not supported on
-the public surface. Boxed and nullable values, unions, enums, records, generics, and maps follow
-[pair-specific rules](../reference/type-compatibility-matrix.md#pair-specific).
+These are interoperability baselines, not exhaustive mappings. Framework collection **interfaces** and
+arbitrary non-parsable framework classes are not supported on the public surface. Shallow inheritance
+trees of portable types (base class, interface, override, abstract members) are modeled in UGM and
+mapped in generated Callers; deep or language-specific shapes (for example multiple inheritance and
+mixins) follow [pair-specific rules](../reference/type-compatibility-matrix.md#pair-specific). Boxed
+and nullable values, unions, enums, records, generics, and maps follow the same pair-specific rules.
 
 ## Parsable framework types
 
