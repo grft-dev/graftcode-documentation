@@ -5,8 +5,7 @@ description: "Expose only the Gateway listeners required by the selected transpo
 
 # Networking and ports
 
-Gateway defaults to WebSocket port `80` and Vision HTTP port `81`. TCP port `82` and HTTP/2 port `83`
-are disabled unless `--tcpServer` or `--http2Server` is enabled.
+Gateway defaults to WebSocket port `80` and a second HTTP listener on `81` (`--httpPort`). Graftcode Vision is reachable in **both** places when `--GV` is on: the process listening on `--port` also serves normal HTTP for `/GV`, `/mcp`, `GET /status`, and related routes (so `http://localhost:<websocket-port>/GV` works). The `--httpPort` listener is an additional HTTP stack (default `81`) for the same UI and `/status` — not the only way to load Vision. TCP port `82` and HTTP/2 port `83` are disabled unless `--tcpServer` or `--http2Server` is enabled.
 
 ## Deployment checklist
 

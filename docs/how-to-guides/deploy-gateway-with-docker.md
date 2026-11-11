@@ -54,7 +54,7 @@ USER gateway
 
 EXPOSE 80 81
 
-# Liveness: Gateway serves GET /status on the HTTP port (81).
+# Liveness: Gateway serves GET /status on the WebSocket listener port (80) and on --httpPort (81).
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD curl -f http://localhost:81/status || exit 1
 
@@ -72,8 +72,7 @@ Operational notes:
   so images are reproducible. Add the `sha256sum -c` step once the release publishes a checksum.
 - **Secrets.** Inject `GC_PROJECT_KEY` at runtime (environment or secret store); do not bake it into
   the image.
-- **Vision exposure.** Port `81` serves Vision and `/status`. Do not expose it publicly in production;
-  restrict it to your network or an internal health check.
+- **Vision exposure.** Graftcode Vision is available on the WebSocket port as HTTP (`http://...:<websocket-port>/GV`) and on `--httpPort` (default `81`). `/status` responds on both. Do not expose Vision publicly in production; restrict to trusted networks or internal health checks.
 - **Graceful termination.** Ensure your orchestrator sends `SIGTERM` and allows the process to exit
   cleanly; pin Receiver dependencies in your build so the runtime image is deterministic.
 
