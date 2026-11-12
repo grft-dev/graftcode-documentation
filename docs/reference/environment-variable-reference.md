@@ -74,6 +74,9 @@ separate `HYPERTUBE_*_RUNTIME_PATH` variables in the native launchers.
 
 | Variable | Scope | Values / purpose |
 | --- | --- | --- |
+| `HYPERTUBE_LOG_LEVEL` | Hypertube SDK (.NET, JVM, Node.js, Python, Ruby) | `Debug`, `Info`, `Warning` (default), `Error`, `Off` — minimum level for structured SDK logs (with automatic secret redaction) |
+| `HYPERTUBE_LOG_ASYNC` | Hypertube SDK (.NET, JVM, Node.js, Python, Ruby) | `true` (default) or `false` — asynchronous background log flushing |
+| `HYPERTUBE_LOG_QUEUE_CAPACITY` | Hypertube SDK (.NET, JVM, Node.js, Python, Ruby) | Integer >= `256` (default `16384`) — maximum buffered log entries |
 | `HYPERTUBE_DEBUG` | Hypertube SDK (Python, JVM, PHP, Ruby, Node.js) | `true` enables SDK interpreter debug output |
 | `HYPERTUBE_DEBUG_MODE` | Hypertube native launchers | `true` enables native launcher debug logging |
 | `HYPERTUBE_LOGGING_LEVEL` | Hypertube native | `off`, `runtimeinfo` (default), `all` — overrides `loggingLevel` in config when set |
