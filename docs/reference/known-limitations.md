@@ -101,8 +101,8 @@ See [Ports and protocols](ports-and-protocols-reference.md).
 
 | Capability | Status | Current limitation | Recommended approach |
 | --- | --- | --- | --- |
-| W3C Trace Context propagation | Available (.NET Callers); pair-specific (other runtimes) | .NET Callers are the primary documented path; other runtimes depend on Gateway/SDK version and transport. | Instrument Caller and Receiver with OpenTelemetry; confirm parent/child spans in your backend. See [Observability](../operations/logging-metrics-and-tracing.md). |
-| Built-in metrics / log collector | Unsupported | Gateway does not provide a built-in collector. | Export telemetry with your own OpenTelemetry/logging stack. |
+| W3C Trace Context and header propagation | Available | Header propagation (`GraftConfig.InvokeWithHeaders` + `RequestContext`) works across all 6 runtimes; runtime pipeline hooks (`HypertubeBroker`) and structured SDK logging (`HypertubeLogger`) are available in .NET, Node.js, JVM, Python, and Ruby (not yet in PHP). | Instrument Caller and Receiver with OpenTelemetry and propagate `traceparent` via headers or pipeline hooks. See [Observability](../operations/logging-metrics-and-tracing.md). |
+| Built-in metrics / log collector | Unsupported | Gateway does not provide a built-in collector or Prometheus endpoint. | Export telemetry with your own OpenTelemetry/logging stack. |
 
 ## Configuration
 
