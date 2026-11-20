@@ -154,6 +154,7 @@ end
 ```
 ```
 
+
 **Client side** — the caller hand-writes an HTTP client: URL, headers, serialization, and status
 handling on every call:
 
@@ -226,6 +227,7 @@ total = JSON.parse(res.body)["total"]
 ```
 ```
 
+
 ### With Graftcode: clean public method + installed Graft
 
 **Server side (Receiver)** — a plain public method. No controller, route, or DTO plumbing:
@@ -273,6 +275,7 @@ end
 ```
 ```
 
+
 **Client side (Caller)** — install the generated Graft and call the method like local code:
 
 ```multi
@@ -313,6 +316,7 @@ GraftConfig.host = "ws://billing.example/ws" # before the first call
 total = BillingService.calculate_monthly_bill(10, 5)
 ```
 ```
+
 
 **Gateway** hosts the built module, discovers the
 [callable surface](../core-concepts/callable-surface.md), and publishes it for
