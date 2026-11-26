@@ -36,6 +36,8 @@ gg ./lib/ --types PriceService --methods calculate
 ```
 ```
 
+<!-- -->
+
 ## 2. Set MCP base class
 
 When MCP `tools/call` uses a bare method name and `params.class` is empty, Gateway can resolve the

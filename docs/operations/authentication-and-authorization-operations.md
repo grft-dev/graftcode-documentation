@@ -71,6 +71,8 @@ GraftConfig.stateless = true
 ```
 ```
 
+<!-- -->
+
 Default deny at the Receiver boundary, log authorization decisions without credentials, and keep
 policy logic independent from transport. Never place a full token in an exception message or log line,
 and keep `GG_DEBUG` off outside controlled diagnosis (it can log invocation data).

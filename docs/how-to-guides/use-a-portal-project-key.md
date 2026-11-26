@@ -70,6 +70,8 @@ gg ./lib/
 ```
 ```
 
+<!-- -->
+
 Or pass on the command line (avoid in shared shells and images):
 
 ```multi
@@ -92,6 +94,8 @@ gg --projectKey "dev:<jwt-copied-from-portal>" ./src/
 gg --projectKey "dev:<jwt-copied-from-portal>" ./lib/
 ```
 ```
+
+<!-- -->
 
 For Docker, inject `GC_PROJECT_KEY` through the platform secret store—never bake it into the image.
 See [Deploy with Docker](deploy-gateway-with-docker.md).

@@ -144,6 +144,9 @@ result = GraftConfig.invoke_with_headers(
 )
 ```
 ```
+
+<!-- -->
+
 ---
 
 ## Available Libraries
@@ -201,6 +204,8 @@ bundle install
 gem install graftcode-context
 ```
 ```
+
+<!-- -->
 
 ### Requirements
 
@@ -279,6 +284,8 @@ correlation_id = headers['X-Correlation-Id']
 tenant_id = headers['X-Tenant-Id']
 ```
 ```
+
+<!-- -->
 
 ### Thread and async safety
 

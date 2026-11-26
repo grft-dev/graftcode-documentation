@@ -80,6 +80,8 @@ end
 ```
 ```
 
+<!-- -->
+
 ## Caller-side handling example
 
 Treat a Graft call as a fallible remote call. Catch failures, and distinguish domain errors (do not
@@ -143,6 +145,8 @@ rescue StandardError => err
 end
 ```
 ```
+
+<!-- -->
 
 ## What is stable across runtime pairs
 

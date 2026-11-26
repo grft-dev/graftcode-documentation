@@ -75,6 +75,42 @@ def validate_fences(path: Path, text: str, warnings: list[str]) -> None:
             )
 
 
+def validate_multi_blocks(path: Path, text: str, errors: list[str]) -> None:
+    """Reject ```multi blocks that docs.graftcode.com would render wrongly.
+
+    The site matches the closing fence with a pattern that also swallows the blank
+    lines after it, so the next Markdown shows up as literal text unless an empty
+    comment and a blank line follow the block.
+    """
+    if path == README:  # documents the multi syntax itself; not a rendered page
+        return
+    lines = text.splitlines()
+    name = path.relative_to(ROOT)
+    index = 0
+    while index < len(lines):
+        if re.match(r"\s+```multi", lines[index]):
+            errors.append(f"{name}:{index + 1}: indented ```multi block is not turned into tabs")
+        if not lines[index].startswith("```multi"):
+            index += 1
+            continue
+        index += 1
+        in_variant = False
+        while index < len(lines) and (in_variant or lines[index].rstrip() != "```"):
+            if lines[index].startswith("```"):
+                if in_variant and lines[index] != "```" and lines[index].rstrip() == "```":
+                    errors.append(f"{name}:{index + 1}: trailing space after a fence merges code tabs")
+                in_variant = lines[index].rstrip() != "```"
+            index += 1
+        rest = lines[index + 1:]
+        first = next((i for i, line in enumerate(rest) if line.strip()), None)
+        if first is not None and not (rest[first] == "<!-- -->" and rest[first + 1:first + 2] in ([""], [])):
+            errors.append(
+                f"{name}:{index + 1}: add '<!-- -->' and a blank line after this ```multi block, "
+                "or the Markdown after it renders as literal text"
+            )
+        index += 1
+
+
 def split_frontmatter(text: str) -> tuple[str | None, str]:
     if not text.startswith("---"):
         return None, text
@@ -154,6 +190,7 @@ def main() -> int:
             titles[title.casefold()].append(path)
         validate_links(path, text, errors)
         validate_fences(path, text, warnings)
+        validate_multi_blocks(path, text, errors)
 
         lowered = text.casefold()
         for phrase in MARKETING_PHRASES:

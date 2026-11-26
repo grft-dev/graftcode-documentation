@@ -54,6 +54,8 @@ gem install <name> --source <source-from-vision>
 ```
 ```
 
+<!-- -->
+
 ## Configure a remote call
 
 Generated packages expose `host` and `stateless` configuration (field names, casing, and access differ
@@ -88,6 +90,8 @@ GraftConfig.host = "ws://localhost/ws"
 GraftConfig.stateless = true
 ```
 ```
+
+<!-- -->
 
 Use `ws://` or `wss://` for remote Gateway WebSocket endpoints. See
 [Configure invocation](../how-to-guides/configure-graft-invocation.md) for imports and file/env sources.

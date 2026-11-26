@@ -62,6 +62,8 @@ price = PriceService.calculate(10, 5)
 ```
 ```
 
+<!-- -->
+
 ## When to use which
 
 - Prefer **static + stateless** for idempotent reads and independent operations behind load balancers.

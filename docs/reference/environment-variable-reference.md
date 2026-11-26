@@ -205,6 +205,8 @@ GraftConfig.stateless = true
 ```
 ```
 
+<!-- -->
+
 ## Quick lookup
 
 | Scenario | Variables to set |

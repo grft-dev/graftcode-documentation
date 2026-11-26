@@ -56,6 +56,8 @@ end
 ```
 ```
 
+<!-- -->
+
 ## Breaking change example
 
 Changing a signature (for example, adding a required parameter or changing a return type) is breaking.
@@ -90,6 +92,8 @@ bundle install
 gg ./lib/ --types PriceService --methods calculate
 ```
 ```
+
+<!-- -->
 
 2. **Compare the generated public API** in Vision and confirm the change is what you intend.
 3. **Publish a new Graft package version.** Do not republish a changed surface under an existing

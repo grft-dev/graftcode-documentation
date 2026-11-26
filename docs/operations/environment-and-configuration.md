@@ -61,6 +61,8 @@ GraftConfig.stateless = true
 ```
 ```
 
+<!-- -->
+
 There is no single complete catalog of environment variables for every Gateway plugin or generated
 runtime. Plugin config keys are plugin-specific; confirm them for the plugin you use.
 

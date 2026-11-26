@@ -59,6 +59,8 @@ GraftConfig.stateless = true
 ```
 ```
 
+<!-- -->
+
 ## 3. Pick the state model deliberately
 
 Prefer static methods and stateless calls for independently routable operations. Instance methods and

@@ -76,6 +76,8 @@ GraftConfig.stateless = true
 ```
 ```
 
+<!-- -->
+
 - **Connection refused:** start the intended Gateway listener or correct the deployment's port mapping
   using values from Gateway output/configuration.
 - **WebSocket/proxy failure:** enable WebSocket forwarding and suitable idle/upgrade behavior in the

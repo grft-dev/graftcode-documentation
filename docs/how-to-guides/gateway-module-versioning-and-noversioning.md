@@ -68,6 +68,8 @@ gg ./lib/ --noVersioning
 ```
 ```
 
+<!-- -->
+
 Standalone mode without a project key (versioning off by default):
 
 ```multi
@@ -95,6 +97,8 @@ bundle install
 gg ./lib/
 ```
 ```
+
+<!-- -->
 
 Re-enable versioning in standalone mode (.NET example):
 
@@ -130,6 +134,8 @@ export GC_PROJECT_KEY="dev:<jwt-from-portal>"
 gg ./lib/
 ```
 ```
+
+<!-- -->
 
 ## Verify
 

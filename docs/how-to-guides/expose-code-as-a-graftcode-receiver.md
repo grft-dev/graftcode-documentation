@@ -64,6 +64,8 @@ end
 ```
 ```
 
+<!-- -->
+
 Use primitives and plain models. For the safest cross-runtime contracts, use ISO-8601 strings for
 dates and string identifiers for IDs. You can also use [parsable framework types](../reference/type-compatibility-matrix.md#parsable-framework-types) such as `System.DateTime` or `System.Guid`; generate the Caller package for each Caller runtime you use. The engine rejects **non-parsable** framework types (for example `List<T>`, `Stream`, `System.Type`) with HTTP `422`.
 
@@ -91,6 +93,8 @@ bundle install
 ```
 ```
 
+<!-- -->
+
 ## 3. Start Gateway with the real module
 
 Install and run **[Graftcode Gateway](../core-concepts/gateway-and-hosted-modules.md)** (`gg`) if you have not
@@ -117,6 +121,8 @@ gg ./src/
 gg ./lib/
 ```
 ```
+
+<!-- -->
 
 Adjust paths and runtime versions to the project. Do not copy package IDs, registry URLs, or project
 keys from examples.

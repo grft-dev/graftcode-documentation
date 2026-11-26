@@ -75,6 +75,8 @@ price = PriceService.calculate(100, 10)
 ```
 ```
 
+<!-- -->
+
 Configure `host` and headers **before** the first generated call. Browser WebSocket clients cannot
 set arbitrary handshake headers; use the HTTP/2 configuration emitted by Vision when required.
 

@@ -55,6 +55,8 @@ gem install graft-rubygems-sdn_test_simple_car -v 0.2.2 --source https://grft.de
 ```
 ```
 
+<!-- -->
+
 Exact scopes, artifact IDs, and import paths come from the installed package and its generated
 `GraftConfig`. After install, configure invocation per
 [Configure invocation](configure-graft-invocation.md)—remote Grafts need a WebSocket host; some public
@@ -102,6 +104,8 @@ composer require <vendor/package>:<version> --repository <repo-from-vision>
 gem install <name> --source <source-from-vision>
 ```
 ```
+
+<!-- -->
 
 Never derive registry URLs from the Receiver assembly or module name. Use a [project key](use-a-portal-project-key.md)
 when stable publication identity is required.

@@ -63,6 +63,8 @@ GraftConfig.module = "<module-path-from-generated-package>"
 ```
 ```
 
+<!-- -->
+
 If you see `FileNotFound` for the Receiver module, the client remained in `inmemory` without a
 resolvable module path. See [Errors reference](../reference/errors-and-status-reference.md).
 
